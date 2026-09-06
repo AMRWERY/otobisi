@@ -8,7 +8,7 @@
           <div
             class="flex items-center gap-1.5 text-xs font-bold text-amber-600 uppercase tracking-wider mb-2"
           >
-            <icon name="ph:shield-check-bold" class="w-4 h-4" />
+            <Icon name="ph:shield-check-bold" class="w-4 h-4" />
             <span>Official Government Transit Registry</span>
           </div>
           <h3 class="text-xl sm:text-2xl font-black text-text-primary">
@@ -23,25 +23,29 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0">
-          <button
-            class="w-full sm:w-auto px-4 py-2.5 bg-surface-1 border border-border hover:bg-surface-2 text-text-primary rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-2xs transition-all"
+          <LazyVButton
+            variant="surface"
+            size="sm"
+            icon="ph:question-bold"
+            custom-class="w-full sm:w-auto"
           >
-            <icon
-              name="ph:question-bold"
-              class="w-3.5 h-3.5 text-text-secondary"
-            />
-            <span>How Boarding Works</span>
-          </button>
-          <button
-            class="w-full sm:w-auto px-5 py-2.5 bg-[#F26A36] hover:bg-[#E05925] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all"
+            How Boarding Works
+          </LazyVButton>
+
+          <LazyVButton
+            variant="primary"
+            size="sm"
+            icon="ph:download-simple-bold"
+            custom-class="w-full sm:w-auto"
           >
-            <icon name="ph:download-simple-bold" class="w-3.5 h-3.5" />
-            <span>Download Otobisi App</span>
-          </button>
+            Download Otobisi App
+          </LazyVButton>
         </div>
       </div>
     </section>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+
+</script>

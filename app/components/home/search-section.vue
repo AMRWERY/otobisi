@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="relative pt-10 overflow-hidden">
+    <section class="relative pt-10">
       <div class="relative text-center">
         <!-- Official Badge -->
         <div
@@ -43,7 +43,7 @@
 
         <!-- BOOKING SEARCH ENGINE CARD -->
         <div
-          class="mt-8 bg-surface-1 border border-border rounded-2xl p-4 sm:p-6 shadow-xl shadow-black/5 text-start"
+          class="mt-8 bg-surface-1 border border-border rounded-2xl p-4 sm:p-6 shadow-xl shadow-black/5 text-start relative"
         >
           <!-- Search Header Controls -->
           <div
@@ -88,92 +88,65 @@
                 <span>Live Seat Selection</span>
               </div>
               <div class="flex items-center gap-1.5 text-amber-600">
-                <icon name="ph:lightning-fill" class="w-3.5 h-3.5" />
+                <Icon name="ph:lightning-fill" class="w-3.5 h-3.5" />
                 <span>Instant Confirmation</span>
               </div>
             </div>
           </div>
 
           <!-- Input Fields Row -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mt-4 items-end">
+          <div
+            class="grid grid-cols-1 md:grid-cols-12 gap-3 mt-4 items-end relative z-30"
+          >
             <!-- Origin -->
-            <div class="md:col-span-4 flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-text-primary/90">
-                From city / departure terminal
-              </label>
-              <div
-                class="flex items-center gap-2 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
-              >
-                <icon
+            <LazyVInput
+              v-model="origin"
+              label="From city / departure terminal"
+              placeholder="City or departure terminal"
+              wrapper-class="md:col-span-4"
+            >
+              <template #leading>
+                <Icon
                   name="ph:circle-bold"
                   class="w-3 h-3 text-orange-500 shrink-0"
                 />
-                <input
-                  v-model="origin"
-                  type="text"
-                  class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 font-semibold text-sm text-text-primary truncate placeholder:text-text-muted"
-                  placeholder="City or departure terminal"
-                />
-              </div>
-            </div>
+              </template>
+            </LazyVInput>
 
             <!-- Swap button -->
             <div class="md:col-span-1 flex justify-center pb-2 md:pb-2.5">
-              <button
-                @click="swapLocations"
-                type="button"
-                class="w-8 h-8 rounded-full border border-border bg-surface-1 hover:bg-surface-2 flex items-center justify-center text-orange-500 hover:text-text-primary shadow-xs transition-transform active:rotate-180"
+              <LazyVButton
+                variant="surface"
+                rounded="full"
+                custom-class="w-8 h-8 !p-0 text-orange-500 hover:text-text-primary active:rotate-180"
                 title="Swap Locations"
+                @click="swapLocations"
               >
-                <icon name="ph:arrows-left-right-bold" class="w-3.5 h-3.5" />
-              </button>
+                <Icon name="ph:arrows-left-right-bold" class="w-3.5 h-3.5" />
+              </LazyVButton>
             </div>
 
             <!-- Destination -->
-            <div class="md:col-span-4 flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-text-primary/90">
-                To destination
-              </label>
-              <div
-                class="flex items-center gap-2 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-500"
-              >
-                <icon
+            <LazyVInput
+              v-model="destination"
+              label="To destination"
+              placeholder="City or destination"
+              wrapper-class="md:col-span-4"
+            >
+              <template #leading>
+                <Icon
                   name="ph:map-pin-bold"
                   class="w-3 h-3 text-emerald-500 shrink-0"
                 />
-                <input
-                  v-model="destination"
-                  type="text"
-                  class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 font-semibold text-sm text-text-primary truncate placeholder:text-text-muted"
-                  placeholder="City or destination"
-                />
-              </div>
-            </div>
+              </template>
+            </LazyVInput>
 
             <!-- Departure Date -->
-            <div class="md:col-span-3 flex flex-col gap-1.5">
-              <label class="text-xs font-semibold text-text-primary/90">
-                Travel date
-              </label>
-              <div
-                class="relative flex items-center gap-3 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500 cursor-pointer"
-              >
-                <icon
-                  name="ph:calendar-blank-bold"
-                  class="w-5 h-5 text-text-primary shrink-0"
-                />
-                <span
-                  class="font-semibold text-sm text-text-primary select-none truncate"
-                >
-                  {{ formattedDepartureDate }}
-                </span>
-                <input
-                  type="date"
-                  v-model="departureDate"
-                  class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                />
-              </div>
-            </div>
+            <LazyVDatePicker
+              v-model="departureDate"
+              label="Travel date"
+              wrapper-class="md:col-span-3"
+            />
           </div>
 
           <!-- Main CTA Button -->
@@ -186,21 +159,22 @@
               <span
                 class="text-emerald-500 flex items-center justify-center font-medium"
               >
-                <icon name="ph:check-circle-bold" class="w-3.5 h-3.5 me-1" />
+                <Icon name="ph:check-circle-bold" class="w-3.5 h-3.5 me-1" />
                 180+ daily departures
                 <span class="text-text-muted mx-1.5">·</span>
               </span>
               <span class="flex items-center gap-1 text-text-secondary">
-                <icon name="ph:bus-bold" class="w-3.5 h-3.5 text-orange-500" />
+                <Icon name="ph:bus-bold" class="w-3.5 h-3.5 text-orange-500" />
                 Live MCV & Travego bus layouts
               </span>
             </p>
-            <button
-              class="w-full sm:w-auto bg-[#F26A36] hover:bg-[#E05925] text-white py-3.5 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-900/10 hover:shadow-lg transition-all active:scale-[0.99] shrink-0"
+            <LazyVButton
+              size="lg"
+              icon="ph:magnifying-glass-bold"
+              custom-class="w-full sm:w-auto shrink-0"
             >
-              <icon name="ph:magnifying-glass-bold" class="w-4 h-4" />
-              <span>Search buses</span>
-            </button>
+              Search buses
+            </LazyVButton>
           </div>
 
           <!-- High Frequency Egyptian Corridors Section -->

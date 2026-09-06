@@ -14,7 +14,7 @@
               <div
                 class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm shadow-orange-500/20"
               >
-                <icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
+                <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
               </div>
               <div class="flex items-baseline gap-1.5">
                 <span
@@ -36,7 +36,7 @@
             <div
               class="inline-flex items-center gap-2 bg-surface-2 border border-border px-3 py-1.5 rounded-lg text-text-primary font-semibold text-[11px]"
             >
-              <icon
+              <Icon
                 name="ph:phone-call-fill"
                 class="w-3.5 h-3.5 text-[#A1331B]"
               />
@@ -85,21 +85,21 @@
             </h5>
             <ul class="space-y-2 text-[11px]">
               <li class="flex items-center gap-1.5">
-                <icon
+                <Icon
                   name="ph:check-circle-bold"
                   class="w-3.5 h-3.5 text-emerald-600"
                 />
                 Ministry Licensed
               </li>
               <li class="flex items-center gap-1.5">
-                <icon
+                <Icon
                   name="ph:lock-key-bold"
                   class="w-3.5 h-3.5 text-amber-600"
                 />
                 Encrypted Payment
               </li>
               <li class="flex items-center gap-1.5">
-                <icon
+                <Icon
                   name="ph:armchair-bold"
                   class="w-3.5 h-3.5 text-[#A1331B]"
                 />

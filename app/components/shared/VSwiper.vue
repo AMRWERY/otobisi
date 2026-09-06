@@ -59,7 +59,7 @@
         aria-label="Previous slide"
         class="absolute start-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-surface-1/90 backdrop-blur-md border border-border shadow-md flex items-center justify-center text-text-primary hover:bg-surface-2 transition-all opacity-0 group-hover/swiper:opacity-100 focus:opacity-100 active:scale-95"
       >
-        <icon name="ph:caret-left-bold" class="w-4 h-4 rtl:rotate-180" />
+        <Icon name="ph:caret-left-bold" class="w-4 h-4 rtl:rotate-180" />
       </button>
 
       <button
@@ -69,7 +69,7 @@
         aria-label="Next slide"
         class="absolute end-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-surface-1/90 backdrop-blur-md border border-border shadow-md flex items-center justify-center text-text-primary hover:bg-surface-2 transition-all opacity-0 group-hover/swiper:opacity-100 focus:opacity-100 active:scale-95"
       >
-        <icon name="ph:caret-right-bold" class="w-4 h-4 rtl:rotate-180" />
+        <Icon name="ph:caret-right-bold" class="w-4 h-4 rtl:rotate-180" />
       </button>
     </template>
   </div>

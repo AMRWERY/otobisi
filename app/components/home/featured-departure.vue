@@ -20,12 +20,12 @@
             <button
               class="px-2 py-0.5 bg-surface-1 rounded shadow-2xs text-text-primary flex items-center gap-1"
             >
-              <icon name="ph:arrows-left-right" class="w-3 h-3" /> Switch to RTL
+              <Icon name="ph:arrows-left-right" class="w-3 h-3" /> Switch to RTL
             </button>
             <button
               class="px-2 py-0.5 hover:text-text-primary flex items-center gap-1"
             >
-              <icon name="ph:sparkle" class="w-3 h-3" /> Dark Surface
+              <Icon name="ph:sparkle" class="w-3 h-3" /> Dark Surface
             </button>
           </div>
           <span
@@ -69,7 +69,7 @@
                 <span
                   title="Wi-Fi"
                   class="flex items-center gap-0.5 text-[10px]"
-                  ><icon
+                  ><Icon
                     name="ph:wifi-high"
                     class="w-3.5 h-3.5 text-text-secondary"
                   />
@@ -78,7 +78,7 @@
                 <span
                   title="USB Charging"
                   class="flex items-center gap-0.5 text-[10px]"
-                  ><icon
+                  ><Icon
                     name="ph:plug"
                     class="w-3.5 h-3.5 text-text-secondary"
                   />
@@ -87,7 +87,7 @@
                 <span
                   title="Air Conditioning"
                   class="flex items-center gap-0.5 text-[10px]"
-                  ><icon
+                  ><Icon
                     name="ph:snowflake"
                     class="w-3.5 h-3.5 text-cyan-600"
                   />
@@ -96,7 +96,7 @@
                 <span
                   title="Restroom"
                   class="flex items-center gap-0.5 text-[10px]"
-                  ><icon
+                  ><Icon
                     name="ph:toilet"
                     class="w-3.5 h-3.5 text-emerald-600"
                   />
@@ -159,12 +159,7 @@
                 >EGP</span
               >
             </div>
-            <button
-              class="bg-[#F26A36] hover:bg-[#E05925] text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-98"
-            >
-              <icon name="ph:armchair-bold" class="w-3.5 h-3.5" />
-              <span>Select Seats</span>
-            </button>
+            <VButton size="sm" icon="ph:armchair-bold"> Select Seats </VButton>
           </div>
         </div>
       </div>

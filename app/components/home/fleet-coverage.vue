@@ -25,7 +25,7 @@
             :class="[op.bgColor, op.iconColor]"
             class="w-11 h-11 rounded-full flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110"
           >
-            <icon :name="op.icon" class="w-5 h-5" />
+            <Icon :name="op.icon" class="w-5 h-5" />
           </div>
 
           <span class="font-bold text-sm text-text-primary leading-tight">

@@ -5,12 +5,12 @@
       class="px-2 py-1 text-stone-500 hover:text-stone-800 rounded-full hover:bg-stone-100 transition-colors"
     >
       <ClientOnly>
-        <icon
+        <Icon
           :name="isDark ? 'noto-v1:sun' : 'noto-v1:crescent-moon'"
           class="w-4 h-4"
         />
         <template #fallback>
-          <icon name="noto-v1:crescent-moon" class="w-4 h-4" />
+          <Icon name="noto-v1:crescent-moon" class="w-4 h-4" />
         </template>
       </ClientOnly>
     </button>

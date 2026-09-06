@@ -16,7 +16,7 @@
           class="text-xs font-semibold text-amber-600 hover:underline flex items-center gap-1"
         >
           <span>View all 120+ active routes</span>
-          <icon name="ph:arrow-right-bold" class="w-3 h-3" />
+          <Icon name="ph:arrow-right-bold" class="w-3 h-3" />
         </nuxt-link-locale>
       </div>
 
@@ -33,7 +33,7 @@
                 class="flex items-center gap-1.5 font-bold text-sm text-amber-600 group-hover:text-[#A1331B] transition-colors"
               >
                 <span>{{ route.from }}</span>
-                <icon
+                <Icon
                   name="ph:arrow-right-bold"
                   class="w-3 h-3 text-text-muted group-hover:translate-x-0.5 transition-transform"
                 />
@@ -42,7 +42,7 @@
               <div
                 class="flex items-center gap-1.5 text-[11px] text-text-secondary mt-1"
               >
-                <icon name="ph:clock" class="w-3 h-3" />
+                <Icon name="ph:clock" class="w-3 h-3" />
                 <span>{{ route.duration }}</span>
                 <span>•</span>
                 <span>{{ route.trips }}</span>

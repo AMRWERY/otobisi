@@ -20,7 +20,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200/60 flex items-center justify-center text-amber-600 mb-4"
             >
-              <icon name="ph:arrows-split-bold" class="w-5 h-5" />
+              <Icon name="ph:arrows-split-bold" class="w-5 h-5" />
             </div>
             <h3 class="font-bold text-base text-text-primary mb-2">
               Compare all companies
@@ -34,7 +34,7 @@
           <div
             class="mt-6 pt-3 border-t border-border flex items-center gap-1.5 text-[11px] font-bold text-text-secondary"
           >
-            <icon
+            <Icon
               name="ph:check-circle-bold"
               class="w-3.5 h-3.5 text-emerald-600"
             />
@@ -50,7 +50,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200/60 flex items-center justify-center text-amber-600 mb-4"
             >
-              <icon name="ph:wallet-bold" class="w-5 h-5" />
+              <Icon name="ph:wallet-bold" class="w-5 h-5" />
             </div>
             <h3 class="font-bold text-base text-text-primary mb-2">
               100% Secure Egyptian Payments
@@ -64,7 +64,7 @@
           <div
             class="mt-6 pt-3 border-t border-border flex items-center gap-1.5 text-[11px] font-bold text-text-secondary"
           >
-            <icon
+            <Icon
               name="ph:shield-check-bold"
               class="w-3.5 h-3.5 text-amber-600"
             />
@@ -80,7 +80,7 @@
             <div
               class="w-10 h-10 rounded-xl bg-red-50 border border-red-200/60 flex items-center justify-center text-red-700 mb-4"
             >
-              <icon name="ph:arrow-counter-clockwise-bold" class="w-5 h-5" />
+              <Icon name="ph:arrow-counter-clockwise-bold" class="w-5 h-5" />
             </div>
             <h3 class="font-bold text-base text-text-primary mb-2">
               Instant refund & easy cancellation
@@ -94,7 +94,7 @@
           <div
             class="mt-6 pt-3 border-t border-border flex items-center gap-1.5 text-[11px] font-bold text-text-secondary"
           >
-            <icon
+            <Icon
               name="ph:arrows-clockwise-bold"
               class="w-3.5 h-3.5 text-[#A1331B]"
             />

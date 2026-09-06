@@ -11,7 +11,7 @@
           <div
             class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm shadow-orange-500/20"
           >
-            <icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
+            <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
           </div>
           <div class="flex items-baseline gap-1.5">
             <span
@@ -74,7 +74,7 @@
             class="flex items-center justify-center bg-[#A1331B] hover:bg-[#8B2B16] text-white p-2 rounded-full text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
           >
             <div class="w-4 h-4 flex items-center justify-center">
-              <icon name="material-symbols:person-outline" class="w-5 h-5" />
+              <Icon name="material-symbols:person-outline" class="w-5 h-5" />
             </div>
           </nuxt-link-locale>
         </div>
@@ -83,6 +83,4 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
