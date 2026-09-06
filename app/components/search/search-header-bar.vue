@@ -152,7 +152,7 @@
             v-model="editTo"
             label="To destination"
             placeholder="Destination"
-            wrapper-class="lg:col-span-4"
+            wrapper-class="lg:col-span-3"
           >
             <template #leading>
               <Icon
@@ -168,11 +168,12 @@
             wrapper-class="lg:col-span-3"
           />
 
-          <div class="lg:col-span-1 flex items-end">
+          <div class="lg:col-span-2 flex items-end">
             <LazyVButton
               size="md"
               icon="ph:magnifying-glass-bold"
               block
+              custom-class="whitespace-nowrap px-4"
               @click="applyModify"
             >
               Update

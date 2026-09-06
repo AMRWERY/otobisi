@@ -53,11 +53,7 @@
         <!-- Right Action items -->
         <div class="flex items-center gap-3">
           <!-- Language Switcher -->
-          <div
-            class="flex items-center border border-border rounded-lg p-0.5 text-xs font-semibold text-text-secondary bg-surface-2"
-          >
-            <LazyVToggleLocale />
-          </div>
+          <LazyVToggleLocale />
 
           <!-- Theme Toggle -->
           <LazyVToggleTheme />
