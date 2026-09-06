@@ -1,20 +1,12 @@
 <template>
   <div>
     <section class="relative pt-10 pb-16 overflow-hidden">
-      <!-- Subtle background ambient mesh -->
-      <div
-        class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none"
-      ></div>
-
       <div class="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <!-- Official Badge -->
         <div
-          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/70 text-amber-900 text-xs font-medium mb-6"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-amber-600 text-xs font-medium mb-6"
         >
-          <icon
-            name="ph:shield-check-fill"
-            class="w-3.5 h-3.5 text-amber-600"
-          />
+          <span class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
           <span>Egypt's Unified Intercity Booking Platform</span>
         </div>
 
@@ -110,11 +102,11 @@
                 From city / departure terminal
               </label>
               <div
-                class="flex items-center gap-3 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+                class="flex items-center gap-2 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
               >
                 <icon
                   name="ph:circle-bold"
-                  class="w-5 h-5 text-orange-500 shrink-0"
+                  class="w-3 h-3 text-orange-500 shrink-0"
                 />
                 <input
                   v-model="origin"
@@ -130,7 +122,7 @@
               <button
                 @click="swapLocations"
                 type="button"
-                class="w-8 h-8 rounded-full border border-border bg-surface-1 hover:bg-surface-2 flex items-center justify-center text-text-secondary hover:text-text-primary shadow-xs transition-transform active:rotate-180"
+                class="w-8 h-8 rounded-full border border-border bg-surface-1 hover:bg-surface-2 flex items-center justify-center text-orange-500 hover:text-text-primary shadow-xs transition-transform active:rotate-180"
                 title="Swap Locations"
               >
                 <icon name="ph:arrows-left-right-bold" class="w-3.5 h-3.5" />
@@ -143,11 +135,11 @@
                 To destination
               </label>
               <div
-                class="flex items-center gap-3 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-500"
+                class="flex items-center gap-2 bg-surface-2 border border-border rounded-xl px-3.5 py-3 hover:border-border-strong transition-colors focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-500"
               >
                 <icon
                   name="ph:map-pin-bold"
-                  class="w-5 h-5 text-emerald-500 shrink-0"
+                  class="w-3 h-3 text-emerald-500 shrink-0"
                 />
                 <input
                   v-model="destination"

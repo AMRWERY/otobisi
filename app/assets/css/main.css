@@ -20,14 +20,14 @@
 }
 
 .dark {
-  --surface-0: #17181a;
-  --surface-1: #1f2023;
-  --surface-2: #26272b;
+  --surface-0: #151a2a;
+  --surface-1: #1b2135;
+  --surface-2: #232b44;
   --text-primary: #f2f1ec;
   --text-secondary: #b4b2a9;
   --text-muted: #888780;
-  --border: #33342f;
-  --border-strong: #444441;
+  --border: #2b334e;
+  --border-strong: #3d486d;
 }
 
 /* Fallback smoothing for browsers where the View Transition circular
