@@ -7,7 +7,7 @@
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
       >
         <!-- Logo -->
-        <div class="flex items-center gap-3">
+        <nuxt-link-locale to="/" class="flex items-center gap-3">
           <div
             class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm shadow-orange-500/20"
           >
@@ -22,7 +22,7 @@
               ><span class="text-amber-600">Otobisi</span></span
             >
           </div>
-        </div>
+        </nuxt-link-locale>
 
         <!-- Navigation Links -->
         <nav

@@ -1,20 +1,10 @@
-export type SeoType = "website" | "article" | "product";
-
 export interface SeoOptions {
-  /** Page-specific title. Site name is appended automatically. */
+  /** Page title. On home page or if title is site name, only 'Otobisi' is displayed */
   title?: string;
-  /** 120-160 char plain-text description, no markup. */
+  /** Plain text description */
   description?: string;
-  /** Absolute or root-relative image URL for social previews. */
-  image?: string;
-  /** og:type — use 'product' for trip/result pages. */
-  type?: SeoType;
-  /** Path without locale prefix, e.g. '/search/cairo-alexandria'. Defaults to the current route. */
-  path?: string;
-  /** Set true for thin/duplicate pages (filtered results, etc). */
-  noindex?: boolean;
-  /** Raw JSON-LD object(s) to inject as <script type="application/ld+json">. */
-  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  /** If true, sets robots to 'noindex, nofollow', otherwise 'index, follow' */
+  private?: boolean;
 }
 
 export interface TripSchemaInput {

@@ -744,4 +744,10 @@ const filteredTrips = computed(() => {
 
   return result;
 });
+
+useSeo({
+  title: `Buses from ${fromCityFormatted.value} to ${toCityFormatted.value}`,
+  description: `Compare and book bus tickets from ${fromCityFormatted.value} to ${toCityFormatted.value} for ${formattedLongDate.value}. Licensed operators (Go Bus, BlueBus, Super Jet), live seat selection, and fares from ${minPriceFound.value} EGP.`,
+  private: false,
+});
 </script>

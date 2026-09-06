@@ -10,28 +10,41 @@ export function useSeo(options: SeoOptions = {}) {
   const { locale, locales } = useI18n();
   const route = useRoute();
 
-  const siteUrl = String(config.siteUrl).replace(/\/$/, "");
-  const siteName = String(config.siteName);
-  const title = options.title ?? siteName;
-  const description = options.description ?? "";
-  const path = options.path ?? route.path;
-  const fullTitle = options.title ? `${title} | ${siteName}` : title;
-  const image = options.image
-    ? absoluteUrl(options.image, siteUrl)
-    : absoluteUrl(String(config.defaultOgImage), siteUrl);
+  const siteUrl = String(config.siteUrl || "https://otobisi.com").replace(/\/$/, "");
+  const siteName = String(config.siteName || "Otobisi");
 
-  // Canonical always points at the current locale's URL — never at a
-  // "preferred" locale — so each language is indexed as its own page.
+  // On home page or when title is Otobisi / empty, display only Otobisi without suffix
+  const isHomePage =
+    route.path === "/" ||
+    route.path === `/${locale.value}` ||
+    route.path === `/${locale.value}/`;
+
+  const isBrandOnlyTitle =
+    !options.title ||
+    options.title.trim().toLowerCase() === siteName.toLowerCase() ||
+    isHomePage;
+
+  const fullTitle = isBrandOnlyTitle
+    ? siteName
+    : `${options.title} | ${siteName}`;
+
+  const description = options.description ?? "";
+  const isPrivate = Boolean(options.private);
+  const robots = isPrivate ? "noindex, nofollow" : "index, follow";
+  const image = absoluteUrl(String(config.defaultOgImage || "/og-default.jpg"), siteUrl);
+  const path = route.path;
+
+  // Canonical always points at the current locale's URL
   const canonicalUrl = `${siteUrl}/${locale.value}${normalizePath(path)}`;
 
   useSeoMeta({
     title: fullTitle,
     description,
-    robots: options.noindex ? "noindex, nofollow" : "index, follow",
+    robots,
 
     ogTitle: fullTitle,
     ogDescription: description,
-    ogType: options.type ?? "website",
+    ogType: "website",
     ogUrl: canonicalUrl,
     ogImage: image,
     ogSiteName: siteName,
@@ -44,7 +57,7 @@ export function useSeo(options: SeoOptions = {}) {
     twitterSite: config.twitterHandle as string,
   });
 
-  // hreflang alternates + canonical + JSON-LD, all as <link>/<script> tags.
+  // hreflang alternates + canonical
   const availableLocales = Array.isArray(locales.value) ? locales.value : [];
 
   useHead({
@@ -64,7 +77,6 @@ export function useSeo(options: SeoOptions = {}) {
         href: `${siteUrl}${normalizePath(path)}`,
       },
     ],
-    script: buildStructuredDataTags(options.structuredData),
   });
 }
 

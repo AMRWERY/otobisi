@@ -24,5 +24,10 @@
 </template>
 
 <script lang="ts" setup>
-useSeo({});
+useSeo({
+  title: "Otobisi",
+  description:
+    "Compare 30+ licensed Egyptian bus operators including Go Bus, BlueBus, and Super Jet. Guaranteed seats, live coach availability, and instant booking along the Nile, Red Sea, and Coast.",
+  private: false,
+});
 </script>
