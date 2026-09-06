@@ -18,12 +18,13 @@
           <span class="relative inline-block text-[#A1331B]">
             simplified
             <svg
-              class="absolute -bottom-2 start-0 w-full"
+              class="absolute -bottom-2 start-0 w-full overflow-visible pointer-events-none"
               viewBox="0 0 180 12"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                class="draw-underline"
                 d="M2.5 9.5C45.5 3.5 134.5 1.5 177.5 9.5"
                 stroke="#A1331B"
                 stroke-width="3"
@@ -268,3 +269,32 @@ const swapLocations = () => {
   destination.value = temp;
 };
 </script>
+
+<style scoped>
+@keyframes drawSwoosh {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.draw-underline {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawSwoosh 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+/* Re-trigger smoothly when user hovers over the word */
+span:hover .draw-underline {
+  animation: none;
+  /* Trigger reflow via style */
+  animation: drawSwoosh 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+</style>

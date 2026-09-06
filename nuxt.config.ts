@@ -80,6 +80,14 @@ export default defineNuxtConfig({
       },
       link: [{ rel: "icon", type: "image/png", href: "" }],
       meta: [{ name: "theme-color", content: "#22a693" }],
+      script: [
+        {
+          key: "theme-init",
+          innerHTML: `(function(){try{var m=localStorage.getItem('color-mode');if(m==='dark'||(m!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
+          type: "text/javascript",
+          tagPosition: "head",
+        },
+      ],
     },
     // Matches the motion guidelines: fade + small upward slide, one
     // shared easing curve, short duration so it never feels laggy.

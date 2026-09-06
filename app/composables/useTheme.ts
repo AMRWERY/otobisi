@@ -5,9 +5,6 @@ export function useTheme() {
     valueDark: "dark",
     valueLight: "",
     storageKey: "color-mode",
-    // Light unless the user has explicitly toggled — ignores OS/browser
-    // color-scheme preference rather than defaulting to it.
-    initialValue: "light",
   });
 
   // Note: takes the click MouseEvent (not just useToggle(isDark)) so it can
@@ -53,27 +50,6 @@ export function useTheme() {
       },
     );
   }
-
-  // Runs once per app instance — cheap to call from multiple components,
-  // Nuxt dedupes identical useHead() script entries by key.
-  useHead({
-    script: [
-      {
-        key: "theme-no-flash",
-        innerHTML: `
-          (function () {
-            try {
-              if (localStorage.getItem('color-mode') === 'dark') {
-                document.documentElement.classList.add('dark');
-              }
-            } catch (e) {}
-          })();
-        `,
-        // Must run before first paint, not deferred like normal hydration scripts.
-        tagPosition: "head",
-      },
-    ],
-  });
 
   return { isDark, toggleDark };
 }
