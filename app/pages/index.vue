@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-16 space-y-8">
     <!-- HERO & SEARCH SECTION -->
     <lazy-search-section />
 
@@ -9,7 +9,7 @@
     <!-- LIVE AVAILABILITY / FEATURED DEPARTURE -->
     <lazy-featured-departure />
 
-    <!-- VALUE PROPOSITIONS (WHY EGYPTIANS TRUST NILEBUS) -->
+    <!-- VALUE PROPOSITIONS (WHY EGYPTIANS TRUST Otobisi) -->
     <lazy-value-propostions />
 
     <!-- VISUAL SHOWCASE BANNERS -->

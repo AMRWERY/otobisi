@@ -1,7 +1,7 @@
 <template>
   <div>
-    <section class="relative pt-10 pb-16 overflow-hidden">
-      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+    <section class="relative pt-10 overflow-hidden">
+      <div class="relative text-center">
         <!-- Official Badge -->
         <div
           class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-amber-600 text-xs font-medium mb-6"
@@ -87,7 +87,7 @@
                 ></span>
                 <span>Live Seat Selection</span>
               </div>
-              <div class="flex items-center gap-1.5 text-amber-700">
+              <div class="flex items-center gap-1.5 text-amber-600">
                 <icon name="ph:lightning-fill" class="w-3.5 h-3.5" />
                 <span>Instant Confirmation</span>
               </div>
@@ -220,35 +220,32 @@
             </div>
 
             <!-- Corridor Badges -->
-            <div
-              ref="scrollContainer"
-              @mousedown="onMouseDown"
-              @mouseleave="onMouseLeave"
-              @mouseup="onMouseUp"
-              @mousemove="onMouseMove"
-              class="flex items-center gap-2.5 overflow-x-auto pb-1 select-none cursor-grab active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            <LazyVSwiper
+              :items="corridors"
+              item-class="w-[75%] sm:w-[45%] md:w-[30%] lg:w-[calc((100%-2.5rem)/4.35)]"
+              gap-class="gap-2.5"
             >
-              <button
-                v-for="(corridor, idx) in corridors"
-                :key="idx"
-                @click="handleCorridorClick(corridor)"
-                type="button"
-                class="flex-none w-[75%] sm:w-[45%] md:w-[30%] lg:w-[calc((100%-2.5rem)/4.35)] inline-flex items-center justify-between px-3 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border/70 hover:border-[#F26A36]/40 text-xs font-semibold text-text-primary transition-all whitespace-nowrap shrink-0 group pointer-events-auto"
-              >
-                <span class="truncate">
-                  {{ corridor.from }}
-                  <span class="text-text-muted group-hover:text-text-primary"
-                    >→</span
-                  >
-                  {{ corridor.to }}
-                </span>
-                <span
-                  class="text-[#F26A36] font-bold text-[11px] shrink-0 ms-2"
+              <template #item="{ item: corridor, isDragging }">
+                <button
+                  @click="!isDragging && selectCorridor(corridor)"
+                  type="button"
+                  class="w-full inline-flex items-center justify-between px-3 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border/70 hover:border-[#F26A36]/40 text-xs font-semibold text-text-primary transition-all whitespace-nowrap group"
                 >
-                  from {{ corridor.price }} EGP
-                </span>
-              </button>
-            </div>
+                  <span class="truncate">
+                    {{ corridor.from }}
+                    <span class="text-text-muted group-hover:text-text-primary"
+                      >→</span
+                    >
+                    {{ corridor.to }}
+                  </span>
+                  <span
+                    class="text-[#F26A36] font-bold text-[11px] shrink-0 ms-2"
+                  >
+                    from {{ corridor.price }} EGP
+                  </span>
+                </button>
+              </template>
+            </LazyVSwiper>
           </div>
         </div>
       </div>
@@ -279,48 +276,6 @@ const corridors = [
 const selectCorridor = (corridor: { from: string; to: string }) => {
   origin.value = corridor.from;
   destination.value = corridor.to;
-};
-
-// Mouse Drag / Swipe Logic
-const scrollContainer = ref<HTMLElement | null>(null);
-let isDown = false;
-let startX = 0;
-let scrollLeftVal = 0;
-let isDragging = false;
-
-const onMouseDown = (e: MouseEvent) => {
-  if (!scrollContainer.value) return;
-  isDown = true;
-  isDragging = false;
-  startX = e.pageX - scrollContainer.value.offsetLeft;
-  scrollLeftVal = scrollContainer.value.scrollLeft;
-};
-
-const onMouseLeave = () => {
-  isDown = false;
-};
-
-const onMouseUp = () => {
-  isDown = false;
-  setTimeout(() => {
-    isDragging = false;
-  }, 50);
-};
-
-const onMouseMove = (e: MouseEvent) => {
-  if (!isDown || !scrollContainer.value) return;
-  e.preventDefault();
-  const x = e.pageX - scrollContainer.value.offsetLeft;
-  const walk = (x - startX) * 1.5;
-  if (Math.abs(x - startX) > 4) {
-    isDragging = true;
-  }
-  scrollContainer.value.scrollLeft = scrollLeftVal - walk;
-};
-
-const handleCorridorClick = (corridor: { from: string; to: string }) => {
-  if (isDragging) return;
-  selectCorridor(corridor);
 };
 
 const formattedDepartureDate = computed(() => {

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <section id="routes" class="max-w-5xl mx-auto px-4 sm:px-6 pb-12">
+    <section id="routes">
       <div class="flex items-end justify-between mb-4">
         <div>
           <span
-            class="text-[11px] font-bold tracking-wider text-orange-700 uppercase"
+            class="text-[11px] font-bold tracking-wider text-amber-600 uppercase"
             >Egyptian Express Corridors</span
           >
           <h2 class="text-xl sm:text-2xl font-bold text-text-primary">
@@ -13,7 +13,7 @@
         </div>
         <nuxt-link-locale
           to="#"
-          class="text-xs font-semibold text-[#A1331B] hover:underline flex items-center gap-1"
+          class="text-xs font-semibold text-amber-600 hover:underline flex items-center gap-1"
         >
           <span>View all 120+ active routes</span>
           <icon name="ph:arrow-right-bold" class="w-3 h-3" />
@@ -30,7 +30,7 @@
           <div class="flex items-start justify-between">
             <div>
               <div
-                class="flex items-center gap-1.5 font-bold text-sm text-text-primary group-hover:text-[#A1331B] transition-colors"
+                class="flex items-center gap-1.5 font-bold text-sm text-amber-600 group-hover:text-[#A1331B] transition-colors"
               >
                 <span>{{ route.from }}</span>
                 <icon
@@ -52,7 +52,7 @@
               <span class="text-[10px] text-text-muted block font-medium"
                 >From</span
               >
-              <span class="text-base font-extrabold text-[#A1331B]">{{
+              <span class="text-base font-extrabold text-amber-700">{{
                 route.price
               }}</span>
               <span class="text-[10px] font-bold text-text-secondary ms-0.5"

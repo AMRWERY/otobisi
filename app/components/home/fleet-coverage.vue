@@ -1,11 +1,8 @@
 <template>
   <div>
-    <section
-      id="operators"
-      class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 text-center"
-    >
+    <section id="operators">
       <span
-        class="text-[11px] font-bold tracking-wider text-orange-700 uppercase"
+        class="text-[11px] font-bold tracking-wider text-amber-600 uppercase"
         >Fleet Coverage</span
       >
       <h2 class="text-2xl font-bold text-text-primary mt-1">
@@ -21,7 +18,7 @@
         <div
           v-for="op in operators"
           :key="op.name"
-          class="bg-surface-1 border border-border rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-2xs hover:border-border-strong transition-colors"
+          class="bg-surface-1 border border-border rounded-xl p-3 flex flex-col items-center justify-center text-center  hover:border-amber-300 hover:shadow-md transition-all cursor-pointer group"
         >
           <span class="font-extrabold text-xs text-text-primary">{{
             op.name

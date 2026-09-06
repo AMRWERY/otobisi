@@ -9,17 +9,26 @@
         >
           <!-- Col 1: Brand Info -->
           <div class="md:col-span-4">
-            <div class="flex items-center gap-2 mb-3">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
               <div
-                class="w-6 h-6 rounded-lg bg-[#A1331B] flex items-center justify-center text-white"
+                class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm shadow-orange-500/20"
               >
-                <icon name="ph:bus-fill" class="w-3.5 h-3.5" />
+                <icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
               </div>
-              <span class="text-base font-bold text-text-primary"
-                >Nile<span class="text-[#A1331B]">Bus</span></span
-              >
+              <div class="flex items-baseline gap-1.5">
+                <span
+                  class="text-xs font-arabic text-text-muted font-medium hidden sm:inline"
+                  >أوتوبيسي</span
+                >
+                <span class="text-xl font-bold tracking-tight text-text-primary"
+                  ><span class="text-amber-600">Otobisi</span></span
+                >
+              </div>
             </div>
-            <p class="text-[11px] text-text-secondary leading-relaxed mb-4">
+            <p
+              class="text-[11px] text-text-secondary leading-relaxed mb-4 mt-2"
+            >
               Egypt's trusted intercity transport network connecting Cairo,
               Alexandria, Hurghada, Sharm El Sheikh, Luxor, and Aswan with
               guaranteed seat reservations.
@@ -37,7 +46,9 @@
 
           <!-- Col 2: Top Corridors -->
           <div class="md:col-span-3">
-            <h5 class="font-bold text-text-primary mb-3 text-xs">Top Corridors</h5>
+            <h5 class="font-bold text-text-primary mb-3 text-xs">
+              Top Corridors
+            </h5>
             <ul class="space-y-2 text-[11px]">
               <li>
                 <nuxt-link-locale to="#" class="hover:text-text-primary"
@@ -131,7 +142,7 @@
         <div
           class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-muted"
         >
-          <div>© 2025 NileBus Egypt SAE. All rights reserved.</div>
+          <div>© 2025 Otobisi Egypt SAE. All rights reserved.</div>
           <div class="flex items-center gap-4">
             <nuxt-link-locale to="#" class="hover:text-text-secondary"
               >Terms & Conditions</nuxt-link-locale
@@ -152,6 +163,4 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>

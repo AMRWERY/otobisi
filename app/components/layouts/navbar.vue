@@ -19,7 +19,7 @@
               >أوتوبيسي</span
             >
             <span class="text-xl font-bold tracking-tight text-text-primary"
-              ><span class="text-[#A1331B]">Otobisi</span></span
+              ><span class="text-amber-600">Otobisi</span></span
             >
           </div>
         </div>
@@ -74,7 +74,7 @@
             class="flex items-center justify-center bg-[#A1331B] hover:bg-[#8B2B16] text-white p-2 rounded-full text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
           >
             <div class="w-4 h-4 flex items-center justify-center">
-              <icon name="ph:user-fill" />
+              <icon name="material-symbols:person-outline" class="w-5 h-5" />
             </div>
           </nuxt-link-locale>
         </div>
@@ -83,4 +83,6 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+
+</script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+    <section>
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div>
           <span
@@ -50,9 +50,11 @@
             </div>
             <div>
               <div class="flex items-center gap-1.5">
-                <h4 class="font-bold text-sm text-text-primary">Go Bus Egypt</h4>
+                <h4 class="font-bold text-sm text-text-primary">
+                  Go Bus Egypt
+                </h4>
                 <span
-                  class="text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 px-1.5 py-0.2 rounded"
+                  class="text-[10px] font-bold bg-amber-50 text-amber-600 border border-amber-200 px-1.5 py-0.2 rounded"
                   >Elite VIP</span
                 >
               </div>
@@ -76,7 +78,10 @@
                 <span
                   title="USB Charging"
                   class="flex items-center gap-0.5 text-[10px]"
-                  ><icon name="ph:plug" class="w-3.5 h-3.5 text-text-secondary" />
+                  ><icon
+                    name="ph:plug"
+                    class="w-3.5 h-3.5 text-text-secondary"
+                  />
                   USB</span
                 >
                 <span
@@ -150,10 +155,12 @@
                 >Total per seat</span
               >
               <span class="text-2xl font-black text-[#A1331B]">145</span>
-              <span class="text-xs font-bold text-text-secondary ms-1">EGP</span>
+              <span class="text-xs font-bold text-text-secondary ms-1"
+                >EGP</span
+              >
             </div>
             <button
-              class="bg-[#A1331B] hover:bg-[#8A2A14] text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-98"
+              class="bg-[#F26A36] hover:bg-[#E05925] text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-98"
             >
               <icon name="ph:armchair-bold" class="w-3.5 h-3.5" />
               <span>Select Seats</span>
@@ -165,6 +172,4 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
