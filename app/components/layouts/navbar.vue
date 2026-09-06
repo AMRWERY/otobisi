@@ -67,18 +67,20 @@
             class="flex items-center gap-2 bg-[#A1331B] hover:bg-[#8B2B16] text-white px-4 py-2 rounded-xl text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
           >
             <span>Log in / Sign up</span>
-            <div
-              class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center"
-            >
-              <icon name="ph:user-fill" class="w-3 h-3" />
-            </div>
           </button>
+
+          <nuxt-link-locale
+            to="#"
+            class="flex items-center justify-center bg-[#A1331B] hover:bg-[#8B2B16] text-white p-2 rounded-full text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
+          >
+            <div class="w-4 h-4 flex items-center justify-center">
+              <icon name="ph:user-fill" />
+            </div>
+          </nuxt-link-locale>
         </div>
       </div>
     </header>
   </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
+<script lang="ts" setup></script>
