@@ -163,6 +163,7 @@
         <LazyVButton
           size="md"
           icon="ph:armchair-bold"
+          :to="localePath(`/trip/${trip.id}`)"
           custom-class="w-full sm:w-auto px-5"
           @click="selectTrip"
         >
@@ -207,6 +208,8 @@
 
 <script lang="ts" setup>
 import type { Trip } from "~/types/search/results";
+
+const localePath = useLocalePath();
 
 const props = defineProps<{
   trip: Trip;

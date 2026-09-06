@@ -349,6 +349,7 @@ import type { Trip, FilterState } from "~/types/search/results";
 
 const route = useRoute();
 const router = useRouter();
+const localePath = useLocalePath();
 
 // Route params & slug formatting
 const routeSlug = computed(() =>
@@ -444,11 +445,11 @@ const handleSearchUpdate = (params: {
   const fromSlug = params.from.toLowerCase().replace(/\s+/g, "-");
   const toSlug = params.to.toLowerCase().replace(/\s+/g, "-");
   currentDate.value = params.date;
-  router.push(`/search/${fromSlug}-${toSlug}?date=${params.date}`);
+  router.push(localePath(`/search/${fromSlug}-${toSlug}?date=${params.date}`));
 };
 
 const goToSeatSelection = (trip: Trip) => {
-  router.push(`/trip/${trip.id}`);
+  router.push(localePath(`/trip/${trip.id}?date=${currentDate.value}`));
 };
 
 // Comprehensive Dataset matching screenshots
