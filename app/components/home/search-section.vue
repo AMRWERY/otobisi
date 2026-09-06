@@ -173,6 +173,7 @@
               size="lg"
               icon="ph:magnifying-glass-bold"
               custom-class="w-full sm:w-auto shrink-0"
+              @click="handleSearch"
             >
               Search buses
             </LazyVButton>
@@ -202,7 +203,7 @@
             >
               <template #item="{ item: corridor, isDragging }">
                 <button
-                  @click="!isDragging && selectCorridor(corridor)"
+                  @click="!isDragging && goToCorridor(corridor)"
                   type="button"
                   class="w-full inline-flex items-center justify-between px-3 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border/70 hover:border-[#F26A36]/40 text-xs font-semibold text-text-primary transition-all whitespace-nowrap group"
                 >
@@ -229,17 +230,20 @@
 </template>
 
 <script lang="ts" setup>
+const router = useRouter();
+const localePath = useLocalePath();
+
 const tripType = ref<"oneway" | "round">("oneway");
 
 const origin = ref("Cairo (All stations - Ramses, Torgoman, Alm...");
 
-const destination = ref("Hurghada (El Dahar, Senzo Mall)");
+const destination = ref("Alexandria (Moharam Bek, Sidi Gaber)");
 
-const departureDate = ref("2024-10-25");
+const departureDate = ref("2024-10-24");
 
 const corridors = [
-  { from: "Cairo", to: "Hurghada", price: "280" },
   { from: "Cairo", to: "Alexandria", price: "110" },
+  { from: "Cairo", to: "Hurghada", price: "280" },
   { from: "Cairo", to: "Sharm El Sheikh", price: "310" },
   { from: "Cairo", to: "Dahab", price: "390" },
   { from: "Cairo", to: "Luxor", price: "420" },
@@ -251,6 +255,21 @@ const corridors = [
 const selectCorridor = (corridor: { from: string; to: string }) => {
   origin.value = corridor.from;
   destination.value = corridor.to;
+};
+
+const goToCorridor = (corridor: { from: string; to: string }) => {
+  selectCorridor(corridor);
+  const from = corridor.from.toLowerCase().replace(/\s+/g, "-");
+  const to = corridor.to.toLowerCase().replace(/\s+/g, "-");
+  const date = departureDate.value || "2024-10-24";
+  router.push(localePath(`/search/${from}-${to}?date=${date}`));
+};
+
+const handleSearch = () => {
+  const from = origin.value.split("(")[0].trim().toLowerCase().replace(/\s+/g, "-") || "cairo";
+  const to = destination.value.split("(")[0].trim().toLowerCase().replace(/\s+/g, "-") || "alexandria";
+  const date = departureDate.value || "2024-10-24";
+  router.push(localePath(`/search/${from}-${to}?date=${date}`));
 };
 
 const formattedDepartureDate = computed(() => {
