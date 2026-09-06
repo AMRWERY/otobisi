@@ -163,7 +163,7 @@
         <LazyVButton
           size="md"
           icon="ph:armchair-bold"
-          :to="localePath(`/trip/${trip.id}`)"
+          :to="`/trip/${trip.id}`"
           custom-class="w-full sm:w-auto px-5"
           @click="selectTrip"
         >
