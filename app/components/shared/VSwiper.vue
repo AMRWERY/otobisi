@@ -76,16 +76,9 @@
 </template>
 
 <script lang="ts" setup generic="T">
-interface Props {
-  items?: T[];
-  itemClass?: string;
-  gapClass?: string;
-  snap?: boolean;
-  showControls?: boolean;
-  speed?: number;
-}
+import type { SwiperProps } from "~/types/shared/VSwiper";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<SwiperProps<T>>(), {
   items: () => [],
   itemClass: "w-[85%] sm:w-[60%] md:w-[48%] lg:w-[calc((100%-1.5rem)/2.15)]",
   gapClass: "gap-4 sm:gap-6",

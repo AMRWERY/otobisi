@@ -18,12 +18,22 @@
         <div
           v-for="op in operators"
           :key="op.name"
-          class="bg-surface-1 border border-border rounded-xl p-3 flex flex-col items-center justify-center text-center  hover:border-amber-300 hover:shadow-md transition-all cursor-pointer group"
+          class="bg-surface-1 border border-border rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center hover:border-border-strong hover:shadow-lg transition-all cursor-pointer group"
         >
-          <span class="font-extrabold text-xs text-text-primary">{{
-            op.name
-          }}</span>
-          <span class="text-[10px] text-text-muted mt-0.5">{{ op.desc }}</span>
+          <!-- Operator Icon with custom color circle -->
+          <div
+            :class="[op.bgColor, op.iconColor]"
+            class="w-11 h-11 rounded-full flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-110"
+          >
+            <icon :name="op.icon" class="w-5 h-5" />
+          </div>
+
+          <span class="font-bold text-sm text-text-primary leading-tight">
+            {{ op.name }}
+          </span>
+          <span class="text-xs text-text-secondary mt-1 leading-snug">
+            {{ op.desc }}
+          </span>
         </div>
       </div>
     </section>
@@ -31,19 +41,64 @@
 </template>
 
 <script lang="ts" setup>
-interface OperatorBadge {
-  name: string;
-  desc: string;
-}
+import type { OperatorBadge } from "~/types/home/fleet-coverage";
 
 const operators = ref<OperatorBadge[]>([
-  { name: "Go Bus", desc: "Nationwide" },
-  { name: "BlueBus", desc: "Luxury VIP" },
-  { name: "Super Jet", desc: "Arab Union" },
-  { name: "West Delta", desc: "Alex & Coast" },
-  { name: "East Delta", desc: "Canal & Sinai" },
-  { name: "Upper Egypt", desc: "Luxor & Aswan" },
-  { name: "El Gouna", desc: "Red Sea Express" },
-  { name: "Swvl", desc: "Intercity" },
+  {
+    name: "Go Bus",
+    desc: "Aero & Elite Class",
+    icon: "ph:bus-fill",
+    iconColor: "text-orange-500",
+    bgColor: "bg-orange-500/10 border border-orange-500/20",
+  },
+  {
+    name: "BlueBus",
+    desc: "VIP & First Class",
+    icon: "ph:van-fill",
+    iconColor: "text-teal-400",
+    bgColor: "bg-teal-500/10 border border-teal-500/20",
+  },
+  {
+    name: "Super Jet",
+    desc: "National Express",
+    icon: "ph:gauge-bold",
+    iconColor: "text-amber-500",
+    bgColor: "bg-amber-500/10 border border-amber-500/20",
+  },
+  {
+    name: "West Delta",
+    desc: "Alex & Matrouh",
+    icon: "ph:navigation-arrow-fill",
+    iconColor: "text-blue-400",
+    bgColor: "bg-blue-500/10 border border-blue-500/20",
+  },
+  {
+    name: "East Delta",
+    desc: "Canal & Sinai",
+    icon: "ph:compass-fill",
+    iconColor: "text-emerald-400",
+    bgColor: "bg-emerald-500/10 border border-emerald-500/20",
+  },
+  {
+    name: "Upper Egypt",
+    desc: "Luxor & Aswan",
+    icon: "ph:sun-fill",
+    iconColor: "text-yellow-500",
+    bgColor: "bg-yellow-500/10 border border-yellow-500/20",
+  },
+  {
+    name: "El Gouna",
+    desc: "Red Sea Express",
+    icon: "ph:waves-bold",
+    iconColor: "text-cyan-400",
+    bgColor: "bg-cyan-500/10 border border-cyan-500/20",
+  },
+  {
+    name: "Swvl",
+    desc: "Intercity Direct",
+    icon: "ph:lightning-fill",
+    iconColor: "text-rose-400",
+    bgColor: "bg-rose-500/10 border border-rose-500/20",
+  },
 ]);
 </script>

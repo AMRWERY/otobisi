@@ -67,14 +67,7 @@
 </template>
 
 <script lang="ts" setup>
-interface PopularRoute {
-  id: number;
-  from: string;
-  to: string;
-  duration: string;
-  trips: string;
-  price: number;
-}
+import type { PopularRoute } from "~/types/home/popular-routes-section";
 
 const popularRoutes = ref<PopularRoute[]>([
   {
