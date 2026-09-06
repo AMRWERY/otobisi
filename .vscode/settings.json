@@ -1,0 +1,10 @@
+{
+    "postman.settings.dotenv-detection-notification-visibility": false,
+    "css.lint.unknownAtRules": "ignore",
+    "scss.lint.unknownAtRules": "ignore",
+    "less.lint.unknownAtRules": "ignore",
+    "i18n-ally.localesPaths": [
+        "app/i18n",
+        "app/i18n/locales"
+    ]
+}

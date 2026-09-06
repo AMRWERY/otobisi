@@ -1,0 +1,84 @@
+<template>
+  <div>
+    <header
+      class="border-b border-border bg-surface-1/90 sticky top-0 z-50 backdrop-blur-md"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm shadow-orange-500/20"
+          >
+            <icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
+          </div>
+          <div class="flex items-baseline gap-1.5">
+            <span
+              class="text-xs font-arabic text-text-muted font-medium hidden sm:inline"
+              >أوتوبيسي</span
+            >
+            <span class="text-xl font-bold tracking-tight text-text-primary"
+              ><span class="text-[#A1331B]">Otobisi</span></span
+            >
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary"
+        >
+          <nuxt-link-locale
+            to="#"
+            class="hover:text-text-primary transition-colors"
+            >Routes</nuxt-link-locale
+          >
+          <nuxt-link-locale
+            to="#"
+            class="hover:text-text-primary transition-colors"
+            >Operators</nuxt-link-locale
+          >
+          <nuxt-link-locale
+            to="#"
+            class="hover:text-text-primary transition-colors"
+            >Manage Booking</nuxt-link-locale
+          >
+          <nuxt-link-locale
+            to="#"
+            class="hover:text-text-primary transition-colors"
+            >Help</nuxt-link-locale
+          >
+        </nav>
+
+        <!-- Right Action items -->
+        <div class="flex items-center gap-3">
+          <!-- Language Switcher -->
+          <div
+            class="flex items-center border border-border rounded-lg p-0.5 text-xs font-semibold text-text-secondary bg-surface-2"
+          >
+            <LazyVToggleLocale />
+          </div>
+
+          <!-- Theme Toggle -->
+          <LazyVToggleTheme />
+
+          <!-- Auth Button -->
+          <button
+            class="flex items-center gap-2 bg-[#A1331B] hover:bg-[#8B2B16] text-white px-4 py-2 rounded-xl text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
+          >
+            <span>Log in / Sign up</span>
+            <div
+              class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center"
+            >
+              <icon name="ph:user-fill" class="w-3 h-3" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </header>
+  </div>
+</template>
+
+<script lang="ts" setup>
+
+</script>
