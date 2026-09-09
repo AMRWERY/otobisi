@@ -291,9 +291,18 @@ const totalFare = computed(
   () => baseFare.value + serviceFee.value + insuranceFee.value,
 );
 
+const localePath = useLocalePath();
+
 const proceedToPassengerDetails = () => {
-  alert(
-    `Proceeding to passenger details with seats: ${selectedSeatIds.value.join(", ")} (Total: ${totalFare.value} EGP)`,
+  if (selectedSeatIds.value.length === 0) return;
+  router.push(
+    localePath({
+      path: `/booking/${tripId}`,
+      query: {
+        seats: selectedSeatIds.value.join(","),
+        date: route.query.date,
+      },
+    }),
   );
 };
 
