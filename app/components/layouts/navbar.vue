@@ -26,26 +26,22 @@
 
         <!-- Navigation Links -->
         <nav
-          class="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary"
+          class="hidden md:flex items-center gap-8 text-sm font-medium"
         >
           <nuxt-link-locale
-            to="#"
-            class="hover:text-text-primary transition-colors"
-            >Routes</nuxt-link-locale
-          >
-          <nuxt-link-locale
-            to="#"
-            class="hover:text-text-primary transition-colors"
-            >Operators</nuxt-link-locale
-          >
-          <nuxt-link-locale
-            to="/bookings"
-            class="hover:text-text-primary transition-colors font-semibold text-text-primary"
-            >Manage Booking</nuxt-link-locale
-          >
+            v-for="link in navLinks"
+            :key="link.path"
+            :to="link.path"
+            class="transition-colors"
+            :class="[
+              isActive(link.path)
+                ? 'text-text-primary font-semibold'
+                : 'text-text-secondary hover:text-text-primary'
+            ]"
+          >{{ link.label }}</nuxt-link-locale>
           <a
             href="tel:19999"
-            class="hover:text-text-primary transition-colors"
+            class="transition-colors text-text-secondary hover:text-text-primary"
             >Help</a
           >
         </nav>
@@ -80,4 +76,18 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const route = useRoute();
+const localePath = useLocalePath();
+
+const navLinks = [
+  { label: 'Routes', path: '/search' },
+  { label: 'Operators', path: '/operators' },
+  { label: 'Manage Booking', path: '/bookings' },
+];
+
+const isActive = (path: string) => {
+  const resolved = localePath(path);
+  return route.path === resolved || route.path.startsWith(resolved + '/');
+};
+</script>
