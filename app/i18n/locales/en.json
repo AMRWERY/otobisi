@@ -1,5 +1,31 @@
 {
   "home": {
     "Home_page": "Home Page"
+  },
+  "auth": {
+    "trustBadge": "Ministry of Transport Licensed Partner • 256-Bit SSL Encrypted",
+    "encryptedGateway": "Encrypted Intercity Gateway",
+    "heroTitle": "Access Otobisi",
+    "heroSubtitle": "Reserve, modify, and track intercity coaches across all 27 Egyptian governorates",
+    "logIn": "Log In",
+    "createAccount": "Create Account",
+    "mobileNumber": "Mobile Phone Number",
+    "instantOTP": "Instant OTP Login",
+    "otpHint": "We will dispatch a 6-digit verification code to your WhatsApp or SMS.",
+    "sendCode": "Send Verification Code",
+    "verificationCode": "One-Time Passcode (OTP)",
+    "sentTo": "Sent to",
+    "edit": "Edit",
+    "resendIn": "Resend code in",
+    "sendViaWhatsApp": "Send via WhatsApp",
+    "verifyAndContinue": "Verify & Continue",
+    "orContinueWith": "or continue with",
+    "signInWithEmail": "Sign in with Email & Password instead",
+    "termsPrefix": "By continuing, you agree to Otobisi's",
+    "termsAnd": "and",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "regulatedBy": "Regulated by MOT Egypt",
+    "hotline": "Hotline: 19XXX"
   }
 }

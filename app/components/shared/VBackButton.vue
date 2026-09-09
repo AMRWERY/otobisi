@@ -40,6 +40,7 @@ const emit = defineEmits<{
 }>();
 
 const router = useRouter();
+const localePath = useLocalePath();
 
 const componentTag = computed(() => {
   if (props.to) return resolveComponent("NuxtLinkLocale");
@@ -52,7 +53,7 @@ const handleClick = (e: MouseEvent) => {
     if (window.history.length > 1) {
       router.back();
     } else {
-      router.push("/");
+      router.push(localePath("/"));
     }
   }
 };

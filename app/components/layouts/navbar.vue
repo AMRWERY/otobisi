@@ -55,11 +55,12 @@
           <LazyVToggleTheme />
 
           <!-- Auth Button -->
-          <button
+          <nuxt-link-locale
+            to="/auth/login"
             class="flex items-center gap-2 bg-[#A1331B] hover:bg-[#8B2B16] text-white px-4 py-2 rounded-xl text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
           >
             <span>Log in / Sign up</span>
-          </button>
+          </nuxt-link-locale>
 
           <nuxt-link-locale
             to="/bookings"
@@ -81,7 +82,7 @@ const route = useRoute();
 const localePath = useLocalePath();
 
 const navLinks = [
-  { label: 'Routes', path: '/search' },
+  { label: 'Routes', path: '/' },
   { label: 'Operators', path: '/operators' },
   { label: 'Manage Booking', path: '/bookings' },
 ];
