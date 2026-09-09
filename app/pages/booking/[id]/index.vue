@@ -120,8 +120,14 @@ const goBackToSeats = () => {
 };
 
 const handlePaymentConfirm = () => {
-  alert(
-    `Payment of ${totalFare.value} EGP successfully initiated! Confirmation and WhatsApp ticket will be dispatched to your phone.`,
+  router.push(
+    localePath({
+      path: `/booking/${tripId}/confirm`,
+      query: {
+        seats: route.query.seats || selectedSeats.value.join(","),
+        date: route.query.date,
+      },
+    }),
   );
 };
 
