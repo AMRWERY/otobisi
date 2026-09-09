@@ -31,6 +31,15 @@
       <Icon name="ph:share-network-bold" class="w-4 h-4 text-emerald-500" />
       <span>Share Voucher Link</span>
     </button>
+
+    <!-- View in My Bookings -->
+    <nuxt-link-locale
+      to="/bookings"
+      class="flex-1 min-w-[170px] bg-surface-1 border border-border hover:bg-surface-2 text-text-primary py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs transition-all active:scale-98 cursor-pointer"
+    >
+      <Icon name="ph:ticket-bold" class="w-4 h-4 text-orange-500" />
+      <span>My Bookings</span>
+    </nuxt-link-locale>
   </div>
 </template>
 

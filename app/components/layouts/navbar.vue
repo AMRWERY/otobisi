@@ -39,14 +39,14 @@
             >Operators</nuxt-link-locale
           >
           <nuxt-link-locale
-            to="#"
-            class="hover:text-text-primary transition-colors"
+            to="/bookings"
+            class="hover:text-text-primary transition-colors font-semibold text-text-primary"
             >Manage Booking</nuxt-link-locale
           >
-          <nuxt-link-locale
-            to="#"
+          <a
+            href="tel:19999"
             class="hover:text-text-primary transition-colors"
-            >Help</nuxt-link-locale
+            >Help</a
           >
         </nav>
 
@@ -66,7 +66,8 @@
           </button>
 
           <nuxt-link-locale
-            to="#"
+            to="/bookings"
+            title="My Bookings & Account"
             class="flex items-center justify-center bg-[#A1331B] hover:bg-[#8B2B16] text-white p-2 rounded-full text-xs font-semibold transition-all shadow-sm shadow-orange-950/10 active:scale-98"
           >
             <div class="w-4 h-4 flex items-center justify-center">
