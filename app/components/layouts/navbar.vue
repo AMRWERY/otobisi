@@ -33,36 +33,20 @@
 
         <!-- ─── CENTER: NAVIGATION LINKS (DESKTOP) ─── -->
         <nav
-          class="hidden md:flex items-center justify-center gap-1 lg:gap-2 px-2 py-1 rounded-2xl bg-surface-1/80 dark:bg-[#131B2E]/60 border border-border/50 shadow-2xs"
+          class="hidden md:flex items-center gap-8 text-sm font-medium"
           aria-label="Main Navigation"
         >
           <nuxt-link-locale
             v-for="link in navLinks"
             :key="link.path"
             :to="link.path"
-            class="relative px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-150 flex items-center gap-2 group whitespace-nowrap cursor-pointer"
+            class="transition-colors"
             :class="[
               isActive(link.path)
-                ? 'text-[#EA580C] dark:text-orange-400 bg-surface-0 dark:bg-[#1B2438] shadow-xs'
-                : 'text-text-secondary hover:text-text-primary hover:bg-surface-0/60 dark:hover:bg-[#1B2438]/50'
+                ? 'text-text-primary font-semibold'
+                : 'text-text-secondary hover:text-text-primary'
             ]"
-          >
-            <!-- Active Orange Dot indicator -->
-            <span
-              v-if="isActive(link.path)"
-              class="w-1.5 h-1.5 rounded-full bg-[#EA580C] dark:bg-orange-400 animate-pulse"
-            />
-            <Icon :name="link.icon" class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110" />
-            <span>{{ link.label }}</span>
-
-            <!-- Badge Count (e.g. My Bookings = 1) -->
-            <span
-              v-if="link.badge"
-              class="w-4 h-4 rounded-full bg-orange-100 dark:bg-orange-950/80 text-[#EA580C] dark:text-orange-300 text-[10px] font-black flex items-center justify-center border border-orange-300/40 dark:border-orange-600/40"
-            >
-              {{ link.badge }}
-            </span>
-          </nuxt-link-locale>
+          >{{ link.label }}</nuxt-link-locale>
         </nav>
 
         <!-- ─── END: UTILITY CLUSTER (DESKTOP) ─── -->
