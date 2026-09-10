@@ -65,6 +65,9 @@
         >
           <lazy-search-filters-sidebar
             v-model="filters"
+            :from-city="fromCityFormatted"
+            :to-city="toCityFormatted"
+            :trips-count="filteredTrips.length"
             @reset="resetFilters"
           />
         </div>
@@ -144,6 +147,9 @@
                 <div class="flex-1 overflow-y-auto p-4 sm:p-5">
                   <lazy-search-filters-sidebar
                     v-model="filters"
+                    :from-city="fromCityFormatted"
+                    :to-city="toCityFormatted"
+                    :trips-count="filteredTrips.length"
                     @reset="resetFilters"
                     @close="isMobileFilterOpen = false"
                   />
@@ -395,6 +401,7 @@ const defaultFilters: FilterState = {
   operators: ["gobus", "bluebus", "superjet"],
   timeSlots: ["morning"],
   busClasses: [],
+  minPrice: 90,
   maxPrice: 350,
   boardingStations: [],
   dropoffStations: [],
@@ -405,12 +412,12 @@ const filters = ref<FilterState>({ ...defaultFilters });
 
 const activeFiltersCount = computed(() => {
   let count = 0;
-  if (filters.value.operators.length > 0) count++;
-  if (filters.value.timeSlots.length > 0) count++;
-  if (filters.value.busClasses.length > 0) count++;
-  if (filters.value.maxPrice < 450) count++;
-  if (filters.value.boardingStations.length > 0) count++;
-  if (filters.value.dropoffStations.length > 0) count++;
+  count += filters.value.operators.length;
+  count += filters.value.timeSlots.length;
+  count += filters.value.busClasses.length;
+  if ((filters.value.minPrice ?? 90) > 90 || filters.value.maxPrice < 450) count++;
+  count += filters.value.boardingStations.length;
+  count += filters.value.dropoffStations.length;
   return count;
 });
 
@@ -419,6 +426,7 @@ const resetFilters = () => {
     operators: [],
     timeSlots: [],
     busClasses: [],
+    minPrice: 90,
     maxPrice: 450,
     boardingStations: [],
     dropoffStations: [],
@@ -705,7 +713,10 @@ const filteredTrips = computed(() => {
   }
 
   // Price range
-  if (filters.value.maxPrice) {
+  if (filters.value.minPrice !== undefined) {
+    result = result.filter((t) => t.price >= filters.value.minPrice!);
+  }
+  if (filters.value.maxPrice !== undefined) {
     result = result.filter((t) => t.price <= filters.value.maxPrice);
   }
 
