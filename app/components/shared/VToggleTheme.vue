@@ -26,18 +26,26 @@ const { isDark, toggleDark } = useTheme();
 const isSpinning = ref(false);
 
 function handleToggle() {
-  // 1. Trigger the spin animation class
+  // Always spin the icon
   isSpinning.value = true;
+  setTimeout(() => { isSpinning.value = false; }, 360);
 
-  // 2. Actually toggle the theme mid-way through the animation (175ms)
-  setTimeout(() => {
+  // Use View Transitions API for the top-to-bottom page wipe (modern browsers)
+  if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+    document.documentElement.classList.add('theme-transitioning');
+
+    const transition = (document as Document & { startViewTransition: (cb: () => void) => { finished: Promise<void> } })
+      .startViewTransition(() => {
+        toggleDark();
+      });
+
+    transition.finished.finally(() => {
+      document.documentElement.classList.remove('theme-transitioning');
+    });
+  } else {
+    // Fallback: simple toggle (colors still cross-fade via CSS on html/body)
     toggleDark();
-  }, 175);
-
-  // 3. Remove the animation class after it completes (350ms)
-  setTimeout(() => {
-    isSpinning.value = false;
-  }, 360);
+  }
 }
 </script>
 

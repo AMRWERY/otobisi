@@ -116,14 +116,42 @@ a:active .iconify,
 }
 
 /* ---------------------------------------------------------------------
+   Theme Toggle: Split Curtain (View Transitions API)
+   Only active when JS adds .theme-transitioning to <html>.
+   Old state splits open from center; new theme is revealed underneath.
+--------------------------------------------------------------------- */
+:root.theme-transitioning::view-transition-old(root) {
+  animation: theme-curtain-out 480ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  mix-blend-mode: normal;
+}
+
+:root.theme-transitioning::view-transition-new(root) {
+  animation: theme-curtain-in 480ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  mix-blend-mode: normal;
+}
+
+/* Old snapshot splits: top half slides up, bottom half slides down */
+@keyframes theme-curtain-out {
+  from { clip-path: inset(0 0 0 0);       opacity: 1; }
+  to   { clip-path: inset(50% 0 50% 0);  opacity: 0; }
+}
+
+/* New theme fades + scales in from a slightly compressed state */
+@keyframes theme-curtain-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---------------------------------------------------------------------
    Language Switch (AR / EN)
    Direction flip: quick fade-out (100ms) -> swap -> fade-in (150ms)
+   Only applies when .theme-transitioning is NOT present.
 --------------------------------------------------------------------- */
-::view-transition-old(root) {
+:root:not(.theme-transitioning)::view-transition-old(root) {
   animation: 100ms cubic-bezier(0.4, 0, 0.2, 1) both locale-fade-out;
 }
 
-::view-transition-new(root) {
+:root:not(.theme-transitioning)::view-transition-new(root) {
   animation: 150ms cubic-bezier(0.4, 0, 0.2, 1) both locale-fade-in;
 }
 
