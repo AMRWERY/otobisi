@@ -63,12 +63,6 @@ export default defineNuxtConfig({
     "/": { prerender: false }, // has live "popular routes" pricing, keep dynamic
     "/help/**": { prerender: true },
   },
-  nitro: {
-    // Vercel serverless preset — tells Nitro to emit .vercel/output/
-    // instead of a plain Node server. Without this Vercel doesn't know
-    // how to route SSR requests and every browser refresh returns the error page.
-    preset: "vercel",
-  },
   typescript: {
     strict: true,
     // typeCheck disabled: vite-plugin-checker fails to spawn vue-tsc when the
