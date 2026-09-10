@@ -188,7 +188,7 @@
                 High frequency Egyptian corridors
               </span>
               <nuxt-link-locale
-                to="#"
+                to="/active-routes"
                 class="text-xs font-semibold text-[#F26A36] hover:text-[#E05925] hover:underline transition-colors shrink-0"
               >
                 View full network timetable

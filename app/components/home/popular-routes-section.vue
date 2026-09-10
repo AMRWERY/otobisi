@@ -12,7 +12,7 @@
           </h2>
         </div>
         <nuxt-link-locale
-          to="#"
+          to="/active-routes"
           class="text-xs font-semibold text-amber-600 hover:underline flex items-center gap-1"
         >
           <span>View all 120+ active routes</span>
