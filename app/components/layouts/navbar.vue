@@ -52,75 +52,11 @@
         <!-- ─── END: UTILITY CLUSTER (DESKTOP) ─── -->
         <div class="hidden md:flex items-center gap-2.5 shrink-0">
           
-          <!-- Language Toggle Pill (EN / العربية) -->
-          <div
-            dir="ltr"
-            class="inline-flex items-center p-0.5 bg-[#EEF2F6] dark:bg-[#131B2E] rounded-xl border border-border/60 select-none text-xs font-semibold"
-          >
-            <button
-              type="button"
-              class="px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer font-bold text-xs"
-              :class="[
-                locale === 'en'
-                  ? 'bg-surface-0 dark:bg-[#1B2438] text-[#EA580C] dark:text-orange-400 shadow-xs'
-                  : 'text-text-secondary hover:text-text-primary bg-transparent'
-              ]"
-              aria-label="Switch to English"
-              @click="switchLocale('en')"
-            >
-              EN
-            </button>
-            <button
-              type="button"
-              class="px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer font-bold font-arabic text-xs"
-              :class="[
-                locale === 'ar'
-                  ? 'bg-surface-0 dark:bg-[#1B2438] text-[#EA580C] dark:text-orange-400 shadow-xs'
-                  : 'text-text-secondary hover:text-text-primary bg-transparent'
-              ]"
-              aria-label="التبديل إلى العربية"
-              @click="switchLocale('ar')"
-            >
-              العربية
-            </button>
-          </div>
+          <!-- Language Switcher -->
+          <LazyVToggleLocale />
 
-          <!-- Sliding Theme Toggle (Sun / Moon) -->
-          <ClientOnly>
-            <button
-              type="button"
-              class="relative w-14 h-8 p-1 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 cursor-pointer transition-colors duration-200 flex items-center justify-between"
-              :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
-              @click="toggleDark"
-            >
-              <!-- Background Icons -->
-              <Icon name="ph:sun-bold" class="w-3.5 h-3.5 text-amber-500 z-0 ml-1" />
-              <Icon name="ph:moon-bold" class="w-3.5 h-3.5 text-slate-400 dark:text-orange-400 z-0 mr-1" />
-
-              <!-- Sliding Circle Thumb -->
-              <span
-                class="absolute top-1 left-1 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm flex items-center justify-center transition-transform duration-250 ease-out border border-border/40"
-                :class="isDark ? 'translate-x-6' : 'translate-x-0'"
-              >
-                <Icon
-                  :name="isDark ? 'ph:moon-fill' : 'ph:sun-fill'"
-                  class="w-3.5 h-3.5"
-                  :class="isDark ? 'text-orange-400' : 'text-amber-500'"
-                />
-              </span>
-            </button>
-            <template #fallback>
-              <div
-                class="relative w-14 h-8 p-1 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 flex items-center justify-between opacity-80"
-              >
-                <span class="w-3.5 h-3.5 ml-1" />
-                <span class="w-3.5 h-3.5 mr-1" />
-                <span
-                  class="absolute top-1 left-1 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm border border-border/40"
-                />
-              </div>
-            </template>
-          </ClientOnly>
+          <!-- Theme Toggle -->
+          <LazyVToggleTheme />
 
           <!-- User / Auth Cluster -->
           <div class="relative">
@@ -168,7 +104,7 @@
                 >
                   <div class="px-3 py-2 border-b border-border/50 mb-1">
                     <p class="text-xs font-bold text-text-primary">
-                      Ahmed M.
+                      Amr M.
                     </p>
                     <p class="text-[11px] text-text-muted font-mono">+20 10 1234 5678</p>
                   </div>
@@ -450,7 +386,6 @@
 const route = useRoute();
 const localePath = useLocalePath();
 const { locale, switchLocale } = useLocaleSwitch();
-const { isDark, toggleDark } = useTheme();
 
 // ─── Reactive States ─────────────────────────────────────────────────────────
 const mobileDrawerOpen = ref(false);
