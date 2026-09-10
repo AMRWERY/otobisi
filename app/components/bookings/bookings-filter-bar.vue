@@ -14,7 +14,7 @@
         :class="[
           activeTab === tab.id
             ? 'bg-[#A1331B] text-white shadow-xs'
-            : 'text-text-secondary hover:text-text-primary hover:bg-surface-2'
+            : 'text-text-secondary hover:text-text-primary hover:bg-surface-2',
         ]"
         @click="$emit('update:activeTab', tab.id)"
       >
@@ -24,7 +24,7 @@
           :class="[
             activeTab === tab.id
               ? 'bg-white/20 text-white'
-              : 'bg-surface-2 text-text-muted'
+              : 'bg-surface-2 text-text-muted',
           ]"
         >
           {{ tab.count }}
@@ -43,7 +43,9 @@
         type="text"
         placeholder="Search PNR, city, or operator..."
         class="w-full ps-10 pe-9 py-2 rounded-xl bg-surface-1 border border-border focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 text-xs text-text-primary placeholder:text-text-muted outline-none transition-all shadow-2xs"
-        @input="$emit('update:searchQuery', ($event.target as HTMLInputElement).value)"
+        @input="
+          $emit('update:searchQuery', ($event.target as HTMLInputElement).value)
+        "
       />
       <button
         v-if="searchQuery"
@@ -58,11 +60,7 @@
 </template>
 
 <script lang="ts" setup>
-export interface FilterTab {
-  id: string;
-  label: string;
-  count: number;
-}
+import type { FilterTab } from "~/types/booking/bookings-filter-bar";
 
 withDefaults(
   defineProps<{

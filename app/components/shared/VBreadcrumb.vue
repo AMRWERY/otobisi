@@ -42,12 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-export interface BreadcrumbItem {
-  /** Display text */
-  label: string;
-  /** Route path. Omit for non-linked intermediate crumbs. Last item is never linked. */
-  to?: string;
-}
+import type { BreadcrumbItem } from "~/types/shared/VBreadcrumb";
 
 defineProps<{
   items: BreadcrumbItem[];

@@ -1,8 +1,6 @@
 <template>
   <div
     class="min-h-screen flex flex-col bg-surface-0 text-text-primary transition-colors"
-    :dir="locale === 'ar' ? 'rtl' : 'ltr'"
-    :class="{ 'font-arabic': locale === 'ar' }"
   >
     <!-- Site-wide Shared Navbar -->
     <navbar />
@@ -98,16 +96,14 @@
           </div>
           <div>
             <div class="flex items-center gap-1.5 flex-wrap">
-              <span class="text-xs font-bold text-text-primary">{{
-                currentData.errorCodeLabel
-              }}</span>
+              <span class="text-xs font-bold text-text-primary">Error:</span>
               <code
                 class="text-xs font-mono font-extrabold text-[#A1331B] dark:text-orange-400"
                 >ERR_NILE_500_SRV</code
               >
             </div>
             <p class="text-[11px] text-text-muted">
-              {{ currentData.errorCluster }}
+              Cairo Cluster Route Engine
             </p>
           </div>
         </div>
@@ -120,7 +116,7 @@
             :name="copied ? 'ph:check-bold' : 'ph:copy-bold'"
             class="w-3.5 h-3.5"
           />
-          {{ copied ? currentData.copiedLabel : currentData.copyLabel }}
+          {{ copied ? "Copied" : "Copy" }}
         </button>
       </div>
 
@@ -150,13 +146,8 @@
           class="w-full bg-surface-0 hover:bg-surface-1 border border-border text-text-primary py-3 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.99] cursor-pointer"
           @click="goHome"
         >
-          <Icon
-            :name="
-              locale === 'ar' ? 'ph:arrow-right-bold' : 'ph:arrow-left-bold'
-            "
-            class="w-4 h-4 text-text-muted"
-          />
-          {{ currentData.secondaryLabel }}
+          <Icon name="ph:arrow-left-bold" class="w-4 h-4 text-text-muted" />
+          Back to Search &amp; Booking
         </button>
       </div>
 
@@ -169,7 +160,7 @@
           class="flex items-center justify-center gap-1.5 text-xs text-text-secondary"
         >
           <Icon name="ph:headset-bold" class="w-4 h-4 text-[#A1331B]" />
-          <span>{{ currentData.hotlineText }}:</span>
+          <span>Contact 24/7 Hotline:</span>
           <strong class="text-text-primary font-bold">19XXX</strong>
         </div>
         <div
@@ -178,7 +169,7 @@
           <p
             class="text-[10px] font-extrabold uppercase tracking-wider text-text-muted mb-3"
           >
-            {{ currentData.popularTitle }}
+            Popular Active Corridors
           </p>
           <div class="flex flex-wrap items-center justify-center gap-2">
             <nuxt-link-locale
@@ -188,12 +179,7 @@
               class="px-3 py-1.5 rounded-lg bg-surface-1 hover:bg-orange-500/10 border border-border text-xs font-semibold text-text-primary transition-colors flex items-center gap-1.5"
             >
               {{ r.from }}
-              <Icon
-                :name="
-                  locale === 'ar' ? 'ph:arrow-left-bold' : 'ph:arrow-right-bold'
-                "
-                class="w-3 h-3 text-[#A1331B]"
-              />
+              <Icon name="ph:arrow-right-bold" class="w-3 h-3 text-[#A1331B]" />
               {{ r.to }}
             </nuxt-link-locale>
           </div>
@@ -219,17 +205,15 @@
               <h4
                 class="text-xs font-bold text-text-primary group-hover:text-[#A1331B] transition-colors"
               >
-                {{ currentData.offlineCardTitle }}
+                My Bookings Available Offline
               </h4>
               <p class="text-[11px] text-text-muted leading-snug">
-                {{ currentData.offlineCardDesc }}
+                Your saved tickets remain accessible offline.
               </p>
             </div>
           </div>
           <Icon
-            :name="
-              locale === 'ar' ? 'ph:caret-left-bold' : 'ph:caret-right-bold'
-            "
+            name="ph:caret-right-bold"
             class="w-4 h-4 text-text-muted shrink-0 group-hover:translate-x-0.5 transition-transform"
           />
         </nuxt-link-locale>
@@ -237,13 +221,13 @@
           class="flex items-center justify-center gap-2 text-[11px] text-text-muted pt-0.5"
         >
           <Icon name="ph:broadcast-bold" class="w-3.5 h-3.5 text-emerald-500" />
-          <span>{{ currentData.networks }}</span>
+          <span>Vodafone / Orange / We</span>
           <span>•</span>
           <Icon
             name="ph:check-circle-fill"
             class="w-3.5 h-3.5 text-emerald-500"
           />
-          <span>{{ currentData.cachedPass }}</span>
+          <span>Boarding Pass Cached</span>
         </div>
       </div>
 
@@ -252,13 +236,13 @@
         v-if="currentVariant === '500'"
         class="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs text-text-secondary"
       >
-        <span>{{ currentData.urgentHelp }}</span>
+        <span>Need urgent travel assistance?</span>
         <a
           href="tel:19999"
           class="inline-flex items-center gap-1 font-bold text-[#A1331B] dark:text-orange-400 hover:underline"
         >
           <Icon name="ph:phone-call-fill" class="w-3.5 h-3.5" />
-          {{ currentData.hotlineCall }}
+          Contact 24/7 Hotline (19XXX)
         </a>
         <span>•</span>
         <button
@@ -266,7 +250,7 @@
           class="hover:underline text-text-muted cursor-pointer"
           @click="reportIssue"
         >
-          {{ currentData.reportLabel }}
+          Report Issue
         </button>
       </div>
     </main>
@@ -285,7 +269,6 @@ const props = defineProps<{
 
 type Variant = "404" | "offline" | "500";
 
-const { locale } = useI18n();
 const localePath = useLocalePath();
 
 // ─── Initial variant based on error prop or network status ───────────────────
@@ -307,142 +290,76 @@ onMounted(() => {
   });
 });
 
-// ─── Localized tab switcher labels ───────────────────────────────────────────
-const currentTabs = computed(() => [
+// ─── Tab switcher labels ─────────────────────────────────────────────────────
+const currentTabs = [
   {
     id: "404" as Variant,
-    label: locale.value === "ar" ? "٤٠٤ غير موجود" : "404 Not Found",
+    label: "404 Not Found",
     icon: "ph:signpost-bold",
   },
   {
     id: "offline" as Variant,
-    label: locale.value === "ar" ? "لا يوجد اتصال" : "No Internet",
+    label: "No Internet",
     icon: "ph:wifi-slash-bold",
   },
   {
     id: "500" as Variant,
-    label: locale.value === "ar" ? "عطل بالخادم" : "Server Error",
+    label: "Server Error",
     icon: "ph:warning-circle-bold",
   },
-]);
+];
 
-// ─── Bilingual content dictionary ───────────────────────────────────────────
-const content = computed(() => ({
+// ─── Content dictionary (Pure English) ───────────────────────────────────────
+const content = {
   "404": {
-    badge:
-      locale.value === "ar"
-        ? "خطأ ٤٠٤ • خارج مسار الرحلة"
-        : "ERROR 404 • LOST ON THE ROUTE",
-    headline:
-      locale.value === "ar"
-        ? "هذه المحطة غير موجودة"
-        : "This Stop Doesn't Exist",
+    badge: "ERROR 404 • LOST ON THE ROUTE",
+    headline: "This Stop Doesn't Exist",
     description:
-      locale.value === "ar"
-        ? "المحطة أو الصفحة التي تبحث عنها قد تم نقلها أو تغيير اسمها أو أنها غير متاحة حالياً عبر شبكة حافلات السفر بين المحافظات المصرية."
-        : "The station or page you're looking for might have moved, been renamed, or is temporarily out of service across Egypt's intercity transit network.",
-    primaryLabel:
-      locale.value === "ar"
-        ? "العودة للرئيسية والبحث"
-        : "Back to Home & Search",
+      "The station or page you're looking for might have moved, been renamed, or is temporarily out of service across Egypt's intercity transit network.",
+    primaryLabel: "Back to Home & Search",
     primaryIcon: "ph:bus-fill",
-    retryingLabel: locale.value === "ar" ? "جارٍ التحقق…" : "Checking…",
-    hotlineText:
-      locale.value === "ar"
-        ? "الخط الساخن على مدار الساعة"
-        : "Contact 24/7 Hotline",
-    popularTitle:
-      locale.value === "ar"
-        ? "مسارات السفر الشائعة"
-        : "Popular Active Corridors",
+    retryingLabel: "Checking…",
   },
   offline: {
-    badge:
-      locale.value === "ar"
-        ? "انقطع الاتصال • غير متصل"
-        : "CONNECTION LOST • OFFLINE",
-    headline:
-      locale.value === "ar" ? "أنت خارج نطاق التغطية" : "You're Off the Grid",
+    badge: "CONNECTION LOST • OFFLINE",
+    headline: "You're Off the Grid",
     description:
-      locale.value === "ar"
-        ? "يرجى التحقق من اتصال الواي فاي أو بيانات الهاتف والمحاولة مرة أخرى لمتابعة مواعيد وأسعار الحافلات."
-        : "Please check your Wi-Fi or mobile data connection and try again to view real-time bus schedules.",
-    primaryLabel:
-      locale.value === "ar" ? "إعادة محاولة الاتصال" : "Retry Connection",
+      "Please check your Wi-Fi or mobile data connection and try again to view real-time bus schedules.",
+    primaryLabel: "Retry Connection",
     primaryIcon: "ph:arrows-clockwise-bold",
-    retryingLabel: locale.value === "ar" ? "جارٍ التحقق…" : "Checking…",
-    offlineCardTitle:
-      locale.value === "ar"
-        ? "تذاكري متاحة بدون إنترنت"
-        : "My Bookings Available Offline",
-    offlineCardDesc:
-      locale.value === "ar"
-        ? "تذاكرك المحفوظة تظل متاحة للعرض والتحقق دون اتصال بالشبكة."
-        : "Your saved tickets remain accessible offline.",
-    networks:
-      locale.value === "ar" ? "فودافون / أورنج / وي" : "Vodafone / Orange / We",
-    cachedPass:
-      locale.value === "ar" ? "بطاقة الصعود محفوظة" : "Boarding Pass Cached",
+    retryingLabel: "Checking…",
   },
   "500": {
-    badge:
-      locale.value === "ar"
-        ? "تنبيه النظام • عطل فني"
-        : "SYSTEM NOTICE • TECHNICAL GLITCH",
-    headline:
-      locale.value === "ar"
-        ? "حدث خطأ غير متوقع في النظام"
-        : "Something Went Wrong on Our End",
+    badge: "SYSTEM NOTICE • TECHNICAL GLITCH",
+    headline: "Something Went Wrong on Our End",
     description:
-      locale.value === "ar"
-        ? "نواجه عطلاً مؤقتاً في محرك المسارات. يرجى المحاولة مرة أخرى أو العودة لصفحة البحث."
-        : "We're experiencing a momentary engine hiccup. Please try again or head back to your search.",
-    primaryLabel: locale.value === "ar" ? "إعادة المحاولة" : "Try Again",
+      "We're experiencing a momentary engine hiccup. Please try again or head back to your search.",
+    primaryLabel: "Try Again",
     primaryIcon: "ph:arrow-counter-clockwise-bold",
-    retryingLabel: locale.value === "ar" ? "جارٍ التحقق…" : "Checking…",
-    secondaryLabel:
-      locale.value === "ar"
-        ? "العودة للبحث والحجز"
-        : "Back to Search & Booking",
-    errorCodeLabel: locale.value === "ar" ? "رمز الخطأ:" : "Error:",
-    errorCluster:
-      locale.value === "ar"
-        ? "محرك مسارات شبكة القاهرة"
-        : "Cairo Cluster Route Engine",
-    copyLabel: locale.value === "ar" ? "نسخ" : "Copy",
-    copiedLabel: locale.value === "ar" ? "تم النسخ" : "Copied",
-    urgentHelp:
-      locale.value === "ar"
-        ? "تحتاج مساعدة عاجلة أثناء السفر؟"
-        : "Need urgent travel assistance?",
-    hotlineCall:
-      locale.value === "ar"
-        ? "اتصل بالخط الساخن (19XXX)"
-        : "Contact 24/7 Hotline (19XXX)",
-    reportLabel: locale.value === "ar" ? "إبلاغ عن عطل" : "Report Issue",
+    retryingLabel: "Checking…",
   },
-}));
+};
 
-const currentData = computed(() => content.value[currentVariant.value]);
+const currentData = computed(() => content[currentVariant.value]);
 
-// ─── Popular corridors with localized names ──────────────────────────────────
-const popularCorridors = computed(() => [
+// ─── Popular corridors ───────────────────────────────────────────────────────
+const popularCorridors = [
   {
-    from: locale.value === "ar" ? "القاهرة" : "Cairo",
-    to: locale.value === "ar" ? "الإسكندرية" : "Alexandria",
+    from: "Cairo",
+    to: "Alexandria",
     href: "/search?from=Cairo&to=Alexandria",
   },
   {
-    from: locale.value === "ar" ? "القاهرة" : "Cairo",
-    to: locale.value === "ar" ? "شرم الشيخ" : "Sharm El Sheikh",
+    from: "Cairo",
+    to: "Sharm El Sheikh",
     href: "/search?from=Cairo&to=SharmElSheikh",
   },
   {
-    from: locale.value === "ar" ? "القاهرة" : "Cairo",
-    to: locale.value === "ar" ? "الغردقة" : "Hurghada",
+    from: "Cairo",
+    to: "Hurghada",
     href: "/search?from=Cairo&to=Hurghada",
   },
-]);
+];
 
 // ─── Badge color styles ──────────────────────────────────────────────────────
 const badgeClass = computed(() => {
@@ -494,14 +411,12 @@ const copyErrorCode = async () => {
 };
 
 const reportIssue = () => {
-  const msg =
-    locale.value === "ar"
-      ? "تم تسجيل البلاغ. تم إخطار فريق الدعم الفني لشبكة الحافلات المصرية."
-      : "Issue logged. Our Egyptian transit operations team has been notified.";
-  alert(msg);
+  alert(
+    "Issue logged. Our Egyptian transit operations team has been notified.",
+  );
 };
 
-// ─── Reactive SEO Page Title ─────────────────────────────────────────────────
+// ─── SEO Page Title ──────────────────────────────────────────────────────────
 useHead(
   computed(() => ({
     title: `${currentData.value.headline} | Otobisi`,

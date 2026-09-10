@@ -32,3 +32,12 @@ export interface DatePickerProps {
   hint?: string;
   format?: (dateString: string) => string;
 }
+
+export interface CalendarCell {
+  dateString: string;
+  dayNumber: number;
+  isCurrentMonth: boolean;
+  isToday: boolean;
+  isSelected: boolean;
+  isDisabled: boolean;
+}

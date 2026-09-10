@@ -1,168 +1,503 @@
 <template>
-  <div>
-    <footer
-      class="bg-surface-1 border-t border-border pt-12 pb-8 text-text-secondary text-xs"
-    >
-      <div class="max-w-5xl mx-auto px-4 sm:px-6">
-        <div
-          class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-border"
-        >
-          <!-- Col 1: Brand Info -->
-          <div class="md:col-span-4">
-            <!-- Logo -->
-            <nuxt-link-locale to="/" class="flex items-center gap-3">
-              <div
-                class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white shadow-sm shadow-orange-500/20"
-              >
-                <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
-              </div>
-              <div class="flex items-baseline gap-1.5">
-                <span
-                  class="text-xs font-arabic text-text-muted font-medium hidden sm:inline"
-                  >أوتوبيسي</span
-                >
-                <span class="text-xl font-bold tracking-tight text-text-primary"
-                  ><span class="text-amber-600">Otobisi</span></span
-                >
-              </div>
-            </nuxt-link-locale>
-            <p
-              class="text-[11px] text-text-secondary leading-relaxed mb-4 mt-2"
-            >
-              Egypt's trusted intercity transport network connecting Cairo,
-              Alexandria, Hurghada, Sharm El Sheikh, Luxor, and Aswan with
-              guaranteed seat reservations.
-            </p>
-            <div
-              class="inline-flex items-center gap-2 bg-surface-2 border border-border px-3 py-1.5 rounded-lg text-text-primary font-semibold text-[11px]"
-            >
-              <Icon
-                name="ph:phone-call-fill"
-                class="w-3.5 h-3.5 text-[#A1331B]"
-              />
-              <span>24/7 Hotline: +20 2 19XXX</span>
-            </div>
+  <footer
+    class="border-t border-border/70 bg-surface-0 dark:bg-[#0B0F19] text-text-secondary text-xs transition-colors duration-200"
+  >
+    <!-- ─── 1. TOP TRUST & ENDORSEMENTS BAR ─── -->
+    <div class="border-b border-border/60 bg-surface-1/50 dark:bg-[#0E1424]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4 text-[11px]">
+        
+        <!-- Left: Endorsements & Security -->
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-text-secondary">
+          <div class="flex items-center gap-1.5">
+            <Icon name="ph:check-circle-fill" class="w-4 h-4 text-emerald-500 shrink-0" />
+            <span class="font-medium">Licensed by Egypt Ministry of Transport (MOT)</span>
           </div>
 
-          <!-- Col 2: Top Corridors -->
-          <div class="md:col-span-3">
-            <h5 class="font-bold text-text-primary mb-3 text-xs">
-              Top Corridors
-            </h5>
-            <ul class="space-y-2 text-[11px]">
-              <li>
-                <nuxt-link-locale to="#" class="hover:text-text-primary"
-                  >Cairo → Alexandria Express</nuxt-link-locale
-                >
-              </li>
-              <li>
-                <nuxt-link-locale to="#" class="hover:text-text-primary"
-                  >Cairo → Sharm El Sheikh</nuxt-link-locale
-                >
-              </li>
-              <li>
-                <nuxt-link-locale to="#" class="hover:text-text-primary"
-                  >Cairo → Hurghada Super Jet</nuxt-link-locale
-                >
-              </li>
-              <li>
-                <nuxt-link-locale to="#" class="hover:text-text-primary"
-                  >Alexandria → Marsa Matrouh</nuxt-link-locale
-                >
-              </li>
-              <li>
-                <nuxt-link-locale to="#" class="hover:text-text-primary"
-                  >Giza → Luxor & Upper Egypt</nuxt-link-locale
-                >
-              </li>
-            </ul>
+          <div class="flex items-center gap-1.5">
+            <Icon name="ph:lock-key-fill" class="w-4 h-4 text-blue-500 shrink-0" />
+            <span class="font-medium">256-Bit SSL Encrypted Booking System</span>
           </div>
 
-          <!-- Col 3: Regional Trust -->
-          <div class="md:col-span-2">
-            <h5 class="font-bold text-text-primary mb-3 text-xs">
-              Regional Trust & Safety
-            </h5>
-            <ul class="space-y-2 text-[11px]">
-              <li class="flex items-center gap-1.5">
-                <Icon
-                  name="ph:check-circle-bold"
-                  class="w-3.5 h-3.5 text-emerald-600"
-                />
-                Ministry Licensed
-              </li>
-              <li class="flex items-center gap-1.5">
-                <Icon
-                  name="ph:lock-key-bold"
-                  class="w-3.5 h-3.5 text-amber-600"
-                />
-                Encrypted Payment
-              </li>
-              <li class="flex items-center gap-1.5">
-                <Icon
-                  name="ph:armchair-bold"
-                  class="w-3.5 h-3.5 text-[#A1331B]"
-                />
-                Verified Seat Class
-              </li>
-            </ul>
-          </div>
-
-          <!-- Col 4: Accepted Payments -->
-          <div class="md:col-span-3">
-            <h5 class="font-bold text-text-primary mb-3 text-xs">
-              Accepted Payment Methods
-            </h5>
-            <p class="text-[11px] text-text-secondary mb-2">
-              Pay instantly via local Egyptian wallets, cards, and kiosks:
-            </p>
-            <div
-              class="flex flex-wrap gap-1.5 font-bold text-[10px] text-text-secondary"
-            >
-              <span class="bg-surface-2 border border-border px-2 py-1 rounded"
-                >Fawry</span
-              >
-              <span class="bg-surface-2 border border-border px-2 py-1 rounded"
-                >Meeza</span
-              >
-              <span class="bg-surface-2 border border-border px-2 py-1 rounded"
-                >Visa</span
-              >
-              <span class="bg-surface-2 border border-border px-2 py-1 rounded"
-                >Mastercard</span
-              >
-              <span class="bg-surface-2 border border-border px-2 py-1 rounded"
-                >Vodafone Cash</span
-              >
-            </div>
+          <div class="flex items-center gap-1.5">
+            <Icon name="ph:phone-call-fill" class="w-4 h-4 text-[#EA580C] shrink-0" />
+            <span>
+              24/7 National Transit Hotline:
+              <a href="tel:19999" class="font-bold text-[#EA580C] dark:text-orange-400 hover:underline">19XXX</a>
+            </span>
           </div>
         </div>
 
-        <!-- Copyright & Legal -->
-        <div
-          class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-muted"
-        >
-          <div>© 2025 Otobisi Egypt SAE. All rights reserved.</div>
-          <div class="flex items-center gap-4">
-            <nuxt-link-locale to="#" class="hover:text-text-secondary"
-              >Terms & Conditions</nuxt-link-locale
+        <!-- Right: Certified Payments -->
+        <div class="flex items-center gap-2.5">
+          <span class="text-[10px] uppercase font-bold text-text-muted tracking-wider">
+            Certified Payments:
+          </span>
+          <div class="flex items-center gap-1 font-mono text-[9px] font-black tracking-wider">
+            <span class="px-2 py-0.5 rounded bg-surface-0 dark:bg-[#131B2E] border border-border/70 text-text-primary">FAWRY</span>
+            <span class="px-2 py-0.5 rounded bg-surface-0 dark:bg-[#131B2E] border border-border/70 text-text-primary">MEEZA</span>
+            <span class="px-2 py-0.5 rounded bg-surface-0 dark:bg-[#131B2E] border border-border/70 text-[#EA580C] dark:text-orange-400 font-bold">VODAFONE CASH</span>
+            <span class="px-2 py-0.5 rounded bg-surface-0 dark:bg-[#131B2E] border border-border/70 text-text-primary">VISA / MC</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── 2. MAIN 4-COLUMN + BRAND GRID (DESKTOP) ─── -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
+
+        <!-- ── COL 1: BRAND INFORMATION ── -->
+        <div class="lg:col-span-4 space-y-4">
+          <!-- Logo -->
+          <nuxt-link-locale to="/" class="flex items-center gap-3 group select-none">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#EA580C] to-[#C2410C] flex items-center justify-center text-white shadow-md shadow-orange-950/15 group-hover:scale-105 transition-transform duration-200"
             >
-            <nuxt-link-locale to="#" class="hover:text-text-secondary"
-              >Privacy Policy</nuxt-link-locale
+              <Icon name="ph:bus-duotone" class="w-6 h-6 text-white" />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xl font-black tracking-tight text-text-primary group-hover:text-[#EA580C] transition-colors">
+                Otobisi<span class="text-[#EA580C]">.</span>
+              </span>
+              <span class="text-[10px] text-text-muted font-medium leading-none mt-0.5">
+                Egypt Intercity Coach Network
+              </span>
+            </div>
+          </nuxt-link-locale>
+
+          <!-- Bio -->
+          <p class="text-xs text-text-secondary leading-relaxed max-w-sm">
+            Egypt's premier intercity bus reservation platform. Seamless booking across Cairo, Alexandria, Sharm El Sheikh, Hurghada, Luxor, and all 27 governorates.
+          </p>
+
+          <!-- Real-Time Seat Synchronisation Pill -->
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 text-[11px] font-bold text-emerald-800 dark:text-emerald-300"
+          >
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Real-time seat synchronisation</span>
+          </div>
+        </div>
+
+        <!-- ── COL 2: COMPANY ── -->
+        <div class="hidden md:block lg:col-span-2 space-y-3">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-text-primary">
+            COMPANY
+          </h4>
+          <ul class="space-y-2.5 text-xs">
+            <li>
+              <nuxt-link-locale to="/help#about" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                About Us
+              </nuxt-link-locale>
+            </li>
+            <li class="flex items-center gap-1.5">
+              <nuxt-link-locale to="/help#careers" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Careers
+              </nuxt-link-locale>
+              <span class="bg-[#EA580C] text-white text-[9px] font-extrabold px-1.5 py-0.2 rounded-full uppercase tracking-wider">
+                Hiring
+              </span>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Contact Us
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#press" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Press & Media Kit
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#stations" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Station Directory
+              </nuxt-link-locale>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── COL 3: FOR TRAVELERS ── -->
+        <div class="hidden md:block lg:col-span-2 space-y-3">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-text-primary">
+            FOR TRAVELERS
+          </h4>
+          <ul class="space-y-2.5 text-xs">
+            <li>
+              <nuxt-link-locale to="/help" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Help Center & Support
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#cancellation" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Cancellation & Refund Policy
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#faq" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Frequently Asked Questions (FAQ)
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#luggage" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Luggage & Baggage Rules
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#rights" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Passenger Rights (Egypt MOT)
+              </nuxt-link-locale>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── COL 4: FOR BUS OPERATORS ── -->
+        <div class="hidden md:block lg:col-span-2 space-y-3">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-text-primary">
+            FOR BUS OPERATORS
+          </h4>
+          <ul class="space-y-2.5 text-xs">
+            <li>
+              <nuxt-link-locale
+                to="/operators"
+                class="font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline flex items-center gap-1"
+              >
+                <span>Partner With Us</span>
+                <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5" />
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/operators" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Fleet Operator Portal
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#api" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Terminal Integration API
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/operators" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Operator Success Stories
+              </nuxt-link-locale>
+            </li>
+            <li>
+              <nuxt-link-locale to="/help#safety" class="text-text-secondary hover:text-[#EA580C] transition-colors">
+                Safety Standards Compliance
+              </nuxt-link-locale>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── COL 5: FOLLOW US & URGENT HELP ── -->
+        <div class="hidden md:block lg:col-span-2 space-y-4">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-text-primary">
+            FOLLOW US
+          </h4>
+          <p class="text-[11px] text-text-secondary leading-relaxed">
+            Stay updated with highway schedule releases, travel alerts, and regional discounts.
+          </p>
+
+          <!-- Social Icons Row -->
+          <div class="flex items-center gap-2">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              class="w-8 h-8 rounded-lg bg-surface-1 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/70 flex items-center justify-center text-text-secondary hover:text-[#EA580C] transition-colors"
             >
-            <nuxt-link-locale to="#" class="hover:text-text-secondary"
-              >Cancellation Policy</nuxt-link-locale
+              <Icon name="ri:facebook-fill" class="w-4 h-4" />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              class="w-8 h-8 rounded-lg bg-surface-1 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/70 flex items-center justify-center text-text-secondary hover:text-[#EA580C] transition-colors"
             >
-            <nuxt-link-locale to="#" class="hover:text-text-secondary"
-              >Contact Support</nuxt-link-locale
+              <Icon name="ri:instagram-line" class="w-4 h-4" />
+            </a>
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X Twitter"
+              class="w-8 h-8 rounded-lg bg-surface-1 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/70 flex items-center justify-center text-text-secondary hover:text-[#EA580C] transition-colors"
             >
+              <Icon name="ri:twitter-x-fill" class="w-4 h-4" />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              class="w-8 h-8 rounded-lg bg-surface-1 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/70 flex items-center justify-center text-text-secondary hover:text-[#EA580C] transition-colors"
+            >
+              <Icon name="ri:linkedin-fill" class="w-4 h-4" />
+            </a>
+          </div>
+
+          <!-- Urgent Booking Help Card -->
+          <div
+            class="p-3 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50/40 dark:from-[#1A1824] dark:to-[#141B2E] border border-orange-200/70 dark:border-orange-900/40 space-y-1 text-start"
+          >
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-[#EA580C] text-white flex items-center justify-center text-[10px] font-black shrink-0">
+                24/7
+              </span>
+              <p class="text-[11px] font-bold text-text-primary leading-tight">
+                Need Urgent Booking Help?
+              </p>
+            </div>
+            <a
+              href="tel:19999"
+              class="block text-[11px] font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline pt-1"
+            >
+              Dial Hotline 19XXX or WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ─── 3. MOBILE-FIRST ACCORDIONS (< 768px Viewport) ─── -->
+      <div class="block md:hidden mt-8 space-y-2">
+        <!-- Accordion 1: Company -->
+        <div class="rounded-xl border border-border/70 bg-surface-1/60 dark:bg-[#131B2E]/60 overflow-hidden">
+          <button
+            type="button"
+            class="w-full min-h-[48px] px-4 py-3 flex items-center justify-between font-bold text-xs text-text-primary cursor-pointer"
+            @click="toggleAccordion('company')"
+          >
+            <span>Company</span>
+            <Icon
+              name="ph:caret-down-bold"
+              class="w-4 h-4 text-text-muted transition-transform duration-200"
+              :class="{ 'rotate-180': openAccordions.company }"
+            />
+          </button>
+          <div v-show="openAccordions.company" class="px-4 pb-4 pt-1 space-y-2 border-t border-border/40 text-xs">
+            <nuxt-link-locale to="/help#about" class="block text-text-secondary hover:text-[#EA580C]">About Us</nuxt-link-locale>
+            <nuxt-link-locale to="/help#careers" class="block text-text-secondary hover:text-[#EA580C]">Careers</nuxt-link-locale>
+            <nuxt-link-locale to="/help" class="block text-text-secondary hover:text-[#EA580C]">Contact Us</nuxt-link-locale>
+            <nuxt-link-locale to="/help#press" class="block text-text-secondary hover:text-[#EA580C]">Press & Media Kit</nuxt-link-locale>
+            <nuxt-link-locale to="/help#stations" class="block text-text-secondary hover:text-[#EA580C]">Station Directory</nuxt-link-locale>
+          </div>
+        </div>
+
+        <!-- Accordion 2: For Travelers (Active / Expanded by default as in spec) -->
+        <div class="rounded-xl border border-[#EA580C]/30 bg-orange-50/20 dark:bg-orange-950/20 overflow-hidden">
+          <button
+            type="button"
+            class="w-full min-h-[48px] px-4 py-3 flex items-center justify-between font-bold text-xs text-[#EA580C] dark:text-orange-400 cursor-pointer"
+            @click="toggleAccordion('travelers')"
+          >
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#EA580C]" />
+              <span>For Travelers (Active)</span>
+            </div>
+            <Icon
+              name="ph:caret-down-bold"
+              class="w-4 h-4 text-[#EA580C] transition-transform duration-200"
+              :class="{ 'rotate-180': openAccordions.travelers }"
+            />
+          </button>
+          <div v-show="openAccordions.travelers" class="px-4 pb-4 pt-1 space-y-2 border-t border-[#EA580C]/20 text-xs">
+            <nuxt-link-locale to="/help" class="block text-text-secondary hover:text-[#EA580C]">Help Center</nuxt-link-locale>
+            <nuxt-link-locale to="/help#cancellation" class="block text-text-secondary hover:text-[#EA580C]">Cancellation Policy</nuxt-link-locale>
+            <nuxt-link-locale to="/help#faq" class="block text-text-secondary hover:text-[#EA580C]">FAQ & Baggage</nuxt-link-locale>
+            <nuxt-link-locale to="/help#rights" class="block text-text-secondary hover:text-[#EA580C]">Passenger Rights (Egypt MOT)</nuxt-link-locale>
+          </div>
+        </div>
+
+        <!-- Accordion 3: For Bus Operators -->
+        <div class="rounded-xl border border-border/70 bg-surface-1/60 dark:bg-[#131B2E]/60 overflow-hidden">
+          <button
+            type="button"
+            class="w-full min-h-[48px] px-4 py-3 flex items-center justify-between font-bold text-xs text-text-primary cursor-pointer"
+            @click="toggleAccordion('operators')"
+          >
+            <span>For Bus Operators</span>
+            <Icon
+              name="ph:caret-down-bold"
+              class="w-4 h-4 text-text-muted transition-transform duration-200"
+              :class="{ 'rotate-180': openAccordions.operators }"
+            />
+          </button>
+          <div v-show="openAccordions.operators" class="px-4 pb-4 pt-1 space-y-2 border-t border-border/40 text-xs">
+            <nuxt-link-locale to="/operators" class="block font-bold text-[#EA580C]">Partner With Us →</nuxt-link-locale>
+            <nuxt-link-locale to="/operators" class="block text-text-secondary hover:text-[#EA580C]">Fleet Operator Portal</nuxt-link-locale>
+            <nuxt-link-locale to="/help#api" class="block text-text-secondary hover:text-[#EA580C]">Terminal Integration API</nuxt-link-locale>
+            <nuxt-link-locale to="/help#safety" class="block text-text-secondary hover:text-[#EA580C]">Safety Standards Compliance</nuxt-link-locale>
+          </div>
+        </div>
+
+        <!-- Accordion 4: Follow Us -->
+        <div class="rounded-xl border border-border/70 bg-surface-1/60 dark:bg-[#131B2E]/60 overflow-hidden">
+          <button
+            type="button"
+            class="w-full min-h-[48px] px-4 py-3 flex items-center justify-between font-bold text-xs text-text-primary cursor-pointer"
+            @click="toggleAccordion('social')"
+          >
+            <span>Follow Us</span>
+            <Icon
+              name="ph:caret-down-bold"
+              class="w-4 h-4 text-text-muted transition-transform duration-200"
+              :class="{ 'rotate-180': openAccordions.social }"
+            />
+          </button>
+          <div v-show="openAccordions.social" class="px-4 pb-4 pt-2 space-y-3 border-t border-border/40 text-xs">
+            <div class="flex items-center gap-2">
+              <a href="https://facebook.com" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-surface-0 dark:bg-[#131B2E] border border-border flex items-center justify-center text-text-secondary hover:text-[#EA580C]">
+                <Icon name="ri:facebook-fill" class="w-4 h-4" />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-surface-0 dark:bg-[#131B2E] border border-border flex items-center justify-center text-text-secondary hover:text-[#EA580C]">
+                <Icon name="ri:instagram-line" class="w-4 h-4" />
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-surface-0 dark:bg-[#131B2E] border border-border flex items-center justify-center text-text-secondary hover:text-[#EA580C]">
+                <Icon name="ri:twitter-x-fill" class="w-4 h-4" />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-surface-0 dark:bg-[#131B2E] border border-border flex items-center justify-center text-text-secondary hover:text-[#EA580C]">
+                <Icon name="ri:linkedin-fill" class="w-4 h-4" />
+              </a>
+            </div>
+            <a href="tel:19999" class="block text-xs font-bold text-[#EA580C]">
+              Hotline: 19XXX (24/7)
+            </a>
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+
+    <!-- ─── 4. BOTTOM LEGAL & SELECTORS BAR ─── -->
+    <div class="border-t border-border/60 bg-surface-1/40 dark:bg-[#0E1424]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+        
+        <!-- Left / Copyright & Policies -->
+        <div class="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-text-muted">
+          <span>© 2025 Otobisi Egypt SAE. All rights reserved.</span>
+          <span class="hidden sm:inline">•</span>
+          <nuxt-link-locale to="/help#terms" class="hover:text-text-primary transition-colors">
+            Terms of Service
+          </nuxt-link-locale>
+          <span>•</span>
+          <nuxt-link-locale to="/help#privacy" class="hover:text-text-primary transition-colors">
+            Privacy Policy
+          </nuxt-link-locale>
+          <span>•</span>
+          <button type="button" class="hover:text-text-primary transition-colors cursor-pointer" @click="openCookieSettings">
+            Cookie Preferences
+          </button>
+        </div>
+
+        <!-- Right / Interactive Language & Currency Selectors -->
+        <div class="flex items-center gap-2">
+          
+          <!-- Language Selector Dropdown -->
+          <div class="relative">
+            <button
+              type="button"
+              class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-surface-0 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/80 text-[11px] font-semibold text-text-primary transition-colors cursor-pointer"
+              @click="langMenuOpen = !langMenuOpen; currencyMenuOpen = false"
+            >
+              <Icon name="ph:globe-bold" class="w-3.5 h-3.5 text-[#EA580C]" />
+              <span>English (US)</span>
+              <Icon name="ph:caret-down-bold" class="w-3 h-3 text-text-muted transition-transform" :class="{ 'rotate-180': langMenuOpen }" />
+            </button>
+            <div
+              v-if="langMenuOpen"
+              class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 right-0"
+            >
+              <button
+                type="button"
+                class="w-full text-start px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#EA580C] font-bold hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors cursor-pointer"
+                @click="langMenuOpen = false"
+              >
+                English (US)
+              </button>
+            </div>
+          </div>
+
+          <!-- Currency Selector Dropdown -->
+          <div class="relative">
+            <button
+              type="button"
+              class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-surface-0 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/80 text-[11px] font-semibold text-text-primary transition-colors cursor-pointer"
+              @click="currencyMenuOpen = !currencyMenuOpen; langMenuOpen = false"
+            >
+              <span class="font-extrabold text-[#EA580C]">{{ selectedCurrency.code }}</span>
+              <span>{{ selectedCurrency.label }}</span>
+              <Icon name="ph:caret-down-bold" class="w-3 h-3 text-text-muted transition-transform" :class="{ 'rotate-180': currencyMenuOpen }" />
+            </button>
+            <div
+              v-if="currencyMenuOpen"
+              class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 right-0"
+            >
+              <button
+                v-for="curr in currencies"
+                :key="curr.code"
+                type="button"
+                class="w-full text-start px-2.5 py-1.5 rounded-lg text-xs font-semibold hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors flex items-center justify-between cursor-pointer"
+                :class="{ 'text-[#EA580C] font-bold': selectedCurrency.code === curr.code }"
+                @click="selectedCurrency = curr; currencyMenuOpen = false"
+              >
+                <span>{{ curr.code }}</span>
+                <span class="text-text-muted text-[10px]">{{ curr.symbol }}</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
 </template>
 
 <script lang="ts" setup>
+// ─── Mobile Accordion State (For Travelers active by default as in spec) ─────
+const openAccordions = reactive({
+  company: false,
+  travelers: true, // Default open in mobile spec
+  operators: false,
+  social: false,
+});
 
+const toggleAccordion = (key: keyof typeof openAccordions) => {
+  openAccordions[key] = !openAccordions[key];
+};
+
+// ─── Currency Selector ───────────────────────────────────────────────────────
+const langMenuOpen = ref(false);
+const currencyMenuOpen = ref(false);
+
+const currencies = [
+  { code: 'EGP', label: 'EGP (ج.م)', symbol: 'ج.م' },
+  { code: 'USD', label: 'USD ($)', symbol: '$' },
+  { code: 'EUR', label: 'EUR (€)', symbol: '€' },
+  { code: 'SAR', label: 'SAR (ر.س)', symbol: 'ر.س' },
+];
+
+const selectedCurrency = ref(currencies[0]);
+
+const openCookieSettings = () => {
+  alert('Cookie preferences are up to date.');
+};
+
+// Close dropdowns on outside click
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.relative')) {
+        langMenuOpen.value = false;
+        currencyMenuOpen.value = false;
+      }
+    });
+  }
+});
 </script>

@@ -213,7 +213,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DatePickerProps } from "~/types/shared/VDatePicker";
+import type { DatePickerProps, CalendarCell } from "~/types/shared/VDatePicker";
 
 const props = withDefaults(defineProps<DatePickerProps>(), {
   placeholder: "Select date",
@@ -272,15 +272,6 @@ const prevMonth = () => {
 const nextMonth = () => {
   viewDate.value = new Date(currentYear.value, currentMonth.value + 1, 1);
 };
-
-interface CalendarCell {
-  dateString: string;
-  dayNumber: number;
-  isCurrentMonth: boolean;
-  isToday: boolean;
-  isSelected: boolean;
-  isDisabled: boolean;
-}
 
 const formatDateToISO = (date: Date): string => {
   const y = date.getFullYear();
