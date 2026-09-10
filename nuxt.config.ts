@@ -27,7 +27,13 @@ export default defineNuxtConfig({
         name: "English",
         dir: "ltr",
       },
-      { code: "ar", language: "ar-EG", file: "ar.json", name: "عربي", dir: "rtl" },
+      {
+        code: "ar",
+        language: "ar-EG",
+        file: "ar.json",
+        name: "عربي",
+        dir: "rtl",
+      },
     ],
     defaultLocale: "en",
     strategy: "prefix",
@@ -47,16 +53,15 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: 'https://otobisi.com',
-      siteName: 'Otobisi',
-      defaultOgImage: '/og-default.jpg',
-      twitterHandle: '@otobisi',
+      siteUrl: "https://otobisi.com",
+      siteName: "Otobisi",
+      defaultOgImage: "/og-default.jpg",
+      twitterHandle: "@otobisi",
     },
   },
   routeRules: {
-    '/': { prerender: false }, // has live "popular routes" pricing, keep dynamic
-    '/help/**': { prerender: true },
-    // '/about': { prerender: true }, // re-enable once app/pages/about.vue exists
+    "/": { prerender: false }, // has live "popular routes" pricing, keep dynamic
+    "/help/**": { prerender: true },
   },
   typescript: {
     strict: true,
