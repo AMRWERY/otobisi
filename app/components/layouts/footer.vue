@@ -249,7 +249,7 @@
           <ul class="space-y-2.5 text-xs">
             <li>
               <nuxt-link-locale
-                to="/operators"
+                to=""
                 class="font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline flex items-center gap-1"
               >
                 <span>Partner With Us</span>
@@ -258,7 +258,7 @@
             </li>
             <li>
               <nuxt-link-locale
-                to="/operators"
+                to=""
                 class="text-text-secondary hover:text-[#EA580C] transition-colors"
               >
                 Fleet Operator Portal
@@ -274,7 +274,7 @@
             </li>
             <li>
               <nuxt-link-locale
-                to="/operators"
+                to=""
                 class="text-text-secondary hover:text-[#EA580C] transition-colors"
               >
                 Operator Success Stories
@@ -435,12 +435,12 @@
           <template #operators>
             <div class="space-y-2 text-xs">
               <nuxt-link-locale
-                to="/operators"
+                to=""
                 class="block font-bold text-[#EA580C]"
                 >Partner With Us →</nuxt-link-locale
               >
               <nuxt-link-locale
-                to="/operators"
+                to=""
                 class="block text-text-secondary hover:text-[#EA580C]"
                 >Fleet Operator Portal</nuxt-link-locale
               >
