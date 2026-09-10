@@ -3,8 +3,9 @@
     <header
       class="border-b border-border/70 bg-surface-0/90 dark:bg-[#0B0F19]/90 backdrop-blur-md transition-all duration-200"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between gap-4">
-        
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between gap-4"
+      >
         <!-- ─── START: BRAND LOGO ─── -->
         <nuxt-link-locale
           to="/"
@@ -21,11 +22,15 @@
           <!-- Brand Title & Subtitle -->
           <div class="flex flex-col">
             <div class="flex items-baseline gap-1">
-              <span class="text-xl font-black tracking-tight text-text-primary group-hover:text-[#EA580C] transition-colors">
+              <span
+                class="text-xl font-black tracking-tight text-text-primary group-hover:text-[#EA580C] transition-colors"
+              >
                 Otobisi<span class="text-[#EA580C]">.</span>
               </span>
             </div>
-            <span class="text-[10px] text-text-muted font-medium leading-none mt-0.5">
+            <span
+              class="text-[10px] text-text-muted font-medium leading-none mt-0.5"
+            >
               Egypt Intercity Transit
             </span>
           </div>
@@ -44,14 +49,14 @@
             :class="[
               isActive(link.path)
                 ? 'text-text-primary font-semibold'
-                : 'text-text-secondary hover:text-text-primary'
+                : 'text-text-secondary hover:text-text-primary',
             ]"
-          >{{ link.label }}</nuxt-link-locale>
+            >{{ link.label }}</nuxt-link-locale
+          >
         </nav>
 
         <!-- ─── END: UTILITY CLUSTER (DESKTOP) ─── -->
         <div class="hidden md:flex items-center gap-2.5 shrink-0">
-          
           <!-- Language Switcher -->
           <LazyVToggleLocale />
 
@@ -59,90 +64,61 @@
           <LazyVToggleTheme />
 
           <!-- User / Auth Cluster -->
-          <div class="relative">
-            <!-- Logged In State (Ahmed M.) -->
-            <div v-if="isLoggedIn" class="relative">
-              <button
-                type="button"
-                class="flex items-center gap-2 p-1.5 pr-2.5 rounded-xl bg-surface-1/80 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/60 transition-colors cursor-pointer text-start"
-                @click="userDropdownOpen = !userDropdownOpen"
-              >
-                <!-- Avatar Circle with Initial -->
-                <div
-                  class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-[#EA580C] text-white flex items-center justify-center font-bold text-xs shadow-xs"
+          <div>
+            <!-- Logged In State -->
+            <LazyVDropdownMenu
+              v-if="isLoggedIn"
+              :items="userMenuItems"
+              align="right"
+              width="w-56"
+            >
+              <template #trigger="{ open }">
+                <button
+                  type="button"
+                  class="flex items-center gap-2 p-1.5 pr-2.5 rounded-xl bg-surface-1/80 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/60 transition-colors cursor-pointer text-start"
                 >
-                  AM
-                </div>
-                <div class="flex flex-col">
-                  <span class="text-xs font-extrabold text-text-primary leading-tight">
-                    Ahmed M.
-                  </span>
-                  <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold leading-none flex items-center gap-1">
-                    <Icon name="ph:seal-check-fill" class="w-3 h-3 text-emerald-500" />
-                    Verified Traveler
-                  </span>
-                </div>
-                <Icon
-                  name="ph:caret-down-bold"
-                  class="w-3.5 h-3.5 text-text-muted transition-transform duration-200"
-                  :class="{ 'rotate-180': userDropdownOpen }"
-                />
-              </button>
-
-              <!-- Profile Dropdown Menu -->
-              <transition
-                enter-active-class="transition duration-150 ease-out"
-                enter-from-class="transform opacity-0 scale-95"
-                enter-to-class="transform opacity-100 scale-100"
-                leave-active-class="transition duration-100 ease-in"
-                leave-from-class="transform opacity-100 scale-100"
-                leave-to-class="transform opacity-0 scale-95"
-              >
-                <div
-                  v-if="userDropdownOpen"
-                  class="absolute top-full mt-2 w-56 rounded-2xl bg-surface-0 dark:bg-[#131B2E] border border-border dark:border-[#1E293B] shadow-xl p-2 z-50 right-0"
-                >
-                  <div class="px-3 py-2 border-b border-border/50 mb-1">
-                    <p class="text-xs font-bold text-text-primary">
-                      Amr M.
-                    </p>
-                    <p class="text-[11px] text-text-muted font-mono">+20 10 1234 5678</p>
+                  <!-- Avatar Circle with Initial -->
+                  <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-[#EA580C] text-white flex items-center justify-center font-bold text-xs shadow-xs"
+                  >
+                    AM
                   </div>
-                  <nuxt-link-locale
-                    to="/bookings"
-                    class="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-text-primary hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors"
-                    @click="userDropdownOpen = false"
-                  >
-                    <div class="flex items-center gap-2">
-                      <Icon name="ph:ticket-bold" class="w-4 h-4 text-[#EA580C]" />
-                      <span>My Bookings</span>
-                    </div>
-                    <span class="w-4 h-4 rounded-full bg-orange-100 dark:bg-orange-950 text-[#EA580C] text-[10px] font-bold flex items-center justify-center">1</span>
-                  </nuxt-link-locale>
-                  <nuxt-link-locale
-                    to="/help"
-                    class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-text-secondary hover:text-text-primary hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors"
-                    @click="userDropdownOpen = false"
-                  >
-                    <Icon name="ph:headset-bold" class="w-4 h-4 text-[#EA580C]" />
-                    <span>Help & Support</span>
-                  </nuxt-link-locale>
-                  <div class="border-t border-border/50 my-1 pt-1">
-                    <button
-                      type="button"
-                      class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
-                      @click="toggleAuth"
+                  <div class="flex flex-col">
+                    <span
+                      class="text-xs font-extrabold text-text-primary leading-tight"
                     >
-                      <Icon name="ph:sign-out-bold" class="w-4 h-4" />
-                      <span>Sign Out</span>
-                    </button>
+                      Amr M.
+                    </span>
+                    <span
+                      class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold leading-none flex items-center gap-1"
+                    >
+                      <Icon
+                        name="ph:seal-check-fill"
+                        class="w-3 h-3 text-emerald-500"
+                      />
+                      Verified Traveler
+                    </span>
                   </div>
+                  <Icon
+                    name="ph:caret-down-bold"
+                    class="w-3.5 h-3.5 text-text-muted transition-transform duration-200"
+                    :class="{ 'rotate-180': open }"
+                  />
+                </button>
+              </template>
+
+              <template #header>
+                <div class="px-3 py-2">
+                  <p class="text-xs font-bold text-text-primary">Amr M.</p>
+                  <p class="text-[11px] text-text-muted font-mono">
+                    +20 10 1234 5678
+                  </p>
                 </div>
-              </transition>
-            </div>
+              </template>
+            </LazyVDropdownMenu>
 
             <!-- Guest State (Log in / Sign up CTA) -->
-            <div v-else class="flex items-center gap-2">
+            <div v-if="!isLoggedIn" class="flex items-center gap-2">
               <nuxt-link-locale
                 to="/auth/login"
                 class="flex items-center gap-2 bg-gradient-to-r from-[#EA580C] to-[#C2410C] hover:opacity-95 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm shadow-orange-950/15 active:scale-98 cursor-pointer"
@@ -152,22 +128,28 @@
               </nuxt-link-locale>
             </div>
           </div>
-
         </div>
 
         <!-- ─── MOBILE CONTROLS (THEME + HAMBURGER TRIGGER) ─── -->
         <div class="flex md:hidden items-center gap-2">
-          
           <!-- Mobile Theme Toggle -->
           <ClientOnly>
             <button
               type="button"
               class="relative w-12 h-7 p-0.5 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 cursor-pointer flex items-center justify-between"
-              :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+              :aria-label="
+                isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+              "
               @click="toggleDark"
             >
-              <Icon name="ph:sun-bold" class="w-3 h-3 text-amber-500 z-0 ml-1" />
-              <Icon name="ph:moon-bold" class="w-3 h-3 text-slate-400 dark:text-orange-400 z-0 mr-1" />
+              <Icon
+                name="ph:sun-bold"
+                class="w-3 h-3 text-amber-500 z-0 ml-1"
+              />
+              <Icon
+                name="ph:moon-bold"
+                class="w-3 h-3 text-slate-400 dark:text-orange-400 z-0 mr-1"
+              />
               <span
                 class="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm flex items-center justify-center transition-transform duration-250 ease-out border border-border/40"
                 :class="isDark ? 'translate-x-5' : 'translate-x-0'"
@@ -202,7 +184,6 @@
             <Icon name="ph:list-bold" class="w-5 h-5" />
           </button>
         </div>
-
       </div>
     </header>
 
@@ -240,12 +221,18 @@
           <!-- Drawer Top Content -->
           <div class="p-5 space-y-5">
             <!-- Header: Logo + Close Button -->
-            <div class="flex items-center justify-between pb-3 border-b border-border/50">
+            <div
+              class="flex items-center justify-between pb-3 border-b border-border/50"
+            >
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#EA580C] to-[#C2410C] flex items-center justify-center text-white shadow-sm">
+                <div
+                  class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#EA580C] to-[#C2410C] flex items-center justify-center text-white shadow-sm"
+                >
                   <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
                 </div>
-                <span class="text-lg font-black tracking-tight text-text-primary">
+                <span
+                  class="text-lg font-black tracking-tight text-text-primary"
+                >
                   Otobisi
                 </span>
               </div>
@@ -264,12 +251,14 @@
               v-if="isLoggedIn"
               class="p-3.5 rounded-2xl bg-surface-1 dark:bg-[#131B2E] border border-border/60 flex items-center gap-3"
             >
-              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-[#EA580C] text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0">
+              <div
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-[#EA580C] text-white flex items-center justify-center font-bold text-sm shadow-xs shrink-0"
+              >
                 AM
               </div>
               <div class="flex-1 min-w-0">
                 <h4 class="text-xs font-extrabold text-text-primary truncate">
-                  Ahmed M.
+                  Amr M.
                 </h4>
                 <p class="text-[11px] text-text-muted font-mono truncate">
                   +20 10 1234 5678
@@ -308,7 +297,7 @@
                 :class="[
                   isActive(link.path)
                     ? 'bg-orange-50 dark:bg-orange-950/40 text-[#EA580C] dark:text-orange-400 border border-orange-200/60 dark:border-orange-900/50'
-                    : 'text-text-primary hover:bg-surface-1 dark:hover:bg-[#131B2E]'
+                    : 'text-text-primary hover:bg-surface-1 dark:hover:bg-[#131B2E]',
                 ]"
                 @click="mobileDrawerOpen = false"
               >
@@ -330,12 +319,19 @@
             </div>
 
             <!-- Language Switcher Card -->
-            <div class="p-3 rounded-2xl bg-surface-1 dark:bg-[#131B2E] border border-border/60">
+            <div
+              class="p-3 rounded-2xl bg-surface-1 dark:bg-[#131B2E] border border-border/60"
+            >
               <div class="flex items-center justify-between mb-2">
-                <span class="text-[10px] font-extrabold uppercase tracking-wider text-text-muted">
+                <span
+                  class="text-[10px] font-extrabold uppercase tracking-wider text-text-muted"
+                >
                   LANGUAGE
                 </span>
-                <Icon name="ph:globe-bold" class="w-3.5 h-3.5 text-text-muted" />
+                <Icon
+                  name="ph:globe-bold"
+                  class="w-3.5 h-3.5 text-text-muted"
+                />
               </div>
               <div class="grid grid-cols-2 gap-1.5">
                 <button
@@ -344,9 +340,12 @@
                   :class="[
                     locale === 'en'
                       ? 'bg-[#EA580C] text-white shadow-xs'
-                      : 'bg-surface-0 dark:bg-[#1B2438] text-text-secondary hover:text-text-primary'
+                      : 'bg-surface-0 dark:bg-[#1B2438] text-text-secondary hover:text-text-primary',
                   ]"
-                  @click="switchLocale('en'); mobileDrawerOpen = false"
+                  @click="
+                    switchLocale('en');
+                    mobileDrawerOpen = false;
+                  "
                 >
                   <span>English</span>
                 </button>
@@ -356,9 +355,12 @@
                   :class="[
                     locale === 'ar'
                       ? 'bg-[#EA580C] text-white shadow-xs'
-                      : 'bg-surface-0 dark:bg-[#1B2438] text-text-secondary hover:text-text-primary'
+                      : 'bg-surface-0 dark:bg-[#1B2438] text-text-secondary hover:text-text-primary',
                   ]"
-                  @click="switchLocale('ar'); mobileDrawerOpen = false"
+                  @click="
+                    switchLocale('ar');
+                    mobileDrawerOpen = false;
+                  "
                 >
                   <span>العربية</span>
                 </button>
@@ -367,7 +369,9 @@
           </div>
 
           <!-- Drawer Footer: Helpline Contact -->
-          <div class="p-5 border-t border-border/50 bg-surface-1/50 dark:bg-[#0E1424]">
+          <div
+            class="p-5 border-t border-border/50 bg-surface-1/50 dark:bg-[#0E1424]"
+          >
             <a
               href="tel:19999"
               class="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border/70 text-xs font-bold text-[#EA580C] dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-950/30 transition-colors shadow-2xs"
@@ -389,32 +393,30 @@ const { locale, switchLocale } = useLocaleSwitch();
 
 // ─── Reactive States ─────────────────────────────────────────────────────────
 const mobileDrawerOpen = ref(false);
-const userDropdownOpen = ref(false);
-const isLoggedIn = ref(true); // Default to verified traveler as specified in Variant 1A
+const isLoggedIn = ref(true); // true = logged-in demo state
 
 const toggleAuth = () => {
   isLoggedIn.value = !isLoggedIn.value;
-  userDropdownOpen.value = false;
 };
 
 // ─── Navigation Links (English) ──────────────────────────────────────────────
 const navLinks = [
   {
-    label: 'Search Trips',
-    path: '/',
-    icon: 'ph:magnifying-glass-bold',
+    label: "Search Trips",
+    path: "/",
+    icon: "ph:magnifying-glass-bold",
     badge: null,
   },
   {
-    label: 'My Bookings',
-    path: '/bookings',
-    icon: 'ph:ticket-bold',
+    label: "My Bookings",
+    path: "/bookings",
+    icon: "ph:ticket-bold",
     badge: 1,
   },
   {
-    label: 'Help & Support',
-    path: '/help',
-    icon: 'ph:headset-bold',
+    label: "Help & Support",
+    path: "/help",
+    icon: "ph:headset-bold",
     badge: null,
   },
 ];
@@ -422,21 +424,35 @@ const navLinks = [
 // ─── Active Route Helper ─────────────────────────────────────────────────────
 const isActive = (path: string) => {
   const resolved = localePath(path);
-  if (path === '/') {
+  if (path === "/") {
     return route.path === resolved || route.path === `${resolved}/`;
   }
-  return route.path === resolved || route.path.startsWith(resolved + '/');
+  return route.path === resolved || route.path.startsWith(resolved + "/");
 };
 
-// Close dropdown on outside click
-onMounted(() => {
-  if (typeof window !== 'undefined') {
-    window.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      if (!target.closest('.relative')) {
-        userDropdownOpen.value = false;
-      }
-    });
-  }
-});
+// ─── User Menu Items (fed into VDropdownMenu) ─────────────────────────────────
+const userMenuItems = [
+  {
+    type: "link" as const,
+    label: "My Bookings",
+    to: "/bookings",
+    icon: "ph:ticket-bold",
+    badge: 1,
+  },
+  {
+    type: "link" as const,
+    label: "Help & Support",
+    to: "/help",
+    icon: "ph:headset-bold",
+  },
+  { type: "divider" as const },
+  {
+    type: "button" as const,
+    label: "Sign Out",
+    icon: "ph:sign-out-bold",
+    iconClass: "text-rose-500",
+    danger: true,
+    onClick: toggleAuth,
+  },
+];
 </script>
