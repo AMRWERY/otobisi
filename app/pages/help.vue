@@ -94,30 +94,7 @@
         Frequently Asked Questions
       </h3>
 
-      <div
-        v-for="(item, idx) in faqItems"
-        :key="idx"
-        class="rounded-2xl border border-border/70 bg-surface-1/50 dark:bg-[#131B2E]/50 overflow-hidden transition-colors"
-      >
-        <button
-          type="button"
-          class="w-full p-4 sm:p-5 flex items-center justify-between gap-4 text-start font-bold text-xs sm:text-sm text-text-primary cursor-pointer hover:bg-surface-0 dark:hover:bg-[#1B2438] transition-colors"
-          @click="toggleFaq(idx)"
-        >
-          <span class="leading-snug">{{ item.q }}</span>
-          <Icon
-            name="ph:caret-down-bold"
-            class="w-4 h-4 text-text-muted shrink-0 transition-transform duration-200"
-            :class="{ 'rotate-180 text-[#EA580C]': openFaq === idx }"
-          />
-        </button>
-        <div
-          v-show="openFaq === idx"
-          class="px-4 sm:px-5 pb-5 pt-1 text-xs text-text-secondary leading-relaxed border-t border-border/40"
-        >
-          {{ item.a }}
-        </div>
-      </div>
+      <LazyVAccordion v-model="openFaq" :items="faqAccordionItems" />
     </div>
 
     <!-- Ministry of Transport Endorsement Banner -->
@@ -143,28 +120,34 @@
 </template>
 
 <script lang="ts" setup>
-const openFaq = ref<number | null>(0);
+import type { AccordionItem } from "~/types/shared/VAccordion";
 
-const toggleFaq = (idx: number) => {
-  openFaq.value = openFaq.value === idx ? null : idx;
-};
+const openFaq = ref<string | number>(0);
 
-const faqItems = [
+const faqAccordionItems: AccordionItem[] = [
   {
-    q: "How do I cancel or modify my booking?",
-    a: 'You can easily modify or cancel your ticket via the "My Bookings" page using your booking code and phone number, or by dialing our 24/7 hotline 19XXX at least 2 hours before scheduled departure.',
+    id: 0,
+    title: "How do I cancel or modify my booking?",
+    content:
+      'You can easily modify or cancel your ticket via the "My Bookings" page using your booking code and phone number, or by dialing our 24/7 hotline 19XXX at least 2 hours before scheduled departure.',
   },
   {
-    q: "What is the allowed luggage allowance per passenger?",
-    a: "Each passenger is permitted one checked bag up to 25kg and one personal carry-on bag at no extra charge. Excess baggage may incur a nominal fee payable at the terminal.",
+    id: 1,
+    title: "What is the allowed luggage allowance per passenger?",
+    content:
+      "Each passenger is permitted one checked bag up to 25kg and one personal carry-on bag at no extra charge. Excess baggage may incur a nominal fee payable at the terminal.",
   },
   {
-    q: "Do I need a printed ticket to board the coach?",
-    a: "No printed ticket is required. You can present your digital e-ticket QR code on your mobile phone along with your valid National ID or Passport.",
+    id: 2,
+    title: "Do I need a printed ticket to board the coach?",
+    content:
+      "No printed ticket is required. You can present your digital e-ticket QR code on your mobile phone along with your valid National ID or Passport.",
   },
   {
-    q: "What should I do if I left an item on the bus?",
-    a: "Please dial 19XXX immediately with your trip number, operator name, and seat assignment. Our operations team will contact the terminal supervisor to secure your item.",
+    id: 3,
+    title: "What should I do if I left an item on the bus?",
+    content:
+      "Please dial 19XXX immediately with your trip number, operator name, and seat assignment. Our operations team will contact the terminal supervisor to secure your item.",
   },
 ];
 

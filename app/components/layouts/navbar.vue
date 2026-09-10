@@ -102,28 +102,41 @@
           </div>
 
           <!-- Sliding Theme Toggle (Sun / Moon) -->
-          <button
-            type="button"
-            class="relative w-14 h-8 p-1 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 cursor-pointer transition-colors duration-200 flex items-center justify-between"
-            :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
-            @click="toggleDark"
-          >
-            <!-- Background Icons -->
-            <Icon name="ph:sun-bold" class="w-3.5 h-3.5 text-amber-500 z-0 ml-1" />
-            <Icon name="ph:moon-bold" class="w-3.5 h-3.5 text-slate-400 dark:text-orange-400 z-0 mr-1" />
-
-            <!-- Sliding Circle Thumb -->
-            <span
-              class="absolute top-1 left-1 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm flex items-center justify-center transition-transform duration-250 ease-out border border-border/40"
-              :class="isDark ? 'translate-x-6' : 'translate-x-0'"
+          <ClientOnly>
+            <button
+              type="button"
+              class="relative w-14 h-8 p-1 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 cursor-pointer transition-colors duration-200 flex items-center justify-between"
+              :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+              @click="toggleDark"
             >
-              <Icon
-                :name="isDark ? 'ph:moon-fill' : 'ph:sun-fill'"
-                class="w-3.5 h-3.5"
-                :class="isDark ? 'text-orange-400' : 'text-amber-500'"
-              />
-            </span>
-          </button>
+              <!-- Background Icons -->
+              <Icon name="ph:sun-bold" class="w-3.5 h-3.5 text-amber-500 z-0 ml-1" />
+              <Icon name="ph:moon-bold" class="w-3.5 h-3.5 text-slate-400 dark:text-orange-400 z-0 mr-1" />
+
+              <!-- Sliding Circle Thumb -->
+              <span
+                class="absolute top-1 left-1 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm flex items-center justify-center transition-transform duration-250 ease-out border border-border/40"
+                :class="isDark ? 'translate-x-6' : 'translate-x-0'"
+              >
+                <Icon
+                  :name="isDark ? 'ph:moon-fill' : 'ph:sun-fill'"
+                  class="w-3.5 h-3.5"
+                  :class="isDark ? 'text-orange-400' : 'text-amber-500'"
+                />
+              </span>
+            </button>
+            <template #fallback>
+              <div
+                class="relative w-14 h-8 p-1 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 flex items-center justify-between opacity-80"
+              >
+                <span class="w-3.5 h-3.5 ml-1" />
+                <span class="w-3.5 h-3.5 mr-1" />
+                <span
+                  class="absolute top-1 left-1 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm border border-border/40"
+                />
+              </div>
+            </template>
+          </ClientOnly>
 
           <!-- User / Auth Cluster -->
           <div class="relative">
@@ -226,25 +239,38 @@
         <div class="flex md:hidden items-center gap-2">
           
           <!-- Mobile Theme Toggle -->
-          <button
-            type="button"
-            class="relative w-12 h-7 p-0.5 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 cursor-pointer flex items-center justify-between"
-            :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
-            @click="toggleDark"
-          >
-            <Icon name="ph:sun-bold" class="w-3 h-3 text-amber-500 z-0 ml-1" />
-            <Icon name="ph:moon-bold" class="w-3 h-3 text-slate-400 dark:text-orange-400 z-0 mr-1" />
-            <span
-              class="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm flex items-center justify-center transition-transform duration-250 ease-out border border-border/40"
-              :class="isDark ? 'translate-x-5' : 'translate-x-0'"
+          <ClientOnly>
+            <button
+              type="button"
+              class="relative w-12 h-7 p-0.5 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 cursor-pointer flex items-center justify-between"
+              :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+              @click="toggleDark"
             >
-              <Icon
-                :name="isDark ? 'ph:moon-fill' : 'ph:sun-fill'"
-                class="w-3 h-3"
-                :class="isDark ? 'text-orange-400' : 'text-amber-500'"
-              />
-            </span>
-          </button>
+              <Icon name="ph:sun-bold" class="w-3 h-3 text-amber-500 z-0 ml-1" />
+              <Icon name="ph:moon-bold" class="w-3 h-3 text-slate-400 dark:text-orange-400 z-0 mr-1" />
+              <span
+                class="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm flex items-center justify-center transition-transform duration-250 ease-out border border-border/40"
+                :class="isDark ? 'translate-x-5' : 'translate-x-0'"
+              >
+                <Icon
+                  :name="isDark ? 'ph:moon-fill' : 'ph:sun-fill'"
+                  class="w-3 h-3"
+                  :class="isDark ? 'text-orange-400' : 'text-amber-500'"
+                />
+              </span>
+            </button>
+            <template #fallback>
+              <div
+                class="relative w-12 h-7 p-0.5 rounded-full bg-[#EEF2F6] dark:bg-[#131B2E] border border-border/60 flex items-center justify-between opacity-80"
+              >
+                <span class="w-3 h-3 ml-1" />
+                <span class="w-3 h-3 mr-1" />
+                <span
+                  class="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-surface-0 dark:bg-[#1E293B] shadow-sm border border-border/40"
+                />
+              </div>
+            </template>
+          </ClientOnly>
 
           <!-- Mobile Hamburger Drawer Trigger -->
           <button
