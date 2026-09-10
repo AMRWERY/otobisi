@@ -168,9 +168,9 @@
           <ul class="space-y-2.5 text-xs">
             <li>
               <nuxt-link-locale to="/operators"
-                class="font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline flex items-center gap-1">
+                class="font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline flex items-center gap-1 group">
                 <span>Partner With Us</span>
-                <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5" />
+                <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
               </nuxt-link-locale>
             </li>
             <li>
@@ -349,7 +349,7 @@
                 :class="{ 'rotate-180': langMenuOpen }" />
             </button>
             <div v-if="langMenuOpen"
-              class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 right-0">
+              class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 end-0">
               <button type="button"
                 class="w-full text-start px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#EA580C] hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors cursor-pointer"
                 @click="langMenuOpen = false">
@@ -374,7 +374,7 @@
                 :class="{ 'rotate-180': currencyMenuOpen }" />
             </button>
             <div v-if="currencyMenuOpen"
-              class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 right-0">
+              class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 end-0">
               <button v-for="curr in currencies" :key="curr.code" type="button"
                 class="w-full text-start px-2.5 py-1.5 rounded-lg text-xs font-semibold hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors flex items-center justify-between cursor-pointer"
                 :class="{

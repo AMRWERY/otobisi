@@ -178,7 +178,7 @@
 
     <!-- Floating Badge at Bottom-Right (No Wi-Fi) -->
     <div
-      class="absolute -bottom-1 -right-1 sm:bottom-0 sm:right-0 w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md ring-3 ring-white dark:ring-[#111827]"
+      class="absolute -bottom-1 -end-1 sm:bottom-0 sm:end-0 w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md ring-3 ring-white dark:ring-[#111827]"
     >
       <Icon name="ph:wifi-slash-bold" class="w-4 h-4" />
     </div>

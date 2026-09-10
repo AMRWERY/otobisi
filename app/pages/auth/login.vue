@@ -45,11 +45,11 @@
       <!-- VERIFY & CONTINUE CTA BUTTON -->
       <button
         type="button"
-        class="mt-4 w-full bg-[#A1331B] hover:bg-[#8d2a13] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer"
+        class="mt-4 w-full bg-[#A1331B] hover:bg-[#8d2a13] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer group"
         @click="verifyOtp"
       >
         <span>Verify &amp; Continue</span>
-        <Icon name="ph:arrow-right-bold" class="w-4 h-4" />
+        <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
       </button>
 
       <!-- DIVIDER -->

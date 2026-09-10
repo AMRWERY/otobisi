@@ -3,8 +3,7 @@
     <!-- Header -->
     <div class="text-center space-y-4 max-w-2xl mx-auto">
       <div
-        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-950/60 border border-orange-200 dark:border-orange-800 text-[#EA580C] dark:text-orange-400 text-xs font-bold uppercase tracking-wider"
-      >
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-950/60 border border-orange-200 dark:border-orange-800 text-[#EA580C] dark:text-orange-400 text-xs font-bold uppercase tracking-wider">
         <Icon name="ph:map-pin-line-bold" class="w-4 h-4" />
         <span>Transit Hubs & Terminals</span>
       </div>
@@ -12,31 +11,25 @@
         Egypt Station Directory
       </h1>
       <p class="text-sm sm:text-base text-text-secondary leading-relaxed">
-        Find departure terminals, boarding platforms, station amenities, and operator ticket counters across all Egyptian cities.
+        Find departure terminals, boarding platforms, station amenities, and operator ticket counters across all
+        Egyptian cities.
       </p>
     </div>
 
     <!-- Search & City Filter -->
     <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
       <div class="relative w-full sm:w-80">
-        <Icon name="ph:magnifying-glass-bold" class="w-4 h-4 text-text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search station or city..."
-          class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-1 dark:bg-[#131B2E] border border-border/80 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-[#EA580C]"
-        />
+        <Icon name="ph:magnifying-glass-bold"
+          class="w-4 h-4 text-text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <input v-model="searchQuery" type="text" placeholder="Search station or city..."
+          class="w-full ps-10 pe-4 py-2.5 rounded-xl bg-surface-1 dark:bg-[#131B2E] border border-border/80 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-[#EA580C]" />
       </div>
 
       <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
-        <button
-          v-for="city in cities"
-          :key="city"
-          type="button"
+        <button v-for="city in cities" :key="city" type="button"
           class="px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
           :class="selectedCity === city ? 'bg-[#EA580C] text-white' : 'bg-surface-1 dark:bg-[#131B2E] border border-border/70 text-text-secondary hover:text-text-primary'"
-          @click="selectedCity = city"
-        >
+          @click="selectedCity = city">
           {{ city }}
         </button>
       </div>
@@ -44,11 +37,8 @@
 
     <!-- Station Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div
-        v-for="station in filteredStations"
-        :key="station.id"
-        class="p-6 rounded-3xl bg-surface-1 dark:bg-[#131B2E] border border-border/70 hover:border-[#EA580C]/40 transition-colors flex flex-col justify-between space-y-4"
-      >
+      <div v-for="station in filteredStations" :key="station.id"
+        class="p-6 rounded-3xl bg-surface-1 dark:bg-[#131B2E] border border-border/70 hover:border-[#EA580C]/40 transition-colors flex flex-col justify-between space-y-4">
         <div class="space-y-3">
           <div class="flex items-start justify-between gap-2">
             <div>
@@ -72,11 +62,8 @@
           <div class="space-y-1 pt-1">
             <span class="text-[10px] uppercase font-bold text-text-muted">Serving Operators:</span>
             <div class="flex flex-wrap gap-1.5">
-              <span
-                v-for="op in station.operators"
-                :key="op"
-                class="px-2 py-0.5 rounded-md bg-surface-0 dark:bg-[#0B0F19] border border-border/60 text-[10px] font-medium text-text-primary"
-              >
+              <span v-for="op in station.operators" :key="op"
+                class="px-2 py-0.5 rounded-md bg-surface-0 dark:bg-[#0B0F19] border border-border/60 text-[10px] font-medium text-text-primary">
                 {{ op }}
               </span>
             </div>
@@ -97,10 +84,10 @@
           <span class="text-[11px] text-text-muted">Open 24/7</span>
           <nuxt-link-locale
             to="/"
-            class="text-xs font-bold text-[#EA580C] hover:underline flex items-center gap-1"
+            class="text-xs font-bold text-[#EA580C] hover:underline flex items-center gap-1 group"
           >
             <span>Book from here</span>
-            <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5" />
+            <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
           </nuxt-link-locale>
         </div>
       </div>

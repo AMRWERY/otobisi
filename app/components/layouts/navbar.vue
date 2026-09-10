@@ -49,7 +49,7 @@
             <LazyVDropdownMenu v-if="isLoggedIn" :items="userMenuItems" align="right" width="w-56">
               <template #trigger="{ open }">
                 <button type="button"
-                  class="flex items-center gap-2 p-1.5 pr-2.5 rounded-xl bg-surface-1/80 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/60 transition-colors cursor-pointer text-start">
+                  class="flex items-center gap-2 p-1.5 pe-2.5 rounded-xl bg-surface-1/80 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/60 transition-colors cursor-pointer text-start">
                   <!-- Avatar Circle with Initial -->
                   <div
                     class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-[#EA580C] text-white flex items-center justify-center font-bold text-xs shadow-xs">
@@ -121,7 +121,7 @@
         enter-to-class="translate-x-0" leave-active-class="transition-transform duration-200 ease-in"
         leave-from-class="translate-x-0" leave-to-class="translate-x-full">
         <div v-if="mobileDrawerOpen"
-          class="fixed top-0 bottom-0 right-0 w-5/6 max-w-xs bg-surface-0 dark:bg-[#0B0F19] border-l border-border dark:border-[#131B2E] shadow-2xl z-50 flex flex-col justify-between overflow-y-auto">
+          class="fixed top-0 bottom-0 end-0 w-5/6 max-w-xs bg-surface-0 dark:bg-[#0B0F19] border-l border-border dark:border-[#131B2E] shadow-2xl z-50 flex flex-col justify-between overflow-y-auto">
           <!-- Drawer Top Content -->
           <div class="p-5 space-y-5">
             <!-- Header: Logo + Close Button -->

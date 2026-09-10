@@ -13,10 +13,10 @@
         </div>
         <nuxt-link-locale
           to="/active-routes"
-          class="text-xs font-semibold text-amber-600 hover:underline flex items-center gap-1"
+          class="text-xs font-semibold text-amber-600 hover:underline flex items-center gap-1 group"
         >
           <span>View all 120+ active routes</span>
-          <Icon name="ph:arrow-right-bold" class="w-3 h-3" />
+          <Icon name="ph:arrow-right-bold" class="w-3 h-3 icon-arrow-animated" />
         </nuxt-link-locale>
       </div>
 
@@ -35,7 +35,7 @@
                 <span>{{ route.from }}</span>
                 <Icon
                   name="ph:arrow-right-bold"
-                  class="w-3 h-3 text-text-muted group-hover:translate-x-0.5 transition-transform"
+                  class="w-3 h-3 text-text-muted icon-arrow-animated"
                 />
                 <span>{{ route.to }}</span>
               </div>

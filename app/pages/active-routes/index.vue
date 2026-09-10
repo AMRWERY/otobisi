@@ -3,8 +3,7 @@
     <!-- Header / Hero Section -->
     <div class="text-center space-y-4 max-w-3xl mx-auto">
       <div
-        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-xs font-bold uppercase tracking-wider shadow-xs"
-      >
+        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-400 text-xs font-bold uppercase tracking-wider shadow-xs">
         <Icon name="ph:path-bold" class="w-4 h-4 text-amber-600 dark:text-amber-400" />
         <span>National Transit Network & Highways</span>
       </div>
@@ -12,7 +11,8 @@
         Active Routes & Express Corridors
       </h1>
       <p class="text-sm sm:text-base text-text-secondary leading-relaxed max-w-2xl mx-auto">
-        Explore 120+ active intercity bus routes and express highway connections linking 27 Egyptian governorates. Compare daily schedules, journey times, certified operators, and ticket fares.
+        Explore 120+ active intercity bus routes and express highway connections linking 27 Egyptian governorates.
+        Compare daily schedules, journey times, certified operators, and ticket fares.
       </p>
 
       <!-- Quick Metrics Strip -->
@@ -47,24 +47,18 @@
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
-        <button
-          v-for="corridor in majorCorridors"
-          :key="corridor.id"
-          type="button"
+        <button v-for="corridor in majorCorridors" :key="corridor.id" type="button"
           class="p-2.5 rounded-xl border text-start transition-all cursor-pointer group flex flex-col justify-between"
           :class="selectedCorridor === corridor.name
             ? 'bg-amber-500/10 border-amber-500 text-amber-700 dark:text-amber-300 ring-1 ring-amber-500/30'
             : 'bg-surface-1 border-border/70 text-text-secondary hover:border-amber-400/60 hover:text-text-primary'"
-          @click="toggleCorridor(corridor.name)"
-        >
+          @click="toggleCorridor(corridor.name)">
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] font-extrabold uppercase tracking-tight text-amber-600 dark:text-amber-400">
               {{ corridor.code }}
             </span>
-            <Icon
-              :name="selectedCorridor === corridor.name ? 'ph:check-circle-fill' : 'ph:arrow-up-right'"
-              class="w-3 h-3 text-text-muted group-hover:text-amber-600"
-            />
+            <Icon :name="selectedCorridor === corridor.name ? 'ph:check-circle-fill' : 'ph:arrow-up-right'"
+              class="w-3 h-3 text-text-muted group-hover:text-amber-600" />
           </div>
           <p class="text-xs font-bold text-text-primary line-clamp-1 group-hover:text-amber-600 transition-colors">
             {{ corridor.name }}
@@ -81,56 +75,35 @@
       <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
         <!-- Search Input -->
         <div class="relative flex-1 max-w-md">
-          <Icon
-            name="ph:magnifying-glass-bold"
-            class="w-4 h-4 text-text-muted absolute left-3.5 top-1/2 -translate-y-1/2"
-          />
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Search city, destination, road, or operator..."
-            class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-surface-1 border border-border/80 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-amber-500 transition-colors"
-          />
-          <button
-            v-if="searchQuery"
-            type="button"
+          <Icon name="ph:magnifying-glass-bold"
+            class="w-4 h-4 text-text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <input v-model="searchQuery" type="text" placeholder="Search city, destination, road, or operator..."
+            class="w-full ps-10 pe-10 py-2.5 rounded-xl bg-surface-1 border border-border/80 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-amber-500 transition-colors" />
+          <button v-if="searchQuery" type="button"
             class="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary p-0.5"
-            @click="searchQuery = ''"
-          >
+            @click="searchQuery = ''">
             <Icon name="ph:x-circle-fill" class="w-3.5 h-3.5" />
           </button>
         </div>
 
         <!-- Sort and Reset -->
         <div class="flex items-center gap-2">
-          <LazyVDropdownMenu
-            :items="sortDropdownItems"
-            align="right"
-            width="w-52"
-          >
+          <LazyVDropdownMenu :items="sortDropdownItems" align="right" width="w-52">
             <template #trigger="{ open }">
-              <button
-                type="button"
+              <button type="button"
                 class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-surface-1 border border-border/80 text-xs font-semibold text-text-primary hover:border-amber-500 transition-colors cursor-pointer"
-                :class="{ 'border-amber-500 ring-2 ring-amber-500/20': open }"
-              >
+                :class="{ 'border-amber-500 ring-2 ring-amber-500/20': open }">
                 <Icon name="ph:arrows-down-up-bold" class="w-3.5 h-3.5 text-amber-600" />
                 <span>{{ currentSortLabel }}</span>
-                <Icon
-                  name="ph:caret-down-bold"
-                  class="w-3 h-3 text-text-muted transition-transform duration-200"
-                  :class="{ 'rotate-180': open }"
-                />
+                <Icon name="ph:caret-down-bold" class="w-3 h-3 text-text-muted transition-transform duration-200"
+                  :class="{ 'rotate-180': open }" />
               </button>
             </template>
           </LazyVDropdownMenu>
 
-          <button
-            v-if="hasActiveFilters"
-            type="button"
+          <button v-if="hasActiveFilters" type="button"
             class="px-3 py-2 rounded-xl border border-border/80 text-xs font-semibold text-amber-600 hover:bg-surface-2 transition-colors cursor-pointer flex items-center gap-1 shrink-0"
-            @click="resetFilters"
-          >
+            @click="resetFilters">
             <Icon name="ph:arrow-counter-clockwise" class="w-3 h-3" />
             <span>Reset</span>
           </button>
@@ -139,21 +112,15 @@
 
       <!-- Region Pills -->
       <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-        <button
-          v-for="region in regions"
-          :key="region.id"
-          type="button"
+        <button v-for="region in regions" :key="region.id" type="button"
           class="px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer shrink-0"
           :class="selectedRegion === region.id
             ? 'bg-amber-600 text-white shadow-xs'
             : 'bg-surface-1 border border-border/70 text-text-secondary hover:text-text-primary'"
-          @click="selectedRegion = region.id"
-        >
+          @click="selectedRegion = region.id">
           <span>{{ region.name }}</span>
-          <span
-            class="ms-1.5 text-[10px] px-1.5 py-0.2 rounded-full font-bold"
-            :class="selectedRegion === region.id ? 'bg-white/20 text-white' : 'bg-surface-2 text-text-muted'"
-          >
+          <span class="ms-1.5 text-[10px] px-1.5 py-0.2 rounded-full font-bold"
+            :class="selectedRegion === region.id ? 'bg-white/20 text-white' : 'bg-surface-2 text-text-muted'">
             {{ getRegionCount(region.id) }}
           </span>
         </button>
@@ -177,17 +144,13 @@
 
     <!-- Routes Grid -->
     <div v-if="filteredRoutes.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div
-        v-for="route in paginatedRoutes"
-        :key="route.id"
-        class="bg-surface-1 border border-border rounded-2xl p-4 hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between"
-      >
+      <div v-for="route in paginatedRoutes" :key="route.id"
+        class="bg-surface-1 border border-border rounded-2xl p-4 hover:border-amber-400 hover:shadow-md transition-all group flex flex-col justify-between">
         <div>
           <!-- Top Row: Highway & Badges -->
           <div class="flex items-center justify-between gap-2 mb-3">
             <span
-              class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20"
-            >
+              class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
               <Icon name="ph:road-horizon" class="w-3 h-3" />
               <span>{{ route.road }}</span>
             </span>
@@ -198,12 +161,10 @@
           </div>
 
           <!-- Cities From -> To -->
-          <div class="flex items-center gap-2 font-bold text-base text-text-primary group-hover:text-amber-600 transition-colors">
+          <div
+            class="flex items-center gap-2 font-bold text-base text-text-primary group-hover:text-amber-600 transition-colors">
             <span>{{ route.from }}</span>
-            <Icon
-              name="ph:arrow-right-bold"
-              class="w-3.5 h-3.5 text-text-muted group-hover:translate-x-1 group-hover:text-amber-600 transition-all shrink-0"
-            />
+            <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 text-text-muted icon-arrow-animated shrink-0" />
             <span>{{ route.to }}</span>
           </div>
 
@@ -222,11 +183,8 @@
 
           <!-- Operator Tags -->
           <div class="flex flex-wrap gap-1.5 mt-3">
-            <span
-              v-for="op in route.operators"
-              :key="op"
-              class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-surface-2 text-text-secondary border border-border/50"
-            >
+            <span v-for="op in route.operators" :key="op"
+              class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-surface-2 text-text-secondary border border-border/50">
               {{ op }}
             </span>
           </div>
@@ -242,22 +200,17 @@
             </div>
           </div>
 
-          <nuxt-link-locale
-            :to="getRouteSearchLink(route.from, route.to)"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-xs transition-colors group/btn"
-          >
+          <nuxt-link-locale :to="getRouteSearchLink(route.from, route.to)"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-xs transition-colors group/btn">
             <span>Book Route</span>
-            <Icon name="ph:arrow-right-bold" class="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
+            <Icon name="ph:arrow-right-bold" class="w-3 h-3 icon-arrow-animated" />
           </nuxt-link-locale>
         </div>
       </div>
     </div>
 
     <!-- Empty State -->
-    <div
-      v-else
-      class="text-center py-16 px-4 rounded-3xl bg-surface-1 border border-dashed border-border/80 space-y-4"
-    >
+    <div v-else class="text-center py-16 px-4 rounded-3xl bg-surface-1 border border-dashed border-border/80 space-y-4">
       <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 mx-auto flex items-center justify-center">
         <Icon name="ph:compass-bold" class="w-6 h-6" />
       </div>
@@ -265,11 +218,9 @@
       <p class="text-xs text-text-secondary max-w-sm mx-auto">
         Try clearing your search query or switching to another corridor or region to view available connections.
       </p>
-      <button
-        type="button"
+      <button type="button"
         class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-600 text-white text-xs font-bold hover:bg-amber-700 transition-colors cursor-pointer"
-        @click="resetFilters"
-      >
+        @click="resetFilters">
         <Icon name="ph:arrow-counter-clockwise" class="w-3.5 h-3.5" />
         <span>Reset Filters</span>
       </button>
@@ -277,11 +228,9 @@
 
     <!-- Pagination / Load More -->
     <div v-if="filteredRoutes.length > visibleCount" class="text-center pt-4">
-      <button
-        type="button"
+      <button type="button"
         class="px-6 py-3 rounded-2xl bg-surface-1 hover:bg-surface-2 border border-border text-xs font-bold text-text-primary shadow-xs transition-all hover:border-amber-400 cursor-pointer inline-flex items-center gap-2"
-        @click="visibleCount += 24"
-      >
+        @click="visibleCount += 24">
         <Icon name="ph:plus-circle-bold" class="w-4 h-4 text-amber-600" />
         <span>Load More Routes ({{ filteredRoutes.length - visibleCount }} remaining)</span>
       </button>
@@ -289,8 +238,7 @@
 
     <!-- Egyptian Transit Network Road Safety & Standards Notice -->
     <div
-      class="rounded-3xl p-6 sm:p-8 bg-surface-1 border border-border/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
-    >
+      class="rounded-3xl p-6 sm:p-8 bg-surface-1 border border-border/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div class="space-y-2 max-w-2xl">
         <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-600 uppercase tracking-wider">
           <Icon name="ph:shield-check-bold" class="w-4 h-4" />
@@ -300,20 +248,17 @@
           All routes operate on certified Egyptian national expressways
         </h3>
         <p class="text-xs text-text-secondary leading-relaxed">
-          Otobisi connects only officially licensed coach operators subject to Ministry of Transport safety oversight, mandatory GPS tracking, dual-driver shifts on journeys exceeding 6 hours, and electronic road toll compliance.
+          Otobisi connects only officially licensed coach operators subject to Ministry of Transport safety oversight,
+          mandatory GPS tracking, dual-driver shifts on journeys exceeding 6 hours, and electronic road toll compliance.
         </p>
       </div>
       <div class="flex flex-wrap gap-2.5 shrink-0">
-        <nuxt-link-locale
-          to="/safety"
-          class="px-4 py-2 rounded-xl border border-border bg-surface-0 hover:border-amber-500 text-xs font-bold text-text-primary transition-colors"
-        >
+        <nuxt-link-locale to="/safety"
+          class="px-4 py-2 rounded-xl border border-border bg-surface-0 hover:border-amber-500 text-xs font-bold text-text-primary transition-colors">
           Safety Protocols
         </nuxt-link-locale>
-        <nuxt-link-locale
-          to="/stations"
-          class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-colors"
-        >
+        <nuxt-link-locale to="/stations"
+          class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-colors">
           View Stations
         </nuxt-link-locale>
       </div>

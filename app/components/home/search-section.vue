@@ -189,9 +189,10 @@
               </span>
               <nuxt-link-locale
                 to="/active-routes"
-                class="text-xs font-semibold text-[#F26A36] hover:text-[#E05925] hover:underline transition-colors shrink-0"
+                class="text-xs font-semibold text-[#F26A36] hover:text-[#E05925] hover:underline transition-colors shrink-0 flex items-center gap-1 group"
               >
-                View full network timetable
+                <span>View full network timetable</span>
+                <Icon name="ph:arrow-right-bold" class="w-3 h-3 icon-arrow-animated" />
               </nuxt-link-locale>
             </div>
 

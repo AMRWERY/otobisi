@@ -83,10 +83,10 @@
         <div class="pt-4 border-t border-border/60">
           <nuxt-link-locale
             to="/operators/portal"
-            class="text-xs font-bold text-[#EA580C] hover:underline flex items-center gap-1.5"
+            class="text-xs font-bold text-[#EA580C] hover:underline flex items-center gap-1.5 group"
           >
             <span>Access Operator Portal</span>
-            <Icon name="ph:arrow-right-bold" class="w-4 h-4" />
+            <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
           </nuxt-link-locale>
         </div>
       </div>
@@ -105,10 +105,10 @@
         <div class="pt-4 border-t border-border/60">
           <nuxt-link-locale
             to="/operators/api"
-            class="text-xs font-bold text-[#EA580C] hover:underline flex items-center gap-1.5"
+            class="text-xs font-bold text-[#EA580C] hover:underline flex items-center gap-1.5 group"
           >
             <span>Explore Developer API</span>
-            <Icon name="ph:arrow-right-bold" class="w-4 h-4" />
+            <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
           </nuxt-link-locale>
         </div>
       </div>

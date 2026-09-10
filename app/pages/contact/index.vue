@@ -185,10 +185,10 @@
           </p>
           <nuxt-link-locale
             to="/bookings"
-            class="inline-flex items-center gap-1.5 text-xs font-bold text-[#EA580C] hover:underline"
+            class="inline-flex items-center gap-1.5 text-xs font-bold text-[#EA580C] hover:underline group"
           >
             <span>Manage My Booking</span>
-            <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5" />
+            <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
           </nuxt-link-locale>
         </div>
       </div>

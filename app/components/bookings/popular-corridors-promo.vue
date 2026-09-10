@@ -13,10 +13,10 @@
 
       <nuxt-link-locale
         to="/search"
-        class="inline-flex items-center gap-1 text-xs font-bold text-[#A1331B] dark:text-orange-400 hover:underline"
+        class="inline-flex items-center gap-1 text-xs font-bold text-[#A1331B] dark:text-orange-400 hover:underline group"
       >
         <span>View all routes</span>
-        <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 rtl:rotate-180" />
+        <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
       </nuxt-link-locale>
     </div>
 

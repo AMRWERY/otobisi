@@ -26,10 +26,10 @@
       </div>
       <nuxt-link-locale
         to="/bookings"
-        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-[#EA580C] font-black text-xs hover:bg-orange-50 transition-colors shrink-0 shadow-sm"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-[#EA580C] font-black text-xs hover:bg-orange-50 transition-colors shrink-0 shadow-sm group"
       >
         <span>Manage / Cancel Ticket</span>
-        <Icon name="ph:arrow-right-bold" class="w-4 h-4" />
+        <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
       </nuxt-link-locale>
     </div>
 

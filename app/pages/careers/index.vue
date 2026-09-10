@@ -106,10 +106,10 @@
       </p>
       <a
         href="mailto:careers@otobisi.com?subject=General Talent Application"
-        class="inline-flex items-center gap-2 text-xs font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline pt-1"
+        class="inline-flex items-center gap-2 text-xs font-extrabold text-[#EA580C] dark:text-orange-400 hover:underline pt-1 group"
       >
         <span>Email careers@otobisi.com</span>
-        <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5" />
+        <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
       </a>
     </div>
   </div>

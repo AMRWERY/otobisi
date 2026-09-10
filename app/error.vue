@@ -176,10 +176,10 @@
               v-for="r in popularCorridors"
               :key="r.from"
               :to="r.href"
-              class="px-3 py-1.5 rounded-lg bg-surface-1 hover:bg-orange-500/10 border border-border text-xs font-semibold text-text-primary transition-colors flex items-center gap-1.5"
+              class="px-3 py-1.5 rounded-lg bg-surface-1 hover:bg-orange-500/10 border border-border text-xs font-semibold text-text-primary transition-colors flex items-center gap-1.5 group"
             >
               {{ r.from }}
-              <Icon name="ph:arrow-right-bold" class="w-3 h-3 text-[#A1331B]" />
+              <Icon name="ph:arrow-right-bold" class="w-3 h-3 text-[#A1331B] icon-arrow-animated" />
               {{ r.to }}
             </nuxt-link-locale>
           </div>

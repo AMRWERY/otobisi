@@ -18,7 +18,7 @@
           class="absolute top-4 left-6 w-1 h-1 rounded-full bg-amber-200"
         ></span>
         <span
-          class="absolute top-8 right-8 w-1 h-1 rounded-full bg-orange-200"
+          class="absolute top-8 end-8 w-1 h-1 rounded-full bg-orange-200"
         ></span>
         <span
           class="absolute bottom-6 left-10 w-0.5 h-0.5 rounded-full bg-white"
@@ -164,7 +164,7 @@
 
     <!-- Floating Badge (Off Grid) -->
     <div
-      class="absolute -bottom-1 -right-1 sm:bottom-0 sm:right-0 bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md text-[10px] font-bold text-gray-700 dark:text-gray-200 select-none"
+      class="absolute -bottom-1 -end-1 sm:bottom-0 sm:end-0 bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-gray-700 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md text-[10px] font-bold text-gray-700 dark:text-gray-200 select-none"
     >
       <Icon
         name="ph:compass-bold"

@@ -110,10 +110,10 @@
       <div class="pt-2">
         <nuxt-link-locale
           to="/"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white font-bold text-xs shadow-md transition-colors"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white font-bold text-xs shadow-md transition-colors group"
         >
           <span>Find Bus Tickets</span>
-          <Icon name="ph:arrow-right-bold" class="w-4 h-4" />
+          <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
         </nuxt-link-locale>
       </div>
     </div>

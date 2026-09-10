@@ -94,25 +94,62 @@ svg:not([data-no-anim]),
 }
 
 /* Micro-interaction: icons inside buttons & links scale up on hover */
-button:not(:disabled):hover svg:not([data-no-anim]),
-button:not(:disabled):hover .iconify,
-a:hover svg:not([data-no-anim]),
-a:hover .iconify,
-[role="button"]:hover svg:not([data-no-anim]),
-[role="button"]:hover .iconify {
+button:not(:disabled):hover svg:not([data-no-anim]):not(.icon-arrow-animated),
+button:not(:disabled):hover .iconify:not(.icon-arrow-animated),
+a:hover svg:not([data-no-anim]):not(.icon-arrow-animated),
+a:hover .iconify:not(.icon-arrow-animated),
+[role="button"]:hover svg:not([data-no-anim]):not(.icon-arrow-animated),
+[role="button"]:hover .iconify:not(.icon-arrow-animated) {
   transform: scale(1.12);
   transition-duration: 150ms;
 }
 
 /* Press (active) state: icons shrink slightly for tactile feedback */
-button:not(:disabled):active svg:not([data-no-anim]),
-button:not(:disabled):active .iconify,
-a:active svg:not([data-no-anim]),
-a:active .iconify,
-[role="button"]:active svg:not([data-no-anim]),
-[role="button"]:active .iconify {
+button:not(:disabled):active svg:not([data-no-anim]):not(.icon-arrow-animated),
+button:not(:disabled):active .iconify:not(.icon-arrow-animated),
+a:active svg:not([data-no-anim]):not(.icon-arrow-animated),
+a:active .iconify:not(.icon-arrow-animated),
+[role="button"]:active svg:not([data-no-anim]):not(.icon-arrow-animated),
+[role="button"]:active .iconify:not(.icon-arrow-animated) {
   transform: scale(0.90);
   transition-duration: 80ms;
+}
+
+/* ---------------------------------------------------------------------
+   Animated Arrow Icons (e.g. "View all 120+ active routes ->")
+   Smoothly slides forward in reading direction on link/button/group hover
+--------------------------------------------------------------------- */
+.icon-arrow-animated {
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  will-change: transform;
+}
+
+/* LTR hover: shift right */
+a:hover .icon-arrow-animated,
+button:not(:disabled):hover .icon-arrow-animated,
+.group:hover .icon-arrow-animated,
+[role="button"]:hover .icon-arrow-animated {
+  transform: translateX(4px) scale(1.08) !important;
+}
+
+/* RTL naturally face left */
+[dir="rtl"] .icon-arrow-animated,
+html[lang="ar"] .icon-arrow-animated {
+  transform: rotate(180deg);
+}
+
+/* RTL hover: shift left (in negative X or reading direction) */
+[dir="rtl"] a:hover .icon-arrow-animated,
+[dir="rtl"] button:not(:disabled):hover .icon-arrow-animated,
+[dir="rtl"] .group:hover .icon-arrow-animated,
+[dir="rtl"] [role="button"]:hover .icon-arrow-animated,
+html[lang="ar"] a:hover .icon-arrow-animated,
+html[lang="ar"] button:not(:disabled):hover .icon-arrow-animated,
+html[lang="ar"] .group:hover .icon-arrow-animated,
+html[lang="ar"] [role="button"]:hover .icon-arrow-animated {
+  transform: rotate(180deg) translateX(4px) scale(1.08) !important;
 }
 
 /* ---------------------------------------------------------------------

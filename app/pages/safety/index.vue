@@ -56,10 +56,10 @@
       <div class="pt-2">
         <a
           href="tel:19999"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#EA580C] font-black text-xs hover:bg-orange-50 transition-colors shadow-sm"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#EA580C] font-black text-xs hover:bg-orange-50 transition-colors shadow-sm group"
         >
           <span>Dial 19XXX Hotline</span>
-          <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5" />
+          <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
         </a>
       </div>
     </div>
