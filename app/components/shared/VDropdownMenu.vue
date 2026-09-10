@@ -7,12 +7,12 @@
 
     <!-- ── Dropdown Panel ──────────────────────────────────── -->
     <transition
-      enter-active-class="transition duration-150 ease-out"
-      enter-from-class="transform opacity-0 scale-95"
-      enter-to-class="transform opacity-100 scale-100"
-      leave-active-class="transition duration-100 ease-in"
-      leave-from-class="transform opacity-100 scale-100"
-      leave-to-class="transform opacity-0 scale-95"
+      enter-active-class="transition-all duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
+      enter-from-class="opacity-0 scale-95 -translate-y-1"
+      enter-to-class="opacity-100 scale-100 translate-y-0"
+      leave-active-class="transition-all duration-120 ease-[cubic-bezier(0.4,0,0.2,1)]"
+      leave-from-class="opacity-100 scale-100 translate-y-0"
+      leave-to-class="opacity-0 scale-95 -translate-y-1"
     >
       <div
         v-if="isOpen"

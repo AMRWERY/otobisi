@@ -122,8 +122,8 @@ const variantClasses = {
 const iconSizeClass = computed(() => iconSizes[props.size] || iconSizes.md);
 
 const classes = computed(() => [
-  "inline-flex items-center justify-center select-none outline-none font-sans transition-all duration-150",
-  props.variant !== "link" ? "active:scale-[0.98]" : "",
+  "inline-flex items-center justify-center select-none outline-none font-sans transition-all duration-120 ease-[cubic-bezier(0.4,0,0.2,1)]",
+  props.variant !== "link" ? "active:scale-[0.97]" : "",
   props.variant !== "link" ? sizeClasses[props.size] : "",
   props.variant !== "link" ? roundedClasses[props.rounded] : "",
   variantClasses[props.variant] || variantClasses.primary,

@@ -2,7 +2,7 @@
   <div>
     <button
       @click="toggleDark($event)"
-      class="px-2 py-2 text-stone-500 hover:text-stone-800 rounded-full hover:bg-stone-100 transition-colors flex items-center justify-center"
+      class="px-2 py-2 text-stone-500 hover:text-stone-800 rounded-full hover:bg-stone-100 transition-all duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] flex items-center justify-center active:scale-[0.97]"
     >
       <ClientOnly>
         <Icon

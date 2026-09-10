@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-surface-1 border border-border rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-200 text-start group"
+    class="bg-surface-1 border border-border hover:border-border-strong rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] text-start group"
   >
     <!-- Card Top Header (Operator, Rating, Badges) -->
     <div

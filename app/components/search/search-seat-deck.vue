@@ -252,11 +252,11 @@ const getSeatClass = (seat: SeatItem) => {
     return "p-2 rounded-xl bg-surface-2/40 border border-border/40 text-text-muted cursor-not-allowed opacity-60 text-center";
   }
   if (isSelected(seat.id)) {
-    return "p-2 rounded-xl bg-[#F26A36] text-white border border-[#F26A36] shadow-md ring-2 ring-orange-500/30 text-center scale-105 transition-all cursor-pointer font-bold";
+    return "p-2 rounded-xl bg-[#F26A36] text-white border border-[#F26A36] shadow-md ring-2 ring-orange-500/30 text-center animate-seat-bounce cursor-pointer font-bold";
   }
   if (seat.isLadies) {
-    return "p-2 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-700 dark:text-pink-300 hover:border-pink-500 hover:bg-pink-500/20 text-center transition-all cursor-pointer shadow-2xs";
+    return "p-2 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-700 dark:text-pink-300 hover:border-pink-500 hover:bg-pink-500/20 text-center transition-colors duration-120 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer shadow-2xs";
   }
-  return "p-2 rounded-xl bg-surface-1 hover:bg-surface-0 border border-border hover:border-orange-500/60 text-text-primary text-center transition-all cursor-pointer shadow-2xs hover:scale-102 active:scale-95";
+  return "p-2 rounded-xl bg-surface-1 hover:bg-surface-0 border border-border hover:border-orange-500/60 text-text-primary text-center transition-all duration-120 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer shadow-2xs hover:scale-[1.02] active:scale-[0.97]";
 };
 </script>

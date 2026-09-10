@@ -136,13 +136,13 @@
       aria-atomic="true"
     >
       <TransitionGroup
-        enter-active-class="transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-        enter-from-class="opacity-0 scale-95 -translate-y-2 sm:translate-y-0 sm:translate-x-6 rtl:sm:-translate-x-6"
+        enter-active-class="transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        enter-from-class="opacity-0 scale-95 -translate-y-2 sm:translate-y-0 sm:translate-x-4 rtl:sm:-translate-x-4"
         enter-to-class="opacity-100 scale-100 translate-y-0 translate-x-0"
-        leave-active-class="transition-all duration-200 ease-in"
+        leave-active-class="transition-all duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
         leave-from-class="opacity-100 scale-100 translate-y-0 translate-x-0"
-        leave-to-class="opacity-0 scale-95 translate-y-2 sm:translate-y-0 sm:translate-x-6 rtl:sm:-translate-x-6"
-        move-class="transition-all duration-300 ease-out"
+        leave-to-class="opacity-0 scale-95 translate-y-2 sm:translate-y-0 sm:translate-x-4 rtl:sm:-translate-x-4"
+        move-class="transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]"
       >
         <div
           v-for="item in toasts"

@@ -17,7 +17,20 @@ export function useLocaleSwitch() {
     };
 
     if (!supportsViewTransitions || prefersReducedMotion) {
-      await applyLocale();
+      if (!prefersReducedMotion) {
+        document.documentElement.style.transition = "opacity 100ms cubic-bezier(0.4, 0, 0.2, 1)";
+        document.documentElement.style.opacity = "0";
+        await new Promise((r) => setTimeout(r, 100));
+        await applyLocale();
+        document.documentElement.style.transition = "opacity 150ms cubic-bezier(0.4, 0, 0.2, 1)";
+        document.documentElement.style.opacity = "1";
+        setTimeout(() => {
+          document.documentElement.style.transition = "";
+          document.documentElement.style.opacity = "";
+        }, 150);
+      } else {
+        await applyLocale();
+      }
       return;
     }
 

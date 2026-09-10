@@ -30,73 +30,209 @@
   --border-strong: #3d486d;
 }
 
-/* Fallback smoothing for browsers where the View Transition circular
-   reveal doesn't fire at all (see useTheme.ts) — colors still cross-
-   fade instead of hard-cutting. Harmless when the JS-driven animation
-   *does* run, since that one is far faster than this transition. */
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  body,
-  [class*="bg-surface"],
-  [class*="text-text"],
-  [class*="border-"] {
-    transition:
-      background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
-      color 200ms cubic-bezier(0.4, 0, 0.2, 1),
-      border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
+/* ---------------------------------------------------------------------
+   Consistent Motion Language Tokens
+   - Timing curve: cubic-bezier(0.4, 0, 0.2, 1) everywhere
+   - Durations: micro-press 120ms, cards 150ms, theme 200ms, pages 150/200ms
+--------------------------------------------------------------------- */
+:root {
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-press-scale: 0.97;
+  --motion-duration-press: 120ms;
+  --motion-duration-card: 150ms;
+  --motion-duration-theme: 200ms;
+  --motion-duration-page-in: 200ms;
+  --motion-duration-page-out: 150ms;
 }
 
 /* ---------------------------------------------------------------------
-   View Transition API — theme toggle circular reveal
-   (see composables/useTheme.ts, which animates
-   ::view-transition-new(root) via a clip-path circle()).
- 
-   Disable the browser's DEFAULT cross-fade snapshot animation on the
-   root, since our JS-driven clip-path animation replaces it. Without
-   this override you'd get both animations fighting each other.
+   Theme Toggle (Dark / Light)
+   Cross-fade all colors over 200ms using CSS custom properties +
+   transition: background-color, color 200ms ease on root.
 --------------------------------------------------------------------- */
-::view-transition-old(root),
+html {
+  transition:
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  transition:
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth surface and border transitions across theme switch */
+[class*="bg-surface"],
+[class*="border-border"] {
+  transition:
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------------
+   Language Switch (AR / EN)
+   Direction flip: quick fade-out (100ms) -> swap -> fade-in (150ms)
+--------------------------------------------------------------------- */
+::view-transition-old(root) {
+  animation: 100ms cubic-bezier(0.4, 0, 0.2, 1) both locale-fade-out;
+}
+
 ::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+  animation: 150ms cubic-bezier(0.4, 0, 0.2, 1) both locale-fade-in;
+}
+
+@keyframes locale-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes locale-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ---------------------------------------------------------------------
-   View Transition API — locale switch cross-fade
-   (see composables/useLocaleSwitch.ts). Unlike the theme toggle, this
-   one keeps the browser's default snapshot cross-fade — just tuned to
-   a short duration matching the site's motion language instead of the
-   browser default (~300ms).
+   Page Transitions (Nuxt pageTransition)
+   Fade + small upward slide (150ms out, 200ms in).
 --------------------------------------------------------------------- */
-::view-transition-group(root) {
-  animation-duration: 200ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ---------------------------------------------------------------------
-   Route page transitions (name matches app.pageTransition /
-   layoutTransition in nuxt.config.ts).
---------------------------------------------------------------------- */
-.page-enter-active,
-.page-leave-active,
-.layout-enter-active,
-.layout-leave-active {
+.page-enter-active {
   transition:
     opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.page-enter-from,
-.layout-enter-from {
-  opacity: 0;
-  transform: translateY(4px);
+.page-leave-active {
+  transition:
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.page-leave-to,
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.layout-enter-active {
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layout-leave-active {
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.layout-enter-from,
 .layout-leave-to {
   opacity: 0;
-  transform: translateY(-4px);
 }
+
+/* ---------------------------------------------------------------------
+   Micro-Interactions: Buttons & Cards
+   - Buttons scale to 0.97 on press, 120ms ease-out
+   - Cards lift with subtle shadow/border change on hover, 150ms
+--------------------------------------------------------------------- */
+button:not(:disabled):active,
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: scale(0.97);
+  transition-duration: 120ms;
+}
+
+.card-lift {
+  transition:
+    transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------------------
+   List Entrances: Staggered Fade + Slide In
+   Capped at first 6 items (30-50ms between items)
+--------------------------------------------------------------------- */
+@keyframes trip-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-trip-card {
+  animation: trip-card-in 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ---------------------------------------------------------------------
+   Seat Selection: Scale-Bounce (1 -> 1.1 -> 1), 120ms + color fill
+--------------------------------------------------------------------- */
+@keyframes seat-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-seat-bounce {
+  animation: seat-bounce 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    background-color 120ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 120ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------------
+   Reduced Motion Fallbacks
+   Drops straight to end state with no animation or transitions.
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .page-enter-active,
+  .page-leave-active,
+  .layout-enter-active,
+  .layout-leave-active,
+  .animate-trip-card,
+  .animate-seat-bounce {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}

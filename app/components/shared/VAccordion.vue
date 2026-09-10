@@ -57,7 +57,7 @@
         <slot name="icon" :item="item" :is-open="isItemOpen(item.id)">
           <Icon
             name="ph:caret-down-bold"
-            class="w-4 h-4 text-text-muted shrink-0 transition-transform duration-250 ease-out"
+            class="w-4 h-4 text-text-muted shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]"
             :class="{
               'rotate-180 text-[#EA580C]': isItemOpen(item.id),
             }"
@@ -70,7 +70,7 @@
         :id="`accordion-content-${item.id}`"
         role="region"
         :aria-labelledby="`accordion-trigger-${item.id}`"
-        class="grid transition-all duration-250 ease-out overflow-hidden"
+        class="grid transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden"
         :class="
           isItemOpen(item.id)
             ? 'grid-rows-[1fr] opacity-100'

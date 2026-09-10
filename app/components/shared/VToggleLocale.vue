@@ -7,7 +7,7 @@
     <button
       type="button"
       :class="[
-        'px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer font-bold',
+        'px-2.5 py-1 rounded-lg transition-all duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer font-bold active:scale-[0.97]',
         locale === 'en'
           ? 'bg-surface-0 text-[#A1331B] shadow-xs'
           : 'text-text-primary hover:text-[#A1331B] bg-transparent',
@@ -22,7 +22,7 @@
     <button
       type="button"
       :class="[
-        'px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer font-bold font-arabic',
+        'px-2.5 py-1 rounded-lg transition-all duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer font-bold font-arabic active:scale-[0.97]',
         locale === 'ar'
           ? 'bg-surface-0 text-[#A1331B] shadow-xs'
           : 'text-text-primary hover:text-[#A1331B] bg-transparent',

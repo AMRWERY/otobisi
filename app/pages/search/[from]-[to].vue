@@ -302,9 +302,11 @@
           <!-- Trip Cards List -->
           <div v-if="filteredTrips.length > 0" class="flex flex-col gap-3.5">
             <lazy-search-trip-card
-              v-for="trip in filteredTrips"
+              v-for="(trip, idx) in filteredTrips"
               :key="trip.id"
               :trip="trip"
+              class="animate-trip-card"
+              :style="{ animationDelay: `${Math.min(idx, 5) * 40}ms` }"
               @select-seats="goToSeatSelection"
             />
           </div>

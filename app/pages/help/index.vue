@@ -3,14 +3,11 @@
     <!-- Header -->
     <div class="text-center space-y-3 mb-10 sm:mb-14">
       <div
-        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-950/60 border border-orange-200 dark:border-orange-800 text-[#EA580C] dark:text-orange-400 text-xs font-bold uppercase tracking-wider"
-      >
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-950/60 border border-orange-200 dark:border-orange-800 text-[#EA580C] dark:text-orange-400 text-xs font-bold uppercase tracking-wider">
         <Icon name="ph:headset-bold" class="w-4 h-4" />
         <span>24/7 Traveler Support</span>
       </div>
-      <h1
-        class="text-3xl sm:text-4xl font-black tracking-tight text-text-primary"
-      >
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-text-primary">
         Help Center & Passenger Support
       </h1>
       <p class="text-sm text-text-secondary max-w-xl mx-auto leading-relaxed">
@@ -22,19 +19,13 @@
     <!-- Contact & Emergency Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-12">
       <!-- 24/7 National Transit Hotline Card -->
-      <a
-        href="tel:19999"
-        class="group p-6 rounded-3xl bg-gradient-to-br from-[#EA580C] to-[#C2410C] text-white shadow-lg shadow-orange-950/20 hover:scale-[1.01] transition-transform duration-200 flex flex-col justify-between"
-      >
+      <a href="tel:19999"
+        class="group p-6 rounded-3xl bg-gradient-to-br from-[#EA580C] to-[#C2410C] text-white shadow-lg shadow-orange-950/20 hover:scale-[1.01] transition-transform duration-200 flex flex-col justify-between">
         <div class="flex items-start justify-between">
-          <div
-            class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center"
-          >
+          <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center">
             <Icon name="ph:phone-call-fill" class="w-6 h-6 text-white" />
           </div>
-          <span
-            class="px-2.5 py-1 rounded-full bg-white/20 text-[10px] font-extrabold uppercase tracking-wider"
-          >
+          <span class="px-2.5 py-1 rounded-full bg-white/20 text-[10px] font-extrabold uppercase tracking-wider">
             24/7 LIVE
           </span>
         </div>
@@ -53,21 +44,15 @@
       </a>
 
       <!-- WhatsApp Travel Assistant Card -->
-      <a
-        href="https://wa.me/201012345678"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group p-6 rounded-3xl bg-surface-1 dark:bg-[#131B2E] border border-border/80 hover:border-[#EA580C]/50 hover:scale-[1.01] transition-all duration-200 flex flex-col justify-between"
-      >
+      <a href="https://wa.me/201012345678" target="_blank" rel="noopener noreferrer"
+        class="group p-6 rounded-3xl bg-surface-1 dark:bg-[#131B2E] border border-border/80 hover:border-[#EA580C]/50 hover:scale-[1.01] transition-all duration-200 flex flex-col justify-between">
         <div class="flex items-start justify-between">
           <div
-            class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center"
-          >
+            class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
             <Icon name="ph:whatsapp-logo-bold" class="w-6 h-6" />
           </div>
           <span
-            class="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider"
-          >
+            class="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider">
             WHATSAPP
           </span>
         </div>
@@ -75,9 +60,7 @@
           <span class="text-xs text-text-muted font-medium">
             Instant WhatsApp Assistant
           </span>
-          <div
-            class="text-xl sm:text-2xl font-black text-text-primary tracking-tight"
-          >
+          <div class="text-xl sm:text-2xl font-black text-text-primary tracking-tight">
             +20 10 1234 5678
           </div>
           <p class="text-[11px] text-text-secondary leading-snug pt-1">
@@ -99,11 +82,9 @@
 
     <!-- Ministry of Transport Endorsement Banner -->
     <div
-      class="mt-12 p-4 sm:p-5 rounded-2xl bg-surface-1 dark:bg-[#131B2E] border border-border/60 flex items-center gap-3"
-    >
+      class="mt-12 p-4 sm:p-5 rounded-2xl bg-surface-1 dark:bg-[#131B2E] border border-border/60 flex items-center gap-3">
       <div
-        class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950 text-[#EA580C] dark:text-orange-400 flex items-center justify-center shrink-0"
-      >
+        class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950 text-[#EA580C] dark:text-orange-400 flex items-center justify-center shrink-0">
         <Icon name="ph:seal-check-fill" class="w-5 h-5 text-[#EA580C]" />
       </div>
       <div class="text-xs">
@@ -151,7 +132,10 @@ const faqAccordionItems: AccordionItem[] = [
   },
 ];
 
-useHead({
+useSeo({
   title: "Help Center & 24/7 Support | Otobisi",
+  description:
+    "Need assistance? Otobisi provides 24/7 support via national transit hotline (19XXX), instant WhatsApp travel assistant, and Ministry of Transport-compliant cancellation & refund services.",
+  private: false,
 });
 </script>
