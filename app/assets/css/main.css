@@ -72,6 +72,50 @@ body {
 }
 
 /* ---------------------------------------------------------------------
+   Global Icon Motion & Smooth Transitions
+   Ensures ALL icons (.iconify, svg, [data-icon]) render with
+   display: inline-block, transform-origin: center, and seamlessly
+   transition transform, color, background-color, and opacity.
+--------------------------------------------------------------------- */
+.iconify,
+svg:not([data-no-anim]),
+[data-icon] {
+  display: inline-block;
+  vertical-align: middle;
+  transform-origin: center;
+  transition:
+    transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Micro-interaction: icons inside buttons & links scale up on hover */
+button:not(:disabled):hover svg:not([data-no-anim]),
+button:not(:disabled):hover .iconify,
+a:hover svg:not([data-no-anim]),
+a:hover .iconify,
+[role="button"]:hover svg:not([data-no-anim]),
+[role="button"]:hover .iconify {
+  transform: scale(1.12);
+  transition-duration: 150ms;
+}
+
+/* Press (active) state: icons shrink slightly for tactile feedback */
+button:not(:disabled):active svg:not([data-no-anim]),
+button:not(:disabled):active .iconify,
+a:active svg:not([data-no-anim]),
+a:active .iconify,
+[role="button"]:active svg:not([data-no-anim]),
+[role="button"]:active .iconify {
+  transform: scale(0.90);
+  transition-duration: 80ms;
+}
+
+/* ---------------------------------------------------------------------
    Language Switch (AR / EN)
    Direction flip: quick fade-out (100ms) -> swap -> fade-in (150ms)
 --------------------------------------------------------------------- */
