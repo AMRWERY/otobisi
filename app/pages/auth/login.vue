@@ -84,14 +84,14 @@
       >
         By continuing, you agree to Otobisi's
         <nuxt-link-locale
-          to="#"
+          to="/terms"
           class="text-[#A1331B] dark:text-orange-400 font-medium hover:underline"
         >
           Terms of Service
         </nuxt-link-locale>
         and
         <nuxt-link-locale
-          to="#"
+          to="/privacy"
           class="text-[#A1331B] dark:text-orange-400 font-medium hover:underline"
         >
           Privacy Policy </nuxt-link-locale
