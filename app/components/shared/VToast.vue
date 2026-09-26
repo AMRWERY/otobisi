@@ -131,7 +131,7 @@
   <Teleport v-else to="body">
     <div
       v-if="toasts.length"
-      class="fixed top-4 right-4 rtl:right-auto rtl:left-4 z-50 flex flex-col gap-3 pointer-events-none w-full max-w-[420px] max-sm:inset-x-4 max-sm:w-auto"
+      class="fixed top-4 right-4 rtl:right-auto rtl:left-4 z-[999] flex flex-col gap-3 pointer-events-none w-full max-w-[420px] max-sm:inset-x-4 max-sm:w-auto"
       aria-live="polite"
       aria-atomic="true"
     >
