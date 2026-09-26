@@ -28,10 +28,12 @@
         <div
           class="inline-flex items-center p-1 rounded-xl bg-surface-1 dark:bg-surface-2 border border-border text-xs font-semibold shadow-xs gap-0.5"
         >
-          <button
+          <v-button
             v-for="tab in currentTabs"
             :key="tab.id"
-            type="button"
+            variant="unstyled"
+            size="sm"
+            :icon="tab.icon"
             class="px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap"
             :class="
               currentVariant === tab.id
@@ -40,9 +42,8 @@
             "
             @click="currentVariant = tab.id"
           >
-            <Icon :name="tab.icon" class="w-3.5 h-3.5 shrink-0" />
             <span>{{ tab.label }}</span>
-          </button>
+          </v-button>
         </div>
       </div>
 
@@ -107,26 +108,25 @@
             </p>
           </div>
         </div>
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
+          size="sm"
+          :icon="copied ? 'ph:check-bold' : 'ph:copy-bold'"
           class="px-2.5 py-1 rounded-lg bg-surface-0 hover:bg-surface-2 border border-border text-xs font-semibold text-text-primary transition-all cursor-pointer flex items-center gap-1 shrink-0"
           @click="copyErrorCode"
         >
-          <Icon
-            :name="copied ? 'ph:check-bold' : 'ph:copy-bold'"
-            class="w-3.5 h-3.5"
-          />
           {{ copied ? "Copied" : "Copy" }}
-        </button>
+        </v-button>
       </div>
 
       <!-- PRIMARY & SECONDARY ACTION BUTTONS -->
       <div
         class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-sm"
       >
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
           class="w-full bg-[#A1331B] hover:bg-[#8B2B16] text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer disabled:opacity-70"
+          content-class="inline-flex items-center gap-2"
           :disabled="isRetrying"
           @click="handlePrimary"
         >
@@ -138,17 +138,18 @@
           {{
             isRetrying ? currentData.retryingLabel : currentData.primaryLabel
           }}
-        </button>
+        </v-button>
 
-        <button
+        <v-button
           v-if="currentVariant === '500'"
-          type="button"
+          variant="unstyled"
+          icon="ph:arrow-left-bold"
+          icon-class="text-text-muted"
           class="w-full bg-surface-0 hover:bg-surface-1 border border-border text-text-primary py-3 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.99] cursor-pointer"
           @click="goHome"
         >
-          <Icon name="ph:arrow-left-bold" class="w-4 h-4 text-text-muted" />
           Back to Search &amp; Booking
-        </button>
+        </v-button>
       </div>
 
       <!-- CONTEXTUAL EXTRAS: 404 ACTIVE CORRIDORS -->
@@ -245,13 +246,13 @@
           Contact 24/7 Hotline (19XXX)
         </a>
         <span>•</span>
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
           class="hover:underline text-text-muted cursor-pointer"
           @click="reportIssue"
         >
           Report Issue
-        </button>
+        </v-button>
       </div>
     </main>
 

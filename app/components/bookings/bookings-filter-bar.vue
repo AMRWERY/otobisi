@@ -6,16 +6,17 @@
     <div
       class="flex items-center gap-1.5 sm:gap-2 p-1 rounded-xl bg-surface-1 border border-border overflow-x-auto no-scrollbar shadow-2xs"
     >
-      <button
+      <v-button
         v-for="tab in tabs"
         :key="tab.id"
-        type="button"
+        variant="unstyled"
         class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer whitespace-nowrap"
         :class="[
           activeTab === tab.id
             ? 'bg-[#A1331B] text-white shadow-xs'
             : 'text-text-secondary hover:text-text-primary hover:bg-surface-2',
         ]"
+        content-class="inline-flex items-center gap-1.5"
         @click="$emit('update:activeTab', tab.id)"
       >
         <span>{{ tab.label }}</span>
@@ -29,7 +30,7 @@
         >
           {{ tab.count }}
         </span>
-      </button>
+      </v-button>
     </div>
 
     <!-- Search Input -->
@@ -47,14 +48,14 @@
           $emit('update:searchQuery', ($event.target as HTMLInputElement).value)
         "
       />
-      <button
+      <v-button
         v-if="searchQuery"
-        type="button"
+        variant="unstyled"
+        size="sm"
         class="absolute end-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary cursor-pointer"
+        icon="ph:x-bold"
         @click="$emit('update:searchQuery', '')"
-      >
-        <Icon name="ph:x-bold" class="w-3.5 h-3.5" />
-      </button>
+      />
     </div>
   </div>
 </template>

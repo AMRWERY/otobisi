@@ -37,8 +37,8 @@
       :error="errors.password"
     >
       <template #trailing>
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
           class="shrink-0 text-text-muted hover:text-text-primary cursor-pointer"
           :aria-label="showPassword ? 'Hide password' : 'Show password'"
           @click="showPassword = !showPassword"
@@ -47,7 +47,7 @@
             :name="showPassword ? 'ph:eye-slash' : 'ph:eye'"
             class="w-4 h-4"
           />
-        </button>
+        </v-button>
       </template>
     </v-input>
 
@@ -62,23 +62,26 @@
       :error="errors.confirmPassword"
     />
 
-    <button
+    <v-button
       type="submit"
+      variant="unstyled"
       class="mt-1 w-full bg-[#A1331B] hover:bg-[#8d2a13] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer group disabled:opacity-60 disabled:cursor-wait"
       :disabled="isSubmitting"
+      content-class="inline-flex items-center gap-2"
     >
       <span>{{ isRegister ? "Create Account" : "Log In" }}</span>
       <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
-    </button>
+    </v-button>
 
-    <button
-      type="button"
+    <v-button
+      variant="unstyled"
+      icon="ph:device-mobile-fill"
+      icon-class="w-4 h-4"
       class="inline-flex items-center justify-center gap-1.5 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-semibold cursor-pointer transition-colors"
       @click="$emit('back')"
     >
-      <Icon name="ph:device-mobile-fill" class="w-4 h-4" />
       Use mobile number instead
-    </button>
+    </v-button>
   </form>
 </template>
 

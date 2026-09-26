@@ -5,7 +5,9 @@ export type ButtonVariant =
   | "ghost"
   | "danger"
   | "surface"
-  | "link";
+  | "link"
+  /** No built-in color/size/rounding classes — all styling comes from `customClass` */
+  | "unstyled";
 
 export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -25,4 +27,6 @@ export interface ButtonProps {
   iconRight?: string;
   iconClass?: string;
   customClass?: string;
+  /** Classes for the wrapper span around the default slot (icon/text gap, truncation, alignment) */
+  contentClass?: string;
 }

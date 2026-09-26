@@ -385,13 +385,14 @@
                 >EGY-TAX-2024-91834</strong
               ></span
             >
-            <button
-              type="button"
+            <v-button
+              variant="unstyled"
+              size="sm"
               class="inline-flex items-center gap-1 text-[#A1331B] dark:text-orange-400 font-bold hover:underline cursor-pointer"
+              icon="ph:receipt-bold"
             >
-              <Icon name="ph:receipt-bold" class="w-3.5 h-3.5" />
               <span>Download Tax Receipt</span>
-            </button>
+            </v-button>
           </div>
         </div>
       </div>

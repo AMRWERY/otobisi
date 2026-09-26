@@ -60,18 +60,16 @@
           {{ formattedDate }} • 08:32 AM
         </span>
 
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
+          size="sm"
           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary transition-colors cursor-pointer shadow-2xs active:scale-95"
+          :icon="copied ? 'ph:check-bold' : 'ph:copy-bold'"
+          :icon-class="copied ? 'text-emerald-500' : 'text-text-muted'"
           @click="copyPnr"
         >
-          <Icon
-            :name="copied ? 'ph:check-bold' : 'ph:copy-bold'"
-            class="w-3.5 h-3.5"
-            :class="copied ? 'text-emerald-500' : 'text-text-muted'"
-          />
           <span>{{ copied ? "Copied!" : "Copy Code" }}</span>
-        </button>
+        </v-button>
       </div>
     </div>
   </div>

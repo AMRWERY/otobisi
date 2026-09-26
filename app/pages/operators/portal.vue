@@ -66,12 +66,13 @@
             {{ loginError }}
           </div>
 
-          <button
+          <v-button
             type="submit"
+            variant="unstyled"
             class="w-full py-2.5 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-sm"
           >
             Access Fleet Dashboard
-          </button>
+          </v-button>
         </form>
 
         <div class="pt-4 border-t border-border/60 text-center text-xs text-text-muted">

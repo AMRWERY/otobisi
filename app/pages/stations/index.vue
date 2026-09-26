@@ -26,12 +26,12 @@
       </div>
 
       <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
-        <button v-for="city in cities" :key="city" type="button"
+        <v-button v-for="city in cities" :key="city" variant="unstyled"
           class="px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
           :class="selectedCity === city ? 'bg-[#EA580C] text-white' : 'bg-surface-1 dark:bg-[#131B2E] border border-border/70 text-text-secondary hover:text-text-primary'"
           @click="selectedCity = city">
           {{ city }}
-        </button>
+        </v-button>
       </div>
     </div>
 

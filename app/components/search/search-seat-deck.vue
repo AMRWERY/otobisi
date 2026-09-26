@@ -91,10 +91,11 @@
           class="grid grid-cols-5 gap-2 items-center"
         >
           <!-- Seat A (Window) -->
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             :disabled="row.seatA.isBooked"
             :class="getSeatClass(row.seatA)"
+            content-class="flex flex-col"
             @click="onSeatClick(row.seatA)"
           >
             <span class="text-xs font-bold block">{{ row.seatA.id }}</span>
@@ -107,13 +108,14 @@
                     : `${row.seatA.price} EGP`
               }}
             </span>
-          </button>
+          </v-button>
 
           <!-- Seat B (Aisle) -->
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             :disabled="row.seatB.isBooked"
             :class="getSeatClass(row.seatB)"
+            content-class="flex flex-col"
             @click="onSeatClick(row.seatB)"
           >
             <span class="text-xs font-bold block">{{ row.seatB.id }}</span>
@@ -126,15 +128,16 @@
                     : `${row.seatB.price} EGP`
               }}
             </span>
-          </button>
+          </v-button>
 
           <!-- Center: Row number or Center 5th Seat (e.g. 11E) -->
           <div class="flex justify-center">
-            <button
+            <v-button
               v-if="row.seatCenter"
-              type="button"
+              variant="unstyled"
               :disabled="row.seatCenter.isBooked"
               :class="getSeatClass(row.seatCenter)"
+              content-class="flex flex-col"
               @click="onSeatClick(row.seatCenter)"
             >
               <span class="text-xs font-bold block">{{
@@ -149,7 +152,7 @@
                       : `${row.seatCenter.price} EGP`
                 }}
               </span>
-            </button>
+            </v-button>
             <span
               v-else
               class="w-6 h-6 rounded-full bg-surface-1 border border-border text-text-muted text-[10px] font-bold flex items-center justify-center select-none"
@@ -159,10 +162,11 @@
           </div>
 
           <!-- Seat C (Aisle) -->
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             :disabled="row.seatC.isBooked"
             :class="getSeatClass(row.seatC)"
+            content-class="flex flex-col"
             @click="onSeatClick(row.seatC)"
           >
             <span class="text-xs font-bold block">{{ row.seatC.id }}</span>
@@ -177,13 +181,14 @@
                       : `${row.seatC.price} EGP`
               }}
             </span>
-          </button>
+          </v-button>
 
           <!-- Seat D (Window) -->
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             :disabled="row.seatD.isBooked"
             :class="getSeatClass(row.seatD)"
+            content-class="flex flex-col"
             @click="onSeatClick(row.seatD)"
           >
             <span class="text-xs font-bold block">{{ row.seatD.id }}</span>
@@ -198,7 +203,7 @@
                       : `${row.seatD.price} EGP`
               }}
             </span>
-          </button>
+          </v-button>
         </div>
       </div>
 

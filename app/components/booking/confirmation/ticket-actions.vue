@@ -3,34 +3,36 @@
     class="max-w-4xl mx-auto mt-5 flex flex-wrap items-center justify-center gap-3"
   >
     <!-- Download PDF -->
-    <button
-      type="button"
+    <v-button
+      variant="unstyled"
       class="flex-1 min-w-[200px] bg-[#A1331B] hover:bg-[#8B2B16] text-white py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/10 hover:shadow-lg transition-all active:scale-98 cursor-pointer"
+      icon="ph:download-simple-bold"
       @click="downloadTicket"
     >
-      <Icon name="ph:download-simple-bold" class="w-4 h-4" />
       <span>Download Ticket (PDF)</span>
-    </button>
+    </v-button>
 
     <!-- Add to Calendar -->
-    <button
-      type="button"
+    <v-button
+      variant="unstyled"
       class="flex-1 min-w-[170px] bg-surface-1 border border-border hover:bg-surface-2 text-text-primary py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs transition-all active:scale-98 cursor-pointer"
+      icon="ph:calendar-plus-bold"
+      icon-class="text-orange-500"
       @click="addToCalendar"
     >
-      <Icon name="ph:calendar-plus-bold" class="w-4 h-4 text-orange-500" />
       <span>Add to Calendar</span>
-    </button>
+    </v-button>
 
     <!-- Share Link -->
-    <button
-      type="button"
+    <v-button
+      variant="unstyled"
       class="flex-1 min-w-[170px] bg-surface-1 border border-border hover:bg-surface-2 text-text-primary py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs transition-all active:scale-98 cursor-pointer"
+      icon="ph:share-network-bold"
+      icon-class="text-emerald-500"
       @click="shareVoucher"
     >
-      <Icon name="ph:share-network-bold" class="w-4 h-4 text-emerald-500" />
       <span>Share Voucher Link</span>
-    </button>
+    </v-button>
 
     <!-- View in My Bookings -->
     <nuxt-link-locale

@@ -18,16 +18,16 @@
 
     <!-- Category Filter Tabs -->
     <div class="flex items-center justify-center gap-2 flex-wrap">
-      <button
+      <v-button
         v-for="category in categories"
         :key="category.id"
-        type="button"
+        variant="unstyled"
         class="px-4 py-2 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
         :class="activeCategory === category.id ? 'bg-[#EA580C] text-white' : 'bg-surface-1 dark:bg-[#131B2E] border border-border/70 text-text-secondary hover:text-text-primary'"
         @click="activeCategory = category.id"
       >
         {{ category.title }}
-      </button>
+      </v-button>
     </div>
 
     <!-- Accordion Section -->

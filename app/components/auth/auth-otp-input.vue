@@ -16,14 +16,15 @@
       </div>
       <div>
         <!-- Light: Edit link -->
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
+          icon="ph:pencil-simple-bold"
+          icon-class="w-3 h-3"
           class="dark:hidden text-xs font-bold text-[#A1331B] flex items-center gap-1 hover:underline cursor-pointer"
           @click="$emit('edit')"
         >
-          <Icon name="ph:pencil-simple-bold" class="w-3 h-3" />
           Edit
-        </button>
+        </v-button>
         <!-- Dark: Step badge -->
         <span
           class="hidden dark:inline text-[10px] font-bold text-amber-500 tracking-wider"
@@ -64,17 +65,15 @@
           timerDisplay
         }}</strong>
       </span>
-      <button
-        type="button"
+      <v-button
+        variant="unstyled"
+        icon="ph:whatsapp-logo-fill"
+        icon-class="w-3.5 h-3.5 text-emerald-500"
         class="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 hover:underline cursor-pointer"
         @click="$emit('whatsapp')"
       >
-        <Icon
-          name="ph:whatsapp-logo-fill"
-          class="w-3.5 h-3.5 text-emerald-500"
-        />
         Send via WhatsApp
-      </button>
+      </v-button>
     </div>
   </div>
 </template>

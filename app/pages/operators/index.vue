@@ -212,12 +212,13 @@
           Partnership request submitted successfully! Our commercial fleet director will contact you promptly.
         </div>
 
-        <button
+        <v-button
           type="submit"
+          variant="unstyled"
           class="w-full py-3 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white font-bold text-xs shadow-md transition-colors cursor-pointer"
         >
           Submit Partnership Request
-        </button>
+        </v-button>
       </form>
     </div>
   </div>

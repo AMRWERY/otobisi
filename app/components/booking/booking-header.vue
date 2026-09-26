@@ -7,14 +7,15 @@
     >
       <!-- Back Button & Hold Timer Badge -->
       <div class="flex items-center gap-3">
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
+          icon="ph:arrow-left-bold"
+          icon-class="w-3.5 h-3.5 rtl:rotate-180"
           class="inline-flex items-center gap-1.5 text-xs font-semibold text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
           @click="$emit('back')"
         >
-          <Icon name="ph:arrow-left-bold" class="w-3.5 h-3.5 rtl:rotate-180" />
           <span>Back to Seat Selection</span>
-        </button>
+        </v-button>
 
         <span class="text-text-muted select-none">|</span>
 

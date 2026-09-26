@@ -51,13 +51,13 @@
             <span class="text-xs font-black text-[#F26A36] block">
               {{ trip.price }} EGP
             </span>
-            <button
-              type="button"
+            <v-button
+              variant="unstyled"
               class="text-[11px] text-red-500 hover:text-red-600 font-semibold hover:underline cursor-pointer"
               @click="$emit('remove-seat', seatId)"
             >
               Remove
-            </button>
+            </v-button>
           </div>
         </div>
       </div>
@@ -92,13 +92,13 @@
               >
             </div>
           </div>
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             class="text-orange-500 font-semibold text-[11px] hover:underline cursor-pointer"
             @click="$emit('change-station', 'boarding')"
           >
             Change
-          </button>
+          </v-button>
         </div>
 
         <div class="flex items-center justify-between">
@@ -114,13 +114,13 @@
               >
             </div>
           </div>
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             class="text-orange-500 font-semibold text-[11px] hover:underline cursor-pointer"
             @click="$emit('change-station', 'dropoff')"
           >
             Change
-          </button>
+          </v-button>
         </div>
       </div>
 

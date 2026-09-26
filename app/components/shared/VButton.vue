@@ -32,10 +32,7 @@
     </template>
 
     <!-- Main Content -->
-    <span
-      v-if="$slots.default"
-      class="truncate inline-flex items-center gap-1.5"
-    >
+    <span v-if="$slots.default" :class="contentClass">
       <slot />
     </span>
 
@@ -63,6 +60,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   loading: false,
   block: false,
+  contentClass: "truncate inline-flex items-center gap-1.5",
 });
 
 const emit = defineEmits<{
@@ -117,20 +115,38 @@ const variantClasses = {
   danger:
     "bg-red-600 hover:bg-red-700 text-white shadow-sm focus-visible:ring-2 focus-visible:ring-red-500/40",
   link: "bg-transparent text-[#F26A36] hover:text-[#E05925] hover:underline p-0 shadow-none",
+  unstyled: "",
 };
 
 const iconSizeClass = computed(() => iconSizes[props.size] || iconSizes.md);
 
+const isBareVariant = computed(
+  () => props.variant === "link" || props.variant === "unstyled",
+);
+
 const classes = computed(() => [
-  "inline-flex items-center justify-center select-none outline-none font-sans transition-all duration-120 ease-[cubic-bezier(0.4,0,0.2,1)]",
-  props.variant !== "link" ? "active:scale-[0.97]" : "",
-  props.variant !== "link" ? sizeClasses[props.size] : "",
-  props.variant !== "link" ? roundedClasses[props.rounded] : "",
-  variantClasses[props.variant] || variantClasses.primary,
+  props.variant === "unstyled"
+    ? "select-none outline-none"
+    : "inline-flex items-center justify-center select-none outline-none font-sans transition-all duration-120 ease-[cubic-bezier(0.4,0,0.2,1)]",
+  isBareVariant.value ? "" : "active:scale-[0.97]",
+  isBareVariant.value ? "" : sizeClasses[props.size],
+  isBareVariant.value ? "" : roundedClasses[props.rounded],
+  // variantClasses[props.variant] can validly be "" (unstyled), so check
+  // membership instead of falling back to primary on every falsy value
+  props.variant in variantClasses
+    ? variantClasses[props.variant]
+    : variantClasses.primary,
   props.block ? "w-full" : "",
-  props.disabled || props.loading
-    ? "opacity-50 cursor-not-allowed pointer-events-none shadow-none"
-    : "cursor-pointer",
+  // "unstyled" forces zero built-in look, including disabled/loading state —
+  // that styling must come entirely from customClass (e.g. the original
+  // button's own `disabled:opacity-*` classes), same as everything else here
+  props.variant === "unstyled"
+    ? props.loading
+      ? "pointer-events-none"
+      : ""
+    : props.disabled || props.loading
+      ? "opacity-50 cursor-not-allowed pointer-events-none shadow-none"
+      : "cursor-pointer",
   props.customClass || "",
 ]);
 

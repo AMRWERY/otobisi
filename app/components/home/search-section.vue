@@ -54,7 +54,8 @@
             <div
               class="inline-flex p-1 bg-surface-2 rounded-xl text-xs font-semibold"
             >
-              <button
+              <v-button
+                variant="unstyled"
                 @click="tripType = 'oneway'"
                 :class="
                   tripType === 'oneway'
@@ -64,8 +65,9 @@
                 class="px-3.5 py-1.5 rounded-lg transition-all"
               >
                 One-way
-              </button>
-              <button
+              </v-button>
+              <v-button
+                variant="unstyled"
                 @click="tripType = 'round'"
                 :class="
                   tripType === 'round'
@@ -75,7 +77,7 @@
                 class="px-3.5 py-1.5 rounded-lg transition-all"
               >
                 Round-trip
-              </button>
+              </v-button>
             </div>
 
             <!-- Features Badges -->
@@ -203,10 +205,11 @@
               gap-class="gap-2.5"
             >
               <template #item="{ item: corridor, isDragging }">
-                <button
+                <v-button
+                  variant="unstyled"
                   @click="!isDragging && goToCorridor(corridor)"
-                  type="button"
-                  class="w-full inline-flex items-center justify-between px-3 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border/70 hover:border-[#F26A36]/40 text-xs font-semibold text-text-primary transition-all whitespace-nowrap group"
+                  content-class="w-full inline-flex items-center justify-between"
+                  class="w-full px-3 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border/70 hover:border-[#F26A36]/40 text-xs font-semibold text-text-primary transition-all whitespace-nowrap group"
                 >
                   <span class="truncate">
                     {{ corridor.from }}
@@ -220,7 +223,7 @@
                   >
                     from {{ corridor.price }} EGP
                   </span>
-                </button>
+                </v-button>
               </template>
             </LazyVSwiper>
           </div>

@@ -135,11 +135,10 @@
                   Otobisi
                 </span>
               </div>
-              <button type="button"
+              <v-button variant="unstyled" icon="ph:x-bold"
                 class="w-8 h-8 rounded-lg bg-surface-1 dark:bg-[#131B2E] text-text-muted hover:text-text-primary flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close Menu" @click="mobileDrawerOpen = false">
-                <Icon name="ph:x-bold" class="w-4 h-4" />
-              </button>
+              </v-button>
             </div>
 
             <!-- User Profile Card -->
@@ -206,7 +205,7 @@
                 <Icon name="ph:globe-bold" class="w-3.5 h-3.5 text-text-muted" />
               </div>
               <div class="grid grid-cols-2 gap-1.5">
-                <button type="button"
+                <v-button variant="unstyled"
                   class="py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   :class="[
                     locale === 'en'
@@ -217,8 +216,8 @@
                   mobileDrawerOpen = false;
                   ">
                   <span>English</span>
-                </button>
-                <button type="button"
+                </v-button>
+                <v-button variant="unstyled"
                   class="py-2 px-3 rounded-xl text-xs font-bold font-arabic transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   :class="[
                     locale === 'ar'
@@ -229,7 +228,7 @@
                   mobileDrawerOpen = false;
                   ">
                   <span>العربية</span>
-                </button>
+                </v-button>
               </div>
             </div>
           </div>

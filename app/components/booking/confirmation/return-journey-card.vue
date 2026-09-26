@@ -26,17 +26,16 @@
         </p>
       </div>
 
-      <button
-        type="button"
+      <v-button
+        variant="unstyled"
+        size="sm"
         class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary transition-colors cursor-pointer"
+        icon="ph:calendar-blank-bold"
+        icon-class="text-orange-500"
         @click="changeDate"
       >
-        <Icon
-          name="ph:calendar-blank-bold"
-          class="w-3.5 h-3.5 text-orange-500"
-        />
         <span>Change Date</span>
-      </button>
+      </v-button>
     </div>
 
     <!-- Return Bus Cards Grid -->
@@ -109,13 +108,13 @@
             >
           </div>
 
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             class="px-4 py-2 rounded-xl bg-[#A1331B] hover:bg-[#8B2B16] text-white text-xs font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
             @click="selectReturnTrip('gb-return-01')"
           >
             Select Seat →
-          </button>
+          </v-button>
         </div>
       </div>
 
@@ -189,13 +188,13 @@
             >
           </div>
 
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             class="px-4 py-2 rounded-xl bg-[#A1331B] hover:bg-[#8B2B16] text-white text-xs font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
             @click="selectReturnTrip('sj-return-01')"
           >
             Select Seat →
-          </button>
+          </v-button>
         </div>
       </div>
     </div>

@@ -36,14 +36,14 @@
           <div class="flex items-center gap-1 font-mono text-text-secondary text-xs">
             <span>PNR:</span>
             <strong class="text-text-primary font-black">#OTB-849204-EG</strong>
-            <button
-              type="button"
+            <v-button
+              variant="unstyled"
               class="p-1 hover:text-text-primary text-text-muted cursor-pointer transition-colors"
               title="Copy PNR"
               @click="copyPnr"
             >
               <Icon :name="copied ? 'ph:check-bold' : 'ph:copy-bold'" class="w-3.5 h-3.5" :class="copied ? 'text-emerald-500' : ''" />
-            </button>
+            </v-button>
           </div>
         </div>
 
@@ -234,32 +234,38 @@
 
         <!-- Quick Actions -->
         <div class="flex items-center gap-3 ms-auto sm:ms-0 text-text-secondary text-xs">
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
+            size="sm"
+            icon="ph:download-simple-bold"
+            icon-class="text-orange-500"
             class="inline-flex items-center gap-1 hover:text-text-primary transition-colors cursor-pointer font-semibold"
             @click="downloadPdf"
           >
-            <Icon name="ph:download-simple-bold" class="w-3.5 h-3.5 text-orange-500" />
             <span>PDF E-Ticket</span>
-          </button>
+          </v-button>
 
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
+            size="sm"
+            icon="ph:calendar-plus-bold"
+            icon-class="text-blue-500"
             class="inline-flex items-center gap-1 hover:text-text-primary transition-colors cursor-pointer font-semibold"
             @click="addToCalendar"
           >
-            <Icon name="ph:calendar-plus-bold" class="w-3.5 h-3.5 text-blue-500" />
             <span>Add to Calendar</span>
-          </button>
+          </v-button>
 
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
+            size="sm"
+            icon="ph:arrow-counter-clockwise-bold"
+            icon-class="text-amber-500"
             class="inline-flex items-center gap-1 hover:text-red-500 transition-colors cursor-pointer font-semibold"
             @click="changeOrCancel"
           >
-            <Icon name="ph:arrow-counter-clockwise-bold" class="w-3.5 h-3.5 text-amber-500" />
             <span>Change / Cancel</span>
-          </button>
+          </v-button>
         </div>
       </div>
     </div>

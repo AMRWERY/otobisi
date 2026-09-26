@@ -28,12 +28,13 @@
     >
       <!-- Country flag & code picker -->
       <div ref="pickerRef" class="relative shrink-0">
-        <button
-          type="button"
+        <v-button
+          variant="unstyled"
           class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 select-none cursor-pointer disabled:cursor-wait"
           :disabled="!countries.length"
           :aria-expanded="isOpen"
           aria-haspopup="listbox"
+          content-class="inline-flex items-center gap-1"
           @click="toggle"
         >
           <img
@@ -49,7 +50,7 @@
             class="w-3 h-3 text-gray-400 transition-transform"
             :class="{ 'rotate-180': isOpen }"
           />
-        </button>
+        </v-button>
 
         <div
           v-if="isOpen"

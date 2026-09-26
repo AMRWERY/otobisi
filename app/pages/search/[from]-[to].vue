@@ -43,12 +43,14 @@
           </div>
 
           <!-- The Open Filters Button -->
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             class="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#F26A36] hover:bg-[#E05925] text-white font-bold text-xs shadow-sm active:scale-95 transition-all cursor-pointer select-none"
+            icon="ph:sliders-horizontal-bold"
+            icon-class="w-4 h-4"
+            content-class="truncate inline-flex items-center gap-2"
             @click="isMobileFilterOpen = true"
           >
-            <Icon name="ph:sliders-horizontal-bold" class="w-4 h-4" />
             <span>Open Filters</span>
             <span
               v-if="activeFiltersCount > 0"
@@ -56,7 +58,7 @@
             >
               {{ activeFiltersCount }}
             </span>
-          </button>
+          </v-button>
         </div>
 
         <!-- Desktop Filters Sidebar (Left Column, hidden on small screens) -->
@@ -76,12 +78,14 @@
         <div
           class="lg:hidden fixed bottom-5 inset-x-0 flex justify-center z-40 pointer-events-none"
         >
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
             class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full bg-[#F26A36] hover:bg-[#E05925] text-white shadow-xl shadow-orange-950/40 font-bold text-xs tracking-wide active:scale-95 transition-all border border-white/20 backdrop-blur-md cursor-pointer"
+            icon="ph:sliders-horizontal-bold"
+            icon-class="w-4 h-4"
+            content-class="truncate inline-flex items-center gap-2"
             @click="isMobileFilterOpen = true"
           >
-            <Icon name="ph:sliders-horizontal-bold" class="w-4 h-4" />
             <span>Filters & Sorting</span>
             <span
               v-if="activeFiltersCount > 0"
@@ -89,7 +93,7 @@
             >
               {{ activeFiltersCount }}
             </span>
-          </button>
+          </v-button>
         </div>
 
         <!-- Mobile Filter Slide-Over Drawer Modal -->
@@ -133,14 +137,14 @@
                   </div>
 
                   <!-- Close Button (X) -->
-                  <button
-                    type="button"
+                  <v-button
+                    variant="unstyled"
                     class="w-8 h-8 rounded-full bg-surface-2 hover:bg-surface-0 border border-border flex items-center justify-center text-text-primary transition-colors cursor-pointer"
                     aria-label="Close filters"
+                    icon="ph:x-bold"
+                    icon-class="w-4 h-4"
                     @click="isMobileFilterOpen = false"
-                  >
-                    <Icon name="ph:x-bold" class="w-4 h-4" />
-                  </button>
+                  />
                 </div>
 
                 <!-- Scrollable Filters Body -->
@@ -225,12 +229,14 @@
             <!-- Sorting Pills & Mobile Filter Button -->
             <div class="flex flex-wrap items-center gap-2 pt-3">
               <!-- Mobile Filters Button (Directly in Sort Bar) -->
-              <button
-                type="button"
+              <v-button
+                variant="unstyled"
                 class="lg:hidden px-3.5 py-1.5 rounded-xl bg-[#F26A36] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs active:scale-95 transition-all cursor-pointer select-none"
+                icon="ph:sliders-horizontal-bold"
+                icon-class="w-3.5 h-3.5"
+                content-class="truncate inline-flex items-center gap-1.5"
                 @click="isMobileFilterOpen = true"
               >
-                <Icon name="ph:sliders-horizontal-bold" class="w-3.5 h-3.5" />
                 <span>Filters</span>
                 <span
                   v-if="activeFiltersCount > 0"
@@ -238,15 +244,15 @@
                 >
                   {{ activeFiltersCount }}
                 </span>
-              </button>
+              </v-button>
 
               <span
                 class="text-xs font-bold text-text-muted me-1 uppercase tracking-wider hidden sm:inline"
                 >Sort by:</span
               >
 
-              <button
-                type="button"
+              <v-button
+                variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
                   filters.sortBy === 'recommended'
@@ -256,10 +262,10 @@
                 @click="filters.sortBy = 'recommended'"
               >
                 Recommended
-              </button>
+              </v-button>
 
-              <button
-                type="button"
+              <v-button
+                variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
                   filters.sortBy === 'cheapest'
@@ -269,10 +275,10 @@
                 @click="filters.sortBy = 'cheapest'"
               >
                 Cheapest ({{ minPriceFound }} EGP)
-              </button>
+              </v-button>
 
-              <button
-                type="button"
+              <v-button
+                variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
                   filters.sortBy === 'earliest'
@@ -282,10 +288,10 @@
                 @click="filters.sortBy = 'earliest'"
               >
                 Earliest Departure (06:30)
-              </button>
+              </v-button>
 
-              <button
-                type="button"
+              <v-button
+                variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
                   filters.sortBy === 'fastest'
@@ -295,7 +301,7 @@
                 @click="filters.sortBy = 'fastest'"
               >
                 Fastest (2h 30m)
-              </button>
+              </v-button>
             </div>
           </div>
 

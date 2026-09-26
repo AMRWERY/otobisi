@@ -101,14 +101,16 @@
               </div>
 
               <div class="flex items-center gap-2">
-                <button
-                  type="button"
+                <v-button
+                  variant="unstyled"
+                  size="sm"
+                  icon="ph:receipt-bold"
+                  icon-class="text-text-muted"
                   class="px-3 py-1.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary transition-colors cursor-pointer shadow-2xs flex items-center gap-1"
                   @click="downloadInvoice('OTB-721940-EG')"
                 >
-                  <Icon name="ph:receipt-bold" class="w-3.5 h-3.5 text-text-muted" />
                   <span>Tax Invoice</span>
-                </button>
+                </v-button>
 
                 <nuxt-link-locale
                   to="/trip/gb-01"
@@ -206,14 +208,16 @@
               </div>
 
               <div>
-                <button
-                  type="button"
+                <v-button
+                  variant="unstyled"
+                  size="sm"
+                  icon="ph:file-text-bold"
+                  icon-class="text-text-muted"
                   class="px-3 py-1.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary transition-colors cursor-pointer shadow-2xs flex items-center gap-1"
                   @click="viewRefundAdvice('OTB-610482-EG')"
                 >
-                  <Icon name="ph:file-text-bold" class="w-3.5 h-3.5 text-text-muted" />
                   <span>Refund Advice</span>
-                </button>
+                </v-button>
               </div>
             </div>
           </div>

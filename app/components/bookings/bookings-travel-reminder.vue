@@ -21,14 +21,13 @@
         </p>
       </div>
 
-      <button
-        type="button"
+      <v-button
+        variant="unstyled"
         class="p-1 rounded-lg hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 transition-colors cursor-pointer shrink-0"
         title="Dismiss reminder"
+        icon="ph:x-bold"
         @click="visible = false"
-      >
-        <Icon name="ph:x-bold" class="w-4 h-4" />
-      </button>
+      />
     </div>
   </Transition>
 </template>

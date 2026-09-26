@@ -178,33 +178,35 @@
           Gender{{ isLead ? " (Mandatory for coach seating rules)" : "" }}
         </label>
         <div class="grid grid-cols-2 gap-2">
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
+            size="sm"
             :class="
               modelValue.gender === 'male'
                 ? 'bg-[#A1331B] text-white shadow-xs'
                 : 'bg-surface-1 text-text-secondary hover:text-text-primary border border-border'
             "
             class="py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+            icon="ph:gender-male-bold"
             @click="modelValue.gender = 'male'"
           >
-            <Icon name="ph:gender-male-bold" class="w-3.5 h-3.5" />
             <span>Male</span>
-          </button>
+          </v-button>
 
-          <button
-            type="button"
+          <v-button
+            variant="unstyled"
+            size="sm"
             :class="
               modelValue.gender === 'female'
                 ? 'bg-[#A1331B] text-white shadow-xs'
                 : 'bg-surface-1 text-text-secondary hover:text-text-primary border border-border'
             "
             class="py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+            icon="ph:gender-female-bold"
             @click="modelValue.gender = 'female'"
           >
-            <Icon name="ph:gender-female-bold" class="w-3.5 h-3.5" />
             <span>Female</span>
-          </button>
+          </v-button>
         </div>
         <span v-if="isLead" class="text-[11px] text-text-muted mt-1 block">
           Required by bus operator seat policies
