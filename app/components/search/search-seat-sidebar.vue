@@ -53,6 +53,8 @@
             </span>
             <LazyVButton
               variant="unstyled"
+              icon-right="ph:arrow-right-bold"
+              icon-class="icon-arrow-animated"
               class="text-[11px] text-red-500 hover:text-red-600 font-semibold hover:underline cursor-pointer"
               @click="$emit('remove-seat', seatId)"
             >
@@ -94,6 +96,8 @@
           </div>
           <LazyVButton
             variant="unstyled"
+            icon-right="ph:arrow-right-bold"
+            icon-class="icon-arrow-animated"
             class="text-orange-500 font-semibold text-[11px] hover:underline cursor-pointer"
             @click="$emit('change-station', 'boarding')"
           >
@@ -116,6 +120,8 @@
           </div>
           <LazyVButton
             variant="unstyled"
+            icon-right="ph:arrow-right-bold"
+            icon-class="icon-arrow-animated"
             class="text-orange-500 font-semibold text-[11px] hover:underline cursor-pointer"
             @click="$emit('change-station', 'dropoff')"
           >
@@ -181,6 +187,7 @@
         size="lg"
         block
         icon-right="ph:arrow-right-bold"
+        icon-class="icon-arrow-animated"
         :disabled="selectedSeatIds.length === 0"
         custom-class="w-full font-bold shadow-md"
         @click="$emit('continue')"

@@ -26,6 +26,8 @@
       <div class="flex items-center gap-2.5">
         <LazyVButton
           variant="unstyled"
+          icon-right="ph:arrow-right-bold"
+          icon-class="icon-arrow-animated"
           class="text-xs font-semibold text-[#F26A36] hover:underline transition-colors cursor-pointer"
           @click="resetAllFilters"
         >
@@ -305,6 +307,8 @@
       <div class="pt-3 border-t border-border flex items-center gap-2">
         <LazyVButton
           variant="unstyled"
+          icon-right="ph:arrow-right-bold"
+          icon-class="icon-arrow-animated"
           class="w-1/3 py-2.5 px-3 rounded-xl border border-border bg-surface-2 hover:bg-surface-0 text-text-secondary hover:text-text-primary font-semibold text-xs transition-colors cursor-pointer"
           @click="resetAllFilters"
         >
@@ -318,6 +322,7 @@
           @click="emit('close')"
         >
           <span>Apply Filters</span>
+          <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
         </LazyVButton>
       </div>
     </div>

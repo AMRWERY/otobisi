@@ -42,6 +42,8 @@
         </p>
         <LazyVButton
           variant="unstyled"
+          icon-right="ph:arrow-right-bold"
+          icon-class="icon-arrow-animated"
           class="px-4 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary cursor-pointer transition-colors"
           @click="resetFilters"
         >

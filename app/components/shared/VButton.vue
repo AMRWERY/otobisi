@@ -32,6 +32,10 @@
     </template>
 
     <!-- Main Content -->
+    <!-- NOTE: leading icon above uses iconClass; trailing icon below uses
+         iconRightClass (falls back to iconClass) — they must stay
+         independent so e.g. an arrow's icon-arrow-animated class on the
+         trailing icon doesn't also apply to an unrelated leading icon. -->
     <span v-if="$slots.default" :class="contentClass">
       <slot />
     </span>
@@ -42,7 +46,7 @@
         <Icon
           v-if="iconRight"
           :name="iconRight"
-          :class="['shrink-0', iconSizeClass, iconClass]"
+          :class="['shrink-0', iconSizeClass, iconRightClass ?? iconClass]"
         />
       </slot>
     </template>

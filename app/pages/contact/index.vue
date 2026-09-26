@@ -160,6 +160,8 @@
           <LazyVButton
             type="submit"
             variant="unstyled"
+            icon-right="ph:arrow-right-bold"
+            icon-class="icon-arrow-animated"
             class="px-6 py-2.5 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-sm"
           >
             Submit Message

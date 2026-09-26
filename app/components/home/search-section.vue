@@ -178,6 +178,7 @@
               @click="handleSearch"
             >
               Search buses
+              <Icon name="ph:arrow-right-bold" class="w-4.5 h-4.5 sm:w-5 sm:h-5 icon-arrow-animated" />
             </LazyVButton>
           </div>
 

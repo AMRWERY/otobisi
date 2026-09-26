@@ -111,9 +111,11 @@
           <LazyVButton
             variant="unstyled"
             class="px-4 py-2 rounded-xl bg-[#A1331B] hover:bg-[#8B2B16] text-white text-xs font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
+            icon-right="ph:arrow-right-bold"
+            icon-class="icon-arrow-animated"
             @click="selectReturnTrip('gb-return-01')"
           >
-            Select Seat →
+            Select Seat
           </LazyVButton>
         </div>
       </div>
@@ -191,9 +193,11 @@
           <LazyVButton
             variant="unstyled"
             class="px-4 py-2 rounded-xl bg-[#A1331B] hover:bg-[#8B2B16] text-white text-xs font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
+            icon-right="ph:arrow-right-bold"
+            icon-class="icon-arrow-animated"
             @click="selectReturnTrip('sj-return-01')"
           >
-            Select Seat →
+            Select Seat
           </LazyVButton>
         </div>
       </div>

@@ -25,7 +25,10 @@ export interface ButtonProps {
   block?: boolean;
   icon?: string;
   iconRight?: string;
+  /** Applied to the leading icon; also the trailing icon's default unless `iconRightClass` is set */
   iconClass?: string;
+  /** Classes for the trailing (iconRight) icon only, overriding iconClass for it */
+  iconRightClass?: string;
   customClass?: string;
   /** Classes for the wrapper span around the default slot (icon/text gap, truncation, alignment) */
   contentClass?: string;

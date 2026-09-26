@@ -165,13 +165,9 @@
                 >EGP</span
               >
             </div>
-            <VButton
-              size="sm"
-              icon="ph:armchair-bold"
-              icon-right="ph:arrow-right-bold"
-              icon-class="icon-arrow-animated"
-            >
+            <VButton size="sm" icon="ph:armchair-bold">
               Select Seats
+              <Icon name="ph:arrow-right-bold" class="w-3.5 h-3.5 icon-arrow-animated" />
             </VButton>
           </div>
         </div>

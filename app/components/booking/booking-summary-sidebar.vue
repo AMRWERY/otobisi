@@ -181,7 +181,7 @@
       <LazyVButton
         variant="unstyled"
         icon-right="ph:arrow-right-bold"
-        icon-class="w-4 h-4 rtl:rotate-180"
+        icon-class="w-4 h-4 icon-arrow-animated"
         class="w-full bg-[#A1331B] hover:bg-[#8B2B16] text-white py-3.5 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/10 hover:shadow-lg transition-all active:scale-[0.99] cursor-pointer"
         @click="$emit('confirm-payment')"
       >

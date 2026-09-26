@@ -221,6 +221,8 @@
         <LazyVButton
           type="submit"
           variant="unstyled"
+          icon-right="ph:arrow-right-bold"
+          icon-class="icon-arrow-animated"
           class="w-full py-3 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white font-bold text-xs shadow-md transition-colors cursor-pointer"
         >
           Submit Partnership Request

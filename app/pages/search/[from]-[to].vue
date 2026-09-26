@@ -166,6 +166,8 @@
                   <LazyVButton
                     variant="surface"
                     size="md"
+                    icon-right="ph:arrow-right-bold"
+                    icon-class="icon-arrow-animated"
                     custom-class="w-1/3 text-xs font-semibold"
                     @click="resetFilters"
                   >
@@ -174,6 +176,8 @@
                   <LazyVButton
                     variant="primary"
                     size="md"
+                    icon-right="ph:arrow-right-bold"
+                    icon-class="icon-arrow-animated"
                     custom-class="w-2/3 text-xs font-bold"
                     @click="isMobileFilterOpen = false"
                   >
@@ -340,11 +344,19 @@
               <LazyVButton
                 variant="secondary"
                 size="sm"
+                icon-right="ph:arrow-right-bold"
+                icon-class="icon-arrow-animated"
                 @click="showAllCoaches"
               >
                 Show All {{ allTrips.length }} Coaches
               </LazyVButton>
-              <LazyVButton variant="ghost" size="sm" @click="resetFilters">
+              <LazyVButton
+                variant="ghost"
+                size="sm"
+                icon-right="ph:arrow-right-bold"
+                icon-class="icon-arrow-animated"
+                @click="resetFilters"
+              >
                 Reset Filters
               </LazyVButton>
             </div>
