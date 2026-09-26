@@ -21,19 +21,19 @@
       <div class="relative w-full sm:w-80">
         <Icon name="ph:magnifying-glass-bold"
           class="w-4 h-4 text-text-muted absolute start-3.5 top-1/2 -translate-y-1/2" />
-        <v-input v-model="searchQuery" type="text" placeholder="Search station or city..."
+        <LazyVInput v-model="searchQuery" type="text" placeholder="Search station or city..."
           variant="unstyled"
           box-class="w-full ps-10 pe-4 py-2.5 rounded-xl bg-surface-1 dark:bg-[#131B2E] border border-border/80 focus-within:border-[#EA580C]"
           input-class="text-xs text-text-primary placeholder:text-text-muted" />
       </div>
 
       <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
-        <v-button v-for="city in cities" :key="city" variant="unstyled"
+        <LazyVButton v-for="city in cities" :key="city" variant="unstyled"
           class="px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
           :class="selectedCity === city ? 'bg-[#EA580C] text-white' : 'bg-surface-1 dark:bg-[#131B2E] border border-border/70 text-text-secondary hover:text-text-primary'"
           @click="selectedCity = city">
           {{ city }}
-        </v-button>
+        </LazyVButton>
       </div>
     </div>
 

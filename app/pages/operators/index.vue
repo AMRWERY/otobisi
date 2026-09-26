@@ -152,7 +152,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Company / Fleet Name</label>
-            <v-input
+            <LazyVInput
               v-model="partnerForm.company"
               required
               type="text"
@@ -179,7 +179,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Contact Person Name</label>
-            <v-input
+            <LazyVInput
               v-model="partnerForm.name"
               required
               type="text"
@@ -192,7 +192,7 @@
 
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Direct Phone Number</label>
-            <v-input
+            <LazyVInput
               v-model="partnerForm.phone"
               required
               type="tel"
@@ -218,13 +218,13 @@
           Partnership request submitted successfully! Our commercial fleet director will contact you promptly.
         </div>
 
-        <v-button
+        <LazyVButton
           type="submit"
           variant="unstyled"
           class="w-full py-3 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white font-bold text-xs shadow-md transition-colors cursor-pointer"
         >
           Submit Partnership Request
-        </v-button>
+        </LazyVButton>
       </form>
     </div>
   </div>

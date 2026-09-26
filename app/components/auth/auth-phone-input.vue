@@ -28,7 +28,7 @@
     >
       <!-- Country flag & code picker -->
       <div ref="pickerRef" class="relative shrink-0">
-        <v-button
+        <LazyVButton
           variant="unstyled"
           class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 select-none cursor-pointer disabled:cursor-wait"
           :disabled="!countries.length"
@@ -50,14 +50,14 @@
             class="w-3 h-3 text-gray-400 transition-transform"
             :class="{ 'rotate-180': isOpen }"
           />
-        </v-button>
+        </LazyVButton>
 
         <div
           v-if="isOpen"
           class="absolute start-0 top-full mt-3 z-30 w-64 bg-white dark:bg-[#141b2d] border border-gray-100 dark:border-[#212b42] rounded-xl shadow-lg overflow-hidden"
         >
           <div class="p-2 border-b border-gray-100 dark:border-[#212b42]">
-            <v-input
+            <LazyVInput
               ref="searchRef"
               v-model="query"
               type="text"

@@ -546,20 +546,20 @@
             Privacy Policy
           </nuxt-link-locale>
           <span>•</span>
-          <v-button
+          <LazyVButton
             variant="unstyled"
             class="hover:text-text-primary transition-colors cursor-pointer"
             @click="openCookieSettings"
           >
             Cookie Preferences
-          </v-button>
+          </LazyVButton>
         </div>
 
         <!-- Right / Interactive Language & Currency Selectors -->
         <div class="flex items-center gap-2">
           <!-- Language Selector Dropdown -->
           <div class="relative">
-            <v-button
+            <LazyVButton
               variant="unstyled"
               class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-surface-0 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/80 text-[11px] font-semibold text-text-primary transition-colors cursor-pointer"
               @click="
@@ -574,24 +574,24 @@
                 class="w-3 h-3 text-text-muted transition-transform"
                 :class="{ 'rotate-180': langMenuOpen }"
               />
-            </v-button>
+            </LazyVButton>
             <div
               v-if="langMenuOpen"
               class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 end-0"
             >
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 class="w-full text-start px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#EA580C] hover:bg-surface-1 dark:hover:bg-[#1B2438] transition-colors cursor-pointer"
                 @click="langMenuOpen = false"
               >
                 English (US)
-              </v-button>
+              </LazyVButton>
             </div>
           </div>
 
           <!-- Currency Selector Dropdown -->
           <div class="relative">
-            <v-button
+            <LazyVButton
               variant="unstyled"
               class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-surface-0 dark:bg-[#131B2E] hover:bg-surface-2 dark:hover:bg-[#1B2438] border border-border/80 text-[11px] font-semibold text-text-primary transition-colors cursor-pointer"
               @click="
@@ -608,12 +608,12 @@
                 class="w-3 h-3 text-text-muted transition-transform"
                 :class="{ 'rotate-180': currencyMenuOpen }"
               />
-            </v-button>
+            </LazyVButton>
             <div
               v-if="currencyMenuOpen"
               class="absolute bottom-full mb-1.5 w-36 rounded-xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-1 z-30 end-0"
             >
-              <v-button
+              <LazyVButton
                 v-for="curr in currencies"
                 :key="curr.code"
                 variant="unstyled"
@@ -632,7 +632,7 @@
                 <span class="text-text-muted text-[10px]">{{
                   curr.symbol
                 }}</span>
-              </v-button>
+              </LazyVButton>
             </div>
           </div>
         </div>

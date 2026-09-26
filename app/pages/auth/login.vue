@@ -50,7 +50,7 @@
       />
 
       <!-- VERIFY & CONTINUE CTA BUTTON -->
-      <v-button
+      <LazyVButton
         variant="unstyled"
         icon-right="ph:arrow-right-bold"
         icon-class="icon-arrow-animated"
@@ -58,7 +58,7 @@
         @click="verifyOtp"
       >
         <span>Verify &amp; Continue</span>
-      </v-button>
+      </LazyVButton>
       </template>
 
       <!-- DIVIDER -->

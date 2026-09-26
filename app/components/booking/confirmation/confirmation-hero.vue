@@ -60,7 +60,7 @@
           {{ formattedDate }} • 08:32 AM
         </span>
 
-        <v-button
+        <LazyVButton
           variant="unstyled"
           size="sm"
           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary transition-colors cursor-pointer shadow-2xs active:scale-95"
@@ -69,7 +69,7 @@
           @click="copyPnr"
         >
           <span>{{ copied ? "Copied!" : "Copy Code" }}</span>
-        </v-button>
+        </LazyVButton>
       </div>
     </div>
   </div>

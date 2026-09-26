@@ -53,7 +53,7 @@
         <label class="block text-xs font-semibold text-text-primary mb-1.5">
           Full Legal Name{{ isLead ? " (as on ID / Passport)" : "" }}
         </label>
-        <v-input
+        <LazyVInput
           v-model="modelValue.name"
           type="text"
           :placeholder="isLead ? 'Full Legal Name' : 'Full Name'"
@@ -67,7 +67,7 @@
               class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
             />
           </template>
-        </v-input>
+        </LazyVInput>
         <span class="text-[11px] text-text-muted mt-1 block">
           {{
             isLead
@@ -82,7 +82,7 @@
         <label class="block text-xs font-semibold text-text-primary mb-1.5">
           Mobile Number (Egyptian Network)
         </label>
-        <v-input
+        <LazyVInput
           v-model="modelValue.phone"
           type="tel"
           placeholder="10 1234 5678"
@@ -103,7 +103,7 @@
               class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
             />
           </template>
-        </v-input>
+        </LazyVInput>
         <span
           class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1"
         >
@@ -121,7 +121,7 @@
               : "National ID / Passport"
           }}
         </label>
-        <v-input
+        <LazyVInput
           v-model="modelValue.nationalId"
           type="text"
           maxlength="14"
@@ -150,7 +150,7 @@
               class="w-4 h-4 text-red-500 shrink-0 ms-2"
             />
           </template>
-        </v-input>
+        </LazyVInput>
         <span
           v-if="isNationalIdValid"
           class="text-[11px] text-text-muted mt-1 block"
@@ -179,7 +179,7 @@
           Gender{{ isLead ? " (Mandatory for coach seating rules)" : "" }}
         </label>
         <div class="grid grid-cols-2 gap-2">
-          <v-button
+          <LazyVButton
             variant="unstyled"
             size="sm"
             :class="
@@ -192,9 +192,9 @@
             @click="modelValue.gender = 'male'"
           >
             <span>Male</span>
-          </v-button>
+          </LazyVButton>
 
-          <v-button
+          <LazyVButton
             variant="unstyled"
             size="sm"
             :class="
@@ -207,7 +207,7 @@
             @click="modelValue.gender = 'female'"
           >
             <span>Female</span>
-          </v-button>
+          </LazyVButton>
         </div>
         <span v-if="isLead" class="text-[11px] text-text-muted mt-1 block">
           Required by bus operator seat policies

@@ -28,7 +28,7 @@
         <form @submit.prevent="handleLogin" class="space-y-4">
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Operator Code / ID</label>
-            <v-input
+            <LazyVInput
               v-model="loginForm.operatorCode"
               required
               type="text"
@@ -41,7 +41,7 @@
 
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Official Email / Username</label>
-            <v-input
+            <LazyVInput
               v-model="loginForm.email"
               required
               type="email"
@@ -57,7 +57,7 @@
               <label class="text-xs font-semibold text-text-primary">Password</label>
               <a href="#" class="text-[11px] text-[#EA580C] hover:underline" @click.prevent="onForgotPassword">Forgot?</a>
             </div>
-            <v-input
+            <LazyVInput
               v-model="loginForm.password"
               required
               type="password"
@@ -72,13 +72,13 @@
             {{ loginError }}
           </div>
 
-          <v-button
+          <LazyVButton
             type="submit"
             variant="unstyled"
             class="w-full py-2.5 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-sm"
           >
             Access Fleet Dashboard
-          </v-button>
+          </LazyVButton>
         </form>
 
         <div class="pt-4 border-t border-border/60 text-center text-xs text-text-muted">

@@ -76,7 +76,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label class="text-xs font-semibold text-text-primary">Full Name</label>
-              <v-input
+              <LazyVInput
                 v-model="form.name"
                 required
                 type="text"
@@ -89,7 +89,7 @@
 
             <div class="space-y-1.5">
               <label class="text-xs font-semibold text-text-primary">Phone Number</label>
-              <v-input
+              <LazyVInput
                 v-model="form.phone"
                 required
                 type="tel"
@@ -104,7 +104,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label class="text-xs font-semibold text-text-primary">Email Address</label>
-              <v-input
+              <LazyVInput
                 v-model="form.email"
                 required
                 type="email"
@@ -132,7 +132,7 @@
 
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Booking Reference Code (Optional)</label>
-            <v-input
+            <LazyVInput
               v-model="form.bookingCode"
               type="text"
               placeholder="e.g. OTO-89241"
@@ -157,13 +157,13 @@
             Thank you! Your inquiry has been received. Our team will contact you via WhatsApp or phone.
           </div>
 
-          <v-button
+          <LazyVButton
             type="submit"
             variant="unstyled"
             class="px-6 py-2.5 rounded-xl bg-[#EA580C] hover:bg-orange-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-sm"
           >
             Submit Message
-          </v-button>
+          </LazyVButton>
         </form>
       </div>
 

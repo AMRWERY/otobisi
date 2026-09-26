@@ -101,7 +101,7 @@
               </div>
 
               <div class="flex items-center gap-2">
-                <v-button
+                <LazyVButton
                   variant="unstyled"
                   size="sm"
                   icon="ph:receipt-bold"
@@ -110,7 +110,7 @@
                   @click="downloadInvoice('OTB-721940-EG')"
                 >
                   <span>Tax Invoice</span>
-                </v-button>
+                </LazyVButton>
 
                 <nuxt-link-locale
                   to="/trip/gb-01"
@@ -208,7 +208,7 @@
               </div>
 
               <div>
-                <v-button
+                <LazyVButton
                   variant="unstyled"
                   size="sm"
                   icon="ph:file-text-bold"
@@ -217,7 +217,7 @@
                   @click="viewRefundAdvice('OTB-610482-EG')"
                 >
                   <span>Refund Advice</span>
-                </v-button>
+                </LazyVButton>
               </div>
             </div>
           </div>

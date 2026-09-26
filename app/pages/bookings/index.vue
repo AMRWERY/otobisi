@@ -40,13 +40,13 @@
         <p class="text-xs text-text-secondary max-w-sm mx-auto mb-4">
           No records matched your search query "{{ searchQuery }}". Check your PNR code or filter selection.
         </p>
-        <v-button
+        <LazyVButton
           variant="unstyled"
           class="px-4 py-2 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border text-xs font-bold text-text-primary cursor-pointer transition-colors"
           @click="resetFilters"
         >
           Reset Filters
-        </v-button>
+        </LazyVButton>
       </div>
 
       <!-- Popular Intercity Bus Routes Recommendations -->

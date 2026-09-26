@@ -41,7 +41,7 @@
 
         <!-- Filter Tags -->
         <div class="flex items-center gap-2 flex-wrap">
-          <v-button
+          <LazyVButton
             v-for="dept in departments"
             :key="dept"
             variant="unstyled"
@@ -50,7 +50,7 @@
             @click="selectedDept = dept"
           >
             {{ dept }}
-          </v-button>
+          </LazyVButton>
         </div>
       </div>
 

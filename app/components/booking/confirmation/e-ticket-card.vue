@@ -385,14 +385,14 @@
                 >EGY-TAX-2024-91834</strong
               ></span
             >
-            <v-button
+            <LazyVButton
               variant="unstyled"
               size="sm"
               class="inline-flex items-center gap-1 text-[#A1331B] dark:text-orange-400 font-bold hover:underline cursor-pointer"
               icon="ph:receipt-bold"
             >
               <span>Download Tax Receipt</span>
-            </v-button>
+            </LazyVButton>
           </div>
         </div>
       </div>

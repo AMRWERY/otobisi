@@ -6,7 +6,7 @@
     <div
       class="flex items-center gap-1.5 sm:gap-2 p-1 rounded-xl bg-surface-1 border border-border overflow-x-auto no-scrollbar shadow-2xs"
     >
-      <v-button
+      <LazyVButton
         v-for="tab in tabs"
         :key="tab.id"
         variant="unstyled"
@@ -30,7 +30,7 @@
         >
           {{ tab.count }}
         </span>
-      </v-button>
+      </LazyVButton>
     </div>
 
     <!-- Search Input -->
@@ -39,7 +39,7 @@
         name="ph:magnifying-glass-bold"
         class="w-4 h-4 text-text-muted absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
       />
-      <v-input
+      <LazyVInput
         :model-value="searchQuery"
         type="text"
         placeholder="Search PNR, city, or operator..."
@@ -48,7 +48,7 @@
         input-class="text-xs text-text-primary placeholder:text-text-muted"
         @update:model-value="$emit('update:searchQuery', $event as string)"
       />
-      <v-button
+      <LazyVButton
         v-if="searchQuery"
         variant="unstyled"
         size="sm"

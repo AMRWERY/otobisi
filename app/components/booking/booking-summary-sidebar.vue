@@ -178,7 +178,7 @@
       </div>
 
       <!-- Main Pay CTA Button -->
-      <v-button
+      <LazyVButton
         variant="unstyled"
         icon-right="ph:arrow-right-bold"
         icon-class="w-4 h-4 rtl:rotate-180"
@@ -186,7 +186,7 @@
         @click="$emit('confirm-payment')"
       >
         <span>Pay {{ totalFare }} EGP & Confirm Booking</span>
-      </v-button>
+      </LazyVButton>
 
       <!-- Trust Guarantees Notes -->
       <div

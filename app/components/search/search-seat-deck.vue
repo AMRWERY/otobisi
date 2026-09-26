@@ -91,7 +91,7 @@
           class="grid grid-cols-5 gap-2 items-center"
         >
           <!-- Seat A (Window) -->
-          <v-button
+          <LazyVButton
             variant="unstyled"
             :disabled="row.seatA.isBooked"
             :class="getSeatClass(row.seatA)"
@@ -108,10 +108,10 @@
                     : `${row.seatA.price} EGP`
               }}
             </span>
-          </v-button>
+          </LazyVButton>
 
           <!-- Seat B (Aisle) -->
-          <v-button
+          <LazyVButton
             variant="unstyled"
             :disabled="row.seatB.isBooked"
             :class="getSeatClass(row.seatB)"
@@ -128,11 +128,11 @@
                     : `${row.seatB.price} EGP`
               }}
             </span>
-          </v-button>
+          </LazyVButton>
 
           <!-- Center: Row number or Center 5th Seat (e.g. 11E) -->
           <div class="flex justify-center">
-            <v-button
+            <LazyVButton
               v-if="row.seatCenter"
               variant="unstyled"
               :disabled="row.seatCenter.isBooked"
@@ -152,7 +152,7 @@
                       : `${row.seatCenter.price} EGP`
                 }}
               </span>
-            </v-button>
+            </LazyVButton>
             <span
               v-else
               class="w-6 h-6 rounded-full bg-surface-1 border border-border text-text-muted text-[10px] font-bold flex items-center justify-center select-none"
@@ -162,7 +162,7 @@
           </div>
 
           <!-- Seat C (Aisle) -->
-          <v-button
+          <LazyVButton
             variant="unstyled"
             :disabled="row.seatC.isBooked"
             :class="getSeatClass(row.seatC)"
@@ -181,10 +181,10 @@
                       : `${row.seatC.price} EGP`
               }}
             </span>
-          </v-button>
+          </LazyVButton>
 
           <!-- Seat D (Window) -->
-          <v-button
+          <LazyVButton
             variant="unstyled"
             :disabled="row.seatD.isBooked"
             :class="getSeatClass(row.seatD)"
@@ -203,7 +203,7 @@
                       : `${row.seatD.price} EGP`
               }}
             </span>
-          </v-button>
+          </LazyVButton>
         </div>
       </div>
 

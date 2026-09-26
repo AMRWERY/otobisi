@@ -36,14 +36,14 @@
           <div class="flex items-center gap-1 font-mono text-text-secondary text-xs">
             <span>PNR:</span>
             <strong class="text-text-primary font-black">#OTB-849204-EG</strong>
-            <v-button
+            <LazyVButton
               variant="unstyled"
               class="p-1 hover:text-text-primary text-text-muted cursor-pointer transition-colors"
               title="Copy PNR"
               @click="copyPnr"
             >
               <Icon :name="copied ? 'ph:check-bold' : 'ph:copy-bold'" class="w-3.5 h-3.5" :class="copied ? 'text-emerald-500' : ''" />
-            </v-button>
+            </LazyVButton>
           </div>
         </div>
 
@@ -234,7 +234,7 @@
 
         <!-- Quick Actions -->
         <div class="flex items-center gap-3 ms-auto sm:ms-0 text-text-secondary text-xs">
-          <v-button
+          <LazyVButton
             variant="unstyled"
             size="sm"
             icon="ph:download-simple-bold"
@@ -243,9 +243,9 @@
             @click="downloadPdf"
           >
             <span>PDF E-Ticket</span>
-          </v-button>
+          </LazyVButton>
 
-          <v-button
+          <LazyVButton
             variant="unstyled"
             size="sm"
             icon="ph:calendar-plus-bold"
@@ -254,9 +254,9 @@
             @click="addToCalendar"
           >
             <span>Add to Calendar</span>
-          </v-button>
+          </LazyVButton>
 
-          <v-button
+          <LazyVButton
             variant="unstyled"
             size="sm"
             icon="ph:arrow-counter-clockwise-bold"
@@ -265,7 +265,7 @@
             @click="changeOrCancel"
           >
             <span>Change / Cancel</span>
-          </v-button>
+          </LazyVButton>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
       <label class="block text-xs font-semibold text-text-primary mb-1.5">
         Card Number
       </label>
-      <v-input
+      <LazyVInput
         v-model="cardNumber"
         type="text"
         placeholder="4215 •••••••• 1084"
@@ -26,7 +26,7 @@
       <label class="block text-xs font-semibold text-text-primary mb-1.5">
         Expiry Date
       </label>
-      <v-input
+      <LazyVInput
         v-model="cardExpiry"
         type="text"
         placeholder="MM / YY"
@@ -47,7 +47,7 @@
           3 digits on back
         </span>
       </div>
-      <v-input
+      <LazyVInput
         v-model="cardCvv"
         type="password"
         maxlength="4"

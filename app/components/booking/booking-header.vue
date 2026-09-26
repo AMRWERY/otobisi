@@ -7,7 +7,7 @@
     >
       <!-- Back Button & Hold Timer Badge -->
       <div class="flex items-center gap-3">
-        <v-button
+        <LazyVButton
           variant="unstyled"
           icon="ph:arrow-left-bold"
           icon-class="w-3.5 h-3.5 rtl:rotate-180"
@@ -15,7 +15,7 @@
           @click="$emit('back')"
         >
           <span>Back to Seat Selection</span>
-        </v-button>
+        </LazyVButton>
 
         <span class="text-text-muted select-none">|</span>
 

@@ -26,7 +26,7 @@
         <label class="block text-xs font-semibold text-text-primary mb-1.5">
           Email Address for E-Ticket
         </label>
-        <v-input
+        <LazyVInput
           v-model="email"
           type="email"
           placeholder="your.email@example.com"

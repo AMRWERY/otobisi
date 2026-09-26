@@ -28,7 +28,7 @@
         <div
           class="inline-flex items-center p-1 rounded-xl bg-surface-1 dark:bg-surface-2 border border-border text-xs font-semibold shadow-xs gap-0.5"
         >
-          <v-button
+          <LazyVButton
             v-for="tab in currentTabs"
             :key="tab.id"
             variant="unstyled"
@@ -43,7 +43,7 @@
             @click="currentVariant = tab.id"
           >
             <span>{{ tab.label }}</span>
-          </v-button>
+          </LazyVButton>
         </div>
       </div>
 
@@ -108,7 +108,7 @@
             </p>
           </div>
         </div>
-        <v-button
+        <LazyVButton
           variant="unstyled"
           size="sm"
           :icon="copied ? 'ph:check-bold' : 'ph:copy-bold'"
@@ -116,14 +116,14 @@
           @click="copyErrorCode"
         >
           {{ copied ? "Copied" : "Copy" }}
-        </v-button>
+        </LazyVButton>
       </div>
 
       <!-- PRIMARY & SECONDARY ACTION BUTTONS -->
       <div
         class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-sm"
       >
-        <v-button
+        <LazyVButton
           variant="unstyled"
           class="w-full bg-[#A1331B] hover:bg-[#8B2B16] text-white py-3 px-6 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer disabled:opacity-70"
           content-class="inline-flex items-center gap-2"
@@ -138,9 +138,9 @@
           {{
             isRetrying ? currentData.retryingLabel : currentData.primaryLabel
           }}
-        </v-button>
+        </LazyVButton>
 
-        <v-button
+        <LazyVButton
           v-if="currentVariant === '500'"
           variant="unstyled"
           icon="ph:arrow-left-bold"
@@ -149,7 +149,7 @@
           @click="goHome"
         >
           Back to Search &amp; Booking
-        </v-button>
+        </LazyVButton>
       </div>
 
       <!-- CONTEXTUAL EXTRAS: 404 ACTIVE CORRIDORS -->
@@ -246,13 +246,13 @@
           Contact 24/7 Hotline (19XXX)
         </a>
         <span>•</span>
-        <v-button
+        <LazyVButton
           variant="unstyled"
           class="hover:underline text-text-muted cursor-pointer"
           @click="reportIssue"
         >
           Report Issue
-        </v-button>
+        </LazyVButton>
       </div>
     </main>
 

@@ -43,7 +43,7 @@
           </div>
 
           <!-- The Open Filters Button -->
-          <v-button
+          <LazyVButton
             variant="unstyled"
             class="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#F26A36] hover:bg-[#E05925] text-white font-bold text-xs shadow-sm active:scale-95 transition-all cursor-pointer select-none"
             icon="ph:sliders-horizontal-bold"
@@ -58,7 +58,7 @@
             >
               {{ activeFiltersCount }}
             </span>
-          </v-button>
+          </LazyVButton>
         </div>
 
         <!-- Desktop Filters Sidebar (Left Column, hidden on small screens) -->
@@ -78,7 +78,7 @@
         <div
           class="lg:hidden fixed bottom-5 inset-x-0 flex justify-center z-40 pointer-events-none"
         >
-          <v-button
+          <LazyVButton
             variant="unstyled"
             class="pointer-events-auto flex items-center gap-2 px-5 py-3 rounded-full bg-[#F26A36] hover:bg-[#E05925] text-white shadow-xl shadow-orange-950/40 font-bold text-xs tracking-wide active:scale-95 transition-all border border-white/20 backdrop-blur-md cursor-pointer"
             icon="ph:sliders-horizontal-bold"
@@ -93,7 +93,7 @@
             >
               {{ activeFiltersCount }}
             </span>
-          </v-button>
+          </LazyVButton>
         </div>
 
         <!-- Mobile Filter Slide-Over Drawer Modal -->
@@ -137,7 +137,7 @@
                   </div>
 
                   <!-- Close Button (X) -->
-                  <v-button
+                  <LazyVButton
                     variant="unstyled"
                     class="w-8 h-8 rounded-full bg-surface-2 hover:bg-surface-0 border border-border flex items-center justify-center text-text-primary transition-colors cursor-pointer"
                     aria-label="Close filters"
@@ -229,7 +229,7 @@
             <!-- Sorting Pills & Mobile Filter Button -->
             <div class="flex flex-wrap items-center gap-2 pt-3">
               <!-- Mobile Filters Button (Directly in Sort Bar) -->
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 class="lg:hidden px-3.5 py-1.5 rounded-xl bg-[#F26A36] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs active:scale-95 transition-all cursor-pointer select-none"
                 icon="ph:sliders-horizontal-bold"
@@ -244,14 +244,14 @@
                 >
                   {{ activeFiltersCount }}
                 </span>
-              </v-button>
+              </LazyVButton>
 
               <span
                 class="text-xs font-bold text-text-muted me-1 uppercase tracking-wider hidden sm:inline"
                 >Sort by:</span
               >
 
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
@@ -262,9 +262,9 @@
                 @click="filters.sortBy = 'recommended'"
               >
                 Recommended
-              </v-button>
+              </LazyVButton>
 
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
@@ -275,9 +275,9 @@
                 @click="filters.sortBy = 'cheapest'"
               >
                 Cheapest ({{ minPriceFound }} EGP)
-              </v-button>
+              </LazyVButton>
 
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
@@ -288,9 +288,9 @@
                 @click="filters.sortBy = 'earliest'"
               >
                 Earliest Departure (06:30)
-              </v-button>
+              </LazyVButton>
 
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 :class="[
                   'px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none',
@@ -301,7 +301,7 @@
                 @click="filters.sortBy = 'fastest'"
               >
                 Fastest (2h 30m)
-              </v-button>
+              </LazyVButton>
             </div>
           </div>
 

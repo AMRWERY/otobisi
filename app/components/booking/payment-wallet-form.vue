@@ -4,7 +4,7 @@
       <label class="block text-xs font-semibold text-text-primary mb-1.5">
         Mobile Wallet / InstaPay IPA Handle
       </label>
-      <v-input
+      <LazyVInput
         v-model="walletNumber"
         type="tel"
         placeholder="010 1234 5678 or username@instapay"
@@ -25,7 +25,7 @@
             class="w-5 h-5 text-text-muted shrink-0 ms-2"
           />
         </template>
-      </v-input>
+      </LazyVInput>
       <span class="text-[11px] text-text-muted mt-1 block">
         You will receive an instant push notification or SMS prompt to authorize
         payment.

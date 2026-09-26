@@ -1,7 +1,7 @@
 <template>
   <!-- Light: soft pill tabs -->
   <div class="dark:hidden bg-[#f1f3f6] p-1 rounded-xl flex gap-1 mb-5">
-    <v-button
+    <LazyVButton
       variant="unstyled"
       class="flex-1 py-2 text-xs rounded-lg cursor-pointer text-center transition-all"
       :class="
@@ -12,8 +12,8 @@
       @click="$emit('update:activeTab', 'login')"
     >
       Log in
-    </v-button>
-    <v-button
+    </LazyVButton>
+    <LazyVButton
       variant="unstyled"
       class="flex-1 py-2 text-xs rounded-lg cursor-pointer text-center transition-all"
       :class="
@@ -24,14 +24,14 @@
       @click="$emit('update:activeTab', 'register')"
     >
       Create account
-    </v-button>
+    </LazyVButton>
   </div>
 
   <!-- Dark: orange filled pill tabs with icons -->
   <div
     class="hidden dark:flex bg-[#0b101c] p-1 rounded-xl gap-1.5 mb-5 border border-[#1b2438]"
   >
-    <v-button
+    <LazyVButton
       variant="unstyled"
       icon="ph:sign-in-bold"
       icon-class="w-3.5 h-3.5"
@@ -44,8 +44,8 @@
       @click="$emit('update:activeTab', 'login')"
     >
       <span>Log In</span>
-    </v-button>
-    <v-button
+    </LazyVButton>
+    <LazyVButton
       variant="unstyled"
       icon="ph:user-plus-bold"
       icon-class="w-3.5 h-3.5"
@@ -58,7 +58,7 @@
       @click="$emit('update:activeTab', 'register')"
     >
       <span>Create Account</span>
-    </v-button>
+    </LazyVButton>
   </div>
 </template>
 

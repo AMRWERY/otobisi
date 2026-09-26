@@ -17,22 +17,22 @@
             class="flex items-center gap-1.5 bg-surface-2 border border-border p-0.5 rounded-lg text-[11px] font-medium text-text-secondary"
           >
             <span class="px-2 text-text-muted">Egypt View:</span>
-            <v-button
+            <LazyVButton
               variant="unstyled"
               size="xs"
               icon="ph:arrows-left-right"
               class="px-2 py-0.5 bg-surface-1 rounded shadow-2xs text-text-primary flex items-center gap-1"
             >
               Switch to RTL
-            </v-button>
-            <v-button
+            </LazyVButton>
+            <LazyVButton
               variant="unstyled"
               size="xs"
               icon="ph:sparkle"
               class="px-2 py-0.5 hover:text-text-primary flex items-center gap-1"
             >
               Dark Surface
-            </v-button>
+            </LazyVButton>
           </div>
           <span
             class="bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-emerald-200"
@@ -165,7 +165,14 @@
                 >EGP</span
               >
             </div>
-            <VButton size="sm" icon="ph:armchair-bold"> Select Seats </VButton>
+            <VButton
+              size="sm"
+              icon="ph:armchair-bold"
+              icon-right="ph:arrow-right-bold"
+              icon-class="icon-arrow-animated"
+            >
+              Select Seats
+            </VButton>
           </div>
         </div>
       </div>

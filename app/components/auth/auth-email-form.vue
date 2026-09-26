@@ -1,14 +1,14 @@
 <template>
   <form novalidate class="flex flex-col gap-3" @submit="onSubmit">
     <div v-if="isRegister" class="grid grid-cols-2 gap-3">
-      <v-input
+      <LazyVInput
         v-model="firstName"
         v-bind="firstNameAttrs"
         label="First name"
         autocomplete="given-name"
         :error="errors.firstName"
       />
-      <v-input
+      <LazyVInput
         v-model="lastName"
         v-bind="lastNameAttrs"
         label="Last name"
@@ -17,7 +17,7 @@
       />
     </div>
 
-    <v-input
+    <LazyVInput
       v-model="identifier"
       v-bind="identifierAttrs"
       :label="isRegister ? 'Email' : 'Email or username'"
@@ -27,7 +27,7 @@
       :error="errors.identifier"
     />
 
-    <v-input
+    <LazyVInput
       v-model="password"
       v-bind="passwordAttrs"
       label="Password"
@@ -37,7 +37,7 @@
       :error="errors.password"
     >
       <template #trailing>
-        <v-button
+        <LazyVButton
           variant="unstyled"
           class="shrink-0 text-text-muted hover:text-text-primary cursor-pointer"
           :aria-label="showPassword ? 'Hide password' : 'Show password'"
@@ -47,11 +47,11 @@
             :name="showPassword ? 'ph:eye-slash' : 'ph:eye'"
             class="w-4 h-4"
           />
-        </v-button>
+        </LazyVButton>
       </template>
-    </v-input>
+    </LazyVInput>
 
-    <v-input
+    <LazyVInput
       v-if="isRegister"
       v-model="confirmPassword"
       v-bind="confirmPasswordAttrs"
@@ -62,7 +62,7 @@
       :error="errors.confirmPassword"
     />
 
-    <v-button
+    <LazyVButton
       type="submit"
       variant="unstyled"
       class="mt-1 w-full bg-[#A1331B] hover:bg-[#8d2a13] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer group disabled:opacity-60 disabled:cursor-wait"
@@ -71,9 +71,9 @@
     >
       <span>{{ isRegister ? "Create Account" : "Log In" }}</span>
       <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
-    </v-button>
+    </LazyVButton>
 
-    <v-button
+    <LazyVButton
       variant="unstyled"
       icon="ph:device-mobile-fill"
       icon-class="w-4 h-4"
@@ -81,7 +81,7 @@
       @click="$emit('back')"
     >
       Use mobile number instead
-    </v-button>
+    </LazyVButton>
   </form>
 </template>
 

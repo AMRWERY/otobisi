@@ -18,7 +18,7 @@
 
     <!-- Category Filter Tabs -->
     <div class="flex items-center justify-center gap-2 flex-wrap">
-      <v-button
+      <LazyVButton
         v-for="category in categories"
         :key="category.id"
         variant="unstyled"
@@ -27,7 +27,7 @@
         @click="activeCategory = category.id"
       >
         {{ category.title }}
-      </v-button>
+      </LazyVButton>
     </div>
 
     <!-- Accordion Section -->

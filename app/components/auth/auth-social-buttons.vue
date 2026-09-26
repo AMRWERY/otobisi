@@ -2,7 +2,7 @@
   <div>
     <!-- Light: Google + Meeza Card -->
     <div class="dark:hidden grid grid-cols-2 gap-3">
-      <v-button
+      <LazyVButton
         variant="unstyled"
         icon="material-icon-theme:google"
         icon-class="w-4 h-4 shrink-0"
@@ -10,8 +10,8 @@
         @click="$emit('google')"
       >
         <span>Google</span>
-      </v-button>
-      <v-button
+      </LazyVButton>
+      <LazyVButton
         variant="unstyled"
         icon="ph:credit-card-fill"
         icon-class="w-4 h-4 text-[#A1331B] shrink-0"
@@ -19,12 +19,12 @@
         @click="$emit('meeza')"
       >
         <span>Meeza Card</span>
-      </v-button>
+      </LazyVButton>
     </div>
 
     <!-- Light: Email link -->
     <div class="dark:hidden mt-3.5 text-center">
-      <v-button
+      <LazyVButton
         variant="unstyled"
         icon="ph:envelope-simple-fill"
         icon-class="w-4 h-4"
@@ -32,12 +32,12 @@
         @click="$emit('email')"
       >
         Sign in with Email &amp; Password instead
-      </v-button>
+      </LazyVButton>
     </div>
 
     <!-- Dark: Google + Email & Pass -->
     <div class="hidden dark:grid grid-cols-2 gap-3">
-      <v-button
+      <LazyVButton
         variant="unstyled"
         icon="material-icon-theme:google"
         icon-class="w-4 h-4 shrink-0"
@@ -45,8 +45,8 @@
         @click="$emit('google')"
       >
         <span>Google</span>
-      </v-button>
-      <v-button
+      </LazyVButton>
+      <LazyVButton
         variant="unstyled"
         icon="ph:envelope-simple-fill"
         icon-class="w-4 h-4 text-orange-400 shrink-0"
@@ -54,7 +54,7 @@
         @click="$emit('email')"
       >
         <span>Email &amp; Pass</span>
-      </v-button>
+      </LazyVButton>
     </div>
   </div>
 </template>

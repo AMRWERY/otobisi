@@ -16,7 +16,7 @@
       </div>
       <div>
         <!-- Light: Edit link -->
-        <v-button
+        <LazyVButton
           variant="unstyled"
           icon="ph:pencil-simple-bold"
           icon-class="w-3 h-3"
@@ -24,7 +24,7 @@
           @click="$emit('edit')"
         >
           Edit
-        </v-button>
+        </LazyVButton>
         <!-- Dark: Step badge -->
         <span
           class="hidden dark:inline text-[10px] font-bold text-amber-500 tracking-wider"
@@ -65,7 +65,7 @@
           timerDisplay
         }}</strong>
       </span>
-      <v-button
+      <LazyVButton
         variant="unstyled"
         icon="ph:whatsapp-logo-fill"
         icon-class="w-3.5 h-3.5 text-emerald-500"
@@ -73,7 +73,7 @@
         @click="$emit('whatsapp')"
       >
         Send via WhatsApp
-      </v-button>
+      </LazyVButton>
     </div>
   </div>
 </template>

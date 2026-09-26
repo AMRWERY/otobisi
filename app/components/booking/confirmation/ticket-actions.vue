@@ -3,17 +3,17 @@
     class="max-w-4xl mx-auto mt-5 flex flex-wrap items-center justify-center gap-3"
   >
     <!-- Download PDF -->
-    <v-button
+    <LazyVButton
       variant="unstyled"
       class="flex-1 min-w-[200px] bg-[#A1331B] hover:bg-[#8B2B16] text-white py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/10 hover:shadow-lg transition-all active:scale-98 cursor-pointer"
       icon="ph:download-simple-bold"
       @click="downloadTicket"
     >
       <span>Download Ticket (PDF)</span>
-    </v-button>
+    </LazyVButton>
 
     <!-- Add to Calendar -->
-    <v-button
+    <LazyVButton
       variant="unstyled"
       class="flex-1 min-w-[170px] bg-surface-1 border border-border hover:bg-surface-2 text-text-primary py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs transition-all active:scale-98 cursor-pointer"
       icon="ph:calendar-plus-bold"
@@ -21,10 +21,10 @@
       @click="addToCalendar"
     >
       <span>Add to Calendar</span>
-    </v-button>
+    </LazyVButton>
 
     <!-- Share Link -->
-    <v-button
+    <LazyVButton
       variant="unstyled"
       class="flex-1 min-w-[170px] bg-surface-1 border border-border hover:bg-surface-2 text-text-primary py-3 px-5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-2xs transition-all active:scale-98 cursor-pointer"
       icon="ph:share-network-bold"
@@ -32,7 +32,7 @@
       @click="shareVoucher"
     >
       <span>Share Voucher Link</span>
-    </v-button>
+    </LazyVButton>
 
     <!-- View in My Bookings -->
     <nuxt-link-locale

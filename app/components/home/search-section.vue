@@ -54,7 +54,7 @@
             <div
               class="inline-flex p-1 bg-surface-2 rounded-xl text-xs font-semibold"
             >
-              <v-button
+              <LazyVButton
                 variant="unstyled"
                 @click="tripType = 'oneway'"
                 :class="
@@ -65,8 +65,8 @@
                 class="px-3.5 py-1.5 rounded-lg transition-all"
               >
                 One-way
-              </v-button>
-              <v-button
+              </LazyVButton>
+              <LazyVButton
                 variant="unstyled"
                 @click="tripType = 'round'"
                 :class="
@@ -77,7 +77,7 @@
                 class="px-3.5 py-1.5 rounded-lg transition-all"
               >
                 Round-trip
-              </v-button>
+              </LazyVButton>
             </div>
 
             <!-- Features Badges -->
@@ -205,7 +205,7 @@
               gap-class="gap-2.5"
             >
               <template #item="{ item: corridor, isDragging }">
-                <v-button
+                <LazyVButton
                   variant="unstyled"
                   @click="!isDragging && goToCorridor(corridor)"
                   content-class="w-full inline-flex items-center justify-between"
@@ -223,7 +223,7 @@
                   >
                     from {{ corridor.price }} EGP
                   </span>
-                </v-button>
+                </LazyVButton>
               </template>
             </LazyVSwiper>
           </div>
