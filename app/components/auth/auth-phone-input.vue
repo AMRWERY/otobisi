@@ -26,13 +26,76 @@
           : 'border-transparent dark:border-[#222c44] focus-within:border-orange-500/50'
       "
     >
-      <!-- Country flag & code -->
-      <div
-        class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 shrink-0 select-none cursor-pointer"
-      >
-        <span class="text-base leading-none">🇪🇬</span>
-        <span>+20</span>
-        <Icon name="ph:caret-down-bold" class="w-3 h-3 text-gray-400" />
+      <!-- Country flag & code picker -->
+      <div ref="pickerRef" class="relative shrink-0">
+        <button
+          type="button"
+          class="flex items-center gap-1 text-sm font-bold text-gray-700 dark:text-gray-200 select-none cursor-pointer disabled:cursor-wait"
+          :disabled="!countries.length"
+          :aria-expanded="isOpen"
+          aria-haspopup="listbox"
+          @click="toggle"
+        >
+          <img
+            v-if="country"
+            :src="country.flag"
+            :alt="country.name"
+            class="w-5 h-3.5 rounded-sm object-cover"
+          />
+          <span v-else class="text-base leading-none">🇪🇬</span>
+          <span dir="ltr">{{ country?.dialCode ?? "+20" }}</span>
+          <Icon
+            name="ph:caret-down-bold"
+            class="w-3 h-3 text-gray-400 transition-transform"
+            :class="{ 'rotate-180': isOpen }"
+          />
+        </button>
+
+        <div
+          v-if="isOpen"
+          class="absolute start-0 top-full mt-3 z-30 w-64 bg-white dark:bg-[#141b2d] border border-gray-100 dark:border-[#212b42] rounded-xl shadow-lg overflow-hidden"
+        >
+          <div class="p-2 border-b border-gray-100 dark:border-[#212b42]">
+            <input
+              ref="searchRef"
+              v-model="query"
+              type="text"
+              placeholder="Search country or code"
+              class="w-full text-sm bg-[#f0f4f9] dark:bg-[#0b101c] text-gray-900 dark:text-gray-100 placeholder:text-gray-400 rounded-lg px-2.5 py-1.5 outline-none"
+            />
+          </div>
+          <ul role="listbox" class="max-h-60 overflow-y-auto py-1">
+            <li
+              v-for="c in filteredCountries"
+              :key="c.name"
+              role="option"
+              :aria-selected="c.name === country?.name"
+              class="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer text-gray-700 dark:text-gray-200 hover:bg-[#f0f4f9] dark:hover:bg-[#0b101c]"
+              :class="{
+                'bg-[#f0f4f9] dark:bg-[#0b101c] font-semibold':
+                  c.name === country?.name,
+              }"
+              @click="select(c)"
+            >
+              <img
+                :src="c.flag"
+                :alt="c.name"
+                loading="lazy"
+                class="w-5 h-3.5 rounded-sm object-cover shrink-0"
+              />
+              <span class="flex-1 truncate">{{ c.name }}</span>
+              <span dir="ltr" class="text-gray-400 text-xs">{{
+                c.dialCode
+              }}</span>
+            </li>
+            <li
+              v-if="!filteredCountries.length"
+              class="px-3 py-2 text-sm text-gray-400"
+            >
+              No results
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="h-4 w-px bg-gray-300 dark:bg-gray-700 mx-2.5 shrink-0"></div>
       <input
@@ -77,15 +140,47 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
+import type { Country } from "~/service/types/country";
+import { searchCountries } from "~/service/countries";
+
+const props = defineProps<{
   modelValue: string;
   isValid: boolean;
   inputRef?: (el: unknown) => void;
+  countries: Country[];
+  country: Country | null;
 }>();
-defineEmits<{
+const emit = defineEmits<{
   (e: "update:modelValue", val: string): void;
+  (e: "update:country", val: Country): void;
   (e: "enter"): void;
 }>();
+
+const isOpen = ref(false);
+const query = ref("");
+const pickerRef = ref<HTMLElement | null>(null);
+const searchRef = ref<HTMLInputElement | null>(null);
+
+const filteredCountries = computed(() =>
+  searchCountries(props.countries, query.value),
+);
+
+const toggle = async () => {
+  isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    query.value = "";
+    await nextTick();
+    searchRef.value?.focus();
+  }
+};
+
+const select = (c: Country) => {
+  emit("update:country", c);
+  isOpen.value = false;
+};
+
+onClickOutside(pickerRef, () => (isOpen.value = false));
+onKeyStroke("Escape", () => (isOpen.value = false));
 </script>
 
 <style scoped>

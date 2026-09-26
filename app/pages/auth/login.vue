@@ -19,9 +19,22 @@
       <!-- TABS -->
       <lazy-auth-tabs v-model:active-tab="activeTab" />
 
+      <!-- EMAIL & PASSWORD FORM -->
+      <lazy-auth-email-form
+        v-if="authMethod === 'email'"
+        :mode="activeTab"
+        :error="authError"
+        @login="onEmailLogin"
+        @register="onEmailRegister"
+        @back="authMethod = 'phone'"
+      />
+
+      <template v-else>
       <!-- MOBILE NUMBER INPUT -->
       <lazy-auth-phone-input
         v-model="phoneNumber"
+        v-model:country="selectedCountry"
+        :countries="countries"
         :is-valid="phoneValid"
         :input-ref="(el) => (phoneInputRef = el as HTMLInputElement | null)"
         @enter="handleEnterKey"
@@ -51,6 +64,7 @@
         <span>Verify &amp; Continue</span>
         <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
       </button>
+      </template>
 
       <!-- DIVIDER -->
       <div class="my-5 relative flex items-center justify-center">
@@ -105,32 +119,76 @@
 </template>
 
 <script lang="ts" setup>
+import type { Country } from "~/service/types/country";
+import {
+  DEFAULT_COUNTRY_NAME,
+  findCountryByName,
+  loadCountries,
+} from "~/service/countries";
+import { AuthError } from "~/service/auth";
+import type { LoginInput, RegisterInput } from "~/service/types/user";
+
 const localePath = useLocalePath();
 const router = useRouter();
 const route = useRoute();
+const authStore = useAuthStore();
 
 // Tab state: 'login' | 'register'
 const activeTab = ref<"login" | "register">(
   route.query.tab === "register" ? "register" : "login",
 );
 
+// Auth method: mobile OTP (default) or email & password against mock users
+const authMethod = ref<"phone" | "email">("phone");
+const authError = ref<string | null>(null);
+
+watch(activeTab, () => (authError.value = null));
+
+const runAuth = async (action: () => void) => {
+  authError.value = null;
+  try {
+    action();
+  } catch (err) {
+    if (!(err instanceof AuthError)) throw err;
+    authError.value = err.message;
+    return;
+  }
+  await router.push(localePath("/bookings"));
+};
+
+const onEmailLogin = (input: LoginInput) =>
+  runAuth(() => authStore.login(input));
+
+const onEmailRegister = (input: RegisterInput) =>
+  runAuth(() => authStore.register(input));
+
+// Countries for the dial-code picker. Loaded client-side only so the ~5MB
+// flags JSON never lands in the SSR payload.
+const countries = ref<Country[]>([]);
+const selectedCountry = ref<Country | null>(null);
+const isEgypt = computed(
+  () => !selectedCountry.value || selectedCountry.value.callingCode === 20,
+);
+
 // Phone Number initialised with demo Egyptian phone number
 const phoneNumber = ref("010 1234 5678");
 const phoneInputRef = ref<HTMLInputElement | null>(null);
 
-// Validate Egyptian mobile number format
+// Validate Egyptian mobile format; other countries fall back to E.164 length
 const phoneValid = computed(() => {
   const digits = phoneNumber.value.replace(/\s/g, "");
+  if (!isEgypt.value) return /^\d{6,14}$/.test(digits);
   return /^(010|011|012|015)\d{8}$/.test(digits) || /^1\d{9}$/.test(digits);
 });
 
-// Formatted phone string for display
+// Formatted phone string (with dial code) for display
 const formattedPhone = computed(() => {
+  const dialCode = selectedCountry.value?.dialCode ?? "+20";
   const clean = phoneNumber.value.replace(/\D/g, "");
-  if (clean.startsWith("010") && clean.length >= 11) {
-    return `10 ${clean.slice(3, 7)} ${clean.slice(7)}`;
+  if (isEgypt.value && clean.startsWith("0") && clean.length >= 11) {
+    return `${dialCode} ${clean.slice(1, 3)} ${clean.slice(3, 7)} ${clean.slice(7)}`;
   }
-  return clean || "10 1234 5678";
+  return `${dialCode} ${clean.replace(/^0/, "") || "10 1234 5678"}`;
 });
 
 // 6 OTP Digits
@@ -223,7 +281,7 @@ const loginWithMeeza = () => {
 };
 
 const loginWithEmail = () => {
-  alert("Opening Email & Password Authentication form...");
+  authMethod.value = "email";
 };
 
 // Sync activeTab with URL query string
@@ -233,8 +291,17 @@ watch(activeTab, (tab) => {
   });
 });
 
-onMounted(() => {
+onMounted(async () => {
   startResendTimer();
+  try {
+    countries.value = await loadCountries();
+    selectedCountry.value =
+      findCountryByName(countries.value, DEFAULT_COUNTRY_NAME) ??
+      countries.value[0] ??
+      null;
+  } catch (err) {
+    console.error("Failed to load countries", err);
+  }
 });
 
 onUnmounted(() => {

@@ -1,0 +1,184 @@
+<template>
+  <form novalidate class="flex flex-col gap-3" @submit="onSubmit">
+    <div v-if="isRegister" class="grid grid-cols-2 gap-3">
+      <v-input
+        v-model="firstName"
+        v-bind="firstNameAttrs"
+        label="First name"
+        autocomplete="given-name"
+        :error="errors.firstName"
+      />
+      <v-input
+        v-model="lastName"
+        v-bind="lastNameAttrs"
+        label="Last name"
+        autocomplete="family-name"
+        :error="errors.lastName"
+      />
+    </div>
+
+    <v-input
+      v-model="identifier"
+      v-bind="identifierAttrs"
+      :label="isRegister ? 'Email' : 'Email or username'"
+      :type="isRegister ? 'email' : 'text'"
+      :autocomplete="isRegister ? 'email' : 'username'"
+      icon="ph:envelope-simple"
+      :error="errors.identifier"
+    />
+
+    <v-input
+      v-model="password"
+      v-bind="passwordAttrs"
+      label="Password"
+      :type="showPassword ? 'text' : 'password'"
+      :autocomplete="isRegister ? 'new-password' : 'current-password'"
+      icon="ph:lock-simple"
+      :error="errors.password"
+    >
+      <template #trailing>
+        <button
+          type="button"
+          class="shrink-0 text-text-muted hover:text-text-primary cursor-pointer"
+          :aria-label="showPassword ? 'Hide password' : 'Show password'"
+          @click="showPassword = !showPassword"
+        >
+          <Icon
+            :name="showPassword ? 'ph:eye-slash' : 'ph:eye'"
+            class="w-4 h-4"
+          />
+        </button>
+      </template>
+    </v-input>
+
+    <v-input
+      v-if="isRegister"
+      v-model="confirmPassword"
+      v-bind="confirmPasswordAttrs"
+      label="Confirm password"
+      :type="showPassword ? 'text' : 'password'"
+      autocomplete="new-password"
+      icon="ph:lock-simple"
+      :error="errors.confirmPassword"
+    />
+
+    <p
+      v-if="error"
+      role="alert"
+      class="text-xs font-medium text-red-500 flex items-center gap-1.5"
+    >
+      <Icon name="ph:warning-circle-bold" class="w-3.5 h-3.5 shrink-0" />
+      {{ error }}
+    </p>
+
+    <button
+      type="submit"
+      class="mt-1 w-full bg-[#A1331B] hover:bg-[#8d2a13] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer group disabled:opacity-60 disabled:cursor-wait"
+      :disabled="isSubmitting"
+    >
+      <span>{{ isRegister ? "Create Account" : "Log In" }}</span>
+      <Icon name="ph:arrow-right-bold" class="w-4 h-4 icon-arrow-animated" />
+    </button>
+
+    <button
+      type="button"
+      class="inline-flex items-center justify-center gap-1.5 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-semibold cursor-pointer transition-colors"
+      @click="$emit('back')"
+    >
+      <Icon name="ph:device-mobile-fill" class="w-4 h-4" />
+      Use mobile number instead
+    </button>
+  </form>
+</template>
+
+<script lang="ts" setup>
+import type { LoginInput, RegisterInput } from "~/service/types/user";
+
+const props = defineProps<{
+  mode: "login" | "register";
+  /** Error returned by the auth service, shown above the submit button */
+  error?: string | null;
+}>();
+
+const emit = defineEmits<{
+  (e: "login", val: LoginInput): void;
+  (e: "register", val: RegisterInput): void;
+  (e: "back"): void;
+}>();
+
+const isRegister = computed(() => props.mode === "register");
+const showPassword = ref(false);
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const required = (label: string) => (v: unknown) =>
+  (typeof v === "string" && v.trim().length > 0) || `${label} is required`;
+
+// Register-only fields pass automatically in login mode
+const registerOnly =
+  (rule: (v: unknown, ctx: { form: Record<string, unknown> }) => true | string) =>
+  (v: unknown, ctx: { form: Record<string, unknown> }) =>
+    !isRegister.value || rule(v, ctx);
+
+const { defineField, errors, values, handleSubmit, isSubmitting, resetForm } =
+  useForm({
+  validationSchema: {
+    firstName: registerOnly(required("First name")),
+    lastName: registerOnly(required("Last name")),
+    identifier: (v: unknown) => {
+      const label = isRegister.value ? "Email" : "Email or username";
+      const present = required(label)(v);
+      if (present !== true) return present;
+      return (
+        !isRegister.value ||
+        EMAIL_RE.test(String(v).trim()) ||
+        "Enter a valid email address"
+      );
+    },
+    password: (v: unknown) => {
+      const present = required("Password")(v);
+      if (present !== true || !isRegister.value) return present;
+      const value = String(v);
+      if (value.length < 8) return "Password must be at least 8 characters";
+      return (
+        (/[a-z]/i.test(value) && /\d/.test(value)) ||
+        "Password must contain a letter and a number"
+      );
+    },
+    confirmPassword: registerOnly(
+      (v, ctx) => v === ctx.form.password || "Passwords do not match",
+    ),
+  },
+  initialValues: {
+    firstName: "",
+    lastName: "",
+    identifier: "",
+    password: "",
+    confirmPassword: "",
+  },
+});
+
+const [firstName, firstNameAttrs] = defineField("firstName");
+const [lastName, lastNameAttrs] = defineField("lastName");
+const [identifier, identifierAttrs] = defineField("identifier");
+const [password, passwordAttrs] = defineField("password");
+const [confirmPassword, confirmPasswordAttrs] = defineField("confirmPassword");
+
+// Keep what the user typed, but drop stale errors when switching tabs
+watch(
+  () => props.mode,
+  () => resetForm({ values: { ...values } }),
+);
+
+const onSubmit = handleSubmit((values) => {
+  if (isRegister.value) {
+    emit("register", {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.identifier,
+      password: values.password,
+    });
+  } else {
+    emit("login", { identifier: values.identifier, password: values.password });
+  }
+});
+</script>

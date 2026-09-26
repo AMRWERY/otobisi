@@ -35,7 +35,7 @@
 
     <!-- Sent-to subtitle (light only) -->
     <p class="dark:hidden text-[11px] text-gray-500 mb-3">
-      Sent to <strong>+20 {{ formattedPhone }}</strong>
+      Sent to <strong dir="ltr">{{ formattedPhone }}</strong>
     </p>
     <div v-if="!formattedPhone" class="hidden dark:block mb-3" />
 
