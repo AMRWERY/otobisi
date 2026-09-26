@@ -224,11 +224,21 @@
 </template>
 
 <script lang="ts" setup>
+const toast = useToast();
+
 const downloadInvoice = (pnr: string) => {
-  alert(`Downloading VAT Tax Invoice PDF for PNR ${pnr}...`);
+  toast.info("Downloading invoice", {
+    description: "Your VAT tax invoice PDF is being prepared.",
+    badge: pnr,
+  });
 };
 
 const viewRefundAdvice = (pnr: string) => {
-  alert(`Official Egyptian MOT Refund Advice Voucher for PNR ${pnr}: +260.00 EGP credited to Vodafone Cash.`);
+  toast.success("Refund credited", {
+    description:
+      "Official Egyptian MOT refund advice: +260.00 EGP credited to Vodafone Cash.",
+    badge: pnr,
+    duration: 8000,
+  });
 };
 </script>

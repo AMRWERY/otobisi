@@ -423,8 +423,10 @@ const currencies = [
 
 const selectedCurrency = ref(currencies[0]);
 
+const toast = useToast();
+
 const openCookieSettings = () => {
-  alert("Cookie preferences are up to date.");
+  toast.success("Cookie preferences are up to date.");
 };
 
 // Close dropdowns on outside click

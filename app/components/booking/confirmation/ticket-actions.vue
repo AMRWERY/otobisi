@@ -44,27 +44,46 @@
 </template>
 
 <script lang="ts" setup>
+const toast = useToast();
+
 const downloadTicket = () => {
-  alert("Downloading official Egyptian Ministry of Transport E-Ticket PDF...");
+  toast.info("Downloading E-Ticket", {
+    description:
+      "Your official Egyptian Ministry of Transport E-Ticket PDF is being prepared.",
+  });
 };
 
 const addToCalendar = () => {
-  alert("Trip event added to your calendar (08:30 AM Cairo to Alexandria).");
+  toast.success("Added to calendar", {
+    description: "08:30 AM Cairo to Alexandria trip was added to your calendar.",
+  });
+};
+
+const copyVoucherLink = async () => {
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    toast.success("Link copied", {
+      description: "Voucher link copied to clipboard.",
+    });
+  } catch {
+    toast.error("Couldn't copy link", {
+      description: "Please copy the page URL manually.",
+    });
+  }
 };
 
 const shareVoucher = async () => {
-  if (navigator?.share) {
-    try {
-      await navigator.share({
-        title: "Otobisi Bus E-Ticket",
-        text: "Cairo to Alexandria Trip Voucher (PNR: OTB-849204-EG)",
-        url: window.location.href,
-      });
-    } catch {
-      alert("Voucher link copied to clipboard!");
-    }
-  } else {
-    alert("Voucher link copied to clipboard!");
+  if (!navigator?.share) return copyVoucherLink();
+  try {
+    await navigator.share({
+      title: "Otobisi Bus E-Ticket",
+      text: "Cairo to Alexandria Trip Voucher (PNR: OTB-849204-EG)",
+      url: window.location.href,
+    });
+  } catch (err) {
+    // User closed the share sheet — nothing to report
+    if (err instanceof DOMException && err.name === "AbortError") return;
+    await copyVoucherLink();
   }
 };
 </script>

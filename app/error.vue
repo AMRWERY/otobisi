@@ -257,6 +257,9 @@
 
     <!-- Site-wide Shared Footer -->
     <Footer />
+
+    <!-- error.vue renders outside app.vue, so mount the toast container here too -->
+    <LazyVToast />
   </div>
 </template>
 
@@ -410,10 +413,12 @@ const copyErrorCode = async () => {
   }, 2000);
 };
 
+const toast = useToast();
+
 const reportIssue = () => {
-  alert(
-    "Issue logged. Our Egyptian transit operations team has been notified.",
-  );
+  toast.success("Issue logged", {
+    description: "Our Egyptian transit operations team has been notified.",
+  });
 };
 
 // ─── SEO Page Title ──────────────────────────────────────────────────────────

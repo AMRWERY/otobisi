@@ -23,7 +23,6 @@
       <lazy-auth-email-form
         v-if="authMethod === 'email'"
         :mode="activeTab"
-        :error="authError"
         @login="onEmailLogin"
         @register="onEmailRegister"
         @back="authMethod = 'phone'"
@@ -132,6 +131,7 @@ const localePath = useLocalePath();
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
+const toast = useToast();
 
 // Tab state: 'login' | 'register'
 const activeTab = ref<"login" | "register">(
@@ -140,17 +140,13 @@ const activeTab = ref<"login" | "register">(
 
 // Auth method: mobile OTP (default) or email & password against mock users
 const authMethod = ref<"phone" | "email">("phone");
-const authError = ref<string | null>(null);
-
-watch(activeTab, () => (authError.value = null));
 
 const runAuth = async (action: () => void) => {
-  authError.value = null;
   try {
     action();
   } catch (err) {
     if (!(err instanceof AuthError)) throw err;
-    authError.value = err.message;
+    toast.error(err.message);
     return;
   }
   await router.push(localePath("/bookings"));
@@ -260,7 +256,9 @@ const resendTimerDisplay = computed(() => {
 
 const sendViaWhatsApp = () => {
   startResendTimer();
-  alert("Verification code sent to WhatsApp");
+  toast.success("Verification code sent", {
+    description: `We sent a 6-digit code to ${formattedPhone.value} on WhatsApp.`,
+  });
 };
 
 const handleEnterKey = () => {
@@ -273,11 +271,15 @@ const verifyOtp = async () => {
 };
 
 const loginWithGoogle = () => {
-  alert("Connecting to Google Identity Provider...");
+  toast.info("Connecting to Google", {
+    description: "Redirecting you to the Google sign-in page...",
+  });
 };
 
 const loginWithMeeza = () => {
-  alert("Redirecting to Meeza Payment Gateway...");
+  toast.info("Connecting to Meeza", {
+    description: "Redirecting you to the Meeza payment gateway...",
+  });
 };
 
 const loginWithEmail = () => {

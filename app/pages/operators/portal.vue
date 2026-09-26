@@ -51,7 +51,7 @@
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
               <label class="text-xs font-semibold text-text-primary">Password</label>
-              <a href="#" class="text-[11px] text-[#EA580C] hover:underline" @click.prevent="alert('Please contact your fleet admin or Otobisi Operator Support (19XXX) for password recovery.')">Forgot?</a>
+              <a href="#" class="text-[11px] text-[#EA580C] hover:underline" @click.prevent="onForgotPassword">Forgot?</a>
             </div>
             <input
               v-model="loginForm.password"
@@ -126,6 +126,15 @@ const loginForm = reactive({
 });
 
 const loginError = ref("");
+const toast = useToast();
+
+const onForgotPassword = () => {
+  toast.info("Password recovery", {
+    description:
+      "Please contact your fleet admin or Otobisi Operator Support (19XXX).",
+    duration: 8000,
+  });
+};
 
 const handleLogin = () => {
   loginError.value = "Operator credentials verified. Redirecting to dispatch terminal...";

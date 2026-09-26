@@ -92,6 +92,7 @@ import type { StepItem } from "~/types/shared/VStepper";
 const route = useRoute();
 const router = useRouter();
 const { getTripById } = useTrips();
+const toast = useToast();
 
 const tripId = String(route.params.id || "gb-01");
 const trip = computed(() => getTripById(tripId));
@@ -257,7 +258,9 @@ const toggleSeat = (seat: SeatItem) => {
     selectedSeatIds.value.splice(index, 1);
   } else {
     if (selectedSeatIds.value.length >= 4) {
-      alert("You can select a maximum of 4 seats per reservation.");
+      toast.warning("Seat limit reached", {
+        description: "You can select a maximum of 4 seats per reservation.",
+      });
       return;
     }
     selectedSeatIds.value.push(seat.id);
@@ -272,7 +275,9 @@ const removeSeat = (seatId: string) => {
 };
 
 const onChangeStation = (type: "boarding" | "dropoff") => {
-  alert(`Change ${type} station feature will be available shortly.`);
+  toast.info("Coming soon", {
+    description: `Changing the ${type} station will be available shortly.`,
+  });
 };
 
 const handleStepClick = (step: StepItem) => {

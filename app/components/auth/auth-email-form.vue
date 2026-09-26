@@ -62,15 +62,6 @@
       :error="errors.confirmPassword"
     />
 
-    <p
-      v-if="error"
-      role="alert"
-      class="text-xs font-medium text-red-500 flex items-center gap-1.5"
-    >
-      <Icon name="ph:warning-circle-bold" class="w-3.5 h-3.5 shrink-0" />
-      {{ error }}
-    </p>
-
     <button
       type="submit"
       class="mt-1 w-full bg-[#A1331B] hover:bg-[#8d2a13] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-orange-950/15 transition-all active:scale-[0.99] cursor-pointer group disabled:opacity-60 disabled:cursor-wait"
@@ -96,8 +87,6 @@ import type { LoginInput, RegisterInput } from "~/service/types/user";
 
 const props = defineProps<{
   mode: "login" | "register";
-  /** Error returned by the auth service, shown above the submit button */
-  error?: string | null;
 }>();
 
 const emit = defineEmits<{

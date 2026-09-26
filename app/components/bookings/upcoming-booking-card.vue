@@ -267,6 +267,7 @@
 </template>
 
 <script lang="ts" setup>
+const toast = useToast();
 const copied = ref(false);
 
 const copyPnr = async () => {
@@ -283,14 +284,21 @@ const copyPnr = async () => {
 };
 
 const downloadPdf = () => {
-  alert("Downloading official E-Ticket PDF for PNR #OTB-849204-EG...");
+  toast.info("Downloading E-Ticket", {
+    description: "Your official E-Ticket PDF is being prepared.",
+    badge: "OTB-849204-EG",
+  });
 };
 
 const addToCalendar = () => {
-  alert("Added Cairo ➔ Alexandria trip to your calendar.");
+  toast.success("Added to calendar", {
+    description: "Cairo ➔ Alexandria trip was added to your calendar.",
+  });
 };
 
 const changeOrCancel = () => {
-  alert("Redirecting to Manage Booking self-service cancellation / rescheduling...");
+  toast.info("Manage booking", {
+    description: "Redirecting to self-service cancellation / rescheduling...",
+  });
 };
 </script>

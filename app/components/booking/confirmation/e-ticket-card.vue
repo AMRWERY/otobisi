@@ -469,6 +469,7 @@ const props = withDefaults(
 );
 
 const baseFare = computed(() => props.seats.length * (props.trip.price || 145));
+
 const totalPaid = computed(
   () => baseFare.value + (props.seats.length > 0 ? 15 : 0),
 );
