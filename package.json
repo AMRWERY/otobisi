@@ -26,6 +26,7 @@
     "vue-router": "^5.3.0"
   },
   "devDependencies": {
+    "@iconify-json/material-icon-theme": "^1.2.70",
     "@iconify-json/material-symbols": "^1.2.91",
     "@iconify-json/noto-v1": "^1.2.5",
     "@iconify-json/ph": "^1.2.2",
