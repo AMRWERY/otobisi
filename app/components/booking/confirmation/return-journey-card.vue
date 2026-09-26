@@ -203,7 +203,7 @@
     <!-- Footer link -->
     <div class="mt-4 pt-3 border-t border-border text-center">
       <nuxt-link-locale
-        to="/search"
+        to="/search/cairo-alexandria"
         class="inline-flex items-center gap-1 text-xs font-bold text-[#A1331B] dark:text-orange-400 hover:underline"
       >
         <Icon name="ph:magnifying-glass-bold" class="w-3.5 h-3.5" />
@@ -218,7 +218,7 @@ const router = useRouter();
 const localePath = useLocalePath();
 
 const changeDate = () => {
-  router.push(localePath("/search"));
+  router.push(localePath("/search/cairo-alexandria"));
 };
 
 const selectReturnTrip = (tripId: string) => {

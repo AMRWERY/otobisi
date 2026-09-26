@@ -34,7 +34,7 @@
       <!-- Action Buttons -->
       <div class="flex items-center gap-2.5 sm:gap-3 flex-wrap">
         <nuxt-link-locale
-          to="/search"
+          to="/search/cairo-alexandria"
           class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#A1331B] hover:bg-[#8B2B16] text-white text-xs sm:text-sm font-bold shadow-md shadow-orange-950/10 hover:shadow-lg transition-all active:scale-98"
         >
           <Icon name="ph:plus-bold" class="w-4 h-4" />

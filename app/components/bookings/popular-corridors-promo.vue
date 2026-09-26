@@ -12,7 +12,7 @@
       </div>
 
       <nuxt-link-locale
-        to="/search"
+        to="/active-routes"
         class="inline-flex items-center gap-1 text-xs font-bold text-[#A1331B] dark:text-orange-400 hover:underline group"
       >
         <span>View all routes</span>
@@ -24,7 +24,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
       <!-- 1. Cairo -> Alexandria -->
       <nuxt-link-locale
-        to="/search?from=Cairo&to=Alexandria"
+        to="/search/cairo-alexandria"
         class="p-3.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border hover:border-orange-500/40 transition-all group flex flex-col justify-between"
       >
         <div class="flex items-center justify-between gap-2 mb-2">
@@ -46,7 +46,7 @@
 
       <!-- 2. Cairo -> Hurghada -->
       <nuxt-link-locale
-        to="/search?from=Cairo&to=Hurghada"
+        to="/search/cairo-hurghada"
         class="p-3.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border hover:border-orange-500/40 transition-all group flex flex-col justify-between"
       >
         <div class="flex items-center justify-between gap-2 mb-2">
@@ -68,7 +68,7 @@
 
       <!-- 3. Cairo -> Sharm El Sheikh -->
       <nuxt-link-locale
-        to="/search?from=Cairo&to=Sharm"
+        to="/search/cairo-sharm-el-sheikh"
         class="p-3.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border hover:border-orange-500/40 transition-all group flex flex-col justify-between"
       >
         <div class="flex items-center justify-between gap-2 mb-2">
@@ -90,7 +90,7 @@
 
       <!-- 4. Cairo -> Luxor -->
       <nuxt-link-locale
-        to="/search?from=Cairo&to=Luxor"
+        to="/search/cairo-luxor"
         class="p-3.5 rounded-xl bg-surface-2 hover:bg-surface-0 border border-border hover:border-orange-500/40 transition-all group flex flex-col justify-between"
       >
         <div class="flex items-center justify-between gap-2 mb-2">

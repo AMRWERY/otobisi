@@ -297,84 +297,29 @@
         <div
           class="md:col-span-4 flex flex-col items-center justify-center text-center"
         >
-          <div class="p-3 bg-white rounded-2xl border border-border shadow-md">
-            <!-- High density styled QR graphic -->
-            <svg
-              class="w-32 h-32 text-gray-900"
-              viewBox="0 0 100 100"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <!-- QR Corner 1 -->
-              <rect x="5" y="5" width="26" height="26" rx="4" fill="black" />
-              <rect x="9" y="9" width="18" height="18" fill="white" />
-              <rect x="13" y="13" width="10" height="10" rx="2" fill="black" />
-
-              <!-- QR Corner 2 -->
-              <rect x="69" y="5" width="26" height="26" rx="4" fill="black" />
-              <rect x="73" y="9" width="18" height="18" fill="white" />
-              <rect x="77" y="13" width="10" height="10" rx="2" fill="black" />
-
-              <!-- QR Corner 3 -->
-              <rect x="5" y="69" width="26" height="26" rx="4" fill="black" />
-              <rect x="9" y="73" width="18" height="18" fill="white" />
-              <rect x="13" y="77" width="10" height="10" rx="2" fill="black" />
-
-              <!-- QR Body Data Pattern -->
-              <rect x="36" y="8" width="6" height="6" fill="black" />
-              <rect x="46" y="8" width="6" height="6" fill="black" />
-              <rect x="56" y="8" width="6" height="6" fill="black" />
-              <rect x="36" y="18" width="6" height="6" fill="black" />
-              <rect x="50" y="18" width="6" height="6" fill="black" />
-              <rect x="8" y="36" width="6" height="6" fill="black" />
-              <rect x="18" y="36" width="6" height="6" fill="black" />
-              <rect x="28" y="36" width="6" height="6" fill="black" />
-              <rect
-                x="38"
-                y="36"
-                width="10"
-                height="10"
-                rx="2"
-                fill="#A1331B"
-              />
-              <rect x="52" y="36" width="6" height="6" fill="black" />
-              <rect x="62" y="36" width="6" height="6" fill="black" />
-              <rect x="76" y="36" width="6" height="6" fill="black" />
-              <rect x="86" y="36" width="6" height="6" fill="black" />
-
-              <rect x="8" y="46" width="6" height="6" fill="black" />
-              <rect x="22" y="46" width="6" height="6" fill="black" />
-              <rect x="36" y="48" width="6" height="6" fill="black" />
-              <rect x="46" y="48" width="6" height="6" fill="black" />
-              <rect x="58" y="48" width="6" height="6" fill="black" />
-              <rect x="72" y="46" width="6" height="6" fill="black" />
-              <rect x="84" y="46" width="6" height="6" fill="black" />
-
-              <rect x="8" y="56" width="6" height="6" fill="black" />
-              <rect x="28" y="56" width="6" height="6" fill="black" />
-              <rect x="36" y="58" width="6" height="6" fill="black" />
-              <rect x="48" y="58" width="6" height="6" fill="black" />
-              <rect x="62" y="58" width="6" height="6" fill="black" />
-              <rect x="76" y="56" width="6" height="6" fill="black" />
-
-              <rect x="36" y="69" width="6" height="6" fill="black" />
-              <rect x="48" y="69" width="6" height="6" fill="black" />
-              <rect x="62" y="69" width="6" height="6" fill="black" />
-              <rect x="76" y="69" width="6" height="6" fill="black" />
-              <rect x="86" y="69" width="6" height="6" fill="black" />
-
-              <rect x="36" y="79" width="6" height="6" fill="black" />
-              <rect x="52" y="79" width="6" height="6" fill="black" />
-              <rect x="66" y="79" width="6" height="6" fill="black" />
-              <rect x="78" y="79" width="6" height="6" fill="black" />
-            </svg>
+          <div
+            class="p-3 bg-white rounded-2xl border border-border shadow-md w-[152px] h-[152px] flex items-center justify-center"
+          >
+            <img
+              v-if="qrcode"
+              :src="qrcode"
+              :alt="`QR code for ticket ${pnr}`"
+              width="128"
+              height="128"
+              class="w-32 h-32"
+            />
+            <div
+              v-else
+              class="w-32 h-32 rounded-lg bg-gray-100 animate-pulse"
+              aria-hidden="true"
+            />
           </div>
 
           <span class="text-xs font-bold text-text-primary mt-2">
             Scan at Coach Door / Terminal Gate
           </span>
           <span class="font-mono text-[10px] text-text-muted mt-0.5">
-            *OTB-849204-EG-ALM2-ALX*
+            *{{ pnr }}*
           </span>
         </div>
 
@@ -455,6 +400,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useQRCode } from "@vueuse/integrations/useQRCode";
 import type { Trip } from "~/types/search/results";
 
 const props = withDefaults(
@@ -467,6 +413,15 @@ const props = withDefaults(
     formattedDate: "Thursday, 24 October 2024",
   },
 );
+
+// PNR shown on the ticket stub and encoded into the QR code below it
+const pnr = "OTB-849204-EG-ALM2-ALX";
+
+const qrcode = useQRCode(`https://otobisi.com/verify/${pnr}`, {
+  margin: 1,
+  errorCorrectionLevel: "M",
+  color: { dark: "#0d121f", light: "#ffffff" },
+});
 
 const baseFare = computed(() => props.seats.length * (props.trip.price || 145));
 
