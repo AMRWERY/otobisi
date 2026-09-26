@@ -97,7 +97,15 @@
         </p>
 
         <!-- Slider Bar with 2 balls -->
-        <div class="relative w-full h-8 flex items-center mb-1 select-none">
+        <!-- Forced LTR: native range inputs mirror their internal fill
+             direction under dir="rtl", which would desync the invisible
+             drag thumbs from the custom balls (positioned with physical
+             left-% math below). Keeping this widget LTR keeps prices
+             reading low-to-high left-to-right, same as the OTP/dial-code
+             inputs elsewhere in this app. -->
+        <div
+          dir="ltr"
+          class="relative w-full h-8 flex items-center mb-1 select-none"
           <!-- Background Track -->
           <div
             class="absolute inset-x-0 h-2 bg-surface-2 dark:bg-slate-800 rounded-full"

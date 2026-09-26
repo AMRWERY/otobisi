@@ -8,7 +8,7 @@
     <!-- Ambient background glow -->
     <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
       <div
-        class="w-[700px] h-[700px] rounded-full blur-3xl opacity-25 dark:opacity-10 absolute -top-40 left-1/2 -translate-x-1/2 transition-colors duration-500"
+        class="w-[700px] h-[700px] rounded-full blur-3xl opacity-25 dark:opacity-10 absolute -top-40 start-1/2 -translate-x-1/2 transition-colors duration-500"
         :class="[
           currentVariant === 'offline'
             ? 'bg-amber-200 dark:bg-amber-900'

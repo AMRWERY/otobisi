@@ -20,7 +20,7 @@
     <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
       <div class="relative w-full sm:w-80">
         <Icon name="ph:magnifying-glass-bold"
-          class="w-4 h-4 text-text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
+          class="w-4 h-4 text-text-muted absolute start-3.5 top-1/2 -translate-y-1/2" />
         <input v-model="searchQuery" type="text" placeholder="Search station or city..."
           class="w-full ps-10 pe-4 py-2.5 rounded-xl bg-surface-1 dark:bg-[#131B2E] border border-border/80 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-[#EA580C]" />
       </div>
@@ -74,7 +74,7 @@
             <span class="text-[10px] uppercase font-bold text-text-muted">Station Amenities:</span>
             <div class="flex flex-wrap gap-1 text-[11px] text-text-secondary">
               <span v-for="(amenity, idx) in station.amenities" :key="amenity">
-                {{ amenity }}<span v-if="idx < station.amenities.length - 1" class="text-text-muted mr-1">,</span>
+                {{ amenity }}<span v-if="idx < station.amenities.length - 1" class="text-text-muted me-1">,</span>
               </span>
             </div>
           </div>

@@ -15,16 +15,16 @@
         class="absolute inset-0 opacity-0 dark:opacity-40 pointer-events-none"
       >
         <span
-          class="absolute top-4 left-6 w-1 h-1 rounded-full bg-amber-200"
+          class="absolute top-4 start-6 w-1 h-1 rounded-full bg-amber-200"
         ></span>
         <span
           class="absolute top-8 end-8 w-1 h-1 rounded-full bg-orange-200"
         ></span>
         <span
-          class="absolute bottom-6 left-10 w-0.5 h-0.5 rounded-full bg-white"
+          class="absolute bottom-6 start-10 w-0.5 h-0.5 rounded-full bg-white"
         ></span>
         <span
-          class="absolute top-14 left-14 w-0.5 h-0.5 rounded-full bg-amber-300"
+          class="absolute top-14 start-14 w-0.5 h-0.5 rounded-full bg-amber-300"
         ></span>
       </div>
 

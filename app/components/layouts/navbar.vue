@@ -121,7 +121,7 @@
         enter-to-class="translate-x-0" leave-active-class="transition-transform duration-200 ease-in"
         leave-from-class="translate-x-0" leave-to-class="translate-x-full">
         <div v-if="mobileDrawerOpen"
-          class="fixed top-0 bottom-0 end-0 w-5/6 max-w-xs bg-surface-0 dark:bg-[#0B0F19] border-l border-border dark:border-[#131B2E] shadow-2xl z-50 flex flex-col justify-between overflow-y-auto">
+          class="fixed top-0 bottom-0 end-0 w-5/6 max-w-xs bg-surface-0 dark:bg-[#0B0F19] border-s border-border dark:border-[#131B2E] shadow-2xl z-50 flex flex-col justify-between overflow-y-auto">
           <!-- Drawer Top Content -->
           <div class="p-5 space-y-5">
             <!-- Header: Logo + Close Button -->
