@@ -53,21 +53,21 @@
         <label class="block text-xs font-semibold text-text-primary mb-1.5">
           Full Legal Name{{ isLead ? " (as on ID / Passport)" : "" }}
         </label>
-        <div
-          class="relative flex items-center bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+        <v-input
+          v-model="modelValue.name"
+          type="text"
+          :placeholder="isLead ? 'Full Legal Name' : 'Full Name'"
+          variant="unstyled"
+          box-class="bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+          input-class="text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted"
         >
-          <input
-            v-model="modelValue.name"
-            type="text"
-            class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted"
-            :placeholder="isLead ? 'Full Legal Name' : 'Full Name'"
-          />
-          <Icon
-            v-if="modelValue.name.length >= 3"
-            name="ph:check-circle-bold"
-            class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
-          />
-        </div>
+          <template v-if="modelValue.name.length >= 3" #trailing>
+            <Icon
+              name="ph:check-circle-bold"
+              class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
+            />
+          </template>
+        </v-input>
         <span class="text-[11px] text-text-muted mt-1 block">
           {{
             isLead
@@ -82,26 +82,28 @@
         <label class="block text-xs font-semibold text-text-primary mb-1.5">
           Mobile Number (Egyptian Network)
         </label>
-        <div
-          class="relative flex items-center bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+        <v-input
+          v-model="modelValue.phone"
+          type="tel"
+          placeholder="10 1234 5678"
+          variant="unstyled"
+          box-class="bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+          input-class="text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted"
         >
-          <span
-            class="text-xs font-bold text-text-muted pe-2 border-e border-border me-2"
-          >
-            +20
-          </span>
-          <input
-            v-model="modelValue.phone"
-            type="tel"
-            class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted"
-            placeholder="10 1234 5678"
-          />
-          <Icon
-            v-if="modelValue.phone.length >= 8"
-            name="ph:check-circle-bold"
-            class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
-          />
-        </div>
+          <template #leading>
+            <span
+              class="text-xs font-bold text-text-muted pe-2 border-e border-border me-2"
+            >
+              +20
+            </span>
+          </template>
+          <template v-if="modelValue.phone.length >= 8" #trailing>
+            <Icon
+              name="ph:check-circle-bold"
+              class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
+            />
+          </template>
+        </v-input>
         <span
           class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 flex items-center gap-1"
         >
@@ -119,37 +121,36 @@
               : "National ID / Passport"
           }}
         </label>
-        <div
-          :class="
+        <v-input
+          v-model="modelValue.nationalId"
+          type="text"
+          maxlength="14"
+          placeholder="29408150102345"
+          variant="unstyled"
+          :box-class="[
             isNationalIdValid
               ? 'bg-surface-1 border-border focus-within:ring-orange-500/20 focus-within:border-orange-500'
-              : 'bg-red-50/50 dark:bg-red-950/20 border-red-300 dark:border-red-800 focus-within:ring-red-500/20 focus-within:border-red-500'
-          "
-          class="relative flex items-center border rounded-xl px-3.5 py-2.5 focus-within:ring-2"
+              : 'bg-red-50/50 dark:bg-red-950/20 border-red-300 dark:border-red-800 focus-within:ring-red-500/20 focus-within:border-red-500',
+            'border rounded-xl px-3.5 py-2.5 focus-within:ring-2',
+          ]"
+          :input-class="[
+            isNationalIdValid ? 'text-text-primary' : 'text-red-600 dark:text-red-400',
+            'text-xs sm:text-sm font-semibold font-mono',
+          ]"
         >
-          <input
-            v-model="modelValue.nationalId"
-            type="text"
-            maxlength="14"
-            class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 text-xs sm:text-sm font-semibold font-mono"
-            :class="
-              isNationalIdValid
-                ? 'text-text-primary'
-                : 'text-red-600 dark:text-red-400'
-            "
-            placeholder="29408150102345"
-          />
-          <Icon
-            v-if="isNationalIdValid"
-            name="ph:check-circle-bold"
-            class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
-          />
-          <Icon
-            v-else
-            name="ph:warning-circle-bold"
-            class="w-4 h-4 text-red-500 shrink-0 ms-2"
-          />
-        </div>
+          <template #trailing>
+            <Icon
+              v-if="isNationalIdValid"
+              name="ph:check-circle-bold"
+              class="w-4 h-4 text-emerald-500 shrink-0 ms-2"
+            />
+            <Icon
+              v-else
+              name="ph:warning-circle-bold"
+              class="w-4 h-4 text-red-500 shrink-0 ms-2"
+            />
+          </template>
+        </v-input>
         <span
           v-if="isNationalIdValid"
           class="text-[11px] text-text-muted mt-1 block"

@@ -57,12 +57,14 @@
           class="absolute start-0 top-full mt-3 z-30 w-64 bg-white dark:bg-[#141b2d] border border-gray-100 dark:border-[#212b42] rounded-xl shadow-lg overflow-hidden"
         >
           <div class="p-2 border-b border-gray-100 dark:border-[#212b42]">
-            <input
+            <v-input
               ref="searchRef"
               v-model="query"
               type="text"
               placeholder="Search country or code"
-              class="w-full text-sm bg-[#f0f4f9] dark:bg-[#0b101c] text-gray-900 dark:text-gray-100 placeholder:text-gray-400 rounded-lg px-2.5 py-1.5 outline-none"
+              variant="unstyled"
+              box-class="bg-[#f0f4f9] dark:bg-[#0b101c] rounded-lg px-2.5 py-1.5"
+              input-class="text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400"
             />
           </div>
           <ul role="listbox" class="max-h-60 overflow-y-auto py-1">

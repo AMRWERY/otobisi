@@ -19,16 +19,21 @@
 
     <!-- Input Box Container -->
     <div
-      :class="[
-        'relative flex items-center transition-all duration-150',
-        sizeClasses[size],
-        roundedClasses[rounded],
-        variantClasses[variant],
-        error
-          ? 'border-red-500 focus-within:ring-2 focus-within:ring-red-500/20 focus-within:border-red-500'
-          : 'border-border hover:border-border-strong focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500',
-        disabled ? 'opacity-60 cursor-not-allowed bg-surface-1' : '',
-      ]"
+      :class="
+        variant === 'unstyled'
+          ? ['relative flex items-center', boxClass]
+          : [
+              'relative flex items-center transition-all duration-150',
+              sizeClasses[size],
+              roundedClasses[rounded],
+              variantClasses[variant],
+              error
+                ? 'border-red-500 focus-within:ring-2 focus-within:ring-red-500/20 focus-within:border-red-500'
+                : 'border-border hover:border-border-strong focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500',
+              disabled ? 'opacity-60 cursor-not-allowed bg-surface-1' : '',
+              boxClass,
+            ]
+      "
     >
       <!-- Leading Icon / Slot -->
       <slot name="leading">
@@ -59,13 +64,21 @@
         :min="min"
         :max="max"
         :step="step"
-        :class="[
-          'w-full bg-transparent border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0',
-          'font-semibold text-text-primary placeholder:text-text-muted placeholder:font-normal',
-          inputFontSize[size],
-          disabled ? 'cursor-not-allowed' : '',
-          inputClass,
-        ]"
+        :class="
+          variant === 'unstyled'
+            ? [
+                'w-full bg-transparent border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0',
+                disabled ? 'cursor-not-allowed' : '',
+                inputClass,
+              ]
+            : [
+                'w-full bg-transparent border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0',
+                'font-semibold text-text-primary placeholder:text-text-muted placeholder:font-normal',
+                inputFontSize[size],
+                disabled ? 'cursor-not-allowed' : '',
+                inputClass,
+              ]
+        "
         @input="onInput"
         @change="onChange"
         @focus="onFocus"

@@ -76,23 +76,27 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label class="text-xs font-semibold text-text-primary">Full Name</label>
-              <input
+              <v-input
                 v-model="form.name"
                 required
                 type="text"
                 placeholder="Ahmed Mahmoud"
-                class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+                variant="unstyled"
+                box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+                input-class="text-text-primary text-xs"
               />
             </div>
 
             <div class="space-y-1.5">
               <label class="text-xs font-semibold text-text-primary">Phone Number</label>
-              <input
+              <v-input
                 v-model="form.phone"
                 required
                 type="tel"
                 placeholder="010XXXXXXXX"
-                class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+                variant="unstyled"
+                box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+                input-class="text-text-primary text-xs"
               />
             </div>
           </div>
@@ -100,12 +104,14 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1.5">
               <label class="text-xs font-semibold text-text-primary">Email Address</label>
-              <input
+              <v-input
                 v-model="form.email"
                 required
                 type="email"
                 placeholder="ahmed@example.com"
-                class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+                variant="unstyled"
+                box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+                input-class="text-text-primary text-xs"
               />
             </div>
 
@@ -126,11 +132,13 @@
 
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Booking Reference Code (Optional)</label>
-            <input
+            <v-input
               v-model="form.bookingCode"
               type="text"
               placeholder="e.g. OTO-89241"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
 

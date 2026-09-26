@@ -8,20 +8,17 @@
       <label class="block text-xs font-semibold text-text-primary mb-1.5">
         Card Number
       </label>
-      <div
-        class="relative flex items-center bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
-      >
-        <input
-          v-model="cardNumber"
-          type="text"
-          class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted font-mono"
-          placeholder="4215 •••••••• 1084"
-        />
-        <Icon
-          name="ph:credit-card-bold"
-          class="w-5 h-5 text-text-muted shrink-0 ms-2"
-        />
-      </div>
+      <v-input
+        v-model="cardNumber"
+        type="text"
+        placeholder="4215 •••••••• 1084"
+        variant="unstyled"
+        box-class="bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+        input-class="text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted font-mono"
+        icon-right="ph:credit-card-bold"
+        icon-class="ms-2"
+        size="lg"
+      />
     </div>
 
     <!-- Expiry Date -->
@@ -29,16 +26,14 @@
       <label class="block text-xs font-semibold text-text-primary mb-1.5">
         Expiry Date
       </label>
-      <div
-        class="relative flex items-center bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
-      >
-        <input
-          v-model="cardExpiry"
-          type="text"
-          class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted font-mono"
-          placeholder="MM / YY"
-        />
-      </div>
+      <v-input
+        v-model="cardExpiry"
+        type="text"
+        placeholder="MM / YY"
+        variant="unstyled"
+        box-class="bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+        input-class="text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted font-mono"
+      />
     </div>
 
     <!-- CVV -->
@@ -52,17 +47,15 @@
           3 digits on back
         </span>
       </div>
-      <div
-        class="relative flex items-center bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
-      >
-        <input
-          v-model="cardCvv"
-          type="password"
-          maxlength="4"
-          class="w-full bg-transparent border-0 focus:border-0 ring-0 focus:ring-0 outline-none focus:outline-none p-0 text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted font-mono"
-          placeholder="•••"
-        />
-      </div>
+      <v-input
+        v-model="cardCvv"
+        type="password"
+        maxlength="4"
+        placeholder="•••"
+        variant="unstyled"
+        box-class="bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
+        input-class="text-xs sm:text-sm font-semibold text-text-primary placeholder:text-text-muted font-mono"
+      />
     </div>
 
     <!-- Save Card Checkbox & PCI Badge -->

@@ -39,14 +39,14 @@
         name="ph:magnifying-glass-bold"
         class="w-4 h-4 text-text-muted absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
       />
-      <input
-        :value="searchQuery"
+      <v-input
+        :model-value="searchQuery"
         type="text"
         placeholder="Search PNR, city, or operator..."
-        class="w-full ps-10 pe-9 py-2 rounded-xl bg-surface-1 border border-border focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 text-xs text-text-primary placeholder:text-text-muted outline-none transition-all shadow-2xs"
-        @input="
-          $emit('update:searchQuery', ($event.target as HTMLInputElement).value)
-        "
+        variant="unstyled"
+        box-class="w-full ps-10 pe-9 py-2 rounded-xl bg-surface-1 border border-border focus-within:border-orange-500/50 focus-within:ring-2 focus-within:ring-orange-500/20 transition-all shadow-2xs"
+        input-class="text-xs text-text-primary placeholder:text-text-muted"
+        @update:model-value="$emit('update:searchQuery', $event as string)"
       />
       <v-button
         v-if="searchQuery"

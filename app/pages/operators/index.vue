@@ -152,12 +152,14 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Company / Fleet Name</label>
-            <input
+            <v-input
               v-model="partnerForm.company"
               required
               type="text"
               placeholder="e.g. Nile Express Transit"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
 
@@ -177,23 +179,27 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Contact Person Name</label>
-            <input
+            <v-input
               v-model="partnerForm.name"
               required
               type="text"
               placeholder="Full Name"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
 
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Direct Phone Number</label>
-            <input
+            <v-input
               v-model="partnerForm.phone"
               required
               type="tel"
               placeholder="01XXXXXXXXX"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
         </div>

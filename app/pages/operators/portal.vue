@@ -28,23 +28,27 @@
         <form @submit.prevent="handleLogin" class="space-y-4">
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Operator Code / ID</label>
-            <input
+            <v-input
               v-model="loginForm.operatorCode"
               required
               type="text"
               placeholder="e.g. OP-EGY-042"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
 
           <div class="space-y-1.5">
             <label class="text-xs font-semibold text-text-primary">Official Email / Username</label>
-            <input
+            <v-input
               v-model="loginForm.email"
               required
               type="email"
               placeholder="dispatch@fleetoperator.com"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
 
@@ -53,12 +57,14 @@
               <label class="text-xs font-semibold text-text-primary">Password</label>
               <a href="#" class="text-[11px] text-[#EA580C] hover:underline" @click.prevent="onForgotPassword">Forgot?</a>
             </div>
-            <input
+            <v-input
               v-model="loginForm.password"
               required
               type="password"
               placeholder="••••••••••••"
-              class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 text-text-primary text-xs focus:outline-none focus:border-[#EA580C]"
+              variant="unstyled"
+              box-class="w-full px-3.5 py-2.5 rounded-xl bg-surface-0 dark:bg-[#0B0F19] border border-border/80 focus-within:border-[#EA580C]"
+              input-class="text-text-primary text-xs"
             />
           </div>
 
