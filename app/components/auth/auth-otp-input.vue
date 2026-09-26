@@ -39,30 +39,16 @@
     </p>
     <div v-if="!formattedPhone" class="hidden dark:block mb-3" />
 
-    <!-- 6 OTP boxes -->
-    <div class="grid grid-cols-6 gap-2 mb-3" dir="ltr">
-      <input
-        v-for="(digit, idx) in digits"
-        :key="idx"
-        :ref="(el) => setRef(el, idx)"
-        :value="digit"
-        type="text"
-        inputmode="numeric"
-        maxlength="1"
-        class="h-11 sm:h-12 w-full text-center text-lg font-black rounded-xl border transition-all outline-none"
-        :class="[
-          activeIdx === idx
-            ? 'border-2 border-[#A1331B] dark:border-orange-500 bg-white dark:bg-[#0b101c] text-gray-900 dark:text-white ring-2 ring-orange-500/10'
-            : digit
-              ? 'border-gray-200 dark:border-[#26334f] bg-white dark:bg-[#0b101c] text-gray-900 dark:text-white'
-              : 'border-gray-200 dark:border-[#222c44] bg-white dark:bg-[#0b101c] text-gray-400 dark:text-gray-500',
-        ]"
-        @focus="$emit('focus', idx)"
-        @input="$emit('input', idx, $event)"
-        @keydown.backspace="$emit('backspace', idx)"
-        @paste.prevent="$emit('paste', $event)"
-      />
-    </div>
+    <!-- OTP boxes -->
+    <LazyVOTP
+      ref="otpRef"
+      class="mb-3"
+      :model-value="modelValue"
+      :length="length"
+      auto-focus
+      @update:model-value="$emit('update:modelValue', $event)"
+      @complete="$emit('complete', $event)"
+    />
 
     <!-- Timer & WhatsApp row -->
     <div class="flex items-center justify-between text-[11px]">
@@ -94,19 +80,28 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{
-  digits: string[];
-  activeIdx: number;
-  formattedPhone: string;
-  timerDisplay: string;
-  setRef: (el: unknown, idx: number) => void;
-}>();
+withDefaults(
+  defineProps<{
+    modelValue: string;
+    formattedPhone: string;
+    timerDisplay: string;
+    /** Number of OTP boxes (4–6) */
+    length?: number;
+  }>(),
+  { length: 6 },
+);
+
 defineEmits<{
+  (e: "update:modelValue", value: string): void;
+  (e: "complete", value: string): void;
   (e: "edit"): void;
-  (e: "focus", idx: number): void;
-  (e: "input", idx: number, event: Event): void;
-  (e: "backspace", idx: number): void;
-  (e: "paste", event: ClipboardEvent): void;
   (e: "whatsapp"): void;
 }>();
+
+const otpRef = useTemplateRef("otpRef");
+
+defineExpose({
+  focus: () => otpRef.value?.focus(),
+  clear: () => otpRef.value?.clear(),
+});
 </script>

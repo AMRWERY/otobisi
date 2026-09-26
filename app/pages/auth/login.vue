@@ -41,16 +41,11 @@
 
       <!-- OTP CODE INPUT -->
       <lazy-auth-otp-input
-        :digits="otpDigits"
-        :active-idx="activeOtpIdx"
+        ref="otpInputRef"
+        v-model="otpCode"
         :formatted-phone="formattedPhone"
         :timer-display="resendTimerDisplay"
-        :set-ref="setOtpRef"
         @edit="editPhone"
-        @focus="focusOtp"
-        @input="onOtpInput"
-        @backspace="onOtpBackspace"
-        @paste="onOtpPaste"
         @whatsapp="sendViaWhatsApp"
       />
 
@@ -187,50 +182,13 @@ const formattedPhone = computed(() => {
   return `${dialCode} ${clean.replace(/^0/, "") || "10 1234 5678"}`;
 });
 
-// 6 OTP Digits
-const otpDigits = ref<string[]>(["8", "4", "9", "2", "", ""]);
-const activeOtpIdx = ref(4);
-const otpRefs = ref<(HTMLInputElement | null)[]>([]);
-
-const setOtpRef = (el: unknown, idx: number) => {
-  otpRefs.value[idx] = el as HTMLInputElement | null;
-};
-
-const focusOtp = (idx: number) => {
-  activeOtpIdx.value = idx;
-  otpRefs.value[idx]?.focus();
-};
+// 6-digit OTP, handled by the reusable VOTP component under auth-otp-input.
+// Pre-filled with 4 demo digits, matching the original mock (last 2 empty).
+const otpCode = ref("8492");
+const otpInputRef = useTemplateRef("otpInputRef");
 
 const editPhone = () => {
   phoneInputRef.value?.focus();
-};
-
-const onOtpInput = (idx: number, event: Event) => {
-  const val = (event.target as HTMLInputElement).value.replace(/\D/g, "");
-  otpDigits.value[idx] = val.slice(-1);
-  if (val && idx < 5) {
-    activeOtpIdx.value = idx + 1;
-    otpRefs.value[idx + 1]?.focus();
-  }
-};
-
-const onOtpBackspace = (idx: number) => {
-  if (!otpDigits.value[idx] && idx > 0) {
-    otpDigits.value[idx - 1] = "";
-    activeOtpIdx.value = idx - 1;
-    otpRefs.value[idx - 1]?.focus();
-  }
-};
-
-const onOtpPaste = (event: ClipboardEvent) => {
-  const pasted = event.clipboardData?.getData("text").replace(/\D/g, "") ?? "";
-  for (let i = 0; i < 6 && i < pasted.length; i++) {
-    otpDigits.value[i] = pasted[i];
-  }
-  const nextEmpty = otpDigits.value.findIndex((d) => !d);
-  const targetIdx = nextEmpty === -1 ? 5 : nextEmpty;
-  activeOtpIdx.value = targetIdx;
-  otpRefs.value[targetIdx]?.focus();
 };
 
 // Resend countdown timer
@@ -262,8 +220,7 @@ const sendViaWhatsApp = () => {
 };
 
 const handleEnterKey = () => {
-  const nextEmpty = otpDigits.value.findIndex((d) => !d);
-  focusOtp(nextEmpty === -1 ? 5 : nextEmpty);
+  otpInputRef.value?.focus();
 };
 
 const verifyOtp = async () => {
