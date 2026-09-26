@@ -52,7 +52,7 @@
         >
       </div>
       <p class="text-[11px] text-gray-400">
-        NileBus Network Egypt SAE • Operations Center Heliopolis, Cairo
+        Otobisi Network Egypt SAE • Operations Center Heliopolis, Cairo
       </p>
     </div>
   </div>

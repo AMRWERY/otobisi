@@ -42,7 +42,7 @@
         Encrypted Intercity Gateway
       </span>
       <h1 class="text-3xl font-black text-white tracking-tight mb-1.5">
-        Access NileBus
+        Access Otobisi
       </h1>
       <p class="text-xs text-gray-400 max-w-sm mx-auto leading-relaxed">
         Reserve, modify, and track intercity coaches across all 27 Egyptian
