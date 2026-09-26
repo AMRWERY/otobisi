@@ -135,7 +135,8 @@ export default {
         "icon-wiggle": "icon-wiggle 300ms cubic-bezier(0.4, 0, 0.2, 1)",
         "icon-pop": "icon-pop 200ms cubic-bezier(0.4, 0, 0.2, 1)",
         "icon-bounce": "icon-bounce 350ms cubic-bezier(0.4, 0, 0.2, 1)",
-        "icon-pulse": "icon-pulse-glow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite",
+        "icon-pulse":
+          "icon-pulse-glow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite",
         "icon-spin": "icon-spin-smooth 1s linear infinite",
         "icon-spin-slow": "icon-spin-smooth 3s linear infinite",
       },
@@ -160,7 +161,8 @@ export default {
           display: "inline-block",
           verticalAlign: "middle",
           transformOrigin: "center",
-          transitionProperty: "transform, color, background-color, fill, stroke, opacity",
+          transitionProperty:
+            "transform, color, background-color, fill, stroke, opacity",
           transitionDuration: "200ms",
           transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
           willChange: "transform",
@@ -169,11 +171,13 @@ export default {
 
       // 2. Interactive hover transitions when parent is hovered
       addComponents({
-        "a:hover .iconify, button:hover .iconify, [role='button']:hover .iconify, .group:hover .iconify": {
-          transitionProperty: "transform, color, background-color, fill, stroke, opacity",
-          transitionDuration: "200ms",
-          transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-        },
+        "a:hover .iconify, button:hover .iconify, [role='button']:hover .iconify, .group:hover .iconify":
+          {
+            transitionProperty:
+              "transform, color, background-color, fill, stroke, opacity",
+            transitionDuration: "200ms",
+            transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+          },
       });
 
       // 3. Reusable utility classes for any icon
