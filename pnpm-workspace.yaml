@@ -1,3 +1,6 @@
 packages:
   - "apps/*"
   - "layers/*"
+allowBuilds:
+  esbuild: true
+  "@parcel/watcher": true

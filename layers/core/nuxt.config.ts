@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     "@nuxt/icon",
   ],
   i18n: {
-    vueI18n: "./i18n/i18n.config.ts",
     locales: [
       { code: "en", language: "en-US", file: "en.json", name: "English", dir: "ltr" },
       { code: "ar", language: "ar-EG", file: "ar.json", name: "عربي", dir: "rtl" },
