@@ -4,3 +4,8 @@ packages:
 allowBuilds:
   esbuild: true
   "@parcel/watcher": true
+# @nuxtjs/supabase adds "@nuxtjs/supabase > @supabase/ssr > cookie" to Vite's
+# optimizeDeps.include; Vite resolves it from the app root, so the module must
+# be reachable from there (otherwise the CJS `cookie` package is served raw).
+publicHoistPattern:
+  - "@nuxtjs/supabase"
