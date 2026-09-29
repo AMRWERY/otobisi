@@ -1,0 +1,21 @@
+{
+  "name": "@otobisi/admin",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=3001",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "echo \"No lint configured\"",
+    "clean": "rm -rf .nuxt .output",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@otobisi/core": "workspace:*",
+    "@otobisi/ui": "workspace:*",
+    "nuxt": "^4.5.2",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.0"
+  }
+}
