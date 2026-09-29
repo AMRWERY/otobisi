@@ -1,45 +1,27 @@
 {
   "name": "otobisi",
-  "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@nuxt/icon": "^2.5.1",
-    "@nuxtjs/i18n": "^10.6.0",
-    "@nuxtjs/supabase": "^2.0.10",
-    "@nuxtjs/tailwindcss": "^6.14.0",
-    "@pinia/nuxt": "^1.0.2",
-    "@vee-validate/i18n": "^4.15.1",
-    "@vee-validate/nuxt": "^4.15.1",
-    "@vee-validate/rules": "^4.15.1",
-    "@vueuse/integrations": "^15.0.0",
-    "@vueuse/nuxt": "^14.4.0",
-    "nuxt": "^4.5.2",
-    "pinia": "^4.0.3",
-    "qrcode": "^1.5.4",
-    "tailwindcss-rtl": "^0.9.0",
-    "vue": "^3.5.42",
-    "vue-router": "^5.3.0"
+    "dev:web": "turbo run dev --filter=@otobisi/web",
+    "dev:admin": "turbo run dev --filter=@otobisi/admin",
+    "dev:super-admin": "turbo run dev --filter=@otobisi/super-admin",
+    "build": "turbo run build --concurrency=1",
+    "build:web": "turbo run build --filter=@otobisi/web",
+    "build:admin": "turbo run build --filter=@otobisi/admin",
+    "build:super-admin": "turbo run build --filter=@otobisi/super-admin",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean"
   },
   "devDependencies": {
     "@iconify-json/material-icon-theme": "^1.2.70",
     "@iconify-json/material-symbols": "^1.2.91",
     "@iconify-json/noto-v1": "^1.2.5",
     "@iconify-json/ph": "^1.2.2",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/container-queries": "^0.1.1",
-    "@tailwindcss/forms": "^0.5.11",
-    "@tailwindcss/typography": "^0.5.20",
-    "autoprefixer": "^10.5.5",
-    "postcss": "^8.5.28",
-    "tailwindcss": "^3.4.19",
+    "@types/node": "^25.5.0",
+    "turbo": "^2",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.11"
-  }
+  },
+  "engines": { "node": ">=18.0.0", "pnpm": ">=8.0.0" },
+  "packageManager": "pnpm@11.3.0"
 }
