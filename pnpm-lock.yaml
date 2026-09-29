@@ -77,6 +77,9 @@ importers:
       '@otobisi/ui':
         specifier: workspace:*
         version: link:../../layers/ui
+      '@vueuse/core':
+        specifier: ^15.0.0
+        version: 15.0.0(vue@3.5.43(typescript@6.0.3))
       '@vueuse/integrations':
         specifier: ^15.0.0
         version: 15.0.0(fuse.js@7.5.0)(qrcode@1.5.4)(vue@3.5.43(typescript@6.0.3))
@@ -134,6 +137,13 @@ importers:
       tailwindcss:
         specifier: ^3.4.19
         version: 3.4.19(yaml@2.9.1)
+      vee-validate:
+        specifier: ^4.15.1
+        version: 4.15.1(vue@3.5.43(typescript@6.0.3))
+    devDependencies:
+      '@intlify/core-base':
+        specifier: ^11.4.12
+        version: 11.4.12
 
   layers/ui:
     dependencies:

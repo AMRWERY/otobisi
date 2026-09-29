@@ -16,6 +16,10 @@ export default defineNuxtConfig({
     baseUrl: "https://otobisi.com",
     restructureDir: "",
     langDir: "app/i18n/locales",
+    locales: [
+      { code: "en", file: "en.json" },
+      { code: "ar", file: "ar.json" },
+    ],
   },
   runtimeConfig: {
     public: {
