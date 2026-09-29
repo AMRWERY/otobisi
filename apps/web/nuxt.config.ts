@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   extends: ["@otobisi/ui", "@otobisi/core"],
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  devServer: { port: 3001 },
   components: [
     {
       path: "components",
