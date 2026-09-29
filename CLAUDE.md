@@ -10,7 +10,7 @@ Otobisi (site name "Otobisi", domain otobisi.com) — a bus-ticketing search/boo
 
 Run from the repo root (pnpm, not npm):
 
-- `pnpm dev:web` / `pnpm dev:admin` / `pnpm dev:super-admin` — each app has its own dev server (ports 3000 / 3001 / 3002; Nuxt falls back to the next free port if one is taken)
+- `pnpm dev:web` / `pnpm dev:admin` / `pnpm dev:super-admin` — each app has its own dev server (ports 3001 / 3002 / 3003; Nuxt falls back to the next free port if one is taken)
 - `pnpm build:web` / `build:admin` / `build:super-admin` — production build of one app; `pnpm build` builds all
 - `pnpm clean` — remove `.nuxt`/`.output` in every package
 - Per-app extras (`generate`, `preview`) run inside the app: `pnpm --filter @otobisi/web preview`
