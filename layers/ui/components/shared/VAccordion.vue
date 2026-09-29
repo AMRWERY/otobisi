@@ -103,7 +103,7 @@
 import type {
   AccordionItem,
   AccordionVariant,
-} from "~/types/shared/VAccordion";
+} from "../../types/shared/VAccordion";
 
 const props = withDefaults(
   defineProps<{

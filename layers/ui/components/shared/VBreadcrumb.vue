@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { BreadcrumbItem } from "~/types/shared/VBreadcrumb";
+import type { BreadcrumbItem } from "../../types/shared/VBreadcrumb";
 
 defineProps<{
   items: BreadcrumbItem[];

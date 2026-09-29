@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ButtonProps } from "~/types/shared/VButton";
+import type { ButtonProps } from "../../types/shared/VButton";
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: "primary",

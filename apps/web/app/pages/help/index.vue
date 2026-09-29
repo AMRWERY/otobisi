@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AccordionItem } from "~/types/shared/VAccordion";
+import type { AccordionItem } from "@otobisi/ui/types/shared/VAccordion";
 
 const openFaq = ref<string | number>(0);
 

@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts" setup generic="T">
-import type { SwiperProps } from "~/types/shared/VSwiper";
+import type { SwiperProps } from "../../types/shared/VSwiper";
 
 const props = withDefaults(defineProps<SwiperProps<T>>(), {
   items: () => [],

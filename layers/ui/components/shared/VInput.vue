@@ -132,7 +132,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { InputProps } from "~/types/shared/VInput";
+import type { InputProps } from "../../types/shared/VInput";
 
 const props = withDefaults(defineProps<InputProps>(), {
   type: "text",

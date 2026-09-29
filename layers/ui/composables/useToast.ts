@@ -1,4 +1,4 @@
-import type { Toast, ToastOptions, InternalToast } from "~/types/shared/VToast";
+import type { Toast, ToastOptions, InternalToast } from "../types/shared/VToast";
 
 // ── Singleton state (shared across all composable calls) ─────────────────────
 const toasts = ref<InternalToast[]>([]);

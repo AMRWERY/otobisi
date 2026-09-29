@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { StepperProps, StepItem } from "~/types/shared/VStepper";
+import type { StepperProps, StepItem } from "../../types/shared/VStepper";
 
 const props = withDefaults(defineProps<StepperProps>(), {
   steps: () => [

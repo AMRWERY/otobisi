@@ -642,7 +642,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AccordionItem } from "~/types/shared/VAccordion";
+import type { AccordionItem } from "@otobisi/ui/types/shared/VAccordion";
 
 // ─── Mobile Accordion Items (For Travelers active by default as in spec) ─────
 const openAccordions = ref<(string | number)[]>(["travelers"]);

@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { OtpProps } from "~/types/shared/VOTP";
+import type { OtpProps } from "../../types/shared/VOTP";
 
 const MIN_LENGTH = 4;
 const MAX_LENGTH = 6;

@@ -213,7 +213,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DatePickerProps, CalendarCell } from "~/types/shared/VDatePicker";
+import type { DatePickerProps, CalendarCell } from "../../types/shared/VDatePicker";
 
 const props = withDefaults(defineProps<DatePickerProps>(), {
   placeholder: "Select date",

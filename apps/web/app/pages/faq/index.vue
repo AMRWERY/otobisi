@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AccordionItem } from "~/types/shared/VAccordion";
+import type { AccordionItem } from "@otobisi/ui/types/shared/VAccordion";
 
 const activeCategory = ref("booking");
 const openQuestion = ref<string | number>(0);

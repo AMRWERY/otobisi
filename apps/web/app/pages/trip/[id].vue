@@ -87,7 +87,7 @@
 
 <script lang="ts" setup>
 import type { SeatItem, SeatRow } from "~/types/search/seats";
-import type { StepItem } from "~/types/shared/VStepper";
+import type { StepItem } from "@otobisi/ui/types/shared/VStepper";
 
 const route = useRoute();
 const router = useRouter();

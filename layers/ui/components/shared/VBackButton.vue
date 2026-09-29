@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { BackButtonProps } from "~/types/shared/VBackButton";
+import type { BackButtonProps } from "../../types/shared/VBackButton";
 
 const props = withDefaults(defineProps<BackButtonProps>(), {
   label: "Back to Search Results",

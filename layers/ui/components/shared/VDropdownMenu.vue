@@ -101,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "~/types/shared/VDropdownMenu";
+import type { DropdownItem } from "../../types/shared/VDropdownMenu";
 
 const props = withDefaults(
   defineProps<{
