@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --port=3002",
+    "dev:admin": "nuxt dev --port=3002",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "echo \"No lint configured\"",
