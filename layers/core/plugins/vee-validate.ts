@@ -1,6 +1,5 @@
 import { configure } from "vee-validate";
 import { required, email, min, max, digits, regex } from "@vee-validate/rules";
-import type { Locale } from "~/types/supported-locales";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const i18n = nuxtApp.$i18n as { locale: { value: string } };
