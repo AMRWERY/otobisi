@@ -564,7 +564,3 @@ const resetAllFilters = () => {
   emit("reset");
 };
 </script>
-
-<style scoped>
-/* Scoped styles */
-</style>

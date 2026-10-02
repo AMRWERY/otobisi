@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   i18n: {
     baseUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://admin.otobisi.com",
   },
+  css: ["@/assets/css/main.css"],
   components: [
     {
       path: "components",
