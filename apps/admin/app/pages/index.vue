@@ -66,15 +66,15 @@
     <lazy-overview-stats />
 
     <!-- ─── Main 2-column grid: Chart + Departures ─── -->
-    <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 xl:grid-cols-5 gap-6 items-stretch">
       <!-- Chart takes 3/5 -->
-      <div class="xl:col-span-3">
-        <lazy-overview-chart />
+      <div class="xl:col-span-3 flex flex-col">
+        <lazy-overview-chart class="h-full flex-1" />
       </div>
 
       <!-- Departures takes 2/5 -->
-      <div class="xl:col-span-2">
-        <lazy-overview-departures />
+      <div class="xl:col-span-2 flex flex-col">
+        <lazy-overview-departures class="h-full flex-1" />
       </div>
     </div>
 

@@ -1,78 +1,59 @@
 <template>
   <div
-    class="bg-surface-1 dark:bg-[#111927] border border-border/70 rounded-xl p-5 flex flex-col gap-3"
+    class="bg-surface-1 dark:bg-[#111927] border border-border/70 rounded-xl p-4 sm:p-5 flex flex-col justify-between h-full"
   >
     <!-- Header -->
-    <div class="flex items-center justify-between">
-      <div>
-        <h2
-          class="text-sm font-black text-text-primary tracking-tight flex items-center gap-2"
-        >
-          Next Departures
-          <span class="relative flex h-2 w-2">
-            <span
-              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
-            />
-            <span
-              class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
-            />
-          </span>
-        </h2>
-        <p class="text-[11px] text-text-muted mt-0.5">
-          Real-Time tracking from Cairo Almaza & Tahrir Terminals.
-        </p>
+    <div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-1.5">
+          <h2 class="text-sm font-black text-text-primary tracking-tight">
+            Next Departures
+          </h2>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+        </div>
+        <span class="text-[11px] font-medium text-text-muted">Real-Time</span>
       </div>
+      <p class="text-[11px] text-text-muted mt-0.5">
+        Tracking immediate departures from Cairo Almaza & Tahrir Terminals.
+      </p>
     </div>
 
-    <!-- Departure Rows -->
-    <div class="flex flex-col divide-y divide-border/50">
+    <!-- Departure Rows (Compact 5 items perfectly fitted to chart height) -->
+    <div class="flex flex-col divide-y divide-border/40 my-auto">
       <div
         v-for="dep in departures"
         :key="dep.time + dep.route"
-        class="py-3 flex items-start gap-3 group hover:bg-surface-0 dark:hover:bg-surface-2/20 -mx-2 px-2 rounded-lg transition-colors"
+        class="py-1.5 first:pt-0.5 last:pb-0.5 space-y-0.5"
       >
-        <!-- Time -->
-        <div class="shrink-0 text-end w-10">
-          <span class="text-xs font-black text-text-primary">{{
-            dep.time
-          }}</span>
-        </div>
-
-        <!-- Route & Carrier info -->
-        <div class="flex-1 min-w-0">
-          <p class="text-xs font-bold text-text-primary truncate">
-            {{ dep.route }}
-          </p>
-          <p class="text-[11px] text-text-muted truncate mt-0.5">
-            {{ dep.carrier }} · Gate {{ dep.gate }}
-          </p>
-        </div>
-
-        <!-- Occupancy & Status -->
-        <div class="shrink-0 flex flex-col items-end gap-1">
+        <!-- Line 1: Time, Route, Status Badge -->
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xs font-mono font-black text-text-primary shrink-0">{{ dep.time }}</span>
+            <span class="text-xs font-bold text-text-primary truncate">{{ dep.route }}</span>
+          </div>
           <span
-            class="text-[10px] px-2 py-0.5 rounded-full font-bold"
+            class="text-[9px] px-1.5 py-0.2 rounded-full font-bold whitespace-nowrap shrink-0"
             :class="statusClass(dep.status)"
           >
             {{ dep.status }}
           </span>
-          <div class="flex items-center gap-1">
-            <span
-              class="text-[11px] font-mono font-semibold text-text-primary"
-              >{{ dep.occupancy }}</span
-            >
-          </div>
-          <!-- Occupancy bar -->
+        </div>
+
+        <!-- Line 2: Carrier, Gate, and Occupancy -->
+        <div class="flex items-center justify-between text-[11px] text-text-muted">
+          <span class="truncate">{{ dep.carrier }} · Gate {{ dep.gate }}</span>
+          <span class="font-mono text-text-secondary whitespace-nowrap text-[10px]">
+            {{ dep.occupancy }} <span class="text-text-muted">({{ dep.pct }}%)</span>
+          </span>
+        </div>
+
+        <!-- Line 3: Progress Bar -->
+        <div class="w-full h-1 rounded-full bg-surface-0 dark:bg-surface-2 overflow-hidden">
           <div
-            class="w-20 h-1.5 rounded-full bg-surface-0 dark:bg-surface-2 overflow-hidden"
-          >
-            <div
-              class="h-full rounded-full transition-all duration-500"
-              :class="occupancyBarClass(dep.pct)"
-              :style="{ width: dep.pct + '%' }"
-            />
-          </div>
-          <span class="text-[10px] text-text-muted">({{ dep.pct }}%)</span>
+            class="h-full rounded-full transition-all duration-500"
+            :class="occupancyBarClass(dep.pct)"
+            :style="{ width: dep.pct + '%' }"
+          />
         </div>
       </div>
     </div>
@@ -80,11 +61,11 @@
     <!-- Footer link -->
     <LazyVButton
       variant="outline"
-      size="sm"
+      size="xs"
       block
-      custom-class="mt-1"
       icon-right="ph:arrow-right-bold"
       icon-right-class="rtl:rotate-180"
+      to="/trips-schedules"
     >
       View All 48 Departures Today
     </LazyVButton>
