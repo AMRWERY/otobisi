@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxt/icon",
   ],
   i18n: {
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://otobisi.com",
     locales: [
       { code: "en", language: "en-US", file: "en.json", name: "English", dir: "ltr" },
       { code: "ar", language: "ar-EG", file: "ar.json", name: "عربي", dir: "rtl" },

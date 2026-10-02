@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   devServer: { port: 3002 },
+  i18n: {
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://admin.otobisi.com",
+  },
   components: [
     {
       path: "components",

@@ -270,29 +270,7 @@
 
 <script lang="ts" setup>
 import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
-
-interface RouteItem {
-  id: number;
-  from: string;
-  to: string;
-  road: string;
-  regionId: string;
-  regionName: string;
-  duration: string;
-  durationMinutes: number;
-  trips: string;
-  dailyTripsCount: number;
-  price: number;
-  operators: string[];
-}
-
-interface Corridor {
-  id: string;
-  code: string;
-  name: string;
-  distance: string;
-  routesCount: number;
-}
+import type { RouteItem, Corridor } from "~/types/home";
 
 const searchQuery = ref("");
 const selectedRegion = ref("all");
