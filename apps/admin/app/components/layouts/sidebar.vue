@@ -223,6 +223,11 @@ const navGroups = [
         to: "/manifest",
       },
       { label: "Fleet & Vehicles", icon: "ph:bus-bold", to: "/fleet" },
+      {
+        label: "Bus Seat Map Configuration",
+        icon: "ph:armchair-bold",
+        to: "/seat-maps",
+      },
     ],
   },
   {
