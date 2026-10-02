@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>audit logs page</h1>
+    <h1 class="p-5 text-3xl">audit logs page</h1>
   </div>
 </template>
 
@@ -9,5 +9,8 @@ const localePath = useLocalePath();
 
 useSeoMeta({
   title: "Audit logs",
+  description:
+    "Official press announcements, company facts, brand assets, and media contact information for Otobisi Egypt SAE.",
+  private: false,
 });
 </script>

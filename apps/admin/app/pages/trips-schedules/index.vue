@@ -79,5 +79,8 @@ function handleSave(data: any) {
 
 useSeoMeta({
   title: "Trips & Schedules",
+  description:
+    "Official press announcements, company facts, brand assets, and media contact information for Otobisi Egypt SAE.",
+  private: false,
 });
 </script>

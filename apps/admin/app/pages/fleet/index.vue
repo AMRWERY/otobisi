@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>fleet page</h1>
+    <h1 class="p-5 text-3xl">fleet page</h1>
   </div>
 </template>
 
@@ -9,5 +9,8 @@ const localePath = useLocalePath();
 
 useSeoMeta({
   title: "Fleet",
+  description:
+    "Official press announcements, company facts, brand assets, and media contact information for Otobisi Egypt SAE.",
+  private: false,
 });
 </script>
