@@ -109,7 +109,7 @@
           </div>
           <div class="hidden sm:flex flex-col leading-tight">
             <span class="text-xs font-bold text-text-primary"
-              >Karim El-Sayed</span
+              >Amr Mohamed</span
             >
             <span class="text-[10px] text-text-muted font-medium"
               >Fleet Ops Lead</span
@@ -127,9 +127,9 @@
           class="absolute end-0 mt-2 w-52 rounded-2xl bg-surface-0 dark:bg-[#131B2E] border border-border shadow-xl p-2 z-50 animate-fade-in"
         >
           <div class="px-3 py-2 border-b border-border/70 mb-1">
-            <p class="text-xs font-bold text-text-primary">Karim El-Sayed</p>
+            <p class="text-xs font-bold text-text-primary">Amr Mohamed</p>
             <p class="text-[11px] text-text-muted truncate">
-              karim.sayed@nilebus.eg
+              amr.mohamed@nilebus.eg
             </p>
           </div>
           <button
