@@ -3,11 +3,13 @@
   <div
     v-if="props.toast"
     :class="[
-      'group relative flex items-start gap-3 w-full rounded-2xl overflow-hidden',
+      'group relative flex gap-3 w-full rounded-2xl overflow-hidden',
       'bg-white dark:bg-[#131B2E]',
       'border border-slate-200/80 dark:border-[#1E293B]',
       'shadow-xl shadow-slate-900/10 dark:shadow-black/50',
-      'p-4 transition-all duration-200 select-none',
+      'transition-all duration-200 select-none',
+      // Title-only toasts: center everything on one row; richer ones align to the top
+      isCompact ? 'items-center px-4 py-3' : 'items-start p-4',
       props.toast.removing
         ? 'opacity-0 scale-95 -translate-y-2'
         : 'opacity-100 scale-100 translate-y-0',
@@ -34,7 +36,8 @@
     <!-- Icon -->
     <div
       :class="[
-        'w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5',
+        'w-9 h-9 rounded-xl flex items-center justify-center shrink-0',
+        isCompact ? '' : 'mt-0.5',
         getIconBg(props.toast.type),
       ]"
     >
@@ -46,7 +49,7 @@
     </div>
 
     <!-- Content -->
-    <div class="flex-1 min-w-0 pt-0.5">
+    <div :class="['flex-1 min-w-0', isCompact ? '' : 'pt-0.5']">
       <!-- Title row -->
       <div class="flex items-center gap-2 flex-wrap">
         <h4
@@ -105,7 +108,10 @@
     <button
       v-if="props.toast.dismissible !== false"
       type="button"
-      class="w-7 h-7 -mt-1 -me-1 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0 cursor-pointer"
+      :class="[
+        'w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0 cursor-pointer',
+        isCompact ? '' : '-mt-1 -me-1',
+      ]"
       aria-label="Close notification"
       @click="handleDismiss(props.toast.id)"
     >
@@ -144,131 +150,14 @@
         leave-to-class="opacity-0 scale-95 translate-y-2 sm:translate-y-0 sm:translate-x-4 rtl:sm:-translate-x-4"
         move-class="transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)]"
       >
-        <div
+        <!-- Each toast renders through single mode above, so there is one card design to maintain -->
+        <VToast
           v-for="item in toasts"
           :key="item.id"
-          :class="[
-            'pointer-events-auto group relative flex items-start gap-3 w-full rounded-2xl overflow-hidden',
-            'bg-white dark:bg-[#131B2E]',
-            'border border-slate-200/80 dark:border-[#1E293B]',
-            'shadow-xl shadow-slate-900/10 dark:shadow-black/50',
-            'p-4 select-none',
-            item.removing ? 'opacity-0 scale-95' : 'opacity-100 scale-100',
-          ]"
-          role="alert"
-          :aria-live="
-            item.type === 'error' || item.type === 'warning'
-              ? 'assertive'
-              : 'polite'
-          "
-          @mouseenter="onCardMouseEnter(item.id)"
-          @mouseleave="onCardMouseLeave(item.id)"
-          @touchstart.passive="onCardMouseEnter(item.id)"
-          @touchend.passive="onCardMouseLeave(item.id)"
-        >
-          <!-- Start semantic accent border -->
-          <div
-            :class="[
-              'absolute start-0 top-0 bottom-0 w-1.5 rounded-s-2xl',
-              getAccentBg(item.type),
-            ]"
-          />
-
-          <!-- Icon -->
-          <div
-            :class="[
-              'w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5',
-              getIconBg(item.type),
-            ]"
-          >
-            <Icon
-              :name="getIconName(item.type)"
-              class="w-5 h-5"
-              :class="getIconColor(item.type)"
-            />
-          </div>
-
-          <!-- Content -->
-          <div class="flex-1 min-w-0 pt-0.5">
-            <!-- Title row -->
-            <div class="flex items-center gap-2 flex-wrap">
-              <h4
-                class="text-sm font-bold text-slate-900 dark:text-white leading-tight"
-              >
-                {{ item.title }}
-              </h4>
-
-              <!-- Optional Badge -->
-              <span
-                v-if="item.badge"
-                class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-orange-50 dark:bg-orange-950/40 text-[#F05023] dark:text-orange-400 border border-orange-200/70 dark:border-orange-900/50"
-              >
-                {{ item.badge }}
-              </span>
-
-              <!-- Optional Timestamp -->
-              <span
-                v-if="item.timestamp"
-                class="text-[11px] text-slate-400 dark:text-slate-500 font-medium ms-auto"
-              >
-                {{ item.timestamp }}
-              </span>
-            </div>
-
-            <!-- Description -->
-            <p
-              v-if="item.description"
-              class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mt-1"
-            >
-              {{ item.description }}
-            </p>
-
-            <!-- Action buttons -->
-            <div
-              v-if="item.actions?.length"
-              class="flex flex-wrap items-center gap-2.5 mt-3"
-            >
-              <button
-                v-for="(action, idx) in item.actions"
-                :key="idx"
-                type="button"
-                :class="getActionClass(action, item.type)"
-                @click="handleAction(action, item.id)"
-              >
-                {{ action.label }}
-                <Icon
-                  :name="action.icon || 'ph:arrow-right-bold'"
-                  class="w-3.5 h-3.5 rtl:rotate-180 transition-transform"
-                />
-              </button>
-            </div>
-          </div>
-
-          <!-- Dismiss Button -->
-          <button
-            v-if="item.dismissible !== false"
-            type="button"
-            class="w-7 h-7 -mt-1 -me-1 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0 cursor-pointer"
-            aria-label="Close notification"
-            @click="handleDismiss(item.id)"
-          >
-            <Icon name="ph:x-bold" class="w-3.5 h-3.5" />
-          </button>
-
-          <!-- Auto-dismiss Progress Bar -->
-          <div
-            v-if="item.duration && item.duration > 0"
-            class="absolute bottom-0 inset-x-0 h-0.5 bg-slate-100 dark:bg-slate-800/80 overflow-hidden"
-          >
-            <div
-              :class="['h-full rounded-full', getAccentBg(item.type)]"
-              :style="{
-                animation: `v-toast-progress ${item.duration}ms linear forwards`,
-                animationPlayState: item.paused ? 'paused' : 'running',
-              }"
-            />
-          </div>
-        </div>
+          :toast="item"
+          class="pointer-events-auto"
+          @dismiss="dismiss"
+        />
       </TransitionGroup>
     </div>
   </Teleport>
@@ -286,6 +175,12 @@ const emit = defineEmits<{
 }>();
 
 const { toasts, dismiss, pause, resume } = useToast();
+
+// No description and no actions → a single row, so center it instead of top-aligning
+const isCompact = computed(
+  () =>
+    !!props.toast && !props.toast.description && !props.toast.actions?.length,
+);
 
 function onCardMouseEnter(id: string) {
   pause(id);
