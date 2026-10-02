@@ -1,12 +1,12 @@
 <template>
   <div class="px-6 py-6 space-y-6 max-w-[1600px] mx-auto">
-    <TripsHeader
+    <lazy-trips-header
       :active-count="activeTripsCount"
       @export="exportCsv"
       @add="openAddDrawer"
     />
 
-    <TripsFilters
+    <lazy-trips-filters
       v-model:date-range="filters.dateRange"
       v-model:corridor="filters.corridor"
       v-model:vehicle-class="filters.vehicleClass"
@@ -19,7 +19,7 @@
       :active-trips="activeTripsCount"
     />
 
-    <TripsTimetable
+    <lazy-trips-timetable
       :trips="filteredTrips"
       @toggle-status="toggleStatus"
       @edit="openEditDrawer"
