@@ -58,123 +58,83 @@
     </div>
 
     <!-- Table -->
-    <div class="overflow-x-auto -mx-1">
-      <table class="w-full text-xs min-w-[640px]">
-        <!-- Head -->
-        <thead>
-          <tr class="border-b border-border/70">
-            <th
-              v-for="col in columns"
-              :key="col.key"
-              class="py-2 px-3 text-start text-[10px] font-bold uppercase tracking-wider text-text-muted whitespace-nowrap"
-            >
-              {{ col.label }}
-            </th>
-          </tr>
-        </thead>
+    <LazyVTable
+      :columns="columns"
+      :rows="pagedTransactions"
+      row-key="pnr"
+      empty-text="No bookings match your filters"
+    >
+      <!-- PNR & Passenger -->
+      <template #cell-pnr="{ row }">
+        <span
+          class="font-mono text-accent-700 dark:text-accent-400 font-bold text-[11px] hover:underline cursor-pointer"
+        >
+          #{{ row.pnr }}
+        </span>
+        <div class="font-semibold text-text-primary truncate max-w-[110px]">
+          {{ row.name }}
+        </div>
+      </template>
 
-        <!-- Body -->
-        <tbody class="divide-y divide-border/40">
-          <tr
-            v-for="tx in pagedTransactions"
-            :key="tx.pnr"
-            class="hover:bg-surface-0 dark:hover:bg-surface-2/20 transition-colors group"
-          >
-            <!-- PNR & Passenger -->
-            <td class="py-2.5 px-3">
-              <span
-                class="font-mono text-accent-700 dark:text-accent-400 font-bold text-[11px] hover:underline cursor-pointer"
-              >
-                #{{ tx.pnr }}
-              </span>
-              <div
-                class="font-semibold text-text-primary truncate max-w-[110px]"
-              >
-                {{ tx.name }}
-              </div>
-            </td>
+      <!-- Route & Carrier -->
+      <template #cell-route="{ row }">
+        <div class="font-semibold text-text-primary truncate max-w-[160px]">
+          {{ row.route }}
+        </div>
+        <div class="text-[11px] text-text-muted truncate max-w-[160px]">
+          {{ row.carrier }}
+        </div>
+      </template>
 
-            <!-- Route & Carrier -->
-            <td class="py-2.5 px-3">
-              <div
-                class="font-semibold text-text-primary truncate max-w-[160px]"
-              >
-                {{ tx.route }}
-              </div>
-              <div class="text-[11px] text-text-muted truncate max-w-[160px]">
-                {{ tx.carrier }}
-              </div>
-            </td>
+      <!-- Seats & Class -->
+      <template #cell-seats="{ row }">
+        <div>{{ row.seats }}</div>
+        <div class="text-[10px] text-text-muted font-mono">
+          {{ row.seatNums }}
+        </div>
+      </template>
 
-            <!-- Seats & Class -->
-            <td
-              class="py-2.5 px-3 text-text-secondary font-medium whitespace-nowrap"
-            >
-              <div>{{ tx.seats }}</div>
-              <div class="text-[10px] text-text-muted font-mono">
-                {{ tx.seatNums }}
-              </div>
-            </td>
+      <!-- Amount -->
+      <template #cell-amount="{ row }">
+        {{ row.amount.toFixed(2) }}
+      </template>
 
-            <!-- Amount -->
-            <td
-              class="py-2.5 px-3 font-black text-text-primary tabular-nums whitespace-nowrap"
-            >
-              {{ tx.amount.toFixed(2) }}
-            </td>
+      <!-- Payment -->
+      <template #cell-payment="{ row }">
+        <div class="flex items-center gap-1.5">
+          <Icon :name="row.paymentIcon" class="w-3.5 h-3.5 text-text-muted" />
+          <span class="text-[11px] text-text-secondary font-medium">{{
+            row.payment
+          }}</span>
+        </div>
+      </template>
 
-            <!-- Payment -->
-            <td class="py-2.5 px-3">
-              <div class="flex items-center gap-1.5">
-                <Icon
-                  :name="tx.paymentIcon"
-                  class="w-3.5 h-3.5 text-text-muted"
-                />
-                <span class="text-[11px] text-text-secondary font-medium">{{
-                  tx.payment
-                }}</span>
-              </div>
-            </td>
+      <!-- Status -->
+      <template #cell-status="{ row }">
+        <span
+          class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"
+          :class="statusClass(row.status)"
+        >
+          <span class="w-1.5 h-1.5 rounded-full" :class="dotClass(row.status)" />
+          {{ row.status }}
+        </span>
+      </template>
 
-            <!-- Status -->
-            <td class="py-2.5 px-3">
-              <span
-                class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"
-                :class="statusClass(tx.status)"
-              >
-                <span
-                  class="w-1.5 h-1.5 rounded-full"
-                  :class="dotClass(tx.status)"
-                />
-                {{ tx.status }}
-              </span>
-            </td>
-
-            <!-- Booking time -->
-            <td
-              class="py-2.5 px-3 text-[11px] text-text-muted whitespace-nowrap"
-            >
-              {{ tx.time }}
-            </td>
-
-            <!-- Action -->
-            <td class="py-2.5 px-3">
-              <LazyVDropdownMenu :items="rowActions(tx)">
-                <template #trigger>
-                  <VButton
-                    variant="ghost"
-                    size="xs"
-                    rounded="lg"
-                    icon="ph:dots-three-bold"
-                    aria-label="Row actions"
-                  />
-                </template>
-              </LazyVDropdownMenu>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Action -->
+      <template #cell-action="{ row }">
+        <LazyVDropdownMenu :items="rowActions(row)">
+          <template #trigger>
+            <VButton
+              variant="ghost"
+              size="xs"
+              rounded="lg"
+              icon="ph:dots-three-bold"
+              aria-label="Row actions"
+            />
+          </template>
+        </LazyVDropdownMenu>
+      </template>
+    </LazyVTable>
 
     <!-- Pagination -->
     <LazyVPagination
@@ -195,11 +155,23 @@ const search = ref("");
 const columns = [
   { key: "pnr", label: "PNR & Passenger" },
   { key: "route", label: "Route & Carrier" },
-  { key: "seats", label: "Seats & Class" },
-  { key: "amount", label: "Amount (EGP)" },
+  {
+    key: "seats",
+    label: "Seats & Class",
+    cellClass: "text-text-secondary font-medium whitespace-nowrap",
+  },
+  {
+    key: "amount",
+    label: "Amount (EGP)",
+    cellClass: "font-black text-text-primary tabular-nums whitespace-nowrap",
+  },
   { key: "payment", label: "Payment Method" },
   { key: "status", label: "Status" },
-  { key: "time", label: "Booking Time" },
+  {
+    key: "time",
+    label: "Booking Time",
+    cellClass: "text-[11px] text-text-muted whitespace-nowrap",
+  },
   { key: "action", label: "Action" },
 ];
 

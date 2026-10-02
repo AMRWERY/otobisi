@@ -156,7 +156,7 @@
             variant="unstyled"
             size="sm"
             icon="ph:x-circle-fill"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary p-0.5"
+            class="absolute end-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary p-0.5"
             @click="searchQuery = ''"
           />
         </div>

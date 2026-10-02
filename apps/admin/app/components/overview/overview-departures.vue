@@ -32,7 +32,7 @@
         class="py-3 flex items-start gap-3 group hover:bg-surface-0 dark:hover:bg-surface-2/20 -mx-2 px-2 rounded-lg transition-colors"
       >
         <!-- Time -->
-        <div class="shrink-0 text-right w-10">
+        <div class="shrink-0 text-end w-10">
           <span class="text-xs font-black text-text-primary">{{
             dep.time
           }}</span>
