@@ -7,7 +7,9 @@
     >
       <!-- Header row -->
       <div class="flex items-start justify-between">
-        <span class="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
+        <span
+          class="text-[11px] font-semibold uppercase tracking-widest text-text-muted"
+        >
           {{ stat.label }}
         </span>
         <div
@@ -20,26 +22,29 @@
 
       <!-- Value -->
       <div class="flex items-baseline gap-2">
-        <span class="text-2xl font-black text-text-primary tracking-tight">{{ stat.value }}</span>
-        <span
-          v-if="stat.unit"
-          class="text-sm font-semibold text-text-muted"
-        >{{ stat.unit }}</span>
+        <span class="text-2xl font-black text-text-primary tracking-tight">{{
+          stat.value
+        }}</span>
+        <span v-if="stat.unit" class="text-sm font-semibold text-text-muted">{{
+          stat.unit
+        }}</span>
       </div>
 
       <!-- Delta & description -->
       <div class="flex items-center gap-2 flex-wrap">
         <span
           class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md text-[11px] font-bold"
-          :class="stat.delta > 0
-            ? 'bg-emerald-100/70 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400'
-            : 'bg-rose-100/70 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400'"
+          :class="
+            stat.delta > 0
+              ? 'bg-emerald-100/70 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400'
+              : 'bg-rose-100/70 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400'
+          "
         >
           <Icon
             :name="stat.delta > 0 ? 'ph:trend-up-bold' : 'ph:trend-down-bold'"
             class="w-3 h-3"
           />
-          {{ stat.delta > 0 ? '+' : '' }}{{ stat.delta }}%
+          {{ stat.delta > 0 ? "+" : "" }}{{ stat.delta }}%
         </span>
         <span class="text-[11px] text-text-muted">{{ stat.description }}</span>
       </div>

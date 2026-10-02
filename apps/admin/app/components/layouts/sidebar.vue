@@ -24,11 +24,9 @@
           v-if="!isCollapsed"
           class="flex items-center gap-3 overflow-hidden"
         >
-          <div
-            class="w-9 h-9 rounded-lg bg-accent-600 flex items-center justify-center text-white shrink-0 shadow-sm shadow-accent-900/20"
-          >
-            <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
-          </div>
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#EA580C] to-[#C2410C] flex items-center justify-center text-white shadow-sm shadow-orange-950/20">
+          <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
+        </div>
           <div class="flex flex-col leading-tight min-w-0">
             <span class="font-extrabold text-sm text-text-primary truncate"
               >NileBus Fleet</span

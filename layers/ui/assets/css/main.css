@@ -179,36 +179,7 @@ html[lang="ar"] [role="button"]:hover .icon-arrow-animated {
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* ---------------------------------------------------------------------
-   Language Switch (AR / EN)
-   Direction flip: quick fade-out (100ms) -> swap -> fade-in (150ms)
-   Only applies when .theme-transitioning is NOT present.
---------------------------------------------------------------------- */
-:root:not(.theme-transitioning)::view-transition-old(root) {
-  animation: 100ms cubic-bezier(0.4, 0, 0.2, 1) both locale-fade-out;
-}
-
-:root:not(.theme-transitioning)::view-transition-new(root) {
-  animation: 150ms cubic-bezier(0.4, 0, 0.2, 1) both locale-fade-in;
-}
-
-@keyframes locale-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes locale-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* Language switch (AR / EN) is covered by <VLocaleOverlay /> — see useLocaleSwitch. */
 
 /* ---------------------------------------------------------------------
    Page Transitions (Nuxt pageTransition)

@@ -17,32 +17,43 @@
       <!-- Filters -->
       <div class="flex items-center gap-2 flex-wrap">
         <!-- Search -->
-        <div class="relative">
-          <Icon
-            name="ph:magnifying-glass"
-            class="absolute start-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-muted pointer-events-none"
-          />
-          <input
-            v-model="search"
-            type="text"
-            placeholder="Filter by passenger, PNR..."
-            class="ps-8 pe-3 py-1.5 text-[11px] rounded-lg bg-surface-0 dark:bg-surface-2/40 border border-border/70 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-500 focus:ring-1 focus:ring-accent-500 transition-all w-52"
-          />
-        </div>
+        <LazyVInput
+          v-model="search"
+          size="sm"
+          rounded="lg"
+          icon="ph:magnifying-glass"
+          placeholder="Filter by passenger, PNR..."
+          wrapper-class="w-52"
+          input-class="text-[11px]"
+        />
+
         <!-- Status filter -->
-        <div
-          class="flex items-center gap-1 bg-surface-0 dark:bg-surface-2/50 rounded-lg px-2 py-1.5 border border-border/60 text-[11px] text-text-secondary cursor-pointer hover:border-accent-500 transition-colors select-none"
-        >
-          <span>Status: All</span>
-          <Icon name="ph:caret-down-bold" class="w-3 h-3 text-text-muted" />
-        </div>
+        <LazyVDropdownMenu :items="statusItems" align="left">
+          <template #trigger>
+            <VButton
+              variant="surface"
+              size="xs"
+              rounded="lg"
+              icon-right="ph:caret-down-bold"
+            >
+              Status: {{ statusFilter }}
+            </VButton>
+          </template>
+        </LazyVDropdownMenu>
+
         <!-- Payment filter -->
-        <div
-          class="flex items-center gap-1 bg-surface-0 dark:bg-surface-2/50 rounded-lg px-2 py-1.5 border border-border/60 text-[11px] text-text-secondary cursor-pointer hover:border-accent-500 transition-colors select-none"
-        >
-          <span>Payment: Fawry/Meeza</span>
-          <Icon name="ph:x-bold" class="w-3 h-3 text-text-muted" />
-        </div>
+        <LazyVDropdownMenu :items="paymentItems" align="left">
+          <template #trigger>
+            <VButton
+              variant="surface"
+              size="xs"
+              rounded="lg"
+              icon-right="ph:caret-down-bold"
+            >
+              Payment: {{ paymentFilter }}
+            </VButton>
+          </template>
+        </LazyVDropdownMenu>
       </div>
     </div>
 
@@ -148,12 +159,17 @@
 
             <!-- Action -->
             <td class="py-2.5 px-3">
-              <button
-                type="button"
-                class="p-1.5 rounded-lg hover:bg-surface-0 dark:hover:bg-surface-2 text-text-muted hover:text-text-primary transition-colors cursor-pointer"
-              >
-                <Icon name="ph:dots-three-bold" class="w-4 h-4" />
-              </button>
+              <LazyVDropdownMenu :items="rowActions(tx)">
+                <template #trigger>
+                  <VButton
+                    variant="ghost"
+                    size="xs"
+                    rounded="lg"
+                    icon="ph:dots-three-bold"
+                    aria-label="Row actions"
+                  />
+                </template>
+              </LazyVDropdownMenu>
             </td>
           </tr>
         </tbody>
@@ -166,38 +182,42 @@
     >
       <span>Showing 1–8 of 1,428 bookings</span>
       <div class="flex items-center gap-1">
-        <button
-          type="button"
-          class="px-2.5 py-1 rounded-lg border border-border/70 text-text-muted hover:text-text-primary hover:border-accent-500 transition-colors cursor-pointer disabled:opacity-40"
+        <LazyVButton
+          variant="outline"
+          size="xs"
+          rounded="lg"
+          icon="ph:arrow-left-bold"
+          icon-class="rtl:rotate-180"
           disabled
         >
-          ← Previous
-        </button>
-        <button
+          Previous
+        </LazyVButton>
+        <LazyVButton
           v-for="p in [1, 2, 3, '...', 179]"
           :key="p"
-          type="button"
-          class="px-2.5 py-1 rounded-lg border transition-colors cursor-pointer text-[11px] font-semibold"
-          :class="
-            p === 1
-              ? 'bg-accent-600 border-accent-600 text-white'
-              : 'border-border/70 text-text-muted hover:text-text-primary hover:border-accent-500'
-          "
+          :variant="p === 1 ? 'primary' : 'outline'"
+          size="xs"
+          rounded="lg"
         >
           {{ p }}
-        </button>
-        <button
-          type="button"
-          class="px-2.5 py-1 rounded-lg border border-border/70 text-text-muted hover:text-text-primary hover:border-accent-500 transition-colors cursor-pointer"
+        </LazyVButton>
+        <LazyVButton
+          variant="outline"
+          size="xs"
+          rounded="lg"
+          icon-right="ph:arrow-right-bold"
+          icon-right-class="rtl:rotate-180"
         >
-          Next →
-        </button>
+          Next
+        </LazyVButton>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
+
 const search = ref("");
 
 const columns = [
@@ -318,14 +338,56 @@ const transactions = [
   },
 ];
 
+const ALL = "All";
+const statusFilter = ref(ALL);
+const paymentFilter = ref(ALL);
+
+const statusItems = computed<DropdownItem[]>(() =>
+  [ALL, "Confirmed", "Pending Payment", "Refunded"].map((label) => ({
+    type: "button",
+    label,
+    onClick: () => (statusFilter.value = label),
+  }))
+);
+
+const paymentItems = computed<DropdownItem[]>(() =>
+  [ALL, ...new Set(transactions.map((t) => t.payment))].map((label) => ({
+    type: "button",
+    label,
+    onClick: () => (paymentFilter.value = label),
+  }))
+);
+
+function rowActions(tx: (typeof transactions)[number]): DropdownItem[] {
+  return [
+    { type: "button", label: "View booking", icon: "ph:eye-bold" },
+    {
+      type: "button",
+      label: "Resend ticket",
+      icon: "ph:paper-plane-tilt-bold",
+    },
+    { type: "divider" },
+    {
+      type: "button",
+      label: "Refund",
+      icon: "ph:arrow-u-up-left-bold",
+      iconClass: "text-rose-600",
+      danger: true,
+      class: tx.status === "Refunded" ? "opacity-50 pointer-events-none" : "",
+    },
+  ];
+}
+
 const filteredTransactions = computed(() => {
-  if (!search.value.trim()) return transactions;
-  const q = search.value.toLowerCase();
+  const q = search.value.trim().toLowerCase();
   return transactions.filter(
     (t) =>
-      t.name.toLowerCase().includes(q) ||
-      t.pnr.toLowerCase().includes(q) ||
-      t.route.toLowerCase().includes(q)
+      (statusFilter.value === ALL || t.status === statusFilter.value) &&
+      (paymentFilter.value === ALL || t.payment === paymentFilter.value) &&
+      (!q ||
+        t.name.toLowerCase().includes(q) ||
+        t.pnr.toLowerCase().includes(q) ||
+        t.route.toLowerCase().includes(q))
   );
 });
 

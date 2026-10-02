@@ -1,34 +1,43 @@
 <template>
-  <div class="bg-surface-1 dark:bg-[#111927] border border-border/70 rounded-xl p-5 flex flex-col gap-4">
+  <div
+    class="bg-surface-1 dark:bg-[#111927] border border-border/70 rounded-xl p-5 flex flex-col gap-4"
+  >
     <!-- Header -->
     <div class="flex items-start justify-between flex-wrap gap-2">
       <div>
-        <h2 class="text-sm font-black text-text-primary tracking-tight">Bookings & Ticket Volume</h2>
+        <h2 class="text-sm font-black text-text-primary tracking-tight">
+          Bookings & Ticket Volume
+        </h2>
         <p class="text-[11px] text-text-muted mt-0.5">
-          Total <span class="font-semibold text-text-secondary">38,420</span> tickets confirmed
-          <span class="text-accent-600 dark:text-accent-400 font-bold">+7.42M EGP</span> Gross GMV
+          Total
+          <span class="font-semibold text-text-secondary">38,420</span> tickets
+          confirmed
+          <span class="text-accent-600 dark:text-accent-400 font-bold"
+            >+7.42M EGP</span
+          >
+          Gross GMV
         </p>
       </div>
 
       <!-- Date range tabs -->
-      <div class="flex items-center gap-1 bg-surface-0 dark:bg-surface-2/50 rounded-lg p-0.5 border border-border/50">
-        <button
+      <div
+        class="flex items-center gap-1 bg-surface-0 dark:bg-surface-2/50 rounded-lg p-0.5 border border-border/50"
+      >
+        <LazyVButton
           v-for="range in ranges"
           :key="range"
-          type="button"
-          class="px-3 py-1 rounded-md text-[11px] font-bold transition-all cursor-pointer"
-          :class="activeRange === range
-            ? 'bg-accent-600 text-white shadow-sm'
-            : 'text-text-muted hover:text-text-primary'"
+          :variant="activeRange === range ? 'primary' : 'ghost'"
+          size="xs"
+          rounded="md"
           @click="activeRange = range"
         >
           {{ range }}
-        </button>
+        </LazyVButton>
       </div>
     </div>
 
     <!-- Chart SVG Area -->
-    <div class="relative w-full" style="height: 220px;">
+    <div class="relative w-full" style="height: 220px">
       <svg
         viewBox="0 0 700 200"
         preserveAspectRatio="none"
@@ -36,7 +45,18 @@
         aria-hidden="true"
       >
         <!-- Grid lines -->
-        <line v-for="y in [40, 80, 120, 160, 200]" :key="y" x1="0" :y1="y" x2="700" :y2="y" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5" />
+        <line
+          v-for="y in [40, 80, 120, 160, 200]"
+          :key="y"
+          x1="0"
+          :y1="y"
+          x2="700"
+          :y2="y"
+          stroke="var(--border)"
+          stroke-width="1"
+          stroke-dasharray="4 4"
+          opacity="0.5"
+        />
 
         <!-- Area fill (confirmed tickets) -->
         <defs>
@@ -76,30 +96,52 @@
         />
 
         <!-- Route Peak tooltip indicator -->
-        <circle cx="310" cy="85" r="5" fill="#22a693" stroke="var(--surface-0)" stroke-width="2" />
+        <circle
+          cx="310"
+          cy="85"
+          r="5"
+          fill="#22a693"
+          stroke="var(--surface-0)"
+          stroke-width="2"
+        />
         <!-- Vertical dotted marker -->
-        <line x1="310" y1="5" x2="310" y2="200" stroke="#22a693" stroke-width="1" stroke-dasharray="3 3" opacity="0.4" />
+        <line
+          x1="310"
+          y1="5"
+          x2="310"
+          y2="200"
+          stroke="#22a693"
+          stroke-width="1"
+          stroke-dasharray="3 3"
+          opacity="0.4"
+        />
       </svg>
 
       <!-- Tooltip overlay -->
-      <div
-        class="absolute pointer-events-none"
-        style="left: 44%; top: 18px;"
-      >
-        <div class="bg-surface-0 dark:bg-[#1B2438] border border-border shadow-lg rounded-xl px-3 py-2 text-xs w-48">
+      <div class="absolute pointer-events-none" style="left: 44%; top: 18px">
+        <div
+          class="bg-surface-0 dark:bg-[#1B2438] border border-border shadow-lg rounded-xl px-3 py-2 text-xs w-48"
+        >
           <div class="flex items-center justify-between mb-1">
             <span class="font-bold text-text-primary">Oct 23 (Yesterday)</span>
-            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-500 text-white">ROUTE PEAK</span>
+            <span
+              class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-500 text-white"
+              >ROUTE PEAK</span
+            >
           </div>
           <p class="text-sm font-black text-text-primary">1,512 bookings</p>
-          <p class="text-[11px] text-text-muted">302,400 EGP · Cairo-Alex peak</p>
+          <p class="text-[11px] text-text-muted">
+            302,400 EGP · Cairo-Alex peak
+          </p>
         </div>
         <div class="w-px h-3 bg-accent-600 mx-auto opacity-60" />
       </div>
     </div>
 
     <!-- X-axis labels -->
-    <div class="flex justify-between text-[10px] text-text-muted font-mono px-1">
+    <div
+      class="flex justify-between text-[10px] text-text-muted font-mono px-1"
+    >
       <span>Oct 01</span>
       <span>Oct 05</span>
       <span>Oct 10</span>
@@ -109,21 +151,34 @@
     </div>
 
     <!-- Legend -->
-    <div class="flex items-center gap-6 text-[11px] text-text-muted border-t border-border/60 pt-3 flex-wrap">
+    <div
+      class="flex items-center gap-6 text-[11px] text-text-muted border-t border-border/60 pt-3 flex-wrap"
+    >
       <div class="flex items-center gap-2">
         <span class="w-6 h-0.5 bg-accent-500 rounded-full inline-block" />
         <span>Confirmed Tickets (Total)</span>
       </div>
       <div class="flex items-center gap-2">
-        <span class="w-6 h-0.5 bg-indigo-400 rounded-full inline-block border border-dashed" style="border-top: 2px dashed #818cf8; height: 0; width: 20px; background: none;" />
+        <span
+          class="w-6 h-0.5 bg-indigo-400 rounded-full inline-block border border-dashed"
+          style="
+            border-top: 2px dashed #818cf8;
+            height: 0;
+            width: 20px;
+            background: none;
+          "
+        />
         <span>Station Counter POS</span>
       </div>
-      <span class="text-text-muted text-[10px] ms-auto hidden md:inline">Platform Split: 78% Mobile / 22% Station Desk</span>
+      <span class="text-text-muted text-[10px] ms-auto hidden md:inline"
+        >Platform Split: 78% Mobile / 22% Station Desk</span
+      >
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 const ranges = ["7D", "30D", "90D", "12M"];
+
 const activeRange = ref("30D");
 </script>

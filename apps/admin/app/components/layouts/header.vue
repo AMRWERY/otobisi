@@ -12,24 +12,6 @@
         <Icon name="ph:list-bold" class="w-5 h-5" />
       </button>
 
-      <!-- Otobisi Brand Mark -->
-      <div class="flex items-center gap-2.5 shrink-0 select-none">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#EA580C] to-[#C2410C] flex items-center justify-center text-white shadow-sm shadow-orange-950/20">
-          <Icon name="ph:bus-duotone" class="w-5 h-5 text-white" />
-        </div>
-        <div class="flex items-baseline gap-1.5">
-          <span class="text-lg font-black tracking-tight text-text-primary">
-            Otobisi<span class="text-[#EA580C]">.</span>
-          </span>
-          <span class="text-xs text-text-muted font-normal">أوتوبيسي</span>
-        </div>
-      </div>
-
-      <!-- Partner Fleet Badge -->
-      <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider text-text-secondary bg-surface-1 dark:bg-surface-2 border border-border uppercase shrink-0">
-        PARTNER FLEET
-      </span>
-
       <!-- Search Bar -->
       <div class="relative w-full max-w-md hidden md:block">
         <Icon
@@ -95,6 +77,7 @@
       <!-- Theme & Locale toggles from @otobisi/ui -->
       <div class="flex items-center gap-1">
         <LazyVToggleLocale />
+
         <LazyVToggleTheme />
       </div>
 

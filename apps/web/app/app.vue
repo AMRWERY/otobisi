@@ -5,6 +5,7 @@
       <NuxtPage />
     </NuxtLayout>
     <LazyVToast />
+    <VLocaleOverlay />
   </div>
 </template>
 
