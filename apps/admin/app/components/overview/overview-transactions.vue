@@ -76,7 +76,7 @@
         <!-- Body -->
         <tbody class="divide-y divide-border/40">
           <tr
-            v-for="tx in filteredTransactions"
+            v-for="tx in pagedTransactions"
             :key="tx.pnr"
             class="hover:bg-surface-0 dark:hover:bg-surface-2/20 transition-colors group"
           >
@@ -177,41 +177,13 @@
     </div>
 
     <!-- Pagination -->
-    <div
-      class="flex items-center justify-between border-t border-border/60 pt-3 text-[11px] text-text-muted flex-wrap gap-2"
-    >
-      <span>Showing 1–8 of 1,428 bookings</span>
-      <div class="flex items-center gap-1">
-        <LazyVButton
-          variant="outline"
-          size="xs"
-          rounded="lg"
-          icon="ph:arrow-left-bold"
-          icon-class="rtl:rotate-180"
-          disabled
-        >
-          Previous
-        </LazyVButton>
-        <LazyVButton
-          v-for="p in [1, 2, 3, '...', 179]"
-          :key="p"
-          :variant="p === 1 ? 'primary' : 'outline'"
-          size="xs"
-          rounded="lg"
-        >
-          {{ p }}
-        </LazyVButton>
-        <LazyVButton
-          variant="outline"
-          size="xs"
-          rounded="lg"
-          icon-right="ph:arrow-right-bold"
-          icon-right-class="rtl:rotate-180"
-        >
-          Next
-        </LazyVButton>
-      </div>
-    </div>
+    <LazyVPagination
+      v-model="page"
+      :total="filteredTransactions.length"
+      :page-size="PAGE_SIZE"
+      item-label="bookings"
+      show-summary
+    />
   </div>
 </template>
 
@@ -347,7 +319,7 @@ const statusItems = computed<DropdownItem[]>(() =>
     type: "button",
     label,
     onClick: () => (statusFilter.value = label),
-  }))
+  })),
 );
 
 const paymentItems = computed<DropdownItem[]>(() =>
@@ -355,7 +327,7 @@ const paymentItems = computed<DropdownItem[]>(() =>
     type: "button",
     label,
     onClick: () => (paymentFilter.value = label),
-  }))
+  })),
 );
 
 function rowActions(tx: (typeof transactions)[number]): DropdownItem[] {
@@ -387,9 +359,22 @@ const filteredTransactions = computed(() => {
       (!q ||
         t.name.toLowerCase().includes(q) ||
         t.pnr.toLowerCase().includes(q) ||
-        t.route.toLowerCase().includes(q))
+        t.route.toLowerCase().includes(q)),
   );
 });
+
+const PAGE_SIZE = 5;
+const page = ref(1);
+
+const pagedTransactions = computed(() =>
+  filteredTransactions.value.slice(
+    (page.value - 1) * PAGE_SIZE,
+    page.value * PAGE_SIZE,
+  ),
+);
+
+// Any filter change starts from the first page
+watch([search, statusFilter, paymentFilter], () => (page.value = 1));
 
 function statusClass(status: string) {
   const map: Record<string, string> = {

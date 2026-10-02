@@ -124,7 +124,7 @@
         <LazyVInput
           v-model="modelValue.nationalId"
           type="text"
-          maxlength="14"
+          :maxlength="14"
           placeholder="29408150102345"
           variant="unstyled"
           :box-class="[

@@ -1,3 +1,6 @@
+/** Anything Vue accepts for `:class` — string, array of classes/conditionals, or object map */
+export type ClassValue = string | (string | false | null | undefined)[] | Record<string, boolean>;
+
 export type InputSize = "sm" | "md" | "lg";
 
 export type InputRounded = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
@@ -12,7 +15,7 @@ export type InputVariant =
 export interface InputProps {
   modelValue?: string | number;
   label?: string;
-  labelClass?: string;
+  labelClass?: ClassValue;
   placeholder?: string;
   type?: string;
   id?: string;
@@ -24,15 +27,15 @@ export interface InputProps {
   hint?: string;
   icon?: string;
   iconRight?: string;
-  iconClass?: string;
+  iconClass?: ClassValue;
   clearable?: boolean;
   size?: InputSize;
   rounded?: InputRounded;
   variant?: InputVariant;
-  wrapperClass?: string;
-  inputClass?: string;
+  wrapperClass?: ClassValue;
+  inputClass?: ClassValue;
   /** Classes for the box container; only styling source when variant is "unstyled" */
-  boxClass?: string;
+  boxClass?: ClassValue;
   autocomplete?: string;
   maxlength?: number;
   min?: string | number;

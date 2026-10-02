@@ -50,7 +50,7 @@
       <LazyVInput
         v-model="cardCvv"
         type="password"
-        maxlength="4"
+        :maxlength="4"
         placeholder="•••"
         variant="unstyled"
         box-class="bg-surface-1 border border-border rounded-xl px-3.5 py-2.5 focus-within:ring-2 focus-within:ring-orange-500/20 focus-within:border-orange-500"
