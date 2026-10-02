@@ -1,3 +1,5 @@
+import type { ClassValue } from "./VInput";
+
 export type ButtonVariant =
   | "primary"
   | "secondary"
@@ -26,10 +28,10 @@ export interface ButtonProps {
   icon?: string;
   iconRight?: string;
   /** Applied to the leading icon; also the trailing icon's default unless `iconRightClass` is set */
-  iconClass?: string;
+  iconClass?: ClassValue;
   /** Classes for the trailing (iconRight) icon only, overriding iconClass for it */
-  iconRightClass?: string;
-  customClass?: string;
+  iconRightClass?: ClassValue;
+  customClass?: ClassValue;
   /** Classes for the wrapper span around the default slot (icon/text gap, truncation, alignment) */
-  contentClass?: string;
+  contentClass?: ClassValue;
 }

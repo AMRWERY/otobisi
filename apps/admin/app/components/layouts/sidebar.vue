@@ -112,13 +112,13 @@
           </div>
 
           <div class="space-y-0.5">
-            <button
+            <nuxt-link-locale
               v-for="item in group.items"
               :key="item.label"
-              type="button"
+              :to="item.to"
               class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-150 group cursor-pointer text-start"
               :class="[
-                item.active
+                isItemActive(item.to)
                   ? 'bg-accent-700 text-white shadow-sm shadow-accent-950/20'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface-1 dark:hover:bg-surface-2/60',
               ]"
@@ -129,7 +129,7 @@
                 :name="item.icon"
                 class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110"
                 :class="
-                  item.active
+                  isItemActive(item.to)
                     ? 'text-white'
                     : 'text-text-secondary group-hover:text-text-primary'
                 "
@@ -146,7 +146,7 @@
               >
                 {{ item.badge }}
               </span>
-            </button>
+            </nuxt-link-locale>
           </div>
         </div>
       </nav>
@@ -182,37 +182,47 @@
 </template>
 
 <script lang="ts" setup>
+const route = useRoute();
+const localePath = useLocalePath();
 const { isMobileOpen, isCollapsed, closeMobile, toggleCollapse } =
   useAdminSidebar();
 
-const navGroups = ref([
+const isItemActive = (to: string) => {
+  const target = localePath(to);
+  if (to === '/') {
+    return route.path === target || route.path === '/' || route.path === '/ar' || route.path === '/en';
+  }
+  return route.path.startsWith(target);
+};
+
+const navGroups = [
   {
     title: "CORE OPERATIONS",
     items: [
-      { label: "Dashboard", icon: "ph:squares-four-bold", active: true },
+      { label: "Dashboard", icon: "ph:squares-four-bold", to: "/" },
       {
         label: "Trips & Schedules",
         icon: "ph:calendar-blank-bold",
-        active: false,
+        to: "/trips-schedules",
       },
       {
         label: "Live Dispatch Map",
         icon: "ph:map-trifold-bold",
-        active: false,
+        to: "/dispatch",
       },
-      { label: "Bookings & Tickets", icon: "ph:ticket-bold", active: false },
+      { label: "Bookings & Tickets", icon: "ph:ticket-bold", to: "/bookings" },
     ],
   },
   {
     title: "COMMERCIAL & FLEET",
     items: [
-      { label: "Dynamic Pricing", icon: "ph:trend-up-bold", active: false },
+      { label: "Dynamic Pricing", icon: "ph:trend-up-bold", to: "/pricing" },
       {
         label: "Passenger Manifest",
         icon: "ph:users-three-bold",
-        active: false,
+        to: "/manifest",
       },
-      { label: "Fleet & Vehicles", icon: "ph:bus-bold", active: false },
+      { label: "Fleet & Vehicles", icon: "ph:bus-bold", to: "/fleet" },
     ],
   },
   {
@@ -221,29 +231,30 @@ const navGroups = ref([
       {
         label: "Revenue & Occupancy",
         icon: "ph:chart-bar-bold",
-        active: false,
+        to: "/revenue",
       },
       {
         label: "Settlements (Fawry/Meeza)",
         icon: "ph:credit-card-bold",
-        active: false,
+        to: "/settlements",
       },
     ],
   },
   {
     title: "MANAGEMENT",
     items: [
-      { label: "Operator Settings", icon: "ph:gear-bold", active: false },
-      { label: "Audit Logs", icon: "ph:clipboard-text-bold", active: false },
+      { label: "Operator Settings", icon: "ph:gear-bold", to: "/settings" },
+      { label: "Audit Logs", icon: "ph:clipboard-text-bold", to: "/audit-logs" },
     ],
   },
-]);
+];
 </script>
 
 <style scoped>
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--border);
   border-radius: 9999px;

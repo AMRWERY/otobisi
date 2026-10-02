@@ -31,13 +31,13 @@
           <Icon name="ph:download-simple-bold" class="w-3.5 h-3.5" />
           Export Manifest
         </button>
-        <button
-          type="button"
+        <NuxtLink
+          :to="localePath('/trips-schedules')"
           class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-accent-600 hover:bg-accent-700 text-white text-xs font-bold shadow-sm shadow-accent-900/20 transition-colors cursor-pointer"
         >
           <Icon name="ph:plus-bold" class="w-3.5 h-3.5" />
           New Trip Schedule
-        </button>
+        </NuxtLink>
       </div>
     </div>
 
@@ -63,6 +63,8 @@
 </template>
 
 <script lang="ts" setup>
+const localePath = useLocalePath();
+
 useSeoMeta({
   title: "Dashboard",
 });
