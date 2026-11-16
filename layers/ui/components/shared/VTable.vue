@@ -26,8 +26,9 @@
           :key="rowKeyOf(row, index)"
           :class="[
             'hover:bg-surface-0 dark:hover:bg-surface-2/20 transition-colors group',
-            rowClass,
+            resolveRowClass(row, index),
           ]"
+          @click="emit('row-click', row, index)"
         >
           <td
             v-for="col in columns"
@@ -70,7 +71,8 @@ const props = withDefaults(
     rowKey?: string;
     /** Tailwind min-width class so narrow screens scroll instead of squeezing */
     minWidthClass?: string;
-    rowClass?: string;
+    /** Classes for every row, or a function to style rows individually (e.g. the selected one) */
+    rowClass?: string | ((row: Record<string, any>, index: number) => string);
     emptyText?: string;
   }>(),
   {
@@ -80,6 +82,16 @@ const props = withDefaults(
     emptyText: "No data to display",
   },
 );
+
+const emit = defineEmits<{
+  (e: "row-click", row: Record<string, any>, index: number): void;
+}>();
+
+function resolveRowClass(row: Record<string, any>, index: number) {
+  return typeof props.rowClass === "function"
+    ? props.rowClass(row, index)
+    : props.rowClass;
+}
 
 function rowKeyOf(row: Record<string, any>, index: number) {
   return props.rowKey ? row[props.rowKey] : index;
