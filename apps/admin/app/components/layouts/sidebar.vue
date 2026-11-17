@@ -50,7 +50,9 @@
                 OPS
               </span>
             </div>
-            <div class="font-mono text-[10px] text-slate-400 dark:text-slate-500 truncate">
+            <div
+              class="font-mono text-[10px] text-slate-400 dark:text-slate-500 truncate"
+            >
               Almaza Hub #402
             </div>
           </div>
@@ -85,7 +87,11 @@
       :class="compact ? 'px-3' : 'px-2.5'"
       @scroll.passive="tip = null"
     >
-      <div v-for="(group, index) in navGroups" :key="group.title" class="space-y-0.5">
+      <div
+        v-for="(group, index) in navGroups"
+        :key="group.title"
+        class="space-y-0.5"
+      >
         <div
           v-if="!compact"
           class="px-3 pb-1.5 text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500"
@@ -165,23 +171,17 @@
       </div>
 
       <div v-if="!compact" class="min-w-0 flex-1 leading-tight">
-        <div class="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">
-          Karim El-Sayed
+        <div
+          class="text-xs font-bold text-slate-900 dark:text-slate-100 truncate"
+        >
+          Amr Mohamed
         </div>
-        <div class="font-mono text-[10px] text-slate-400 dark:text-slate-500 truncate">
+        <div
+          class="font-mono text-[10px] text-slate-400 dark:text-slate-500 truncate"
+        >
           Fleet Ops Lead
         </div>
       </div>
-
-      <button
-        type="button"
-        class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors cursor-pointer"
-        title="Sign out"
-        aria-label="Sign out"
-        @click="signOut"
-      >
-        <Icon name="ph:sign-out-bold" class="w-4 h-4 rtl:-scale-x-100" />
-      </button>
     </div>
   </aside>
 
@@ -252,10 +252,6 @@ function showTip(event: Event, item: NavItem) {
 
 // Expanding or opening the drawer makes the tooltip meaningless
 watch(compact, () => (tip.value = null));
-
-function signOut() {
-  toast.info("Sign out is not available yet");
-}
 
 // Badges are placeholders until live counts exist
 const navGroups: { title: string; items: NavItem[] }[] = [
