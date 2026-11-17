@@ -254,6 +254,7 @@ const navGroups = [
     title: "MANAGEMENT",
     items: [
       { label: "Operator Settings", icon: "ph:gear-bold", to: "/settings" },
+      { label: "Team & Roles", icon: "ph:users-three-bold", to: "/team" },
       { label: "Audit Logs", icon: "ph:clipboard-text-bold", to: "/audit-logs" },
     ],
   },

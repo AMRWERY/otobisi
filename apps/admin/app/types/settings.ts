@@ -2,11 +2,35 @@ export type SettingsSectionKey =
   | "identity"
   | "branding"
   | "payments"
-  | "notifications"
-  | "team"
-  | "api";
+  | "notifications";
 
 export type FleetTierKey = "vip" | "royal" | "classic";
+
+export type NotificationChannel = "email" | "sms" | "whatsapp" | "push";
+
+export type NotificationEventKey =
+  | "newBooking"
+  | "cancellation"
+  | "tripDelay"
+  | "lowOccupancy"
+  | "settlement"
+  | "security";
+
+export type DigestFrequency = "off" | "daily" | "weekly";
+
+/** Which channels deliver each event */
+export type NotificationMatrix = Record<
+  NotificationEventKey,
+  Record<NotificationChannel, boolean>
+>;
+
+export interface QuietHours {
+  enabled: boolean;
+  /** "HH:mm" */
+  from: string;
+  /** "HH:mm" */
+  to: string;
+}
 
 export interface SettingsForm {
   legalNameEn: string;
@@ -18,6 +42,9 @@ export interface SettingsForm {
   accent: string;
   tagline: string;
   tier: FleetTierKey;
+  notifications: NotificationMatrix;
+  quietHours: QuietHours;
+  digest: DigestFrequency;
 }
 
 export interface SettingsSection {
@@ -26,8 +53,6 @@ export interface SettingsSection {
   icon: string;
   badge?: string;
   badgeClass?: string;
-  /** Sections without a panel yet are shown but disabled */
-  available: boolean;
 }
 
 export interface FleetTier {
@@ -42,4 +67,21 @@ export interface OperatorRail {
   note: string;
   cardClass: string;
   initialClass: string;
+}
+
+export interface NotificationEvent {
+  key: NotificationEventKey;
+  label: string;
+  description: string;
+  icon: string;
+  /** Tailwind classes for the icon tile */
+  iconClass: string;
+  /** Critical events ignore quiet hours */
+  critical?: boolean;
+}
+
+export interface NotificationChannelInfo {
+  key: NotificationChannel;
+  label: string;
+  icon: string;
 }

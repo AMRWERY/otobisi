@@ -1,7 +1,7 @@
 <template>
   <section
     :id="id"
-    class="bg-surface-0 dark:bg-[#111927] border border-border/80 rounded-xl p-4 sm:p-5 shadow-xs space-y-4 scroll-mt-4"
+    class="bg-surface-0 dark:bg-[#111927] border border-border/80 rounded-xl p-4 sm:p-5 shadow-xs space-y-4 scroll-mt-20 lg:scroll-mt-6"
   >
     <header
       class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-border/60"
