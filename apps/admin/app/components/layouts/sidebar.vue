@@ -239,6 +239,11 @@ const navGroups = [
         to: "/revenue",
       },
       {
+        label: "Reports & Analytics",
+        icon: "ph:chart-line-up-bold",
+        to: "/reports",
+      },
+      {
         label: "Settlements (Fawry/Meeza)",
         icon: "ph:credit-card-bold",
         to: "/settlements",
