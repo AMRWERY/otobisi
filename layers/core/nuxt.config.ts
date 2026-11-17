@@ -36,6 +36,8 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      // Served from layers/core/public, shared by every app
+      link: [{ rel: "icon", href: "/favicon.ico", sizes: "any" }],
       script: [
         {
           key: "theme-init",

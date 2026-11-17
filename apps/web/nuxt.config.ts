@@ -41,7 +41,6 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "ar", // overridden reactively by @nuxtjs/i18n at runtime
       },
-      link: [{ rel: "icon", type: "image/png", href: "" }],
       meta: [{ name: "theme-color", content: "#22a693" }],
     },
   },
