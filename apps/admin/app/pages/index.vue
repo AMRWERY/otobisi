@@ -65,6 +65,9 @@
     <!-- ─── KPI Stats ─── -->
     <lazy-overview-stats />
 
+    <!-- ─── Live telemetry (wide cards with sparklines) ─── -->
+    <lazy-overview-telemetry />
+
     <!-- ─── Main 2-column grid: Chart + Departures ─── -->
     <div class="grid grid-cols-1 xl:grid-cols-5 gap-6 items-stretch">
       <!-- Chart takes 3/5 -->
