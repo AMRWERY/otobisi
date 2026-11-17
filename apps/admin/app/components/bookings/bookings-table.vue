@@ -2,83 +2,48 @@
   <div
     class="bg-surface-0 dark:bg-[#111927] border border-border/80 rounded-2xl overflow-hidden shadow-xs"
   >
-    <!-- Bulk bar -->
-    <div
-      class="px-4 py-2.5 border-b border-border/80 flex items-center justify-between flex-wrap gap-3 bg-surface-1/60 dark:bg-surface-2/10"
+    <VTableBulkBar
+      :count="selectedIds.length"
+      label="Reservations Selected"
+      @clear="selectedIds = []"
     >
-      <label
-        class="flex items-center gap-3 text-[11px] font-mono text-text-secondary cursor-pointer select-none"
-      >
-        <input
-          type="checkbox"
-          class="checkbox"
-          :checked="allSelected"
-          :indeterminate="someSelected"
-          :disabled="!bookings.length"
-          @change="emit('toggle-all')"
-        />
-        <span v-if="selectedIds.length" class="font-semibold text-text-primary">
-          {{ selectedIds.length.toLocaleString("en-US") }} selected
-        </span>
-        <span v-else>
-          Select all {{ bookings.length.toLocaleString("en-US") }} results
-        </span>
-      </label>
-
-      <div class="flex items-center gap-3">
-        <template v-if="selectedIds.length">
-          <VButton
-            variant="ghost"
-            size="xs"
-            rounded="lg"
-            icon="ph:download-simple-bold"
-            @click="emit('export-selected')"
-          >
-            Export selected
-          </VButton>
-        </template>
-        <span
-          class="flex items-center gap-1.5 text-[11px] font-medium text-accent-700 dark:text-accent-300"
-        >
-          <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
-          Real-time feed active
-        </span>
-      </div>
-    </div>
+      <VTableBulkAction icon="ph:download-simple-bold" @click="emit('export-selected')">
+        Export selected
+      </VTableBulkAction>
+    </VTableBulkBar>
 
     <VTable
+      v-model:selected="selectedIds"
+      v-model:sort="sort"
+      selectable
       :columns="columns"
       :rows="pagedBookings"
       row-key="id"
+      density="comfortable"
       min-width-class="min-w-[860px]"
       :row-class="rowClass"
-      empty-text="No reservations match your filters"
+      empty-icon="ph:ticket-bold"
+      empty-title="No reservations match your filters"
+      empty-description="Try clearing the active filters or widening the date range."
       @row-click="(row) => emit('open', row.id)"
     >
-      <template #header-select>
-        <span class="sr-only">Select</span>
-      </template>
-
-      <!-- Checkbox + active-row marker -->
-      <template #cell-select="{ row }">
-        <span
-          v-if="row.id === activeId"
-          class="absolute inset-y-0 start-0 w-0.5 bg-accent-500"
-        />
-        <input
-          type="checkbox"
-          class="checkbox"
-          :checked="selectedIds.includes(row.id)"
-          :aria-label="`Select booking ${row.id}`"
-          @click.stop
-          @change="emit('toggle', row.id)"
-        />
+      <template #empty-actions>
+        <VButton
+          v-if="hasActiveFilters"
+          variant="surface"
+          size="sm"
+          rounded="lg"
+          icon="ph:funnel-x-bold"
+          @click="emit('reset')"
+        >
+          Reset Active Filters
+        </VButton>
       </template>
 
       <!-- PNR -->
       <template #cell-pnr="{ row }">
         <span
-          class="font-mono text-[11px] font-bold text-emerald-700 dark:text-emerald-400 whitespace-nowrap"
+          class="font-mono text-[11px] font-bold text-teal-700 dark:text-teal-300 whitespace-nowrap"
         >
           {{ row.id }}
         </span>
@@ -191,83 +156,63 @@
       </template>
     </VTable>
 
-    <!-- Footer: per page + pagination -->
-    <div
-      class="px-4 py-3 border-t border-border/80 flex items-center justify-between flex-wrap gap-4 text-xs"
-    >
-      <VDropdownMenu :items="perPageItems" align="left">
-        <template #trigger>
-          <VButton
-            variant="surface"
-            size="xs"
-            rounded="lg"
-            icon-right="ph:caret-down-bold"
-          >
-            {{ perPage }} per page
-          </VButton>
-        </template>
-      </VDropdownMenu>
-
-      <VPagination
-        v-model="currentPage"
-        :total="bookings.length"
-        :page-size="perPage"
-        item-label="records"
-        show-summary
-        class="flex-1 border-t-0 pt-0"
-      />
-    </div>
+    <VPagination
+      v-model="currentPage"
+      v-model:page-size="perPage"
+      :page-size-options="PER_PAGE_OPTIONS"
+      :total="bookings.length"
+      item-label="records"
+      show-summary
+      :active-class="PAGINATION_ACTIVE_CLASS"
+      class="px-4 py-3 bg-surface-1/40 dark:bg-surface-2/10"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
-import type { TableColumn } from "@otobisi/ui/types/shared/VTable";
+import type { TableColumn, TableSort } from "@otobisi/ui/types/shared/VTable";
 import type { Booking } from "~/types/booking";
 
 const props = defineProps<{
-  /** Already filtered bookings; this component only paginates them */
+  /** Already filtered bookings; this component sorts and paginates them */
   bookings: Booking[];
   activeId: string | null;
-  selectedIds: string[];
-  allSelected: boolean;
+  hasActiveFilters: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: "open", id: string): void;
-  (e: "toggle", id: string): void;
-  (e: "toggle-all"): void;
   (e: "export-selected"): void;
+  (e: "reset"): void;
 }>();
 
+/** PNRs of the checked bookings (kept across pages) */
+const selectedIds = defineModel<(string | number)[]>("selectedIds", {
+  required: true,
+});
+
 const columns: TableColumn[] = [
-  { key: "select", label: "", headerClass: "w-10 ps-4", cellClass: "relative ps-4" },
-  { key: "pnr", label: "PNR REF", cellClass: "whitespace-nowrap" },
-  { key: "passenger", label: "PASSENGER / CONTACT" },
-  { key: "route", label: "CORRIDOR & DEPARTURE" },
-  { key: "seats", label: "SEATS" },
+  { key: "pnr", label: "PNR Ref", sortable: true, cellClass: "whitespace-nowrap" },
+  { key: "passenger", label: "Passenger / Contact", sortable: true },
+  { key: "route", label: "Corridor & Departure", sortable: true },
+  { key: "seats", label: "Seats" },
   {
     key: "fare",
-    label: "FARE (EGP)",
-    headerClass: "text-end",
-    cellClass: "text-end whitespace-nowrap",
+    label: "Fare (EGP)",
+    sortable: true,
+    align: "end",
+    cellClass: "whitespace-nowrap",
   },
-  { key: "gateway", label: "GATEWAY", headerClass: "pe-4", cellClass: "pe-4" },
+  { key: "gateway", label: "Gateway", sortable: true, headerClass: "pe-4", cellClass: "pe-4" },
 ];
 
-const someSelected = computed(
-  () => props.selectedIds.length > 0 && !props.allSelected,
-);
-
 function rowClass(row: Record<string, any>) {
-  const selected = props.selectedIds.includes(row.id);
+  // Active reservation: teal tint plus a 3px marker on the leading edge
   return [
     "cursor-pointer",
     row.id === props.activeId
-      ? "bg-accent-50/70 dark:bg-accent-500/10"
-      : selected
-        ? "bg-surface-1/70 dark:bg-surface-2/20"
-        : "",
+      ? "bg-accent-50/70 dark:bg-accent-500/10 [box-shadow:inset_3px_0_0_0_#14b8a6] rtl:[box-shadow:inset_-3px_0_0_0_#14b8a6]"
+      : "",
   ].join(" ");
 }
 
@@ -278,20 +223,20 @@ function routeNote(b: Booking) {
   return b.gate;
 }
 
+// ── Sorting ─────────────────────────────────────────────
+const sort = ref<TableSort | null>(null);
+
+const sortedBookings = computed(() =>
+  sortRows(props.bookings, sort.value, {
+    pnr: (b) => b.id,
+    passenger: (b) => b.passengerName,
+    route: (b) => `${b.origin} ${b.destination}`,
+  }),
+);
+
 // ── Pagination ──────────────────────────────────────────
 const currentPage = ref(1);
 const perPage = ref(PER_PAGE_OPTIONS[0]!);
-
-const perPageItems = computed<DropdownItem[]>(() =>
-  PER_PAGE_OPTIONS.map((size) => ({
-    type: "button",
-    label: `${size} per page`,
-    onClick: () => {
-      perPage.value = size;
-      currentPage.value = 1;
-    },
-  })),
-);
 
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(props.bookings.length / perPage.value)),
@@ -304,16 +249,6 @@ watch(totalPages, (pages) => {
 
 const pagedBookings = computed(() => {
   const start = (currentPage.value - 1) * perPage.value;
-  return props.bookings.slice(start, start + perPage.value);
+  return sortedBookings.value.slice(start, start + perPage.value);
 });
 </script>
-
-<style scoped>
-.checkbox {
-  width: 0.95rem;
-  height: 0.95rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  color: #188577;
-}
-</style>

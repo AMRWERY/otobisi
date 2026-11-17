@@ -2,57 +2,40 @@
   <div
     class="bg-surface-0 dark:bg-[#111927] border border-border/80 rounded-2xl overflow-hidden shadow-xs"
   >
-    <!-- Bulk bar -->
-    <div
-      class="px-4 py-2.5 border-b border-border/80 flex items-center justify-between flex-wrap gap-3 bg-surface-1/60 dark:bg-surface-2/10"
+    <VTableBulkBar
+      :count="selectedIds.length"
+      label="Coaches Selected"
+      @clear="selectedIds = []"
     >
-      <label
-        class="flex items-center gap-3 text-[11px] font-mono text-text-secondary cursor-pointer select-none"
-      >
-        <input
-          type="checkbox"
-          class="checkbox"
-          :checked="allSelected"
-          :indeterminate="someSelected"
-          :disabled="!coaches.length"
-          @change="emit('toggle-all')"
-        />
-        <span v-if="selectedIds.length" class="font-semibold text-text-primary">
-          {{ selectedIds.length.toLocaleString("en-US") }} selected
-        </span>
-        <span v-else>
-          Select all {{ coaches.length.toLocaleString("en-US") }} results
-        </span>
-      </label>
-
-      <span
-        class="flex items-center gap-1.5 text-[11px] font-medium text-accent-700 dark:text-accent-300"
-      >
-        <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
-        Telemetry feed active
-      </span>
-    </div>
+      <VTableBulkAction icon="ph:download-simple-bold" @click="emit('export-selected')">
+        Export selected
+      </VTableBulkAction>
+    </VTableBulkBar>
 
     <VTable
+      v-model:selected="selectedIds"
+      v-model:sort="sort"
+      selectable
       :columns="columns"
       :rows="pagedCoaches"
       row-key="id"
+      density="comfortable"
       min-width-class="min-w-[820px]"
-      :row-class="rowClass"
-      empty-text="No coaches match your filters"
+      empty-icon="ph:bus-bold"
+      empty-title="No coaches match your filters"
+      empty-description="Try clearing the active filters or widening your search."
     >
-      <template #header-select>
-        <span class="sr-only">Select</span>
-      </template>
-
-      <template #cell-select="{ row }">
-        <input
-          type="checkbox"
-          class="checkbox"
-          :checked="selectedIds.includes(row.id)"
-          :aria-label="`Select coach ${row.internalId}`"
-          @change="emit('toggle', row.id)"
-        />
+      <template #empty-actions>
+        <VButton
+          v-if="hasActiveFilters"
+          variant="surface"
+          size="sm"
+          rounded="lg"
+          icon="ph:funnel-x-bold"
+          @click="emit('reset')"
+        >
+          Reset Active Filters
+        </VButton>
       </template>
 
       <!-- Vehicle & VIN -->
@@ -68,7 +51,7 @@
               <span class="font-bold text-text-primary text-xs">
                 {{ row.model }}
               </span>
-              <span class="font-mono text-text-secondary font-semibold">
+              <span class="font-mono text-teal-700 dark:text-teal-300 font-semibold">
                 {{ row.code }}
               </span>
               <span
@@ -114,84 +97,61 @@
       </template>
     </VTable>
 
-    <!-- Footer: per page + pagination -->
-    <div
-      class="px-4 py-3 border-t border-border/80 flex items-center justify-between flex-wrap gap-4 text-xs"
-    >
-      <VDropdownMenu :items="perPageItems" align="left">
-        <template #trigger>
-          <VButton
-            variant="surface"
-            size="xs"
-            rounded="lg"
-            icon-right="ph:caret-down-bold"
-          >
-            {{ perPage }} per page
-          </VButton>
-        </template>
-      </VDropdownMenu>
-
-      <VPagination
-        v-model="currentPage"
-        :total="coaches.length"
-        :page-size="perPage"
-        item-label="coaches"
-        show-summary
-        class="flex-1 border-t-0 pt-0"
-      />
-    </div>
+    <VPagination
+      v-model="currentPage"
+      v-model:page-size="perPage"
+      :page-size-options="FLEET_PER_PAGE_OPTIONS"
+      :total="coaches.length"
+      item-label="coaches"
+      show-summary
+      :active-class="PAGINATION_ACTIVE_CLASS"
+      class="px-4 py-3 bg-surface-1/40 dark:bg-surface-2/10"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
-import type { TableColumn } from "@otobisi/ui/types/shared/VTable";
+import type { TableColumn, TableSort } from "@otobisi/ui/types/shared/VTable";
 import type { CoachRecord, CoachStatus, CoachTemplateKey } from "~/types/fleet";
 
 const props = defineProps<{
-  /** Already filtered coaches; this component only paginates them */
+  /** Already filtered coaches; this component sorts and paginates them */
   coaches: CoachRecord[];
-  selectedIds: number[];
-  allSelected: boolean;
+  hasActiveFilters: boolean;
 }>();
 
 const emit = defineEmits<{
-  (e: "toggle", id: number): void;
-  (e: "toggle-all"): void;
+  (e: "export-selected"): void;
+  (e: "reset"): void;
 }>();
 
+/** Ids of the checked coaches (kept across pages) */
+const selectedIds = defineModel<(string | number)[]>("selectedIds", {
+  required: true,
+});
+
 const columns: TableColumn[] = [
-  { key: "select", label: "", headerClass: "w-10 ps-4", cellClass: "ps-4" },
-  { key: "vehicle", label: "VEHICLE DETAILS & VIN" },
-  { key: "license", label: "LICENSE & DEPOT" },
-  { key: "blueprint", label: "SEATING BLUEPRINT" },
-  { key: "status", label: "OPERATIONAL STATUS", headerClass: "pe-4", cellClass: "pe-4" },
+  { key: "vehicle", label: "Vehicle Details & VIN", sortable: true },
+  { key: "license", label: "License & Depot", sortable: true },
+  { key: "blueprint", label: "Seating Blueprint", sortable: true },
+  { key: "status", label: "Operational Status", sortable: true, headerClass: "pe-4", cellClass: "pe-4" },
 ];
 
-const someSelected = computed(
-  () => props.selectedIds.length > 0 && !props.allSelected,
-);
+// ── Sorting ─────────────────────────────────────────────
+const sort = ref<TableSort | null>(null);
 
-function rowClass(row: Record<string, any>) {
-  return props.selectedIds.includes(row.id)
-    ? "bg-surface-1/70 dark:bg-surface-2/20"
-    : "";
-}
+const sortedCoaches = computed(() =>
+  sortRows(props.coaches, sort.value, {
+    vehicle: (c) => c.model,
+    license: (c) => c.plateLatin,
+    blueprint: (c) => COACH_TEMPLATES[c.template].label,
+    status: (c) => COACH_STATUS_LABELS[c.status],
+  }),
+);
 
 // ── Pagination ──────────────────────────────────────────
 const currentPage = ref(1);
 const perPage = ref(FLEET_PER_PAGE_OPTIONS[0]!);
-
-const perPageItems = computed<DropdownItem[]>(() =>
-  FLEET_PER_PAGE_OPTIONS.map((size) => ({
-    type: "button",
-    label: `${size} per page`,
-    onClick: () => {
-      perPage.value = size;
-      currentPage.value = 1;
-    },
-  })),
-);
 
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(props.coaches.length / perPage.value)),
@@ -204,16 +164,6 @@ watch(totalPages, (pages) => {
 
 const pagedCoaches = computed(() => {
   const start = (currentPage.value - 1) * perPage.value;
-  return props.coaches.slice(start, start + perPage.value);
+  return sortedCoaches.value.slice(start, start + perPage.value);
 });
 </script>
-
-<style scoped>
-.checkbox {
-  width: 0.95rem;
-  height: 0.95rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  color: #188577;
-}
-</style>

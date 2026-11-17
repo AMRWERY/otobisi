@@ -24,11 +24,15 @@
     </div>
 
     <VTable
+      v-model:sort="sort"
       :columns="columns"
       :rows="paginatedTrips"
       row-key="id"
+      density="comfortable"
       min-width-class="min-w-[950px]"
-      empty-text="No timetable routes found matching your criteria"
+      empty-icon="ph:calendar-check-bold"
+      empty-title="No timetable routes found matching your criteria"
+      empty-description="Try clearing the active filters or adding a new trip schedule."
     >
       <!-- Trip ID & Corridor -->
       <template #cell-tripId="{ row }">
@@ -160,37 +164,22 @@
       </template>
     </VTable>
 
-    <!-- Footer: per page + pagination -->
-    <div
-      class="px-6 py-4 border-t border-border/80 flex items-center justify-between flex-wrap gap-4 text-xs"
-    >
-      <VDropdownMenu :items="perPageItems" align="left">
-        <template #trigger>
-          <VButton
-            variant="surface"
-            size="xs"
-            rounded="lg"
-            icon-right="ph:caret-down-bold"
-          >
-            {{ perPage }} per page
-          </VButton>
-        </template>
-      </VDropdownMenu>
-
-      <VPagination
-        v-model="currentPage"
-        :total="trips.length"
-        :page-size="perPage"
-        item-label="timetable slots"
-        show-summary
-      />
-    </div>
+    <VPagination
+      v-model="currentPage"
+      v-model:page-size="perPage"
+      :page-size-options="[8, 16, 24, 48]"
+      :total="trips.length"
+      item-label="timetable slots"
+      show-summary
+      :active-class="PAGINATION_ACTIVE_CLASS"
+      class="px-6 py-3 bg-surface-1/40 dark:bg-surface-2/10"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
-import type { TableColumn } from "@otobisi/ui/types/shared/VTable";
+import type { TableColumn, TableSort } from "@otobisi/ui/types/shared/VTable";
 import type { Trip } from "~/types/trip";
 
 const props = defineProps<{
@@ -212,10 +201,11 @@ const columns: TableColumn[] = [
   {
     key: "tripId",
     label: "TRIP ID & CORRIDOR",
+    sortable: true,
     headerClass: "ps-6",
     cellClass: "ps-6 whitespace-nowrap",
   },
-  { key: "departure", label: "DEPARTURE", cellClass: "whitespace-nowrap" },
+  { key: "departure", label: "DEPARTURE", sortable: true, cellClass: "whitespace-nowrap" },
   {
     key: "arrival",
     label: "ARRIVAL & DURATION",
@@ -226,13 +216,14 @@ const columns: TableColumn[] = [
     label: "VEHICLE CLASS & REG",
     cellClass: "whitespace-nowrap",
   },
-  { key: "capacity", label: "CAPACITY", cellClass: "whitespace-nowrap" },
+  { key: "capacity", label: "CAPACITY", sortable: true, cellClass: "whitespace-nowrap" },
   {
     key: "occupancy",
     label: "SEAT OCCUPANCY",
+    sortable: true,
     cellClass: "whitespace-nowrap min-w-[130px]",
   },
-  { key: "fare", label: "BASE FARE (EGP)", cellClass: "whitespace-nowrap" },
+  { key: "fare", label: "BASE FARE (EGP)", sortable: true, align: "end", cellClass: "whitespace-nowrap" },
   { key: "status", label: "STATUS", cellClass: "whitespace-nowrap" },
   {
     key: "actions",
@@ -246,17 +237,6 @@ const columns: TableColumn[] = [
 const currentPage = ref(1);
 const perPage = ref(8);
 
-const perPageItems = computed<DropdownItem[]>(() =>
-  [8, 16, 24, 48].map((size) => ({
-    type: "button",
-    label: `${size} per page`,
-    onClick: () => {
-      perPage.value = size;
-      currentPage.value = 1;
-    },
-  })),
-);
-
 const totalPages = computed(() =>
   Math.max(1, Math.ceil(props.trips.length / perPage.value)),
 );
@@ -266,9 +246,21 @@ watch(totalPages, (pages) => {
   if (currentPage.value > pages) currentPage.value = pages;
 });
 
+// ── Sorting ─────────────────────────────────────────────────
+const sort = ref<TableSort | null>(null);
+
+const sortedTrips = computed(() =>
+  sortRows(props.trips, sort.value, {
+    tripId: (t) => t.id,
+    departure: (t) => t.departTime,
+    occupancy: (t) => t.occupancyRate,
+    fare: (t) => Number(t.fare),
+  }),
+);
+
 const paginatedTrips = computed(() => {
   const start = (currentPage.value - 1) * perPage.value;
-  return props.trips.slice(start, start + perPage.value);
+  return sortedTrips.value.slice(start, start + perPage.value);
 });
 
 const getRowActions = (trip: Trip): DropdownItem[] => [

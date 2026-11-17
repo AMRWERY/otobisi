@@ -193,8 +193,8 @@ export function useFleet() {
     filters.template = ALL_FLEET;
   }
 
-  // ── Bulk selection (across every filtered result, not just the page) ──
-  const selectedIds = ref<number[]>([]);
+  // ── Bulk selection (VTable owns the checkboxes; ids persist across pages) ──
+  const selectedIds = ref<(string | number)[]>([]);
 
   // Drop selections that a filter change has hidden
   watch(filteredFleet, (list) => {
@@ -202,23 +202,6 @@ export function useFleet() {
     selectedIds.value = selectedIds.value.filter((id) => visible.has(id));
   });
 
-  const allSelected = computed(
-    () =>
-      filteredFleet.value.length > 0 &&
-      selectedIds.value.length === filteredFleet.value.length,
-  );
-
-  function toggleSelect(id: number) {
-    selectedIds.value = selectedIds.value.includes(id)
-      ? selectedIds.value.filter((x) => x !== id)
-      : [...selectedIds.value, id];
-  }
-
-  function toggleSelectAll() {
-    selectedIds.value = allSelected.value
-      ? []
-      : filteredFleet.value.map((c) => c.id);
-  }
 
   // ── Actions ─────────────────────────────────────────────
   /** Returns true when the coach was registered, so the page can close the drawer */
@@ -314,9 +297,6 @@ export function useFleet() {
     hasActiveFilters,
     resetFilters,
     selectedIds,
-    allSelected,
-    toggleSelect,
-    toggleSelectAll,
     registerCoach,
     saveDraft,
     exportCsv,

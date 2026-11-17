@@ -249,30 +249,22 @@ export function useTeam() {
     }),
   );
 
-  // ── Bulk selection (across every filtered result, not just the page) ──
-  const selectedIds = ref<number[]>([]);
+  // ── Bulk selection (VTable owns the checkboxes; ids persist across pages) ──
+  const selectedIds = ref<(string | number)[]>([]);
 
   watch(filteredMembers, (list) => {
     const visible = new Set(list.map((m) => m.id));
     selectedIds.value = selectedIds.value.filter((id) => visible.has(id));
   });
 
-  const allSelected = computed(
-    () =>
-      filteredMembers.value.length > 0 &&
-      selectedIds.value.length === filteredMembers.value.length,
+
+  const hasActiveFilters = computed(
+    () => filters.role !== ALL_TEAM || filters.hub !== ALL_TEAM,
   );
 
-  function toggleSelect(id: number) {
-    selectedIds.value = selectedIds.value.includes(id)
-      ? selectedIds.value.filter((x) => x !== id)
-      : [...selectedIds.value, id];
-  }
-
-  function toggleSelectAll() {
-    selectedIds.value = allSelected.value
-      ? []
-      : filteredMembers.value.map((m) => m.id);
+  function resetFilters() {
+    filters.role = ALL_TEAM;
+    filters.hub = ALL_TEAM;
   }
 
   // ── Actions ─────────────────────────────────────────────
@@ -324,6 +316,19 @@ export function useTeam() {
     toast.info(`${m.name} removed from the team`);
   }
 
+  /** Removes every checked member except the root owner */
+  function removeSelected() {
+    const removable = members.value.filter(
+      (m) => selectedIds.value.includes(m.id) && m.role !== "owner",
+    );
+    const skipped = selectedIds.value.length - removable.length;
+    members.value = members.value.filter((m) => !removable.includes(m));
+    selectedIds.value = [];
+    toast.info(
+      `${removable.length} removed from the team${skipped ? ` • ${skipped} owner kept` : ""}`,
+    );
+  }
+
   return {
     members,
     filters,
@@ -334,9 +339,9 @@ export function useTeam() {
     filteredMembers,
     terminals,
     selectedIds,
-    allSelected,
-    toggleSelect,
-    toggleSelectAll,
+    hasActiveFilters,
+    resetFilters,
+    removeSelected,
     inviteMember,
     resendInvite,
     removeMember,

@@ -24,14 +24,13 @@
       :class="{ 'xl:grid-cols-[minmax(0,65fr)_minmax(0,35fr)]': isDesktop && activeBooking }"
     >
       <lazy-bookings-table
+        v-model:selected-ids="selectedIds"
         :bookings="filteredBookings"
         :active-id="activeId"
-        :selected-ids="selectedIds"
-        :all-selected="allSelected"
+        :has-active-filters="hasActiveFilters"
         @open="openBooking"
-        @toggle="toggleSelect"
-        @toggle-all="toggleSelectAll"
         @export-selected="exportCsv(true)"
+        @reset="resetFilters"
       />
 
       <!-- Desktop: docked beside the table -->
@@ -89,9 +88,6 @@ const {
   activeId,
   activeBooking,
   selectedIds,
-  allSelected,
-  toggleSelect,
-  toggleSelectAll,
   markNoShow,
   refundBooking,
   resendTicket,

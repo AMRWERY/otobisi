@@ -20,13 +20,13 @@
     />
 
     <lazy-team-table
+      v-model:selected-ids="selectedIds"
       :members="filteredMembers"
-      :selected-ids="selectedIds"
-      :all-selected="allSelected"
-      @toggle="toggleSelect"
-      @toggle-all="toggleSelectAll"
+      :has-active-filters="hasActiveFilters"
       @resend="resendInvite"
       @remove="removeMember"
+      @remove-selected="removeSelected"
+      @reset="resetFilters"
     />
 
     <lazy-team-terminals :terminals="terminals" />
@@ -51,9 +51,9 @@ const {
   filteredMembers,
   terminals,
   selectedIds,
-  allSelected,
-  toggleSelect,
-  toggleSelectAll,
+  hasActiveFilters,
+  resetFilters,
+  removeSelected,
   inviteMember,
   resendInvite,
   removeMember,

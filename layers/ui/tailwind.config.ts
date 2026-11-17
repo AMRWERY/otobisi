@@ -12,6 +12,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Cairo", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
         accent: {

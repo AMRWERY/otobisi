@@ -1,78 +1,111 @@
 <template>
   <nav
-    v-if="totalPages > 1 || showSummary"
+    v-if="totalPages > 1 || showSummary || pageSizeOptions?.length"
     :aria-label="ariaLabel"
-    class="flex items-center justify-between border-t border-border/60 pt-3 text-[11px] text-text-muted flex-wrap gap-2"
+    class="flex items-center justify-between border-t border-border/60 pt-3 text-[11px] text-text-muted flex-wrap gap-x-4 gap-y-2"
   >
-    <!-- Summary: "Showing 1–8 of 1,428 bookings" -->
-    <div v-if="showSummary">
-      <slot name="summary" :from="from" :to="to" :total="total">
-        <span>
-          Showing {{ from.toLocaleString() }}–{{ to.toLocaleString() }} of
-          {{ total.toLocaleString() }} {{ itemLabel }}
-        </span>
-      </slot>
+    <div class="flex items-center gap-x-4 gap-y-2 flex-wrap">
+      <!-- Summary: "Showing 1–8 of 1,428 bookings" -->
+      <div v-if="showSummary" class="font-mono">
+        <slot name="summary" :from="from" :to="to" :total="total">
+          <span>
+            Showing
+            <b class="text-text-primary tabular-nums">
+              {{ from.toLocaleString("en-US") }}–{{ to.toLocaleString("en-US") }}
+            </b>
+            of
+            <b class="text-text-primary tabular-nums">
+              {{ total.toLocaleString("en-US") }}
+            </b>
+            {{ itemLabel }}
+          </span>
+        </slot>
+      </div>
+
+      <!-- Rows per page -->
+      <div
+        v-if="pageSizeOptions?.length"
+        class="flex items-center gap-2 font-mono uppercase tracking-wider"
+      >
+        <span>Per page:</span>
+        <VDropdownMenu :items="sizeItems" align="left">
+          <template #trigger>
+            <VButton
+              variant="surface"
+              size="xs"
+              rounded="lg"
+              icon-right="ph:caret-down-bold"
+              custom-class="font-mono tabular-nums"
+            >
+              {{ pageSize }}
+            </VButton>
+          </template>
+        </VDropdownMenu>
+      </div>
     </div>
 
     <div v-if="totalPages > 1" class="flex items-center gap-1 ms-auto">
-      <LazyVButton
+      <VButton
         variant="outline"
         :size="size"
         rounded="lg"
-        icon="ph:arrow-left-bold"
+        icon="ph:caret-left-bold"
         icon-class="rtl:rotate-180"
         :disabled="modelValue <= 1"
         @click="go(modelValue - 1)"
       >
         {{ previousLabel }}
-      </LazyVButton>
+      </VButton>
 
       <template v-for="(item, index) in items" :key="`${item}-${index}`">
-        <LazyVButton
+        <span
           v-if="item === '...'"
-          variant="outline"
-          :size="size"
-          rounded="lg"
-          custom-class="pointer-events-none"
+          class="px-1 text-text-muted select-none"
           aria-hidden="true"
-          tabindex="-1"
         >
-          ...
-        </LazyVButton>
+          …
+        </span>
 
-        <LazyVButton
+        <VButton
           v-else
-          :variant="item === modelValue ? 'primary' : 'outline'"
+          :variant="item === modelValue ? (activeClass ? 'unstyled' : 'primary') : 'outline'"
           :size="size"
           rounded="lg"
+          :custom-class="[
+            'font-mono tabular-nums min-w-7',
+            item === modelValue ? activeClass : '',
+          ]"
           :aria-current="item === modelValue ? 'page' : undefined"
           :aria-label="`Page ${item}`"
           @click="go(item)"
         >
           {{ item }}
-        </LazyVButton>
+        </VButton>
       </template>
 
-      <LazyVButton
+      <VButton
         variant="outline"
         :size="size"
         rounded="lg"
-        icon-right="ph:arrow-right-bold"
+        icon-right="ph:caret-right-bold"
         icon-right-class="rtl:rotate-180"
         :disabled="modelValue >= totalPages"
         @click="go(modelValue + 1)"
       >
         {{ nextLabel }}
-      </LazyVButton>
+      </VButton>
     </div>
   </nav>
 </template>
 
 <script lang="ts" setup>
 import type { PaginationProps } from "../../types/shared/VPagination";
+import type { DropdownItem } from "../../types/shared/VDropdownMenu";
 
 const props = withDefaults(defineProps<PaginationProps>(), {
   pageSize: 10,
+  pageSizeOptions: undefined,
+  activeClass: undefined,
   siblingCount: 1,
   size: "xs",
   showSummary: false,
@@ -84,6 +117,7 @@ const props = withDefaults(defineProps<PaginationProps>(), {
 
 const emit = defineEmits<{
   (e: "update:modelValue", page: number): void;
+  (e: "update:pageSize", size: number): void;
 }>();
 
 const totalPages = computed(() =>
@@ -95,6 +129,18 @@ const from = computed(() =>
 );
 const to = computed(() =>
   Math.min(props.modelValue * props.pageSize, props.total),
+);
+
+const sizeItems = computed<DropdownItem[]>(() =>
+  (props.pageSizeOptions ?? []).map((size) => ({
+    type: "button",
+    label: `${size} rows`,
+    onClick: () => {
+      emit("update:pageSize", size);
+      // A new page size invalidates the current page number
+      emit("update:modelValue", 1);
+    },
+  })),
 );
 
 // e.g. 1 … 4 5 6 … 20 — first/last always shown, ellipsis only where pages are skipped

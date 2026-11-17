@@ -29,11 +29,11 @@
     />
 
     <lazy-fleet-table
+      v-model:selected-ids="selectedIds"
       :coaches="filteredFleet"
-      :selected-ids="selectedIds"
-      :all-selected="allSelected"
-      @toggle="toggleSelect"
-      @toggle-all="toggleSelectAll"
+      :has-active-filters="hasActiveFilters"
+      @export-selected="exportCsv"
+      @reset="resetFilters"
     />
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -65,9 +65,6 @@ const {
   hasActiveFilters,
   resetFilters,
   selectedIds,
-  allSelected,
-  toggleSelect,
-  toggleSelectAll,
   registerCoach,
   saveDraft,
   exportCsv,

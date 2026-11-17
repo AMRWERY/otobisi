@@ -349,8 +349,8 @@ export function useBookings() {
     () => bookings.value.find((b) => b.id === activeId.value) ?? null,
   );
 
-  // ── Bulk selection (across every filtered result, not just the page) ──
-  const selectedIds = ref<string[]>([]);
+  // ── Bulk selection (VTable owns the checkboxes; ids persist across pages) ──
+  const selectedIds = ref<(string | number)[]>([]);
 
   // Drop selections that a filter change has hidden
   watch(filteredBookings, (list) => {
@@ -358,23 +358,6 @@ export function useBookings() {
     selectedIds.value = selectedIds.value.filter((id) => visible.has(id));
   });
 
-  const allSelected = computed(
-    () =>
-      filteredBookings.value.length > 0 &&
-      selectedIds.value.length === filteredBookings.value.length,
-  );
-
-  function toggleSelect(id: string) {
-    selectedIds.value = selectedIds.value.includes(id)
-      ? selectedIds.value.filter((x) => x !== id)
-      : [...selectedIds.value, id];
-  }
-
-  function toggleSelectAll() {
-    selectedIds.value = allSelected.value
-      ? []
-      : filteredBookings.value.map((b) => b.id);
-  }
 
   // ── Actions ─────────────────────────────────────────────
   function markNoShow(booking: Booking) {
@@ -459,9 +442,6 @@ export function useBookings() {
     activeId,
     activeBooking,
     selectedIds,
-    allSelected,
-    toggleSelect,
-    toggleSelectAll,
     markNoShow,
     refundBooking,
     resendTicket,
