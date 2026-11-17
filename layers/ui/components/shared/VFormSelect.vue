@@ -31,6 +31,8 @@ const model = defineModel<string>({ required: true });
 const id = useId();
 
 const normalized = computed(() =>
-  props.options.map((o) => (typeof o === "string" ? { value: o, label: o } : o)),
+  props.options.map((o) =>
+    typeof o === "string" ? { value: o, label: o } : o,
+  ),
 );
 </script>

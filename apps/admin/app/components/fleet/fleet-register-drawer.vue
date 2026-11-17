@@ -114,7 +114,7 @@
               <fleet-form-section-title title="02 • Chassis & Engineering" />
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <fleet-form-select
+                <VFormSelect
                   v-model="form.chassis"
                   label="Chassis & Engine Platform"
                   :options="chassisOptions"
@@ -144,7 +144,7 @@
                 aside="Linked to Seat Engine"
               />
 
-              <fleet-form-select
+              <VFormSelect
                 v-model="form.template"
                 label="Assigned Seat Template Blueprint"
                 :options="templateOptions"
@@ -184,12 +184,12 @@
               />
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <fleet-form-select
+                <VFormSelect
                   v-model="form.depot"
                   label="Home Depot & Maintenance Yard"
                   :options="FLEET_DEPOTS"
                 />
-                <fleet-form-select
+                <VFormSelect
                   v-model="form.driver"
                   label="Dedicated Lead Driver"
                   :options="FLEET_DRIVERS"
