@@ -74,7 +74,7 @@
             :placeholder="`omar.farouk${TEAM_EMAIL_DOMAIN}`"
           />
 
-          <form-select
+          <VFormSelect
             v-model="form.hub"
             label="Assigned Terminal / Operating Hub"
             :options="hubOptions"
@@ -101,7 +101,7 @@
                   type="radio"
                   name="team-role"
                   :value="key"
-                  class="mt-1 accent-[#0F5A47]"
+                  class="mt-1"
                 />
                 <div>
                   <div class="flex items-center gap-1.5">
@@ -126,19 +126,16 @@
             </div>
           </fieldset>
 
-          <label
-            class="flex items-center gap-2 cursor-pointer text-text-secondary pt-1"
+          <VCheckboxInput
+            v-model="form.require2FA"
+            wrapper-class="text-text-secondary pt-1"
+            label-class="flex items-center gap-2"
           >
-            <input
-              v-model="form.require2FA"
-              type="checkbox"
-              class="rounded accent-[#0F5A47]"
-            />
             <Icon name="ph:shield-check-bold" class="w-3.5 h-3.5 text-teal-700" />
             <span class="font-semibold text-[11px]">
               Require two-factor authentication (2FA) on first login
             </span>
-          </label>
+          </VCheckboxInput>
 
           <div
             class="pt-4 border-t border-border/80 flex items-center justify-end gap-2"

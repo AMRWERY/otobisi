@@ -25,10 +25,10 @@ const member = (s: Seed): TeamMember => ({
 const initialTeam = (): TeamMember[] => [
   member({
     id: 1,
-    name: "Karim El-Sayed",
-    arabicName: "كريم السيد",
+    name: "Amr Mohamed",
+    arabicName: "عمرو محمد",
     title: "Concessionaire / Ops Director",
-    email: "karim.s@nilebus.eg",
+    email: "amr.m@nilebus.eg",
     phone: "+20 100 123 4567",
     role: "owner",
     hub: "almaza",

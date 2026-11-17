@@ -111,7 +111,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { TableColumn, TableSort } from "@otobisi/ui/types/shared/VTable";
+import type { TableColumn, TableSort } from "~/types/shared/VTable";
 import type { CoachRecord, CoachStatus, CoachTemplateKey } from "~/types/fleet";
 
 const props = defineProps<{

@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { LocaleOverlayProps } from "../../types/shared/VLocaleOverlay";
+import type { LocaleOverlayProps } from "~/types/shared/VLocaleOverlay";
 
 const props = withDefaults(defineProps<LocaleOverlayProps>(), {
   brandName: "Otobisi",

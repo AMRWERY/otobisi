@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Otobisi">
+  <defs>
+    <linearGradient id="brand" x1="8" y1="4" x2="56" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F26A36"/>
+      <stop offset="1" stop-color="#C2410C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="18" fill="url(#brand)"/>
+  <path d="M16 45V22.5C16 16.7 20.7 12 26.5 12h11C43.3 12 48 16.7 48 22.5V45c0 3.3-2.7 6-6 6H22c-3.3 0-6-2.7-6-6Z" fill="#FFF"/>
+  <rect x="20" y="17" width="24" height="14" rx="4" fill="#111827"/>
+  <path d="M32 17v14" stroke="#536176" stroke-width="1.5"/>
+  <rect x="21" y="35" width="22" height="5" rx="2.5" fill="#F26A36"/>
+  <rect x="20" y="43" width="24" height="3" rx="1.5" fill="#C2410C"/>
+  <circle cx="21.5" cy="47" r="3.5" fill="#111827"/>
+  <circle cx="42.5" cy="47" r="3.5" fill="#111827"/>
+  <circle cx="21.5" cy="47" r="1.1" fill="#AAB4C4"/>
+  <circle cx="42.5" cy="47" r="1.1" fill="#AAB4C4"/>
+</svg>

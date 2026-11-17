@@ -99,8 +99,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { PaginationProps } from "../../types/shared/VPagination";
-import type { DropdownItem } from "../../types/shared/VDropdownMenu";
+import type { PaginationProps } from "~/types/shared/VPagination";
+import type { DropdownItem } from "~/types/shared/VDropdownMenu";
 
 const props = withDefaults(defineProps<PaginationProps>(), {
   pageSize: 10,

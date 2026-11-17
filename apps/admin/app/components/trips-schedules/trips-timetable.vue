@@ -178,8 +178,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
-import type { TableColumn, TableSort } from "@otobisi/ui/types/shared/VTable";
+import type { DropdownItem } from "~/types/shared/VDropdownMenu";
+import type { TableColumn, TableSort } from "~/types/shared/VTable";
 import type { Trip } from "~/types/trip";
 
 const props = defineProps<{

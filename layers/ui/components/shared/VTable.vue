@@ -11,14 +11,12 @@
             scope="col"
             class="h-9 w-10 ps-4 text-start"
           >
-            <input
-              type="checkbox"
-              class="v-table-checkbox"
-              aria-label="Select all rows on this page"
-              :checked="allOnPage"
+            <VCheckboxInput
+              :model-value="allOnPage"
               :indeterminate="someOnPage"
               :disabled="!rows.length || loading"
-              @change="togglePage"
+              aria-label="Select all rows on this page"
+              @update:model-value="togglePage"
             />
           </th>
 
@@ -93,12 +91,10 @@
             @click="emit('row-click', row, index)"
           >
             <td v-if="selectable" class="ps-4 w-10" @click.stop>
-              <input
-                type="checkbox"
-                class="v-table-checkbox"
+              <VCheckboxInput
+                :model-value="isSelected(row, index)"
                 :aria-label="`Select row ${index + 1}`"
-                :checked="isSelected(row, index)"
-                @change="toggleRow(row, index)"
+                @update:model-value="toggleRow(row, index)"
               />
             </td>
 
@@ -159,7 +155,7 @@ import type {
   TableColumn,
   TableRowKey,
   TableSort,
-} from "../../types/shared/VTable";
+} from "~/types/shared/VTable";
 
 const props = withDefaults(
   defineProps<{
@@ -293,13 +289,3 @@ function togglePage() {
       ];
 }
 </script>
-
-<style scoped>
-.v-table-checkbox {
-  width: 0.95rem;
-  height: 0.95rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  accent-color: #0f5a47;
-}
-</style>

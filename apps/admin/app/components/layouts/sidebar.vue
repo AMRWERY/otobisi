@@ -158,28 +158,23 @@
           : 'flex items-center gap-2.5'
       "
     >
-      <div class="relative shrink-0">
+      <div class="relative">
         <div
-          class="w-8 h-8 rounded-full bg-teal-600/10 dark:bg-teal-500/15 border border-teal-500/30 text-teal-700 dark:text-teal-300 flex items-center justify-center text-[11px] font-bold"
+          class="w-8 h-8 rounded-full bg-gradient-to-tr from-accent-600 to-accent-400 text-white flex items-center justify-center font-bold text-xs shadow-xs"
         >
-          KS
+          AM
         </div>
-        <!-- Presence dot -->
         <span
-          class="absolute -bottom-0.5 -end-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-[#0B0F17]"
+          class="absolute bottom-0 end-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-surface-0 dark:ring-[#0E131F]"
         />
       </div>
 
       <div v-if="!compact" class="min-w-0 flex-1 leading-tight">
-        <div
-          class="text-xs font-bold text-slate-900 dark:text-slate-100 truncate"
-        >
-          Amr Mohamed
-        </div>
-        <div
-          class="font-mono text-[10px] text-slate-400 dark:text-slate-500 truncate"
-        >
-          Fleet Ops Lead
+        <div class="hidden sm:flex flex-col leading-tight">
+          <span class="text-xs font-bold text-text-primary">Amr Mohamed</span>
+          <span class="text-[10px] text-text-muted font-medium"
+            >Fleet Ops Lead</span
+          >
         </div>
       </div>
     </div>

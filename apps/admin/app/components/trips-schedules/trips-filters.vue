@@ -77,7 +77,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
+import type { DropdownItem } from "~/types/shared/VDropdownMenu";
 
 const dateRange = defineModel<string>("dateRange", { required: true });
 const corridor = defineModel<string>("corridor", { required: true });

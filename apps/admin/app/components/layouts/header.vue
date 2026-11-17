@@ -101,16 +101,14 @@
             <div
               class="w-8 h-8 rounded-full bg-gradient-to-tr from-accent-600 to-accent-400 text-white flex items-center justify-center font-bold text-xs shadow-xs"
             >
-              KS
+              AM
             </div>
             <span
               class="absolute bottom-0 end-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-surface-0 dark:ring-[#0E131F]"
             />
           </div>
           <div class="hidden sm:flex flex-col leading-tight">
-            <span class="text-xs font-bold text-text-primary"
-              >Amr Mohamed</span
-            >
+            <span class="text-xs font-bold text-text-primary">Amr Mohamed</span>
             <span class="text-[10px] text-text-muted font-medium"
               >Fleet Ops Lead</span
             >
@@ -132,28 +130,31 @@
               amr.mohamed@nilebus.eg
             </p>
           </div>
-          <button
-            type="button"
+          <NuxtLinkLocale
+            to="/profile"
             class="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface-1 dark:hover:bg-surface-2 transition-colors"
+            @click="showUserMenu = false"
           >
             <Icon name="ph:user-circle-bold" class="w-4 h-4 text-text-muted" />
             Operator Profile
-          </button>
-          <button
-            type="button"
+          </NuxtLinkLocale>
+          <NuxtLinkLocale
+            to="/hub-preferences"
             class="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-surface-1 dark:hover:bg-surface-2 transition-colors"
+            @click="showUserMenu = false"
           >
             <Icon name="ph:sliders-bold" class="w-4 h-4 text-text-muted" />
             Hub Preferences
-          </button>
+          </NuxtLinkLocale>
           <div class="my-1 border-t border-border/70" />
-          <button
-            type="button"
+          <NuxtLinkLocale
+            to="/auth/login"
             class="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+            @click="showUserMenu = false"
           >
             <Icon name="ph:sign-out-bold" class="w-4 h-4" />
             Sign Out
-          </button>
+          </NuxtLinkLocale>
         </div>
       </div>
     </div>

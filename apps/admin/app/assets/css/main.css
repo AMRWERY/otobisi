@@ -6,3 +6,19 @@
     background-color: var(--border);
     border-radius: 9999px;
 }
+
+
+/* Checkboxes, radios and range sliders share the operator teal (brighter on dark surfaces) */
+:root {
+    --check-accent: #0f766e;
+}
+
+.dark {
+    --check-accent: #14b8a6;
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+    accent-color: var(--check-accent);
+}

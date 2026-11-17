@@ -1,0 +1,10 @@
+{
+  // Lets layer files (and Vue's prop-type resolver) import the shared UI types
+  // as "~/types/shared/<Name>", the same spelling the apps use
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/types/shared/*": ["./types/shared/*"]
+    }
+  }
+}

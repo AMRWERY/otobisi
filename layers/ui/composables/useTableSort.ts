@@ -1,4 +1,4 @@
-import type { TableSort } from "../types/shared/VTable";
+import type { TableSort } from "~/types/shared/VTable";
 
 /**
  * Sorts rows by the active `VTable` sort. Numbers compare numerically,

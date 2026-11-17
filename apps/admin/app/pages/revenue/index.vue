@@ -1,16 +1,35 @@
 <template>
-  <div>
-    <h1 class="p-5 text-3xl">revenue page</h1>
+  <div class="px-6 py-6 space-y-5 max-w-[1600px] mx-auto">
+    <lazy-revenue-header
+      v-model:period="filters.period"
+      v-model:date-range="filters.dateRange"
+      v-model:corridor="filters.corridor"
+      @export="exportCsv"
+    />
+
+    <lazy-revenue-kpis :totals="totals" />
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <lazy-revenue-heatmap
+        class="lg:col-span-8"
+        :cells="heatmap"
+        :peak="peak"
+      />
+      <lazy-revenue-alerts class="lg:col-span-4" :alerts="alerts" />
+    </div>
+
+    <lazy-revenue-trip-table :trips="filteredTrips" />
   </div>
 </template>
 
 <script lang="ts" setup>
-const localePath = useLocalePath();
+const { filters, filteredTrips, totals, heatmap, peak, alerts, exportCsv } =
+  useRevenue();
 
 useSeoMeta({
-  title: "Revenue",
+  title: "Revenue & Occupancy",
   description:
-    "Official press announcements, company facts, brand assets, and media contact information for Otobisi Egypt SAE.",
+    "Trip-level revenue, seat load and yield across Otobisi corridors, with below-target alerts.",
   private: false,
 });
 </script>

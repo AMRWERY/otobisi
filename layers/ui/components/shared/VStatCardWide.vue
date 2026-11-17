@@ -29,7 +29,11 @@
 
     <!-- Sparkline with its anchor labels -->
     <div>
-      <VSparkline :values="series" :height="64" :aria-label="`${label} trend`" />
+      <VSparkline
+        :values="series"
+        :height="64"
+        :aria-label="`${label} trend`"
+      />
       <div
         v-if="startLabel || endLabel"
         class="mt-1.5 flex items-center justify-between font-mono text-[10px] text-text-muted"

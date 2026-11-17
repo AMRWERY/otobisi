@@ -407,7 +407,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
+import type { DropdownItem } from "~/types/shared/VDropdownMenu";
 import type { SeatCell } from "~/types/seat-maps";
 
 const rowsCount = ref(11);

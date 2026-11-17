@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { TableColumn } from "@otobisi/ui/types/shared/VTable";
+import type { TableColumn } from "~/types/shared/VTable";
 import type { OccupancyRank } from "~/types/report";
 
 defineProps<{

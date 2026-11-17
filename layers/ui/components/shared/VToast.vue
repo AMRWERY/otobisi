@@ -164,7 +164,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Toast, ToastAction, ToastType } from "../../types/shared/VToast";
+import type { Toast, ToastAction, ToastType } from "~/types/shared/VToast";
 
 const props = defineProps<{
   toast?: Toast;

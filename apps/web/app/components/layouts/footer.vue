@@ -90,11 +90,12 @@
             to="/"
             class="flex items-center gap-3 group select-none"
           >
-            <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#EA580C] to-[#C2410C] flex items-center justify-center text-white shadow-md shadow-orange-950/15 group-hover:scale-105 transition-transform duration-200"
-            >
-              <Icon name="ph:bus-duotone" class="w-6 h-6 text-white" />
-            </div>
+            <img
+              src="/svg/otobisi-logo.svg"
+              alt="otobisi-logo"
+              class="w-10 h-10 rounded-xl"
+            />
+
             <div class="flex flex-col">
               <span
                 class="text-xl font-black tracking-tight text-text-primary group-hover:text-[#EA580C] transition-colors"
@@ -642,7 +643,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AccordionItem } from "@otobisi/ui/types/shared/VAccordion";
+import type { AccordionItem } from "~/types/shared/VAccordion";
 
 // ─── Mobile Accordion Items (For Travelers active by default as in spec) ─────
 const openAccordions = ref<(string | number)[]>(["travelers"]);

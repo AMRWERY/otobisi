@@ -182,22 +182,19 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-        <label
+        <VCheckboxInput
           v-for="amenity in allAmenities"
           :key="amenity.id"
-          class="flex items-center gap-2 p-2 rounded-xl bg-surface-1/40 dark:bg-surface-2/20 border border-border/60 cursor-pointer hover:border-accent-500/50 transition-colors"
+          v-model="form.amenities"
+          :value="amenity.id"
+          wrapper-class="p-2 rounded-xl bg-surface-1/40 dark:bg-surface-2/20 border border-border/60 hover:border-accent-500/50 transition-colors"
+          label-class="flex items-center gap-2 min-w-0"
         >
-          <input
-            v-model="form.amenities"
-            type="checkbox"
-            :value="amenity.id"
-            class="rounded text-[#0F5A47] focus:ring-[#0F5A47] w-4 h-4 cursor-pointer"
-          />
           <Icon :name="amenity.icon" class="w-3.5 h-3.5 text-text-muted" />
           <span class="text-[11px] font-semibold text-text-primary truncate">
             {{ amenity.label }}
           </span>
-        </label>
+        </VCheckboxInput>
       </div>
     </div>
 

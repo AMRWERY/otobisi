@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-type Tone = "positive" | "negative" | "neutral" | "critical";
+import type { Tone } from "~/types/shared/VTrendBadge";
 
 const props = defineProps<{
   /** Percent change; sets the tone (and the text) unless overridden */

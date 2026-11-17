@@ -70,7 +70,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { DropdownItem } from "@otobisi/ui/types/shared/VDropdownMenu";
+import type { DropdownItem } from "~/types/shared/VDropdownMenu";
 import type { TeamHubKey, TeamRoleKey } from "~/types/team";
 
 const props = defineProps<{
